@@ -1,5 +1,6 @@
 package br.com.proway.senior.fechamentoFolha;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Folha {
@@ -8,6 +9,7 @@ public class Folha {
 	double salarioLiquido;
 	double salarioBruto;
 	double valorHoras;
+	double valorHoraComInsalubridade;
 	double horasTrabalhadas;
 	double horasExtra;
 	double horasFalta;
@@ -18,44 +20,129 @@ public class Folha {
 	double inss;
 	double impostoDeRenda;
 	double valorMensalidade;
-	double valorCoparticipacao;
+	double valorCooparticipacao;
 	double valeTransporte;
-	double salarioMinimo;
+	double fator; // 50% adicional hora extra
+	double salarioMinimo = 1100;
+	double salarioBase = 2200;
 
+	public Folha(
+				double valorHoras, double horasTrabalhadas, double horasExtra,
+				double horasFaltas, double valorBonificacao, double percentualInsalubridade,
+				double valorMensalidade, double valorCooparticipacao, double valeTransporte
+			) {
+		this.valorHoras = valorHoras;
+		this.horasTrabalhadas = horasTrabalhadas;
+		this.horasExtra = horasExtra;
+		this.horasFalta = horasFaltas;
+		this.valorBonificacao = valorBonificacao;
+		this.percentualInsalubridade = percentualInsalubridade;
+		this.valorMensalidade = valorMensalidade;
+		this.valorCooparticipacao = valorCooparticipacao;
+		this.valeTransporte = valeTransporte;
+		this.fator = 0.50;
+	}
 	
+	// Set criado somente para debugar
+	public void setSalarioBruto(double valor) {
+		this.salarioBruto = valor;
+	}
+	
+	public void setSalarioBase(double valor) {
+		this.salarioBase = valor;
+	}
+	
+//	public static double calculaFolhaFinal(int colabId) {
+//		double horaComInsalubridade = calculaHoraComInsalubridade(valorHoraColab, quantidadeHorasTrabalhadas,
+//				percentualInsalubridadeColab);
+//		double valorSalarioBruto = calculaHorasTrabalhadas(quantidadeHorasTrabalhadas, horaComInsalubridade);
+//		valorSalarioBruto += valorHorasExtras(quantidadeHorasExtrasColab, horaComInsalubridade, 0.5);
+//		valorSalarioBruto += adicionaBonificacao(valorBonificacaoColab);
+//		double salarioDescontos = valorHorasFaltas(horaComInsalubridade, quantidadeHorasFaltas)
+//				+ descontaPlanoSaude(valorMensalidadePlanoSaude, valorCoparticipacaoPlano)
+//				+ calculaImpostoRenda(valorSalarioBruto) + descontoInss(valorSalarioBruto);
+//		double salarioFinal = valorSalarioBruto - salarioDescontos;
+//		return salarioFinal;
+//	}
+	
+	public double calcularFolha() {
+		//double baseCalculoImpostoDeRenda;
+		double descontoValeTransporte;
+		
+		//this.salarioBruto += this.calculaValorHora(); // Ja traz insalubridade
+		this.salarioBruto += this.calculaHorasTrabalhadas();
+		descontoValeTransporte = this.calculaValeTransporte();
+		this.salarioBruto += this.valorHorasExtras();
+		this.salarioBruto += this.adicionaBonificacao();
+		this.salarioBruto -= this.valorHorasFaltas();
+		this.salarioBruto -= this.descontoInss();
+		this.salarioBruto -= this.calculaImpostoRenda();
+		this.salarioBruto -= this.descontaPlanoSaude();
+		this.salarioBruto -= descontoValeTransporte;
+		this.salarioLiquido = this.salarioBruto;
+		
+		return this.salarioLiquido;	
+	}	
 	/**
 	 * Calcula o valor de vale transporte a ser descontado do colaborador
 	 * 
 	 * Chamada do metodo de Vale transporte que calcula o desconto, se o percentual
-	 * aplicado de 0.06% for maior que R$ 180,00 o desconto será este, se for menor
-	 * retorna este valor calculado. Falta ser incluído no cálculo final da folha.
+	 * aplicado de 0.06% for maior ou igual que R$ 180,00 o desconto será este, se for menor
+	 * retorna este valor calculado, e se for informado um valor igual ou menor que 0 retorna 0.
 	 * 
-	 * @param valetransporte
-	 * @return valetransporte
+	 * @return valeTransporte = valor do vale transporte a ser descontado do salário base.
 	 */
 	public double calculaValeTransporte() {
-		if ((0.06 * this.salarioBruto) >= 180) {
-		return this.valeTransporte = 180;
+	    if(this.valeTransporte <= 0) {
+	    	this.valeTransporte = 0;
+		} else if ((this.salarioBase * 0.06) >= 180) {
+			this.valeTransporte = 180;
 		} else {
-			this.valeTransporte = this.salarioBruto * 0.06 ;
+			this.valeTransporte = this.salarioBase * 0.06 ;
 		}
 		return this.valeTransporte;
 	}
 	
 	/**
+	 * Calcula o valor a ser pago em folha referente as horas extras
+	 * 
+	 * O valor retornado da multiplicação de valorHoras e fator, vai somar com o valorHoras e depois multiplica
+	 * pelas horasExtra
+	 * @return valor = Retorna o valor a ser pago de horas extras.
+	 */
+	public double valorHorasExtras() { // Testado
+		double valorHora50Porcento;
+		double valor = this.horasExtra * (valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator));
+		return valor;
+	}
+	
+	/**
 	 * Desconto de Plano de Saude.
 	 * 
-	 * Realiza o desconto de plano de saude, repassando o 1º parâmetro como valor de
-	 * mensalidade, e o 2º parâmetro o valor de cooparticipacao caso exista. A
-	 * variavel totalDescontoPlanoSaude retornara a soma dos dois parâmetros.
+	 * Realiza o desconto de plano de saúde, somando o valor da
+	 * mensalidade com o valor de cooparticipação caso exista. A
+	 * variável planoSaude retornará a soma das variáveis valorMensalidade e valorCooparticipacao.
 	 * 
-	 * @param valorMensalidade    double do colaborador
-	 * @param valorCoparticipacao double adicional do colaborador
-	 * @return retorna valor a ser descontado em folha, referente ao Plano de Saude
-	 */
-	public double descontaPlanoSaude() {
-		double totalDescontoPlanoSaude = this.valorMensalidade + this.valorCoparticipacao;
-		return totalDescontoPlanoSaude;
+	 * @return planoSaude = retorna valor a ser descontado em folha, referente ao Plano de Saude.
+	 */		
+	public double descontaPlanoSaude() { // Tratar mensalidade Zerada
+		
+		if(this.valorMensalidade >= 0) {
+			if(this.valorCooparticipacao >= 0) {
+				this.planoSaude = this.valorMensalidade + this.valorCooparticipacao;
+			} else {
+				this.valorCooparticipacao = 0;
+				this.planoSaude = this.valorMensalidade + this.valorCooparticipacao;
+			}
+		} else {
+			this.valorMensalidade = 0;
+			this.valorCooparticipacao = 0; 
+			this.planoSaude = this.valorMensalidade + this.valorCooparticipacao;
+		}
+		
+		return this.planoSaude;
+					
+		
 	}
 	
 	/**
@@ -63,11 +150,9 @@ public class Folha {
 	 * 
 	 * Recebe o valor da bonificação que será aplicado posteriormente nos proventos
 	 * do colaborador.
-	 * 
-	 * @param valorBonificacao double Valor que o colaborador receberá de
-	 *                         bonificação
-	 * @return Retorna o valor de bonificação que será somado aos demais proventos
-	 *         na folha do colaborador
+	 * 	 
+	 * @return valorBonificacao = Retorna o valor de bonificação que será somado aos demais proventos
+	 * na folha do colaborador
 	 */
 	public double adicionaBonificacao() {
 		
@@ -82,57 +167,52 @@ public class Folha {
 	 * Calcula o valor de INSS a ser descontado
 	 * 
 	 * Realiza o cálculo do valor de INSS a ser descontado em folha a partir do
-	 * salário informado. Valor de desconto fixado em 11%. Retorna o valor a ser
-	 * descontado.
+	 * salário informado. Pega a variável salarioBruto e multiplica pelo valor de desconto fixado em 11%. 
+	 * Retorna o valor a ser descontado.
 	 * 
-	 * @param valorSalarioBruto double Salário bruto do colaborador, inluindo os
-	 *                          demais proventos como horas extras e bonificação.
-	 * @return Retorna o valor a ser descontado em folha.
+	 * @return inss = Retorna o valor a ser descontado em folha.
 	 */
 	public double descontoInss() {
-		double calculaInss = this.salarioBruto * 0.11;
-		return this.inss;
+		return this.inss = this.salarioBruto * 0.11;
+		
 	}
 	
 	/**
 	 * Calcula o valor de Imposto de Renda a ser descontado em folha
 	 * 
 	 * Realiza o cálculo do valor a ser descontado referente ao Imposto de Renda na
-	 * folha do colaborador, a partir do salário bruto do colaborador.
+	 * folha do colaborador, seleciona o salárioBruto e multiplica pela sua faixa salarial
+	 * e subtrai o valor a deduzir(exe:142,80). 				
 	 * 
-	 * @param valorSalarioBruto double Valor do salário bruto do colaborador,
-	 *                          inluindo os demais proventos como horas extras e
-	 *                          bonificação.
-	 * @return Retorna o valor que a ser descontado em folha referente ao Imposto de
+	 * @return impostoDeRenda = Retorna o valor que a ser descontado em folha referente ao Imposto de
 	 *         Renda.
 	 */
 	public double calculaImpostoRenda() { //**********************
-		double resultado;
-
+		
 		if (this.salarioBruto <= 1903.98) {
-			resultado = 0;
+			this.impostoDeRenda = 0;
 		} else if (this.salarioBruto >= 1903.98 && this.salarioBruto <= 2826.65) {
-			resultado = (this.salarioBruto * 0.075) - 142.80;
+			this.impostoDeRenda = (this.salarioBruto * 0.075) - 142.80;
 		} else if (this.salarioBruto >= 2826.66 && this.salarioBruto <= 3751.05) {
-			resultado = (this.salarioBruto * 0.15) - 354.80;
+			this.impostoDeRenda = (this.salarioBruto * 0.15) - 354.80;
 		} else if (this.salarioBruto >= 3751.06 && this.salarioBruto <= 4664.68) {
-			resultado = (this.salarioBruto * 0.225) - 636.13;
+			this.impostoDeRenda = (this.salarioBruto * 0.225) - 636.13;
 		} else {
-			resultado = (this.salarioBruto * 0.275) - 869.36;
+			this.impostoDeRenda = (this.salarioBruto * 0.275) - 869.36;
 		}
 
-		return resultado;
+		return this.impostoDeRenda;
 	}
 	
 	/**
-	 * Metodo para Calcular insalubridade Este metodo recebera diferentes
-	 * percentuais( 10%, 20% ou 40%) de insalubridade para ao final retornar o valor
-	 * com base na multiplicação pelo Salario Minimo
+	 * Calcula o valor da insalubridade 
 	 * 
-	 * @param percentual
-	 * @return
-	 */
-	public  double valorInsalubridade(double percentualInsalubridade) {
+	 * Realiza o cálculo do valor a ser implementado no salário mínimo, vai pegar a variável salarioMinimo
+	 * e multiplicar pela sua faixa de insalubridade.  
+	 * 
+	 * @return valorInsalubridade = Retorna o valor a ser somado ao salário mínimo.
+	 */	
+	public  double calculaInsalubridade() {
 		if (this.percentualInsalubridade == 10) {
 			return this.valorInsalubridade = this.salarioMinimo * 0.10;
 		} else if (this.percentualInsalubridade == 20) {
@@ -147,73 +227,59 @@ public class Folha {
 	/**
 	 * Calcula hora normal somando insalubridade.
 	 * 
-	 * Realiza calculo para somar valor hora de insalubridade junto a hora normal.
-	 * Recebe três parâmetros: 1º valorHoraColab, 2º quantidadeHorasTrabalhadas, 3º
-	 * percentualInsalubridade. Atraves do percentualInsalubridade receberemos o
-	 * valorInsalubridade calculado sobre o salario mínimo. Caso o valor seja 10, 20
-	 * ou 40, a variavel valorHoraComInsalubridade recebe valorHora +
-	 * (valorInsalubridade / quantidadeHorasTrabalhadas), retornando o
-	 * valorHoraComInsalubridade. Caso seja um valor diferente, valorInsalubridade
-	 * recebera 0, e valorHora multiplicara quantidadeHorasTrabalhadas retornando o
-	 * valorHora
+	 * Pega o valor do método calculaInsalubridade e divide pela variável horasTrabalhadas
 	 *
-	 * @param valorHora                  double
-	 * @param quantidadeHorasTrabalhadas double
-	 * @param percentualInsalubridade    double
-	 * @return
-	 */
-	public double calculaHoraComInsalubridade() {
-		double valorHoraComInsalubridade = 0;
-		double valorInsalubridade = valorInsalubridade(this.percentualInsalubridade);
-		if (this.valorInsalubridade > 0) {
-			valorHoraComInsalubridade = this.valorHoras + (this.valorInsalubridade / this.horasTrabalhadas);
-		} else if (this.valorInsalubridade == 0) {
-			this.salarioBruto = this.valorHoras * this.horasTrabalhadas;
+	 * @return valorHoras = vai retornar o valor ganho de insalubridade por hora
+	 */	
+	// Correção a métodos retundantes  de calculo de hora insalubre
+	public double calculaValorHora() {  // Testado
+		double valorHoraInsalubridade = (this.calculaInsalubridade() / horasTrabalhadas);
+		if(valorHoraInsalubridade < 0) {
+			return this.valorHoras;
+		} else {
+			return this.valorHoras = this.valorHoras + valorHoraInsalubridade;
 		}
-		return valorHoraComInsalubridade;
 	}
 	
-	/**
+/**
 	 * Calcula o valor inicial do salário
 	 * 
-	 * Realiza o cálculo do valor inicial do salário considerando a quantidade de
-	 * horas trabalhadas vezes valor da hora com insalubridade do colaborador. O
-	 * valor retornado é base para construir o salário bruto do colaborador e
-	 * realizar os demais cálculos para o fechamento.
+	 * Pega o valor do método calculaValorHora passa para a variável valorHoras, após isso
+	 * a variável valor recebe a multiplição de horasTrabalhas e valorHoras
 	 * 
-	 * @param quantidadeHorasTrabalhadas double Quantidade horas trabalhadas no mês
-	 *                                   conforme escala do colaborador.
-	 * @param valorHoraComInsalubridade  double Valor da hora do colaborador já
-	 *                                   acrescido da insalubridade.
-	 * @return Retorna o valor do salário inicial, considerando apenas a quantidade
-	 *         horas trabalhadas e o valor da hora com insalubridade. Demais
-	 *         proventos será acrescentados no cálculo final da folha.
+	 * @return valor = Retorna o valor do salário inicial, considerando apenas a quantidade
+	 *         horas trabalhadas e o valor da hora com insalubridade. 
 	 */
 	public double calculaHorasTrabalhadas() {
-		double salarioBruto = this.horasTrabalhadas * this.valorInsalubridade;
-		return salarioBruto;
+		
+		double valorHoras = this.calculaValorHora();
+		double valor = this.horasTrabalhadas * valorHoras;
+		//BigDecimal teste = new BigDecimal(this.horasTrabalhadas * valorHoras);
+		return valor;
 	}
 	
 	/**
 	 * Calcula o valor a ser descontado de horas faltas
 	 * 
 	 * Realiza o cálculo das horas faltas a serem descontadas na folha do
-	 * colaborador, recebe o valor da hora acrescido da insalubridade (se houver) e
-	 * multiplica pela quantidade de horas faltas informadas.
+	 * colaborador, recebe o valor de horasFalta e multiplica valorInsalubridade
 	 * 
-	 * @param horaComInsalubridade double Valor da hora do colaborador acrescido da
-	 *                             insalubridade.
-	 * @param quantidadeHrsFaltas  double Quantidade de horas faltas.
-	 * @return Retorna o valor a ser descontado na folha do colaborador referente as
-	 *         horas faltas.
+	 * @return valorFaltas = Retorna o valor a ser descontado na folha do colaborador referente as
+	 * 	horas faltas.
 	 */
-	public double valorHorasFaltas() {
-		double valorHorasFaltas = this.horasFalta * this.valorInsalubridade;
-		double valorDiferencaSalario = this.horasFalta;
-		return valorDiferencaSalario;
+	public double valorHorasFaltas() { // Testado
+		double valorFaltas = this.horasFalta * this.valorHoras;
+		return valorFaltas;
+	}
+	
+	public int converteEmCentavos(double valor) {
+		return (int) valor * 100;
 	}
 
 
 	
 
 }
+
+
+
