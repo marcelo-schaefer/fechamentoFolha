@@ -5,13 +5,14 @@ public class Ponto {
 	private double horasTrabalhadas;
 	private double horasExtra;
 	private double horasFalta;
+	private double valorHora;
 	private double valorBonificacao;
 	private double porcentagemInsalubridade;
 	private boolean valeTransporte;
 	private double mensalidadePlanoSaude;
 	private double co_participacaoEmConsultas;
 	
-	public Ponto(double horasTrabalhadas, double horasExtra, double horasFalta, double valorBonificacao,
+	public Ponto(double horasTrabalhadas, double horasExtra, double horasFalta, double valorHora, double valorBonificacao,
 			double porcentagemInsalubridade, boolean valeTransporte, double mensalidadePlanoSaude,
 			double co_participacaoEmConsultas) {
 		super();
@@ -35,6 +36,10 @@ public class Ponto {
 
 	public double getHorasFalta() {
 		return horasFalta;
+	}
+	
+	public double getvalorHora() {
+		return valorHora;
 	}
 
 	public double getValorBonificacao() {

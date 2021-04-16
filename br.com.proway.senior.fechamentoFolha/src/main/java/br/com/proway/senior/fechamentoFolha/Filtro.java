@@ -3,6 +3,25 @@ package br.com.proway.senior.fechamentoFolha;
 public class Filtro {	
 	
 	/**
+	 * Filtro de Usuários por e-mail
+	 * 
+	 * Recebe os parâmtros para verficar se o colaborador existe e o retorna
+	 * 
+	 * @param email; referente ao colaborador que o usuário deseja saber sobre 
+	 * @param cadastro; lista de todos os colaboradores cadastrados
+	 * 
+	 * @return Colaborador/null colaborador desejado/colaborador não existe
+	 */	
+	public Colaborador filtro(String email, CadastroColaborador cadastro) { 
+		for(Colaborador c : cadastro.getColaboradores()) {
+			if(c.getEmail() == email) {				
+				return c; 
+			}
+		}
+		return null;  
+	}
+
+	/**
 	 * Filtro de Usuários
 	 * 
 	 * Recebe os parâmtros para verficar se o colaborador existe e o retorna 
@@ -29,10 +48,8 @@ public class Filtro {
 	 * @param c; Colaborador dono da folha
 	 * @param idFolha; ID da folha desejada
 	 * 
-	 * @return Folha/null folha desejado/folha não existe
-	 */
-	
-	//@Override0
+	 * @return Folha/null Folha desejado/Folha não existe
+	 */		
 	public Folha filtro(Colaborador c, int idFolha) {
 		for(Folha folha : c.getTotalFolhas()) {
 			if(folha.getId() == idFolha) {
@@ -41,56 +58,24 @@ public class Filtro {
 		}
 		return null;  
 	}
-
-}
-
-
-// Início: Código comentados
-
-/**
- * Filtro de folha
- * 
- * Recebe os parâmtros para verficar se o colaborador e determinada folha do mesmo existe 
- * 
- * @param userId ID referente ao colaborador que o usuário deseja saber sobre 
- * @param folhaId ID referente a folha do mesmo usuário  
- * @param cadastro lista de todos os colaboradores cadastrados
- * @return folha/null folha desejada/folha não existe
- */
-/*public Folha getFolhaPorColaborador(Integer userId, Integer folhaId, CadastroColaborador cadastro) {
-	for(Colaborador c : cadastro.getColaboradores()) {
-		if(c.getId() == userId) {
-			for(Folha folha : c.getTotalFolhas()) {
-				if(folha.getId() == folhaId) {
-					return folha;
-				}
+	
+	/**
+	 * Filtro de Folhas
+	 * 
+	 * Recebe os parâmtros para verficar se a folha de determinado colaborador existe e a retorma 
+	 * 
+	 * @param c; Colaborador dono da folha
+	 * @param data; Data da folha desejada
+	 * 
+	 * @return Folha/null Folha desejado/Folha não existe
+	 */	
+	public Folha filtro(Colaborador c, String data) {
+		for(Folha folha : c.getTotalFolhas()) {
+			if(data == folha.getData()) {			
+				return folha;
 			}
 		}
+		return null;
 	}
-	return null;  
+	
 }
-*/
-
-/**
- * Filtro de Usuários Nome
- * 
- * Recebe os parâmtros para verficar se o colaborador existe e o retorma 
- * 
- * @param userId ID referente ao colaborador que o usuário deseja saber sobre 
- * @param cadastro lista de todos os colaboradores cadastrados
- * 
- * @return Colaborador/null colaborador desejado/colaborador não existe
- */
-
-/*
-public Colaborador getDadosPorNome(String nome, CadastroColaborador cadastro) { // String
-	for(Colaborador c : cadastro.getColaboradores()) {
-		if(c.getNome() == nome) {				
-			return c; // toString 
-		}
-	}
-	return null;  
-}
-*/
-
-// Fim: Códigos comentados

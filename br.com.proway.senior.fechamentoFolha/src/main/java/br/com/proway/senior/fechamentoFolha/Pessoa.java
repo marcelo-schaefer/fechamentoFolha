@@ -1,16 +1,16 @@
 package br.com.proway.senior.fechamentoFolha;
 
-public class Pessoa { // Abstract
+public abstract class Pessoa { // Abstract
 	
 	protected int id;
 	protected String nome;
+	protected String email;
 		
-	public Pessoa(String nome, int id) {
+	public Pessoa(String nome, int id, String email) {
 		this.nome = nome;
 		this.id = id;
-	}
-	
-	//public abstract void interagir();
+		this.email = email;
+	}	
 
 	public int getId() {
 		return id;
@@ -27,5 +27,13 @@ public class Pessoa { // Abstract
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 }

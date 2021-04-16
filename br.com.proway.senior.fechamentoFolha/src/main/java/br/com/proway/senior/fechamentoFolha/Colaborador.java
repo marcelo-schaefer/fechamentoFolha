@@ -9,8 +9,8 @@ public final class Colaborador extends Pessoa {
 	private ArrayList<String> dependentes = new ArrayList<String>();	
 	private Ponto ponto;
 	
-	public Colaborador(String nome, int id, double salario) {
-		super(nome, id);				
+	public Colaborador(String nome, int id, String email, double salario) {
+		super(nome, id, email);				
 		this.salario = salario;				
 	}	
 
@@ -44,6 +44,11 @@ public final class Colaborador extends Pessoa {
 
 	public void setPonto(Ponto ponto) {
 		this.ponto = ponto;
+	}
+
+	@Override
+	public String toString() {
+		return "Colaborador [salario=" + salario + "]";
 	}
 	
 }
