@@ -6,17 +6,16 @@ import org.junit.Test;
 
 public class FiltroTest {	
 
-	Folha folha0 = new Folha(0, "data");
-	Folha folha1 = new Folha(1, "data");
-	Folha folha2 = new Folha(2, "data");
-	Colaborador colaborador0 = new Colaborador("Jorge", 0, "email1", 500.0); // Criação do colaborador
-	Colaborador colaborador1 = new Colaborador("Jorge2", 1, "email2", 500.0); // Criação do colaborador
-	CadastroColaborador cadastro = new CadastroColaborador(); // Criação do cadastro total de colaboradores
+	Folha folha0 = new Folha(0, "data1");
+	Folha folha1 = new Folha(1, "data2");
+	Folha folha2 = new Folha(2, "data3");
+	Colaborador colaborador0 = new Colaborador("Jorge", 0, "email1", 500.0); 
+	Colaborador colaborador1 = new Colaborador("Jorge2", 1, "email2", 500.0); 
+	CadastroColaborador cadastro = new CadastroColaborador(); 
 	Filtro filtro = new Filtro();
-	
-	
+	    
 	@Test
-	public void testFiltroUsuario() {
+	public void testFiltroUsuarioId() { 
 		cadastro.addColaboradores(colaborador0);
 		cadastro.addColaboradores(colaborador1);
 		Colaborador c = filtro.filtro(0, cadastro);
@@ -25,7 +24,7 @@ public class FiltroTest {
 	}
 	
 	@Test
-	public void testFiltroUsuarioInexistente() {
+	public void testFiltroUsuarioInexistenteId() {
 		cadastro.addColaboradores(colaborador0);
 		cadastro.addColaboradores(colaborador1);
 		Colaborador c = filtro.filtro(5, cadastro);
@@ -33,7 +32,7 @@ public class FiltroTest {
 	}
 	
 	@Test
-	public void testFiltroFolha() {
+	public void testFiltroFolhaId() {
 		colaborador0.addTotalFolhas(folha0);
 		colaborador0.addTotalFolhas(folha1);
 		colaborador0.addTotalFolhas(folha2);
@@ -42,7 +41,7 @@ public class FiltroTest {
 	}
 	
 	@Test
-	public void testFiltroFolhaInexistente() {
+	public void testFiltroFolhaInexistenteId() {
 		colaborador0.addTotalFolhas(folha0);
 		colaborador0.addTotalFolhas(folha1);
 		colaborador0.addTotalFolhas(folha2);
@@ -51,7 +50,7 @@ public class FiltroTest {
 	}
 	
 	@Test
-	public void test2Juntos() {
+	public void testUsuarioFolhaTrue() {
 		CadastroColaborador cadastroteste = new CadastroColaborador();
 		Colaborador colaboradorteste0 = new Colaborador("Jorge", 0, "email1", 500.0); 
 		Colaborador colaboradorteste1 = new Colaborador("Jorge2", 1, "email2", 500.0);
@@ -67,7 +66,7 @@ public class FiltroTest {
 	}
 	
 	@Test
-	public void test2Juntos2() {
+	public void testUsuarioFolhaFalse() {
 		CadastroColaborador cadastroteste = new CadastroColaborador();
 		Colaborador colaboradorteste0 = new Colaborador("Jorge", 0, "email1", 500.0); 
 		Colaborador colaboradorteste1 = new Colaborador("Jorge2", 1, "email2", 500.0);
@@ -80,6 +79,41 @@ public class FiltroTest {
 		Colaborador c = filtro.filtro(0, cadastroteste);	
 		Folha f = filtro.filtro(c, 6);
 		assertEquals(null, f);
+	}
+	
+	@Test
+	public void testFiltroUsuarioEmail() {
+		cadastro.addColaboradores(colaborador0);
+		cadastro.addColaboradores(colaborador1);
+		Colaborador c = filtro.filtro("email1", cadastro);
+		assertEquals("email1", c.getEmail());
+		
+	}
+	
+	@Test
+	public void testFiltroUsuarioInexistenteEmail() {
+		cadastro.addColaboradores(colaborador0);
+		cadastro.addColaboradores(colaborador1);
+		Colaborador c = filtro.filtro("email3", cadastro);
+		assertEquals(null, c);
+	}
+	
+	@Test
+	public void testFiltroFolhaData() {
+		colaborador0.addTotalFolhas(folha0);
+		colaborador0.addTotalFolhas(folha1);
+		colaborador0.addTotalFolhas(folha2);
+		Folha f = filtro.filtro(colaborador0, "data2");
+		assertEquals("data2", f.getData());		
+	}
+	
+	@Test
+	public void testFiltroFolhaInexistenteData() {
+		colaborador0.addTotalFolhas(folha0);
+		colaborador0.addTotalFolhas(folha1);
+		colaborador0.addTotalFolhas(folha2);
+		Folha f = filtro.filtro(colaborador0, "data4");
+		assertEquals(null, f);		
 	}
 	
 }
