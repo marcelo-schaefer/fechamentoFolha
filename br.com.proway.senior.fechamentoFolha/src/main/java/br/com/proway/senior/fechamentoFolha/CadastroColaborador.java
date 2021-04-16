@@ -9,9 +9,8 @@ public class CadastroColaborador {
 	public ArrayList<Colaborador> getColaboradores() {
 		return colaboradores;
 	}
-
-	//TODO colocar add no lugar do set
-	public void setColaboradores(Colaborador c) {
+	
+	public void addColaboradores(Colaborador c) {
 		this.colaboradores.add(c);
 	}	
 	

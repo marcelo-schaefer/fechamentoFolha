@@ -2,17 +2,17 @@ package br.com.proway.senior.fechamentoFolha;
 
 public class Folha {
 
-	Integer id;
+	int id;
 	
-	public Folha(Integer id) {
+	public Folha(int id) {
 		this.id = id;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
