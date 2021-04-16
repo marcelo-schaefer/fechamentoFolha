@@ -2,7 +2,7 @@ package br.com.proway.senior.fechamentoFolha;
 
 import java.util.ArrayList;
 
-public class cadastroFolha {
+public class CadastroFolha {
 
 	private ArrayList<Folha> folhas = new ArrayList<Folha>();		
 

@@ -59,12 +59,12 @@ public class Colaborador {
 		this.salario = salario;
 	}
 
-	public ArrayList<Folha> getFolhas() {
+	public ArrayList<Folha> getTotalFolhas() {
 		return totalFolhas;
 	}
 
-	public void setFolhas(ArrayList<Folha> totalFolhas) {
-		this.totalFolhas = totalFolhas;
+	public void setTotalFolhas(Folha f) {
+		this.totalFolhas.add(f);
 	}
 
 	public ArrayList<String> getDependentes() {
