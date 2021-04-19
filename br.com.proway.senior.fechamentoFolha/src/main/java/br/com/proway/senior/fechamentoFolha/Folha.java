@@ -1,6 +1,5 @@
 package br.com.proway.senior.fechamentoFolha;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Folha {
@@ -12,6 +11,8 @@ public class Folha {
 	double valorHoraComInsalubridade;
 	double horasTrabalhadas;
 	double horasExtra;
+	double valorHoraExtra;
+	double reflexoDSR;
 	double horasFalta;
 	double valorBonificacao;
 	double planoSaude;
@@ -71,10 +72,10 @@ public class Folha {
 		
 		//this.salarioBruto += this.calculaValorHora(); // Ja traz insalubridade
 		this.salarioBruto += this.calculaHorasTrabalhadas();
+		this.salarioBruto -= this.valorHorasFaltas();
 		descontoValeTransporte = this.calculaValeTransporte();
 		this.salarioBruto += this.valorHorasExtras();
 		this.salarioBruto += this.adicionaBonificacao();
-		this.salarioBruto -= this.valorHorasFaltas();
 		this.salarioBruto -= this.descontoInss();
 		this.salarioBruto -= this.calculaImpostoRenda();
 		this.salarioBruto -= this.descontaPlanoSaude();
@@ -112,8 +113,7 @@ public class Folha {
 	 */
 	public double valorHorasExtras() { // Testado
 		double valorHora50Porcento;
-		double valor = this.horasExtra * (valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator));
-		return valor;
+		return this.valorHoraExtra = this.horasExtra * (valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator));
 	}
 	
 	/**
@@ -177,6 +177,11 @@ public class Folha {
 		
 	}
 	
+	public double descontoInss(double valorFerias) {
+		return this.inss = valorFerias * 0.11;
+		
+	}
+	
 	/**
 	 * Calcula o valor de Imposto de Renda a ser descontado em folha
 	 * 
@@ -199,6 +204,23 @@ public class Folha {
 			this.impostoDeRenda = (this.salarioBruto * 0.225) - 636.13;
 		} else {
 			this.impostoDeRenda = (this.salarioBruto * 0.275) - 869.36;
+		}
+
+		return this.impostoDeRenda;
+	}
+	
+public double calculaImpostoRenda(double valorFerias) { //**********************
+		
+		if (valorFerias <= 1903.98) {
+			this.impostoDeRenda = 0;
+		} else if (valorFerias >= 1903.98 && valorFerias <= 2826.65) {
+			this.impostoDeRenda = (valorFerias * 0.075) - 142.80;
+		} else if (valorFerias >= 2826.66 && valorFerias <= 3751.05) {
+			this.impostoDeRenda = (valorFerias * 0.15) - 354.80;
+		} else if (valorFerias >= 3751.06 && valorFerias <= 4664.68) {
+			this.impostoDeRenda = (valorFerias * 0.225) - 636.13;
+		} else {
+			this.impostoDeRenda = (valorFerias * 0.275) - 869.36;
 		}
 
 		return this.impostoDeRenda;
@@ -233,13 +255,17 @@ public class Folha {
 	 */	
 	// Correção a métodos retundantes  de calculo de hora insalubre
 	public double calculaValorHora() {  // Testado
-		double valorHoraInsalubridade = (this.calculaInsalubridade() / horasTrabalhadas);
+		double valorHoraInsalubridade = (this.calculaInsalubridade() / 220);
 		if(valorHoraInsalubridade < 0) {
-			return this.valorHoras;
+		//return this.valorHoras;
+		return this.valorHoras = this.salarioBase / 220; // 11,68181818181818
 		} else {
-			return this.valorHoras = this.valorHoras + valorHoraInsalubridade;
+		//return this.valorHoras = this.valorHoras + valorHoraInsalubridade;
+		return  this.valorHoras = (this.salarioBase / 220) + valorHoraInsalubridade;
 		}
 	}
+	
+	
 	
 /**
 	 * Calcula o valor inicial do salário
@@ -272,14 +298,59 @@ public class Folha {
 		return valorFaltas;
 	}
 	
-	public int converteEmCentavos(double valor) {
-		return (int) valor * 100;
+	/**
+	 * Calcula férias
+	 * 
+	 * 
+	 */
+	public double calcularFerias(int dias, int abono) {
+		double valorHorasDias = (double) 220 / 30;
+		double valorDia = this.calculaValorHora() * valorHorasDias;
+		double valorFerias = dias * valorDia ;
+		double valorFeriasUmTerco = valorFerias / 3 ;
+		double valorTotalFerias = 0;
+		if (abono <= 0) {
+			valorTotalFerias = valorFerias + valorFeriasUmTerco;
+			valorTotalFerias -= this.descontoInss(valorTotalFerias);
+			valorTotalFerias -= this.calculaImpostoRenda(valorTotalFerias);
+		} else {
+			double valorAbono = abono * valorDia;
+			double valorAbonoUmTerco = valorAbono / 3;
+			valorTotalFerias = (valorFerias + valorFeriasUmTerco) + (valorAbono + valorAbonoUmTerco); 
+			valorTotalFerias -= this.descontoInss(valorTotalFerias);
+			valorTotalFerias -= this.calculaImpostoRenda(valorTotalFerias);
+		}
+		return valorTotalFerias;
+
 	}
-
-
+	
+	/**
+	 * Calcula o DSR 
+	 * 
+	 * Define o valor do Reflexo DSR por meio de alguns parâmetros passados    
+	 */
+	public void calculoDSR() {
+		double diasUteis = 25.0;
+		double domigosFeriados = 5.0;
+		double result = (getHoraExtra() / diasUteis) * domigosFeriados;
+		setReflexoDSR(result);
+	}
+	
+	public double getReflexoDSR() {
+		return this.reflexoDSR;
+	}
+	
+	public void setReflexoDSR(double reflexoDSR) {
+		this.reflexoDSR = reflexoDSR;
+	}
+	
+	public double getHoraExtra() {
+		return this.valorHoraExtra;
+	}
+	
+//	public void setHoraExtra(double horaExtra) {
+//		this.horaExtra = horaExtra;
+//	}
 	
 
 }
-
-
-
