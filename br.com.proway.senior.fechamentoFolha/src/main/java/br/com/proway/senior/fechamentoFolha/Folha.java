@@ -1,6 +1,6 @@
 package br.com.proway.senior.fechamentoFolha;
 
-public class Folha {
+public final class Folha {
 
 	int id;
 	String data;

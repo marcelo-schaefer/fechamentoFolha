@@ -1,6 +1,6 @@
 package br.com.proway.senior.fechamentoFolha;
 
-public class Filtro {	
+public final class Filtro implements InterfaceFiltro {	
 	
 	/**
 	 * Filtro de Usuários por e-mail

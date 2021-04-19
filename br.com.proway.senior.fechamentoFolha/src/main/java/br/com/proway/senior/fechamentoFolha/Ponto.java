@@ -1,18 +1,17 @@
 package br.com.proway.senior.fechamentoFolha;
 
-public class Ponto {
+public final class Ponto {
 	
 	private double horasTrabalhadas;
 	private double horasExtra;
 	private double horasFalta;
-	private double valorHora;
 	private double valorBonificacao;
 	private double porcentagemInsalubridade;
 	private boolean valeTransporte;
 	private double mensalidadePlanoSaude;
 	private double co_participacaoEmConsultas;
 	
-	public Ponto(double horasTrabalhadas, double horasExtra, double horasFalta, double valorHora, double valorBonificacao,
+	public Ponto(double horasTrabalhadas, double horasExtra, double horasFalta, double valorBonificacao,
 			double porcentagemInsalubridade, boolean valeTransporte, double mensalidadePlanoSaude,
 			double co_participacaoEmConsultas) {
 		super();
@@ -38,10 +37,6 @@ public class Ponto {
 		return horasFalta;
 	}
 	
-	public double getvalorHora() {
-		return valorHora;
-	}
-
 	public double getValorBonificacao() {
 		return valorBonificacao;
 	}	

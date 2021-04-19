@@ -26,6 +26,13 @@ public final class Colaborador extends Pessoa {
 		return totalFolhas;
 	}
 
+	/**
+	 * Adiciona uma folha do usuário
+	 * 
+	 * Adiciona uma folha ao ArrayList de folhas do usuário
+	 * 
+	 * @param f; Um objeto da classe Folha
+	 */
 	public void addTotalFolhas(Folha f) {
 		this.totalFolhas.add(f);
 	}
@@ -38,17 +45,23 @@ public final class Colaborador extends Pessoa {
 		this.dependentes = dependentes;
 	}
 
+	/**
+	 * Adiciona dependente ao usuário
+	 * 
+	 * Adiciona um dependente ao ArrayList de dependentes do usuário
+	 * 
+	 * @param p; Nome do dependente 
+	 */
+	public void addDependentes(String p) {
+		this.dependentes.add(p);
+	}
+	
 	public Ponto getPonto() {
 		return ponto;
 	}
 
 	public void setPonto(Ponto ponto) {
 		this.ponto = ponto;
-	}
-
-	@Override
-	public String toString() {
-		return "Colaborador [salario=" + salario + "]";
 	}
 	
 }
