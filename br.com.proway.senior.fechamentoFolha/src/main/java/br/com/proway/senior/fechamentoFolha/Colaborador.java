@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public final class Colaborador extends Pessoa {	
 	
 	private double salario;
-	private ArrayList<FolhaProvisoria> totalFolhas = new ArrayList<FolhaProvisoria>();
+	private ArrayList<Folha> totalFolhas = new ArrayList<Folha>();
 	private ArrayList<String> dependentes = new ArrayList<String>();	
 	private Ponto ponto;
 	
@@ -22,7 +22,7 @@ public final class Colaborador extends Pessoa {
 		this.salario = salario;
 	}
 
-	public ArrayList<FolhaProvisoria> getTotalFolhas() {
+	public ArrayList<Folha> getTotalFolhas() {
 		return totalFolhas;
 	}
 
@@ -33,7 +33,7 @@ public final class Colaborador extends Pessoa {
 	 * 
 	 * @param f; Um objeto da classe Folha
 	 */
-	public void addTotalFolhas(FolhaProvisoria f) {
+	public void addTotalFolhas(Folha f) {
 		this.totalFolhas.add(f);
 	}
 

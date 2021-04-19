@@ -18,7 +18,7 @@ public class testeFolha {
 	   8- valorCooparticipacao, 
 	   9- valeTransporte
     */
-	Folha folha = new Folha(10, 220, 0, 0, 100, 20, 100, 25, 115);
+	
 	
 //	@Test
 //	public void testaAdicionarBonificacao() {
@@ -105,7 +105,7 @@ public class testeFolha {
 		folha.valorHorasFaltas();
 		assertEquals(folha.valorHorasFaltas(), 90.90 , 0.01);
 	}
-<<<<<<< HEAD
+
 	
 	@Test
 	public void testeHoraFaltas() {
@@ -177,7 +177,7 @@ public class testeFolha {
 		double valor = folha.calcularFolha();
 		assertEquals(valor, 996.11, 0.01);
 	}
-=======
+
 //	@Test
 //	public void testeValeTransporte() {		
 //		folha.setSalarioBase(2200);		
@@ -370,27 +370,62 @@ public class testeFolha {
 //		assertEquals(valor, 996.11, 0.01);
 //	}
 	
+//	@Test
+//	public void testeCalculoDeFeriasComVenda() {
+//		Folha folha = new Folha(0, 220, 0, 0, 0, 0, 0, 0, 0);
+//		folha.setSalarioBase(1500);
+//		double valor = folha.calcularFerias(20, 10);
+//		assertEquals(valor, 1780, 0.01);
+//	}
+//
+//	@Test
+//	public void testeCalculoDeFeriasSemVenda() {
+//		Folha folha = new Folha(0, 220, 0, 0, 0, 0, 0, 0, 0);
+//		folha.setSalarioBase(1500);
+//		double valor = folha.calcularFerias(30, 0);
+//		assertEquals(valor, 1780, 0.01);
+//	}
+//	
+//	@Test
+//	public void testeCalculoDeFeriasComVenda2() {
+//		Folha folha = new Folha(0, 220, 0, 0, 0, 0, 0, 0, 0);
+//		folha.setSalarioBase(3200);
+//		double valor = folha.calcularFerias(20, 10);
+//		assertEquals(valor, 3579.06, 0.01);
+//	}
+	
+	
+	
 	@Test
-	public void testeCalculoDeFeriasComVenda() {
-		Folha folha = new Folha(0, 220, 0, 0, 0, 0, 0, 0, 0);
-		folha.setSalarioBase(1500);
-		double valor = folha.calcularFerias(20, 10);
-		assertEquals(valor, 1780, 0.01);
-	}
-
-	@Test
-	public void testeCalculoDeFeriasSemVenda() {
-		Folha folha = new Folha(0, 220, 0, 0, 0, 0, 0, 0, 0);
-		folha.setSalarioBase(1500);
-		double valor = folha.calcularFerias(30, 0);
-		assertEquals(valor, 1780, 0.01);
+	public void testeCalculoIntegrado() {
+		CadastroColaborador cadastro = new CadastroColaborador();
+		Colaborador jorge = new Colaborador("jorge", 0, "jorge@gmail.com", 1500.0);
+		cadastro.addColaboradores(jorge);
+		Ponto pontoJorge = new Ponto(220, 0, 0, 250, 0, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		
+		folha1.setSalarioBase(1500);
+		
+		assertEquals(folha1.calcularFolha(), 1342.50, 0.01);
+		
 	}
 	
 	@Test
-	public void testeCalculoDeFeriasComVenda2() {
-		Folha folha = new Folha(0, 220, 0, 0, 0, 0, 0, 0, 0);
-		folha.setSalarioBase(3200);
-		double valor = folha.calcularFerias(20, 10);
-		assertEquals(valor, 3579.06, 0.01);
+	public void testeCalculoIntegrado2() {
+		CadastroColaborador cadastro = new CadastroColaborador();
+		Colaborador jorge = new Colaborador("jorge", 0, "jorge@gmail.com", 2500.0);
+		cadastro.addColaboradores(jorge);
+		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		
+		assertEquals(folha1.calcularFolha(), 2440.08, 0.01);
+		
 	}
+	
 }

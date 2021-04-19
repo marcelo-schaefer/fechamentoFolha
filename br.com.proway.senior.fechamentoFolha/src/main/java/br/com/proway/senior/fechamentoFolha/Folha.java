@@ -20,28 +20,22 @@ public class Folha {
 	double valorInsalubridade;
 	double inss;
 	double impostoDeRenda;
-	double valorMensalidade;
-	double valorCooparticipacao;
-	double valeTransporte;
-	double fator; // 50% adicional hora extra
+	double mensalidadePlanoSaude;
+	double valorCooparticipacaoPlanoSaude;
+	double valeTransporte = 50;
+	double fator = 0.5; // 50% adicional hora extra
 	double salarioMinimo = 1100;
-	double salarioBase = 2200;
+	double salarioBase = 2500;
 
-	public Folha(
-				double valorHoras, double horasTrabalhadas, double horasExtra,
-				double horasFaltas, double valorBonificacao, double percentualInsalubridade,
-				double valorMensalidade, double valorCooparticipacao, double valeTransporte
-			) {
-		this.valorHoras = valorHoras;
-		this.horasTrabalhadas = horasTrabalhadas;
-		this.horasExtra = horasExtra;
-		this.horasFalta = horasFaltas;
-		this.valorBonificacao = valorBonificacao;
-		this.percentualInsalubridade = percentualInsalubridade;
-		this.valorMensalidade = valorMensalidade;
-		this.valorCooparticipacao = valorCooparticipacao;
-		this.valeTransporte = valeTransporte;
-		this.fator = 0.50;
+	public Folha(Colaborador colaborador) {
+		this.horasTrabalhadas = colaborador.getPonto().getHorasTrabalhadas();
+		this.horasExtra = colaborador.getPonto().getHorasExtra();
+		this.horasFalta = colaborador.getPonto().getHorasFaltas();
+		this.valorBonificacao = colaborador.getPonto().getValorBonificacao();
+		this.percentualInsalubridade = colaborador.getPonto().getpercentualInsalubridade();
+		this.mensalidadePlanoSaude = colaborador.getPonto().getMensalidadePlanoSaude();
+		this.valorCooparticipacaoPlanoSaude = colaborador.getPonto().getvalorCooparticipacaoPlanoSaude();
+		//this.valeTransporte = colaborador.getPonto().isValeTransporte();
 	}
 	
 	// Set criado somente para debugar
@@ -60,7 +54,7 @@ public class Folha {
 //		valorSalarioBruto += valorHorasExtras(quantidadeHorasExtrasColab, horaComInsalubridade, 0.5);
 //		valorSalarioBruto += adicionaBonificacao(valorBonificacaoColab);
 //		double salarioDescontos = valorHorasFaltas(horaComInsalubridade, quantidadeHorasFaltas)
-//				+ descontaPlanoSaude(valorMensalidadePlanoSaude, valorCoparticipacaoPlano)
+//				+ descontaPlanoSaude(mensalidadePlanoSaudePlanoSaude, valorCoparticipacaoPlano)
 //				+ calculaImpostoRenda(valorSalarioBruto) + descontoInss(valorSalarioBruto);
 //		double salarioFinal = valorSalarioBruto - salarioDescontos;
 //		return salarioFinal;
@@ -121,23 +115,23 @@ public class Folha {
 	 * 
 	 * Realiza o desconto de plano de saúde, somando o valor da
 	 * mensalidade com o valor de cooparticipação caso exista. A
-	 * variável planoSaude retornará a soma das variáveis valorMensalidade e valorCooparticipacao.
+	 * variável planoSaude retornará a soma das variáveis mensalidadePlanoSaude e valorCooparticipacaoPlanoSaude.
 	 * 
 	 * @return planoSaude = retorna valor a ser descontado em folha, referente ao Plano de Saude.
 	 */		
 	public double descontaPlanoSaude() { // Tratar mensalidade Zerada
 		
-		if(this.valorMensalidade >= 0) {
-			if(this.valorCooparticipacao >= 0) {
-				this.planoSaude = this.valorMensalidade + this.valorCooparticipacao;
+		if(this.mensalidadePlanoSaude >= 0) {
+			if(this.valorCooparticipacaoPlanoSaude >= 0) {
+				this.planoSaude = this.mensalidadePlanoSaude + this.valorCooparticipacaoPlanoSaude;
 			} else {
-				this.valorCooparticipacao = 0;
-				this.planoSaude = this.valorMensalidade + this.valorCooparticipacao;
+				this.valorCooparticipacaoPlanoSaude = 0;
+				this.planoSaude = this.mensalidadePlanoSaude + this.valorCooparticipacaoPlanoSaude;
 			}
 		} else {
-			this.valorMensalidade = 0;
-			this.valorCooparticipacao = 0; 
-			this.planoSaude = this.valorMensalidade + this.valorCooparticipacao;
+			this.mensalidadePlanoSaude = 0;
+			this.valorCooparticipacaoPlanoSaude = 0; 
+			this.planoSaude = this.mensalidadePlanoSaude + this.valorCooparticipacaoPlanoSaude;
 		}
 		
 		return this.planoSaude;

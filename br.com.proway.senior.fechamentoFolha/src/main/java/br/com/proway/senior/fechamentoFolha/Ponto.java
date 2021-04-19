@@ -4,24 +4,24 @@ public final class Ponto {
 	
 	private double horasTrabalhadas;
 	private double horasExtra;
-	private double horasFalta;
+	private double horasFaltas;
 	private double valorBonificacao;
-	private double porcentagemInsalubridade;
+	private double percentualInsalubridade;
 	private boolean valeTransporte;
 	private double mensalidadePlanoSaude;
-	private double co_participacaoEmConsultas;
+	private double valorCooparticipacaoPlanoSaude;
 	
-	public Ponto(double horasTrabalhadas, double horasExtra, double horasFalta, double valorBonificacao,
-	double porcentagemInsalubridade, boolean valeTransporte, double mensalidadePlanoSaude, 
-	double co_participacaoEmConsultas) {
+	public Ponto(double horasTrabalhadas, double horasExtra, double horasFaltas, double valorBonificacao,
+	double percentualInsalubridade, boolean valeTransporte, double mensalidadePlanoSaude, 
+	double valorCooparticipacaoPlanoSaude) {
 		this.horasTrabalhadas = horasTrabalhadas;
 		this.horasExtra = horasExtra;
-		this.horasFalta = horasFalta;
+		this.horasFaltas = horasFaltas;
 		this.valorBonificacao = valorBonificacao;
-		this.porcentagemInsalubridade = porcentagemInsalubridade;
+		this.percentualInsalubridade = percentualInsalubridade;
 		this.valeTransporte = valeTransporte;
 		this.mensalidadePlanoSaude = mensalidadePlanoSaude;
-		this.co_participacaoEmConsultas = co_participacaoEmConsultas;
+		this.valorCooparticipacaoPlanoSaude = valorCooparticipacaoPlanoSaude;
 	}
 
 	public double getHorasTrabalhadas() {
@@ -32,16 +32,16 @@ public final class Ponto {
 		return horasExtra;
 	}	
 
-	public double getHorasFalta() {
-		return horasFalta;
+	public double getHorasFaltas() {
+		return horasFaltas;
 	}
 	
 	public double getValorBonificacao() {
 		return valorBonificacao;
 	}	
 
-	public double getPorcentagemInsalubridade() {
-		return porcentagemInsalubridade;
+	public double getpercentualInsalubridade() {
+		return percentualInsalubridade;
 	}	
 
 	public boolean isValeTransporte() {
@@ -52,8 +52,8 @@ public final class Ponto {
 		return mensalidadePlanoSaude;
 	}
 	
-	public double getCo_participacaoEmConsultas() {
-		return co_participacaoEmConsultas;
+	public double getvalorCooparticipacaoPlanoSaude() {
+		return valorCooparticipacaoPlanoSaude;
 	}	
 	
 }
