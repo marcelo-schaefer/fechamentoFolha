@@ -1,6 +1,5 @@
 package br.com.proway.senior.fechamentoFolha;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Folha {
@@ -71,10 +70,10 @@ public class Folha {
 		
 		//this.salarioBruto += this.calculaValorHora(); // Ja traz insalubridade
 		this.salarioBruto += this.calculaHorasTrabalhadas();
+		this.salarioBruto -= this.valorHorasFaltas();
 		descontoValeTransporte = this.calculaValeTransporte();
 		this.salarioBruto += this.valorHorasExtras();
 		this.salarioBruto += this.adicionaBonificacao();
-		this.salarioBruto -= this.valorHorasFaltas();
 		this.salarioBruto -= this.descontoInss();
 		this.salarioBruto -= this.calculaImpostoRenda();
 		this.salarioBruto -= this.descontaPlanoSaude();
@@ -233,13 +232,17 @@ public class Folha {
 	 */	
 	// Correção a métodos retundantes  de calculo de hora insalubre
 	public double calculaValorHora() {  // Testado
-		double valorHoraInsalubridade = (this.calculaInsalubridade() / horasTrabalhadas);
+		double valorHoraInsalubridade = (this.calculaInsalubridade() / 220);
 		if(valorHoraInsalubridade < 0) {
-			return this.valorHoras;
+		//return this.valorHoras;
+		return this.valorHoras = this.salarioBase / 220; // 11,68181818181818
 		} else {
-			return this.valorHoras = this.valorHoras + valorHoraInsalubridade;
+		//return this.valorHoras = this.valorHoras + valorHoraInsalubridade;
+		return  this.valorHoras = (this.salarioBase / 220) + valorHoraInsalubridade;
 		}
 	}
+	
+	
 	
 /**
 	 * Calcula o valor inicial do salário
@@ -280,6 +283,3 @@ public class Folha {
 	
 
 }
-
-
-
