@@ -12,9 +12,8 @@ public final class Ponto {
 	private double co_participacaoEmConsultas;
 	
 	public Ponto(double horasTrabalhadas, double horasExtra, double horasFalta, double valorBonificacao,
-			double porcentagemInsalubridade, boolean valeTransporte, double mensalidadePlanoSaude,
-			double co_participacaoEmConsultas) {
-		super();
+	double porcentagemInsalubridade, boolean valeTransporte, double mensalidadePlanoSaude, 
+	double co_participacaoEmConsultas) {
 		this.horasTrabalhadas = horasTrabalhadas;
 		this.horasExtra = horasExtra;
 		this.horasFalta = horasFalta;

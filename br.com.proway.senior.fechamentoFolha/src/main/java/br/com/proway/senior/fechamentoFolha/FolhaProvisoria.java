@@ -2,16 +2,21 @@ package br.com.proway.senior.fechamentoFolha;
 
 public final class FolhaProvisoria {
 
-	int id;
-	String data;
-	double horaExtra;
-	double reflexoDSR;
+	private int id;
+	private String data;
+	private double horaExtra;
+	private double reflexoDSR;
 	
 	public FolhaProvisoria(int id, String data) {
 		this.id = id;
 		this.data = data;
 	}
 	
+	/**
+	 * Calcula o DSR 
+	 * 
+	 * Define o valor do Reflexo DSR por meio de alguns parâmetros passados    
+	 */
 	public void calculoDSR() {
 		double diasUteis = 25.0;
 		double domigosFeriados = 5.0;
