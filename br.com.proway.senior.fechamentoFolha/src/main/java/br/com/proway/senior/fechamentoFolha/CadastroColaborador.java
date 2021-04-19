@@ -11,12 +11,11 @@ public final class CadastroColaborador {
 	}
 	
 	/**
-	 * Cadastra um novo Colaborador
+	 * Cadastra Colaborador
 	 * 
-	 * Adiciona um Colaborador ao ArrayList de Cadastro de colaboradores
-	 * do sistema
+	 * Adiciona um Colaborador na lista de cadastros totais do sistema
 	 * 
-	 * @param c; Objeto da classe colaborador
+	 * @param c; Objeto da classe Colaborador
 	 */
 	public void addColaboradores(Colaborador c) {
 		this.colaboradores.add(c);
