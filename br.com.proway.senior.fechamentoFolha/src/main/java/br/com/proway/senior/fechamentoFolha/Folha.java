@@ -28,6 +28,7 @@ public class Folha {
 	private double salarioMinimo = 1100;
 	private double salarioBase;
 
+
 	public Folha(Colaborador colaborador) {
 		this.horasTrabalhadas = colaborador.getPonto().getHorasTrabalhadas();
 		this.horasExtra = colaborador.getPonto().getHorasExtra();
@@ -421,5 +422,8 @@ public class Folha {
 		return salarioBase;
 	}
 	
+	public double getValorInss() {
+		return this.inss;
+	}
 
 }
