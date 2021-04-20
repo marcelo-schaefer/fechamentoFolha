@@ -5,27 +5,28 @@ import java.time.LocalDateTime;
 public class Folha {
 	int id;
 	LocalDateTime data;
-	double salarioLiquido;
-	double salarioBruto;
-	double valorHoras;
-	double valorHoraComInsalubridade;
-	double horasTrabalhadas;
-	double horasExtra;
-	double valorHoraExtra;
-	double reflexoDSR;
-	double horasFalta;
-	double valorBonificacao;
-	double planoSaude;
-	double percentualInsalubridade;
-	double valorInsalubridade;
-	double inss;
-	double impostoDeRenda;
-	double mensalidadePlanoSaude;
-	double valorCooparticipacaoPlanoSaude;
-	double valeTransporte = 50;
-	double fator = 0.5; // 50% adicional hora extra
-	double salarioMinimo = 1100;
-	double salarioBase;
+	private double salarioLiquido;
+	private double salarioBruto;
+	private double valorHoras;
+	private double valorHoraComInsalubridade;
+	private double horasTrabalhadas;
+	private double horasExtra;
+	private double valorHoraExtra;
+	private double reflexoDSR;
+	private double horasFalta;
+	private double valorBonificacao;
+	private double planoSaude;
+	private double percentualInsalubridade;
+	private double valorInsalubridade;
+	private double inss;
+	private double impostoDeRenda;
+	private double mensalidadePlanoSaude;
+	private double valorCooparticipacaoPlanoSaude;
+	private double valorValeTransporte;
+	private boolean valeTransporte;
+	private double fator = 0.5; // 50% adicional hora extra
+	private double salarioMinimo = 1100;
+	private double salarioBase;
 
 	public Folha(Colaborador colaborador) {
 		this.horasTrabalhadas = colaborador.getPonto().getHorasTrabalhadas();
@@ -36,7 +37,7 @@ public class Folha {
 		this.mensalidadePlanoSaude = colaborador.getPonto().getMensalidadePlanoSaude();
 		this.valorCooparticipacaoPlanoSaude = colaborador.getPonto().getvalorCooparticipacaoPlanoSaude();
 		this.salarioBase = colaborador.getSalario();
-		//this.valeTransporte = colaborador.getPonto().isValeTransporte();
+		this.valeTransporte = colaborador.getPonto().isValeTransporte();
 	}
 	
 	// Set criado somente para debugar
@@ -51,30 +52,26 @@ public class Folha {
 //	public static double calculaFolhaFinal(int colabId) {
 //		double horaComInsalubridade = calculaHoraComInsalubridade(valorHoraColab, quantidadeHorasTrabalhadas,
 //				percentualInsalubridadeColab);
-//		double valorSalarioBruto = calculaHorasTrabalhadas(quantidadeHorasTrabalhadas, horaComInsalubridade);
-//		valorSalarioBruto += valorHorasExtras(quantidadeHorasExtrasColab, horaComInsalubridade, 0.5);
-//		valorSalarioBruto += adicionaBonificacao(valorBonificacaoColab);
-//		double salarioDescontos = valorHorasFaltas(horaComInsalubridade, quantidadeHorasFaltas)
-//				+ descontaPlanoSaude(mensalidadePlanoSaudePlanoSaude, valorCoparticipacaoPlano)
-//				+ calculaImpostoRenda(valorSalarioBruto) + descontoInss(valorSalarioBruto);
+//		double valorSalarioBruto = calcularHorasTrabalhadas(quantidadeHorasTrabalhadas, horaComInsalubridade);
+//		valorSalarioBruto += calcularValorHorasExtras(quantidadeHorasExtrasColab, horaComInsalubridade, 0.5);
+//		valorSalarioBruto += calcularBonificacao(valorBonificacaoColab);
+//		double salarioDescontos = calcularValorHorasFaltas(horaComInsalubridade, quantidadeHorasFaltas)
+//				+ calcularDescontoPlanoSaude(mensalidadePlanoSaudePlanoSaude, valorCoparticipacaoPlano)
+//				+ calcularDescontoImpostoRenda(valorSalarioBruto) + calcularDescontoInss(valorSalarioBruto);
 //		double salarioFinal = valorSalarioBruto - salarioDescontos;
 //		return salarioFinal;
 //	}
 	
 	public double calcularFolha() {
-		//double baseCalculoImpostoDeRenda;
-		double descontoValeTransporte;
 		
-		//this.salarioBruto += this.calculaValorHora(); // Ja traz insalubridade
-		this.salarioBruto += this.calculaHorasTrabalhadas();
-		this.salarioBruto -= this.valorHorasFaltas();
-		descontoValeTransporte = this.calculaValeTransporte();
-		this.salarioBruto += this.valorHorasExtras();
-		this.salarioBruto += this.adicionaBonificacao();
-		this.salarioBruto -= this.descontoInss();
-		this.salarioBruto -= this.calculaImpostoRenda();
-		this.salarioBruto -= this.descontaPlanoSaude();
-		this.salarioBruto -= descontoValeTransporte;
+		this.salarioBruto += this.calcularHorasTrabalhadas();
+		this.salarioBruto -= this.calcularValorHorasFaltas();
+		this.salarioBruto += this.calcularValorHorasExtras();
+		this.salarioBruto += this.calcularBonificacao();
+		this.salarioBruto -= this.calcularDescontoInss();
+		this.salarioBruto -= this.calcularDescontoImpostoRenda();
+		this.salarioBruto -= this.calcularDescontoPlanoSaude();
+		this.salarioBruto -= this.calcularDescontoValeTransporte();
 		this.salarioLiquido = this.salarioBruto;
 		
 		return this.salarioLiquido;	
@@ -88,15 +85,17 @@ public class Folha {
 	 * 
 	 * @return valeTransporte = valor do vale transporte a ser descontado do salário base.
 	 */
-	public double calculaValeTransporte() {
-	    if(this.valeTransporte <= 0) {
-	    	this.valeTransporte = 0;
-		} else if ((this.salarioBase * 0.06) >= 180) {
-			this.valeTransporte = 180;
+	public double calcularDescontoValeTransporte() {
+		if(valeTransporte) {
+			this.valorValeTransporte = this.salarioBase * 0.06;
+			if(this.valorValeTransporte > 180) {
+				this.valorValeTransporte = 180;
+			}
 		} else {
-			this.valeTransporte = this.salarioBase * 0.06 ;
+			this.valorValeTransporte = 0;
 		}
-		return this.valeTransporte;
+		return this.valorValeTransporte;
+		
 	}
 	
 	/**
@@ -106,7 +105,7 @@ public class Folha {
 	 * pelas horasExtra
 	 * @return valor = Retorna o valor a ser pago de horas extras.
 	 */
-	public double valorHorasExtras() { // Testado
+	public double calcularValorHorasExtras() { // Testado
 		double valorHora50Porcento;
 		return this.valorHoraExtra = this.horasExtra * (valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator));
 	}
@@ -120,7 +119,7 @@ public class Folha {
 	 * 
 	 * @return planoSaude = retorna valor a ser descontado em folha, referente ao Plano de Saude.
 	 */		
-	public double descontaPlanoSaude() { // Tratar mensalidade Zerada
+	public double calcularDescontoPlanoSaude() { // Tratar mensalidade Zerada
 		
 		if(this.mensalidadePlanoSaude >= 0) {
 			if(this.valorCooparticipacaoPlanoSaude >= 0) {
@@ -135,8 +134,7 @@ public class Folha {
 			this.planoSaude = this.mensalidadePlanoSaude + this.valorCooparticipacaoPlanoSaude;
 		}
 		
-		return this.planoSaude;
-					
+		return this.planoSaude;				
 		
 	}
 	
@@ -149,7 +147,7 @@ public class Folha {
 	 * @return valorBonificacao = Retorna o valor de bonificação que será somado aos demais proventos
 	 * na folha do colaborador
 	 */
-	public double adicionaBonificacao() {
+	public double calcularBonificacao() {
 		
 		if(valorBonificacao > 0) {
 			return this.valorBonificacao;	
@@ -167,12 +165,12 @@ public class Folha {
 	 * 
 	 * @return inss = Retorna o valor a ser descontado em folha.
 	 */
-	public double descontoInss() {
+	public double calcularDescontoInss() {
 		return this.inss = this.salarioBruto * 0.11;
 		
 	}
 	
-	public double descontoInss(double valorFerias) {
+	public double calcularDescontoInss(double valorFerias) {
 		return this.inss = valorFerias * 0.11;
 		
 	}
@@ -187,7 +185,7 @@ public class Folha {
 	 * @return impostoDeRenda = Retorna o valor que a ser descontado em folha referente ao Imposto de
 	 *         Renda.
 	 */
-	public double calculaImpostoRenda() { //**********************
+	public double calcularDescontoImpostoRenda() { //**********************
 		
 		if (this.salarioBruto <= 1903.98) {
 			this.impostoDeRenda = 0;
@@ -204,7 +202,7 @@ public class Folha {
 		return this.impostoDeRenda;
 	}
 	
-public double calculaImpostoRenda(double valorFerias) { //**********************
+	public double calcularDescontoImpostoRenda(double valorFerias) { //**********************
 		
 		if (valorFerias <= 1903.98) {
 			this.impostoDeRenda = 0;
@@ -248,21 +246,17 @@ public double calculaImpostoRenda(double valorFerias) { //**********************
 	 *
 	 * @return valorHoras = vai retornar o valor ganho de insalubridade por hora
 	 */	
-	// Correção a métodos retundantes  de calculo de hora insalubre
+	// Correção a métodos redundantes  de calculo de hora insalubre
 	public double calculaValorHora() {  // Testado
 		double valorHoraInsalubridade = (this.calculaInsalubridade() / 220);
 		if(valorHoraInsalubridade < 0) {
-		//return this.valorHoras;
-		return this.valorHoras = this.salarioBase / 220; // 11,68181818181818
+			return this.valorHoras = this.salarioBase / 220; // 11,68181818181818
 		} else {
-		//return this.valorHoras = this.valorHoras + valorHoraInsalubridade;
-		return  this.valorHoras = (this.salarioBase / 220) + valorHoraInsalubridade;
+			return  this.valorHoras = (this.salarioBase / 220) + valorHoraInsalubridade;
 		}
-	}
+	}	
 	
-	
-	
-/**
+	/**
 	 * Calcula o valor inicial do salário
 	 * 
 	 * Pega o valor do método calculaValorHora passa para a variável valorHoras, após isso
@@ -271,11 +265,11 @@ public double calculaImpostoRenda(double valorFerias) { //**********************
 	 * @return valor = Retorna o valor do salário inicial, considerando apenas a quantidade
 	 *         horas trabalhadas e o valor da hora com insalubridade. 
 	 */
-	public double calculaHorasTrabalhadas() {
+	public double calcularHorasTrabalhadas() {
 		
 		double valorHoras = this.calculaValorHora();
 		double valor = this.horasTrabalhadas * valorHoras;
-		//BigDecimal teste = new BigDecimal(this.horasTrabalhadas * valorHoras);
+	
 		return valor;
 	}
 	
@@ -288,7 +282,7 @@ public double calculaImpostoRenda(double valorFerias) { //**********************
 	 * @return valorFaltas = Retorna o valor a ser descontado na folha do colaborador referente as
 	 * 	horas faltas.
 	 */
-	public double valorHorasFaltas() { // Testado
+	public double calcularValorHorasFaltas() { // Testado
 		double valorFaltas = this.horasFalta * this.valorHoras;
 		return valorFaltas;
 	}
@@ -306,14 +300,14 @@ public double calculaImpostoRenda(double valorFerias) { //**********************
 		double valorTotalFerias = 0;
 		if (abono <= 0) {
 			valorTotalFerias = valorFerias + valorFeriasUmTerco;
-			valorTotalFerias -= this.descontoInss(valorTotalFerias);
-			valorTotalFerias -= this.calculaImpostoRenda(valorTotalFerias);
+			valorTotalFerias -= this.calcularDescontoInss(valorTotalFerias);
+			valorTotalFerias -= this.calcularDescontoImpostoRenda(valorTotalFerias);
 		} else {
 			double valorAbono = abono * valorDia;
 			double valorAbonoUmTerco = valorAbono / 3;
 			valorTotalFerias = (valorFerias + valorFeriasUmTerco) + (valorAbono + valorAbonoUmTerco); 
-			valorTotalFerias -= this.descontoInss(valorTotalFerias);
-			valorTotalFerias -= this.calculaImpostoRenda(valorTotalFerias);
+			valorTotalFerias -= this.calcularDescontoInss(valorTotalFerias);
+			valorTotalFerias -= this.calcularDescontoImpostoRenda(valorTotalFerias);
 		}
 		return valorTotalFerias;
 
@@ -328,24 +322,104 @@ public double calculaImpostoRenda(double valorFerias) { //**********************
 		double diasUteis = 25.0;
 		double domigosFeriados = 5.0;
 		double result = (getHoraExtra() / diasUteis) * domigosFeriados;
-		setReflexoDSR(result);
+		this.reflexoDSR = result;
 	}
 	
 	public double getReflexoDSR() {
 		return this.reflexoDSR;
 	}
-	
-	public void setReflexoDSR(double reflexoDSR) {
-		this.reflexoDSR = reflexoDSR;
-	}
-	
+		
 	public double getHoraExtra() {
 		return this.valorHoraExtra;
 	}
 	
-//	public void setHoraExtra(double horaExtra) {
-//		this.horaExtra = horaExtra;
-//	}
+	public double getSalarioLiquido() {
+		return salarioLiquido;
+	}
+
+	public double getValorHoras() {
+		return valorHoras;
+	}
+
+	public double getValorHoraComInsalubridade() {
+		return valorHoraComInsalubridade;
+	}
+
+	public double getHorasTrabalhadas() {
+		return horasTrabalhadas;
+	}
+
+	public double getHorasExtra() {
+		return horasExtra;
+	}
+
+	public double getValorHoraExtra() {
+		return valorHoraExtra;
+	}
+
+	public double getHorasFalta() {
+		return horasFalta;
+	}
+
+	public double getValorBonificacao() {
+		return valorBonificacao;
+	}
+
+	public double getPlanoSaude() {
+		return planoSaude;
+	}
+
+	public double getPercentualInsalubridade() {
+		return percentualInsalubridade;
+	}
+
+	public double getValorInsalubridade() {
+		return valorInsalubridade;
+	}
+
+	public double getInss() {
+		return inss;
+	}
+
+	public double getImpostoDeRenda() {
+		return impostoDeRenda;
+	}
+
+	public double getMensalidadePlanoSaude() {
+		return mensalidadePlanoSaude;
+	}
+
+	public double getValorCooparticipacaoPlanoSaude() {
+		return valorCooparticipacaoPlanoSaude;
+	}
+
+	public double getValorValeTransporte() {
+		return valorValeTransporte;
+	}
+
+	public double getFator() {
+		return fator;
+	}
+
+	public void setFator(double fator) {
+		this.fator = fator;
+	}
+
+	public double getSalarioMinimo() {
+		return salarioMinimo;
+	}
+
+	public void setSalarioMinimo(double salarioMinimo) {
+		this.salarioMinimo = salarioMinimo;
+	}
+
+	public double getSalarioBruto() {
+		return salarioBruto;
+	}
+
+	public double getSalarioBase() {
+		return salarioBase;
+	}
 	
 
 }
