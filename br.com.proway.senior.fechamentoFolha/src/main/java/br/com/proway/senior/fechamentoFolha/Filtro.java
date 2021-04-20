@@ -50,10 +50,10 @@ public class Filtro {
 	 * 
 	 * @return Folha/null Folha desejado/Folha não existe
 	 */		
-	static public FolhaProvisoria filtro(Colaborador c, int idFolha) {
-		for(FolhaProvisoria folhaProvisoria : c.getTotalFolhas()) {
-			if(folhaProvisoria.getId() == idFolha) {
-				return folhaProvisoria;
+	static public Folha filtro(Colaborador c, int idFolha) {
+		for(Folha folha : c.getTotalFolhas()) {
+			if(folha.getId() == idFolha) {
+				return folha;
 			}
 		}
 		return null;  
@@ -69,10 +69,10 @@ public class Filtro {
 	 * 
 	 * @return Folha/null Folha desejado/Folha não existe
 	 */	
-	static public FolhaProvisoria filtro(Colaborador c, String data) {
-		for(FolhaProvisoria folhaProvisoria : c.getTotalFolhas()) {
-			if(data == folhaProvisoria.getData()) {			
-				return folhaProvisoria;
+	static public Folha filtro(Colaborador c, String data) {
+		for(Folha folha : c.getTotalFolhas()) {
+			if(data == folha.getData()) {			
+				return folha;
 			}
 		}
 		return null;

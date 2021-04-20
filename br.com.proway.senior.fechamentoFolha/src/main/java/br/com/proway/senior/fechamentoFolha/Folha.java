@@ -1,10 +1,11 @@
 package br.com.proway.senior.fechamentoFolha;
 
-import java.time.LocalDateTime;
+// TODO implementar setData que a folha está sendo emitida
+//import java.time.LocalDateTime;
 
 public class Folha {
 	int id;
-	LocalDateTime data;
+	String data;
 	private double salarioLiquido;
 	private double salarioBruto;
 	private double valorHoras;
@@ -28,6 +29,10 @@ public class Folha {
 	private double salarioMinimo = 1100;
 	private double salarioBase;
 
+	public Folha(int id, String data) {
+		this.id = id;
+		this.data = data;
+	}
 
 	public Folha(Colaborador colaborador) {
 		this.horasTrabalhadas = colaborador.getPonto().getHorasTrabalhadas();
@@ -324,6 +329,14 @@ public class Folha {
 		double domigosFeriados = 5.0;
 		double result = (getHoraExtra() / diasUteis) * domigosFeriados;
 		this.reflexoDSR = result;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public String getData() {
+		return this.data;
 	}
 	
 	public double getReflexoDSR() {

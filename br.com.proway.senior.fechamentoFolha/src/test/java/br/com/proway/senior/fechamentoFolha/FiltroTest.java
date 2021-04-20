@@ -6,9 +6,9 @@ import org.junit.Test;
 
 public class FiltroTest {	
 
-	FolhaProvisoria folha0 = new FolhaProvisoria(0, "data1");
-	FolhaProvisoria folha1 = new FolhaProvisoria(1, "data2");
-	FolhaProvisoria folha2 = new FolhaProvisoria(2, "data3");
+	Folha folha0 = new Folha(0, "data1");
+	Folha folha1 = new Folha(1, "data2");
+	Folha folha2 = new Folha(2, "data3");
 	Colaborador colaborador0 = new Colaborador("Jorge", 0, "email1", 500.0); 
 	Colaborador colaborador1 = new Colaborador("Jorge2", 1, "email2", 500.0); 
 	CadastroColaborador cadastro = new CadastroColaborador(); 
@@ -35,7 +35,7 @@ public class FiltroTest {
 		colaborador0.addTotalFolhas(folha0);
 		colaborador0.addTotalFolhas(folha1);
 		colaborador0.addTotalFolhas(folha2);
-		FolhaProvisoria f = Filtro.filtro(colaborador0, 1);
+		Folha f = Filtro.filtro(colaborador0, 1);
 		assertEquals(1, f.getId());		
 	}
 	
@@ -44,7 +44,7 @@ public class FiltroTest {
 		colaborador0.addTotalFolhas(folha0);
 		colaborador0.addTotalFolhas(folha1);
 		colaborador0.addTotalFolhas(folha2);
-		FolhaProvisoria f = Filtro.filtro(colaborador0, 6);
+		Folha f = Filtro.filtro(colaborador0, 6);
 		assertEquals(null, f);		
 	}
 	
@@ -55,12 +55,12 @@ public class FiltroTest {
 		Colaborador colaboradorteste1 = new Colaborador("Jorge2", 1, "email2", 500.0);
 		cadastroteste.addColaboradores(colaboradorteste0);
 		cadastroteste.addColaboradores(colaboradorteste1);		
-		FolhaProvisoria folhateste0 = new FolhaProvisoria(0, "data");
-		FolhaProvisoria folhateste1 = new FolhaProvisoria(1, "data");
+		Folha folhateste0 = new Folha(0, "data");
+		Folha folhateste1 = new Folha(1, "data");
 		colaboradorteste0.addTotalFolhas(folhateste0);
 		colaboradorteste0.addTotalFolhas(folhateste1);
 		Colaborador c = Filtro.filtro(0, cadastroteste);	
-		FolhaProvisoria f = Filtro.filtro(c, 0);
+		Folha f = Filtro.filtro(c, 0);
 		assertEquals(folhateste0, f);
 	}
 	
@@ -71,12 +71,12 @@ public class FiltroTest {
 		Colaborador colaboradorteste1 = new Colaborador("Jorge2", 1, "email2", 500.0);
 		cadastroteste.addColaboradores(colaboradorteste0);
 		cadastroteste.addColaboradores(colaboradorteste1);		
-		FolhaProvisoria folhateste0 = new FolhaProvisoria(0, "data");
-		FolhaProvisoria folhateste1 = new FolhaProvisoria(1, "data");
+		Folha folhateste0 = new Folha(0, "data");
+		Folha folhateste1 = new Folha(1, "data");
 		colaboradorteste0.addTotalFolhas(folhateste0);
 		colaboradorteste0.addTotalFolhas(folhateste1);
 		Colaborador c = Filtro.filtro(0, cadastroteste);	
-		FolhaProvisoria f = Filtro.filtro(c, 6);
+		Folha f = Filtro.filtro(c, 6);
 		assertEquals(null, f);
 	}
 	
@@ -102,7 +102,7 @@ public class FiltroTest {
 		colaborador0.addTotalFolhas(folha0);
 		colaborador0.addTotalFolhas(folha1);
 		colaborador0.addTotalFolhas(folha2);
-		FolhaProvisoria f = Filtro.filtro(colaborador0, "data2");
+		Folha f = Filtro.filtro(colaborador0, "data2");
 		assertEquals("data2", f.getData());		
 	}
 	
@@ -111,7 +111,7 @@ public class FiltroTest {
 		colaborador0.addTotalFolhas(folha0);
 		colaborador0.addTotalFolhas(folha1);
 		colaborador0.addTotalFolhas(folha2);
-		FolhaProvisoria f = Filtro.filtro(colaborador0, "data4");
+		Folha f = Filtro.filtro(colaborador0, "data4");
 		assertEquals(null, f);		
 	}
 	
