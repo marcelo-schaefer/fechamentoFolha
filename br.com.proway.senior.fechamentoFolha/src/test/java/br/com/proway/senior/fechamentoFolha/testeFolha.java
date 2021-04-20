@@ -111,312 +111,70 @@ public class testeFolha {
 	@Test
 	public void testaInss() {
 		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2300);
-		Ponto pontoMaria = new Ponto(220, 0, 0, 0, 0, false, 0, 0);
+		Ponto pontoMaria = new Ponto(220, 30, 0, 0, 0, false, 0, 0);
 		maria.setPonto(pontoMaria);
 		Folha folha1 = new Folha(maria);
 		maria.addTotalFolhas(folha1);
 		folha1.calcularFolha();
+		double inss = folha1.getValorInss();
 
-		assertEquals(folha1.descontoInss(), 253, 0.01);
+		assertEquals(inss, 304.75, 0.01);
 	}
 	@Test
 	public void testaHorasFaltas() {
-		Folha folha = new Folha(0, 0, 30, 20, 0, 0, 0, 0, 0);
-		folha.setSalarioBase(1000);
-		folha.calculaValorHora();
-		folha.valorHorasFaltas();
-		assertEquals(folha.valorHorasFaltas(), 90.90 , 0.01);
+
+		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 1000);
+		Ponto pontoMaria = new Ponto(220, 30, 20, 0, 0, false, 0, 0);
+		maria.setPonto(pontoMaria);
+		Folha folha1 = new Folha(maria);
+		maria.addTotalFolhas(folha1);		
+		folha1.calculaValorHora();
+		folha1.valorHorasFaltas();
+		assertEquals(folha1.valorHorasFaltas(), 90.90 , 0.01);
 	}
 
 	
 	@Test
 	public void testeHoraFaltas() {
-		Folha folha = new Folha(10, 220, 0, 10, 100, 0, 100, 25, 115);
-		assertEquals(folha.valorHorasFaltas(), 100, 0.01 );
+	
+		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2300);
+		Ponto pontoMaria = new Ponto(220, 0, 10, 100, 0, true, 100, 25);
+		maria.setPonto(pontoMaria);
+		Folha folha1 = new Folha(maria);
+		maria.addTotalFolhas(folha1);
+		folha1.calcularFolha();
+		
+		assertEquals(folha1.valorHorasFaltas(), 104.54, 0.01 );
 	}
 	
 	@Test
 	public void testeHoraFaltasComHorasExtras() {
-		Folha folha = new Folha(10, 220, 15, 10, 100, 0, 100, 25, 115);
-		double valor = folha.valorHorasExtras() - folha.valorHorasFaltas();
-		assertEquals(valor, 125, 0.01 );
+		
+		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2300);
+		Ponto pontoMaria = new Ponto(220, 15, 10, 100, 0, true, 100, 25);
+		maria.setPonto(pontoMaria);
+		Folha folha1 = new Folha(maria);
+		maria.addTotalFolhas(folha1);
+		
+		folha1.calculaHorasTrabalhadas();
+		
+		double valor = folha1.valorHorasExtras() - folha1.valorHorasFaltas();
+		assertEquals(valor, 130.68, 0.01 );
 	}
 	
 	@Test
 	public void testeHoraFaltasComHorasExtrasEInsalubridade() {
-		Folha folha = new Folha(10, 220, 15, 10, 100, 20, 100, 25, 115);
+	
+		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2200);
+		Ponto pontoMaria = new Ponto(220, 15, 10, 100, 20, true, 100, 25);
+		maria.setPonto(pontoMaria);
+		Folha folha1 = new Folha(maria);
+		maria.addTotalFolhas(folha1);
 		
-		folha.setSalarioBase(2200);
-		folha.calculaValorHora();		
-		double valor = folha.valorHorasExtras() - folha.valorHorasFaltas();
+		folha1.calculaValorHora();		
+		double valor = folha1.valorHorasExtras() - folha1.valorHorasFaltas();
 		assertEquals(valor, 137.50, 0.01 );
 	}
-	
-	@Test
-	public void testeCalculaFolha() {
-		Folha folha = new Folha(10, 220, 15, 10, 0, 0, 100, 25, 100);
-		folha.setSalarioBase(2200);
-		double valor = folha.calcularFolha();
-		assertEquals(valor, 1799.85, 0.01); //****
-	}
-	
-	@Test
-	public void testeCalculaFolha2() {
-		Folha folha = new Folha(11.6818, 220, 0, 0, 0, 0, 109, 0, 0);	
-		folha.setSalarioBase(2570);
-		double valor = folha.calcularFolha();
-		assertEquals(valor, 2149.55, 0.01);
-	}
-	
-	@Test
-	public void testeCalculaFolha3() {
-		Folha folha = new Folha(0, 220, 22, 17, 100, 20, 100, 50, 145);	
-		folha.setSalarioBase(3000);
-		double valor = folha.calcularFolha();
-		assertEquals(valor, 2713.53, 0.01);
-	}
-	
-	@Test
-	public void testeCalculaFolha4() {
-		Folha folha = new Folha(0, 220, 13.50, 3.56, 350, 0, 100, 234, 0);	
-		folha.setSalarioBase(5932);
-		double valor = folha.calcularFolha();
-		assertEquals(valor, 4879.19, 0.01);
-	}
-	
-	@Test
-	public void testeCalculaFolha5() {
-		Folha folha = new Folha(0, 220, 17.10, 7.46, 122, 40, 100, 15, 100);	
-		folha.setSalarioBase(1200);
-		double valor = folha.calcularFolha();
-		assertEquals(valor, 1501.86, 0.01);
-	}
-	
-	@Test
-	public void testeCalculoFolha6() {
-		Folha folha = new Folha(0, 175, 6.33, 2.71, 120, 10, 100, 0, 80.7);	
-		folha.setSalarioBase(1345);
-		double valor = folha.calcularFolha();
-		assertEquals(valor, 996.11, 0.01);
-	}
-
-//	@Test
-//	public void testeValeTransporte() {		
-//		folha.setSalarioBase(2200);		
-//		assertEquals(folha.calculaValeTransporte(), 132, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeValeTransporteMaximo() {		
-//		Folha folha = new Folha(10, 220, 0, 0, 100, 20, 100, 25, 115);
-//		folha.setSalarioBase(3300);		
-//		assertEquals(folha.calculaValeTransporte(), 180, 0.01);
-//	}
-//	
-//	@Test
-//	public void testePlanoSaude() {	
-//		Folha folha = new Folha(10, 220, 0, 0, 100, 20, 155, 45, 115);
-//		assertEquals(folha.descontaPlanoSaude(), 200, 0.01);
-//	}
-//	
-//	@Test
-//	public void testePlanoSaudeValorCooparticipacaoNegativo() {	
-//		Folha folha = new Folha(10, 220, 0, 0, 100, 20, 0, -20, 115);
-//		assertEquals(folha.descontaPlanoSaude(), 0, 0.01);
-//	}
-//	
-//	@Test
-//	public void testePlanoSaudeValorMensalidadeNegativo() {	
-//		Folha folha = new Folha(10, 220, 0, 0, 100, 20, -57, 100, 115);
-//		assertEquals(folha.descontaPlanoSaude(), 0, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeAdicionaBonificacao() {
-//		Folha folha = new Folha(10, 220, 0, 0, 358, 20, 100, 25, 115);
-//		assertEquals(folha.adicionaBonificacao(), 358, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeAdicionaBonificacaoNegativa() {
-//		Folha folha = new Folha(10, 220, 0, 0, -52, 20, 100, 25, 115);
-//		assertEquals(folha.adicionaBonificacao(), 0, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeCalculoInss() {
-//		Folha folha = new Folha(10, 220, 0, 0, -52, 20, 100, 25, 115);
-//		folha.setSalarioBruto(2987);
-//		
-//		folha.descontoInss();
-//	}
-//	
-//	@Test
-//	public void testeCalculoImpostoRenda() {
-//		Folha folha = new Folha(10, 220, 0, 0, -52, 20, 100, 25, 115);
-//		folha.setSalarioBruto(3200);
-//		
-//		assertEquals(folha.calculaImpostoRenda(), 125.20, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeCalculoImpostoRenda0() {
-//		Folha folha = new Folha(10, 220, 0, 0, -52, 20, 100, 25, 115);
-//		folha.setSalarioBruto(1903);
-//		
-//		assertEquals(folha.calculaImpostoRenda(), 0, 0.01);
-//	}
-//	
-//	@Test
-//	public void testaValorInsalubridade() {
-//		Folha folha1 = new Folha(0, 0, 0, 0, 0, 10, 0, 0, 0);
-//		assertEquals(folha1.calculaInsalubridade(), 110, 0.01);
-//		
-//		Folha folha2 = new Folha(10, 220, 0, 0, 52, 20, 100, 25, 115);
-//		assertEquals(folha2.calculaInsalubridade(), 220, 0.01);
-//		
-//		Folha folha3 = new Folha(0, 0, 0, 0, 0, 40, 0, 0, 0);
-//		assertEquals(folha3.calculaInsalubridade(), 440, 0.01);
-//		
-//		Folha folha4 = new Folha(0, 0, 0, 0, 0, 80, 0, 0, 0);
-//		assertEquals(folha4.calculaInsalubridade(), 0, 0.01);
-//	}
-//	
-//	@Test
-//	public void testaCalculaValorHoras() {
-//		Folha folha = new Folha(10, 220, 0, 0, 100, 20, 100, 25, 115);
-//		folha.setSalarioBase(2200);
-//		assertEquals(folha.calculaValorHora(), 11, 0.01);
-//	}
-//	
-//	@Test
-//	public void testaCalculaValorHoras2() {
-//		Folha folha = new Folha(10, 220, 0, 0, 100, 10, 100, 25, 115);
-//		folha.setSalarioBase(2200);
-//		assertEquals(folha.calculaValorHora(), 10.50, 0.01);
-//	}
-//	
-//	@Test
-//	public void testaCalculaValorHoras3() {
-//		Folha folha = new Folha(10, 220, 0, 0, 100, 0, 100, 25, 115);
-//		folha.setSalarioBase(2200);
-//		assertEquals(folha.calculaValorHora(), 10, 0.01);
-//	}
-//	
-//	@Test
-//	public void testaHoraExtra() {
-//		Folha folha = new Folha(10, 220, 10, 0, 100, 0, 100, 25, 115);
-//		assertEquals(folha.valorHorasExtras(), 150, 0.01);
-//	}
-//	
-//	@Test
-//	public void testaHoraExtra2() {
-//		Folha folha = new Folha(10, 220, 15.50, 0, 100, 0, 100, 25, 115);
-//		assertEquals(folha.valorHorasExtras(), 232.50, 0.01);
-//	}
-//	
-//	@Test
-//	public void testaHoraExtra3() {
-//		Folha folha = new Folha(10, 220, 15.50, 0, 100, 0, 100, 25, 115);
-//		assertNotEquals(folha.valorHorasExtras(), 232.55, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeHoraFaltas() {
-//		Folha folha = new Folha(10, 220, 0, 10, 100, 0, 100, 25, 115);
-//		assertEquals(folha.valorHorasFaltas(), 100, 0.01 );
-//	}
-//	
-//	@Test
-//	public void testeHoraFaltasComHorasExtras() {
-//		Folha folha = new Folha(10, 220, 15, 10, 100, 0, 100, 25, 115);
-//		double valor = folha.valorHorasExtras() - folha.valorHorasFaltas();
-//		assertEquals(valor, 125, 0.01 );
-//	}
-//	
-//	@Test
-//	public void testeHoraFaltasComHorasExtrasEInsalubridade() {
-//		Folha folha = new Folha(10, 220, 15, 10, 100, 20, 100, 25, 115);
-//		
-//		folha.setSalarioBase(2200);
-//		folha.calculaValorHora();		
-//		double valor = folha.valorHorasExtras() - folha.valorHorasFaltas();
-//		assertEquals(valor, 137.50, 0.01 );
-//	}
-//	
-//	@Test
-//	public void testeCalculaFolha() {
-//		Folha folha = new Folha(10, 220, 15, 10, 0, 0, 100, 25, 100);
-//		folha.setSalarioBase(2200);
-//		double valor = folha.calcularFolha();
-//		assertEquals(valor, 1799.85, 0.01); //****
-//	}
-//	
-//	@Test
-//	public void testeCalculaFolha2() {
-//		Folha folha = new Folha(11.6818, 220, 0, 0, 0, 0, 109, 0, 0);	
-//		folha.setSalarioBase(2570);
-//		double valor = folha.calcularFolha();
-//		assertEquals(valor, 2149.55, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeCalculaFolha3() {
-//		Folha folha = new Folha(0, 220, 22, 17, 100, 20, 100, 50, 145);	
-//		folha.setSalarioBase(3000);
-//		double valor = folha.calcularFolha();
-//		assertEquals(valor, 2713.53, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeCalculaFolha4() {
-//		Folha folha = new Folha(0, 220, 13.50, 3.56, 350, 0, 100, 234, 0);	
-//		folha.setSalarioBase(5932);
-//		double valor = folha.calcularFolha();
-//		assertEquals(valor, 4879.19, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeCalculaFolha5() {
-//		Folha folha = new Folha(0, 220, 17.10, 7.46, 122, 40, 100, 15, 100);	
-//		folha.setSalarioBase(1200);
-//		double valor = folha.calcularFolha();
-//		assertEquals(valor, 1501.86, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeCalculoFolha6() {
-//		Folha folha = new Folha(0, 175, 6.33, 2.71, 120, 10, 100, 0, 80.7);	
-//		folha.setSalarioBase(1345);
-//		double valor = folha.calcularFolha();
-//		assertEquals(valor, 996.11, 0.01);
-//	}
-	
-//	@Test
-//	public void testeCalculoDeFeriasComVenda() {
-//		Folha folha = new Folha(0, 220, 0, 0, 0, 0, 0, 0, 0);
-//		folha.setSalarioBase(1500);
-//		double valor = folha.calcularFerias(20, 10);
-//		assertEquals(valor, 1780, 0.01);
-//	}
-//
-//	@Test
-//	public void testeCalculoDeFeriasSemVenda() {
-//		Folha folha = new Folha(0, 220, 0, 0, 0, 0, 0, 0, 0);
-//		folha.setSalarioBase(1500);
-//		double valor = folha.calcularFerias(30, 0);
-//		assertEquals(valor, 1780, 0.01);
-//	}
-//	
-//	@Test
-//	public void testeCalculoDeFeriasComVenda2() {
-//		Folha folha = new Folha(0, 220, 0, 0, 0, 0, 0, 0, 0);
-//		folha.setSalarioBase(3200);
-//		double valor = folha.calcularFerias(20, 10);
-//		assertEquals(valor, 3579.06, 0.01);
-//	}
-	
-	
 	
 	@Test
 	public void testeCalculoIntegrado() {
@@ -446,5 +204,192 @@ public class testeFolha {
 		assertEquals(folha1.calcularFolha(), 2440.08, 0.01);
 		
 	}
+	
+	
+	@Test
+	public void testeCalculaFolha3() {
+
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 1200.0);
+		Ponto pontoJorge = new Ponto(220, 17.10, 7.46, 122, 40, true, 100, 15);
+		jorge.setPonto(pontoJorge);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		
+		double valor = folha1.calcularFolha();
+		assertEquals(valor, 1501.86, 0.01);
+	}
+	
+	@Test
+	public void testeCalculoFolha4() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 1345.0);
+		Ponto pontoJorge = new Ponto(175, 6.33, 2.71, 120, 10, true, 100, 0);
+		jorge.setPonto(pontoJorge);		
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		
+		double valor = folha1.calcularFolha();
+		assertEquals(valor, 996.11, 0.01);
+	}
+
+	
+	@Test
+	public void testePlanoSaudeValorMensalidadeNegativo() {	
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, -100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		assertEquals(folha1.descontaPlanoSaude(), 0, 0.01);
+	}
+	
+	@Test
+	public void testeAdicionaBonificacao() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 15, 10, 358, 20, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		assertEquals(folha1.adicionaBonificacao(), 358, 0.01);
+	}
+	
+	@Test
+	public void testeAdicionaBonificacaoNegativa() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 15, 10, -358, 20, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		assertEquals(folha1.adicionaBonificacao(), 0, 0.01);
+	}
+	
+	@Test
+	public void testeCalculoInss() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 15, 10, 358, 20, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		folha1.setSalarioBruto(2987);
+		assertEquals(folha1.descontoInss(), 328.57, 0.01);
+	}
+	
+	@Test
+	public void testeCalculoImpostoRenda() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 0, 0, -52, 20, true, 25, 115);
+		jorge.setPonto(pontoJorge);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		folha1.setSalarioBruto(3200);
+		assertEquals(folha1.calculaImpostoRenda(), 125.20, 0.01);
+	}
+	
+	@Test
+	public void testeCalculoImpostoRenda0() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 0, 0, -52, 20, true, 25, 115);
+		jorge.setPonto(pontoJorge);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		folha1.setSalarioBruto(1903);
+		
+		assertEquals(folha1.calculaImpostoRenda(), 0, 0.01);
+	}
+	
+	@Test
+	public void testaValorInsalubridade() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		
+		Ponto ponto1 = new Ponto(0, 0, 0, 0, 10, true, 0, 0);
+		jorge.setPonto(ponto1);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		assertEquals(folha1.calculaInsalubridade(), 110, 0.01);
+		
+		Ponto ponto2 = new Ponto(0, 0, 0, 0, 20, true, 0, 0);
+		jorge.setPonto(ponto2);
+		Folha folha2 = new Folha(jorge);
+		jorge.addTotalFolhas(folha2);
+		assertEquals(folha2.calculaInsalubridade(), 220, 0.01);
+		
+		Ponto ponto3 = new Ponto(0, 0, 0, 0, 40, true, 0, 0);
+		jorge.setPonto(ponto3);
+		Folha folha3 = new Folha(jorge);
+		jorge.addTotalFolhas(folha3);
+		assertEquals(folha3.calculaInsalubridade(), 440, 0.01);
+		
+		Ponto ponto4 = new Ponto(0, 0, 0, 0, 80, true, 0, 0);
+		jorge.setPonto(ponto4);
+		Folha folha4 = new Folha(jorge);
+		jorge.addTotalFolhas(folha4);
+		assertEquals(folha4.calculaInsalubridade(), 0, 0.01);
+	}
+	
+	@Test
+	public void testaCalculaValorHoras() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto ponto1 = new Ponto(220, 0, 0, 100, 20, true, 25, 115);
+		jorge.setPonto(ponto1);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		folha1.setSalarioBase(2200);
+		assertEquals(folha1.calculaValorHora(), 11, 0.01);
+	}
+	
+	@Test
+	public void testaCalculaValorHoras2() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
+		Ponto ponto1 = new Ponto(220, 0, 0, 100, 10, true, 25, 115);
+		jorge.setPonto(ponto1);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		assertEquals(folha1.calculaValorHora(), 10.50, 0.01);
+	}
+	
+	@Test
+	public void testaCalculaValorHoras3() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
+		Ponto ponto1 = new Ponto(220, 0, 0, 100, 0, true, 25, 115);
+		jorge.setPonto(ponto1);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		assertEquals(folha1.calculaValorHora(), 10, 0.01);
+	}
+	
+	@Test
+	public void testaHoraExtra2() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
+		Ponto ponto1 = new Ponto(220, 15.50, 0, 100, 0, true, 25, 115);
+		jorge.setPonto(ponto1);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		assertNotEquals(folha1.valorHorasExtras(), 232.55, 0.01);
+	}
+	
+	@Test
+	public void testeHoraFaltas2() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
+		Ponto ponto1 = new Ponto(220, 0, 10, 100, 0, true, 25, 115);
+		jorge.setPonto(ponto1);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);
+		folha1.calculaValorHora();
+		assertEquals(folha1.valorHorasFaltas(), 100, 0.01 );
+	}
+	@Test
+	public void testeHoraFaltasComHorasExtras2() {
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
+		Ponto ponto1 = new Ponto(220, 15, 10, 100, 0, true, 25, 115);
+		jorge.setPonto(ponto1);
+		Folha folha1 = new Folha(jorge);
+		jorge.addTotalFolhas(folha1);	
+		folha1.calculaValorHora();
+		double valor = folha1.valorHorasExtras() - folha1.valorHorasFaltas();
+		assertEquals(valor, 125, 0.01 );
+	}
+	
+	
+	
+
 	
 }

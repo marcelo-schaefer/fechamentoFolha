@@ -22,7 +22,7 @@ public class Folha {
 	double impostoDeRenda;
 	double mensalidadePlanoSaude;
 	double valorCooparticipacaoPlanoSaude;
-	double valeTransporte = 0;
+	double valeTransporte = 100;
 	double fator = 0.5; // 50% adicional hora extra
 	double salarioMinimo = 1100;
 	double salarioBase;
@@ -347,5 +347,8 @@ public double calculaImpostoRenda(double valorFerias) { //**********************
 //		this.horaExtra = horaExtra;
 //	}
 	
+	public double getValorInss() {
+		return this.inss;
+	}
 
 }
