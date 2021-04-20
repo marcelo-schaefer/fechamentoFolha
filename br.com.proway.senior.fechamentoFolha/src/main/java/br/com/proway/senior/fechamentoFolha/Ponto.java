@@ -26,9 +26,10 @@ public final class Ponto {
 	 * @param mensalidadePlanoSaude
 	 * @param valorCooparticipacaoPlanoSaude
 	 */
-	public Ponto(double horasTrabalhadas, double horasExtra, double horasFaltas, double valorBonificacao,
-	double percentualInsalubridade, boolean valeTransporte, double mensalidadePlanoSaude, 
-	double valorCooparticipacaoPlanoSaude) {
+	public Ponto(double horasTrabalhadas, double horasExtra, 
+			double horasFaltas, double valorBonificacao,
+			double percentualInsalubridade, boolean valeTransporte, 
+			double mensalidadePlanoSaude, double valorCooparticipacaoPlanoSaude) {
 		this.horasTrabalhadas = horasTrabalhadas;
 		this.horasExtra = horasExtra;
 		this.horasFaltas = horasFaltas;

@@ -366,16 +366,28 @@ public class testeFolha {
 	    
 	}
 	
+//	@Test
+//	public void testeReflexoDSRHoraExtra() {
+//		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1000.0);
+//		Ponto pontoJorge = new Ponto(220, 10, 0, 0, 0, false, 0, 0);
+//		jorge.setPonto(pontoJorge);	
+//		Folha folha = new Folha(jorge);
+//		
+//		folha.calcularFolha();
+//		
+//		assertEquals(folha.getReflexoDSR(), 13.63, 0.01);
+//	}
+	
 	@Test
-	public void testeReflexoDSRHoraExtra() {
-		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1000.0);
-		Ponto pontoJorge = new Ponto(220, 10, 0, 0, 0, false, 0, 0);
-		jorge.setPonto(pontoJorge);	
-		Folha folha = new Folha(jorge);
+	public void testeImpostoDeRendaComDependente() {
+		ColaboradorFolha bruno = new ColaboradorFolha("Bruno", 0, "bruno@gmail.com", 2570);
+		Ponto pontoBruno = new Ponto(220, 0, 0, 0, 0, false, 109, 0);
+		bruno.setPonto(pontoBruno);
+		bruno.addDependentes("Maya");
+		Folha folha = new Folha(bruno);
 		
 		folha.calcularFolha();
-		
-		assertEquals(folha.getReflexoDSR(), 13.63, 0.01);
+		assertEquals(folha.getSalarioLiquido(), 2163.77, 0.01);
 	}
 	
 }

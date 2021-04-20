@@ -71,7 +71,7 @@ public class Filtro {
 	 */	
 	static public Folha filtro(ColaboradorFolha c, String data) {
 		for(Folha folha : c.getTotalFolhas()) {
-			if(data == folha.getData()) {			
+			if(data == folha.getDataEmissao()) {			
 				return folha;
 			}
 		}
