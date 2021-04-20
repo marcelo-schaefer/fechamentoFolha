@@ -2,14 +2,14 @@ package br.com.proway.senior.fechamentoFolha;
 
 import java.util.ArrayList;
 
-public final class Colaborador extends Pessoa {	
+public final class ColaboradorFolha extends Pessoa {	
 	
 	private double salario;
 	private ArrayList<Folha> totalFolhas = new ArrayList<Folha>();
 	private ArrayList<String> dependentes = new ArrayList<String>();	
 	private Ponto ponto;
 	
-	public Colaborador(String nome, int id, String email, double salario) {
+	public ColaboradorFolha(String nome, int id, String email, double salario) {
 		super(nome, id, email);				
 		this.salario = salario;				
 	}	

@@ -12,8 +12,8 @@ public class Filtro {
 	 * 
 	 * @return Colaborador/null Colaborador desejado/Colaborador não existe
 	 */	
-	static public Colaborador filtro(String email, CadastroColaborador cadastro) { 
-		for(Colaborador c : cadastro.getColaboradores()) {
+	static public ColaboradorFolha filtro(String email, CadastroColaborador cadastro) { 
+		for(ColaboradorFolha c : cadastro.getColaboradores()) {
 			if(c.getEmail() == email) {				
 				return c; 
 			}
@@ -31,8 +31,8 @@ public class Filtro {
 	 * 
 	 * @return Colaborador/null Colaborador desejado/Colaborador não existe
 	 */	
-	static public Colaborador filtro(int userId, CadastroColaborador cadastro) {
-		for(Colaborador c : cadastro.getColaboradores()) {
+	static public ColaboradorFolha filtro(int userId, CadastroColaborador cadastro) {
+		for(ColaboradorFolha c : cadastro.getColaboradores()) {
 			if(c.getId() == userId) {			
 				return c;
 			}
@@ -50,7 +50,7 @@ public class Filtro {
 	 * 
 	 * @return Folha/null Folha desejado/Folha não existe
 	 */		
-	static public Folha filtro(Colaborador c, int idFolha) {
+	static public Folha filtro(ColaboradorFolha c, int idFolha) {
 		for(Folha folha : c.getTotalFolhas()) {
 			if(folha.getId() == idFolha) {
 				return folha;
@@ -69,7 +69,7 @@ public class Filtro {
 	 * 
 	 * @return Folha/null Folha desejado/Folha não existe
 	 */	
-	static public Folha filtro(Colaborador c, String data) {
+	static public Folha filtro(ColaboradorFolha c, String data) {
 		for(Folha folha : c.getTotalFolhas()) {
 			if(data == folha.getData()) {			
 				return folha;

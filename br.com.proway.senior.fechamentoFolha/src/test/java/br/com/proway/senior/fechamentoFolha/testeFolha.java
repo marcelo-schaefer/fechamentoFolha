@@ -3,256 +3,179 @@ package br.com.proway.senior.fechamentoFolha;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Test;
 
 public class testeFolha {
-
-
-
+	
 	@Test
-	public void testaAdicionarBonificacao() {
-		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2500.0);
+	public void testePlanoSaude() {
+		ColaboradorFolha maria = new ColaboradorFolha("Maria", 0, "maria@gmail.com", 1600);
 		Ponto pontoMaria = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
-		maria.setPonto(pontoMaria);
+		maria.setPonto(pontoMaria);		
+		Folha folha = new Folha(maria);
+		maria.addTotalFolhas(folha);
 		
-		Folha folha1 = new Folha(maria);
-		maria.addTotalFolhas(folha1);
-		
-		assertEquals(folha1.adicionaBonificacao(), 250, 0.01);
-	}
-	@Test
-	public void testaPlanoSaude() {
-		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 1600);
-		Ponto pontoMaria = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
-		maria.setPonto(pontoMaria);
-		Folha folha1 = new Folha(maria);
-		maria.addTotalFolhas(folha1);
-		
-		double descontoPlanoSaude = folha1.descontaPlanoSaude();
-		
+		double descontoPlanoSaude = folha.calcularDescontoPlanoSaude();		
 		assertEquals(descontoPlanoSaude, 125, 0.01);
 	}
+	
 	@Test
-	public void testaImpostoRenda() {
-		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2826.66);
-		Ponto pontoMaria = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
-		maria.setPonto(pontoMaria);
-		Folha folha1 = new Folha(maria);
-		maria.addTotalFolhas(folha1);
-		
-		folha1.setSalarioBruto(2826.66);
-		assertEquals(folha1.calculaImpostoRenda(), 69.19, 0.01);
-	}
-	@Test
-	public void testaHoraExtra() {
-		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2000);
+	public void testeHoraExtra() {
+		ColaboradorFolha maria = new ColaboradorFolha("Maria", 0, "maria@gmail.com", 2000);
 		Ponto pontoMaria = new Ponto(220, 30, 0, 0, 0, true, 0, 0);
 		maria.setPonto(pontoMaria);
-		Folha folha1 = new Folha(maria);
-		maria.addTotalFolhas(folha1);
-
-		folha1.calcularFolha();		
-		assertEquals(folha1.valorHorasExtras(), 409.09, 0.01);
-	}
-	@Test
-	public void testaInss() {
-		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2300);
-		Ponto pontoMaria = new Ponto(220, 30, 0, 0, 0, false, 0, 0);
-		maria.setPonto(pontoMaria);
-		Folha folha1 = new Folha(maria);
-		maria.addTotalFolhas(folha1);
-		folha1.calcularFolha();
-		double inss = folha1.getValorInss();
-
-		assertEquals(inss, 304.75, 0.01);
-	}
-	@Test
-	public void testaHorasFaltas() {
-
-		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 1000);
-		Ponto pontoMaria = new Ponto(220, 30, 20, 0, 0, false, 0, 0);
-		maria.setPonto(pontoMaria);
-		Folha folha1 = new Folha(maria);
-		maria.addTotalFolhas(folha1);		
-		folha1.calculaValorHora();
-		folha1.valorHorasFaltas();
-		assertEquals(folha1.valorHorasFaltas(), 90.90 , 0.01);
-	}
-
-	
-	@Test
-	public void testeHoraFaltas() {
-	
-		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2300);
-		Ponto pontoMaria = new Ponto(220, 0, 10, 100, 0, true, 100, 25);
-		maria.setPonto(pontoMaria);
-		Folha folha1 = new Folha(maria);
-		maria.addTotalFolhas(folha1);
-		folha1.calcularFolha();
+		Folha folha = new Folha(maria);
+		maria.addTotalFolhas(folha);
 		
-		assertEquals(folha1.valorHorasFaltas(), 104.54, 0.01 );
+		folha.calcularFolha();		
+		assertEquals(folha.getValorHoraExtra(), 409.09, 0.01);
 	}
 	
 	@Test
-	public void testeHoraFaltasComHorasExtras() {
+	public void testeHoraExtra2() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2200.0);
+		Ponto ponto1 = new Ponto(220, 15.50, 0, 100, 0, true, 25, 115);
+		jorge.setPonto(ponto1);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
 		
-		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2300);
-		Ponto pontoMaria = new Ponto(220, 15, 10, 100, 0, true, 100, 25);
-		maria.setPonto(pontoMaria);
-		Folha folha1 = new Folha(maria);
-		maria.addTotalFolhas(folha1);
-		
-		folha1.calculaHorasTrabalhadas();
-		
-		double valor = folha1.valorHorasExtras() - folha1.valorHorasFaltas();
-		assertEquals(valor, 130.68, 0.01 );
-	}
-	
-	@Test
-	public void testeHoraFaltasComHorasExtrasEInsalubridade() {
-	
-		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2200);
-		Ponto pontoMaria = new Ponto(220, 15, 10, 100, 20, true, 100, 25);
-		maria.setPonto(pontoMaria);
-		Folha folha1 = new Folha(maria);
-		maria.addTotalFolhas(folha1);
-		
-		folha1.calculaValorHora();		
-		double valor = folha1.valorHorasExtras() - folha1.valorHorasFaltas();
-		assertEquals(valor, 137.50, 0.01 );
-	}
-	
-	@Test
-	public void testeCalculoIntegrado() {
-		CadastroColaborador cadastro = new CadastroColaborador();
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 1500.0);
-		cadastro.addColaboradores(jorge);
-		Ponto pontoJorge = new Ponto(220, 0, 0, 250, 0, true, 100, 25);
-		jorge.setPonto(pontoJorge);
-		
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		
-		
-		assertEquals(folha1.calcularFolha(), 1342.50, 0.01);
-		
-	}
-	
-	@Test
-	public void testeCalculoIntegrado2() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
-		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
-		jorge.setPonto(pontoJorge);
-		
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		
-		assertEquals(folha1.calcularFolha(), 2440.08, 0.01);
-		
-	}
-	
-	
-	@Test
-	public void testeCalculaFolha3() {
-
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 1200.0);
-		Ponto pontoJorge = new Ponto(220, 17.10, 7.46, 122, 40, true, 100, 15);
-		jorge.setPonto(pontoJorge);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		
-		double valor = folha1.calcularFolha();
-		assertEquals(valor, 1501.86, 0.01);
-	}
-	
-	@Test
-	public void testeCalculoFolha4() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 1345.0);
-		Ponto pontoJorge = new Ponto(175, 6.33, 2.71, 120, 10, true, 100, 0);
-		jorge.setPonto(pontoJorge);		
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		
-		double valor = folha1.calcularFolha();
-		assertEquals(valor, 996.11, 0.01);
-	}
-
-	
-	@Test
-	public void testePlanoSaudeValorMensalidadeNegativo() {	
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
-		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, -100, 25);
-		jorge.setPonto(pontoJorge);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		assertEquals(folha1.descontaPlanoSaude(), 0, 0.01);
-	}
-	
-	@Test
-	public void testeAdicionaBonificacao() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
-		Ponto pontoJorge = new Ponto(220, 15, 10, 358, 20, true, 100, 25);
-		jorge.setPonto(pontoJorge);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		assertEquals(folha1.adicionaBonificacao(), 358, 0.01);
-	}
-
-
-	
-	@Test
-	public void testeAdicionaBonificacaoNegativa() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
-		Ponto pontoJorge = new Ponto(220, 15, 10, -358, 20, true, 100, 25);
-		jorge.setPonto(pontoJorge);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		assertEquals(folha1.adicionaBonificacao(), 0, 0.01);
+		folha.calcularHorasTrabalhadas();
+		assertNotEquals(folha.calcularValorHorasExtras(), 232.55, 0.01);
 	}
 	
 	@Test
 	public void testeCalculoInss() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
-		Ponto pontoJorge = new Ponto(220, 15, 10, 358, 20, true, 100, 25);
-		jorge.setPonto(pontoJorge);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		folha1.setSalarioBruto(2987);
-		assertEquals(folha1.descontoInss(), 328.57, 0.01);
+		ColaboradorFolha maria = new ColaboradorFolha("Maria", 0, "maria@gmail.com", 2300);
+		Ponto pontoMaria = new Ponto(220, 30, 0, 0, 0, false, 0, 0);
+		maria.setPonto(pontoMaria);
+		Folha folha = new Folha(maria);
+		maria.addTotalFolhas(folha);
+		
+		folha.calcularFolha();
+		double inss = folha.getValorInss();
+		assertEquals(inss, 304.75, 0.01);
 	}
 	
 	@Test
+	public void testeCalculoInss2() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 9.67, 3.51, 358, 20, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		folha.calcularFolha();
+		
+		assertEquals(folha.getValorInss(), 353.53, 0.01);
+	}
+	
+	@Test
+	public void testeHorasFaltas() {
+
+		ColaboradorFolha maria = new ColaboradorFolha("Maria", 0, "maria@gmail.com", 1598);
+		Ponto pontoMaria = new Ponto(220, 30, 20, 0, 0, false, 0, 0);
+		maria.setPonto(pontoMaria);
+		Folha folha = new Folha(maria);
+		maria.addTotalFolhas(folha);
+		
+		folha.calculaValorHora();
+		assertEquals(folha.calcularValorHorasFaltas(), 145.27 , 0.01);
+	}
+	
+	@Test
+	public void testeHoraFaltas2() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2200.0);
+		Ponto ponto1 = new Ponto(220, 0, 16.59, 100, 0, true, 25, 115);
+		jorge.setPonto(ponto1);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		folha.calculaValorHora();
+		
+		assertEquals(folha.calcularValorHorasFaltas(), 165.90, 0.01 );
+	}
+
+	@Test
+	public void testeHorasFaltasComInsaLubridade() {
+	
+		ColaboradorFolha maria = new ColaboradorFolha("Maria", 0, "maria@gmail.com", 2300);
+		Ponto pontoMaria = new Ponto(220, 0, 7.73, 100, 40, true, 100, 25);
+		maria.setPonto(pontoMaria);
+		Folha folha = new Folha(maria);
+		maria.addTotalFolhas(folha);
+		
+		folha.calcularFolha();		
+		assertEquals(folha.getValorHorasFaltas(), 96.27, 0.01 );
+	}	
+	
+	@Test
+	public void testePlanoSaudeValorMensalidadeNegativo() {	
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, -100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		assertEquals(folha.calcularDescontoPlanoSaude(), 0, 0.01);
+	}
+	
+	@Test
+	public void testecalcularBonificacao() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 15, 10, 358, 20, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		assertEquals(folha.calcularBonificacao(), 358, 0.01);
+	}
+	
+	@Test
+	public void testeAdicionaBonificacaoNegativa() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 15, 10, -358, 20, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		assertEquals(folha.calcularBonificacao(), 0, 0.01);
+	}
+		
+	@Test
 	public void testeCalculoImpostoRenda() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
 		Ponto pontoJorge = new Ponto(220, 0, 0, -52, 20, true, 25, 115);
 		jorge.setPonto(pontoJorge);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		folha1.setSalarioBruto(3200);
-		assertEquals(folha1.calculaImpostoRenda(), 125.20, 0.01);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		folha.setSalarioBruto(3200);
+		assertEquals(folha.calcularDescontoImpostoRenda(), 125.20, 0.01);
 	}
 	
 	@Test
 	public void testeCalculoImpostoRenda0() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
 		Ponto pontoJorge = new Ponto(220, 0, 0, -52, 20, true, 25, 115);
 		jorge.setPonto(pontoJorge);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		folha1.setSalarioBruto(1903);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
 		
-		assertEquals(folha1.calculaImpostoRenda(), 0, 0.01);
+		folha.setSalarioBruto(1903);		
+		assertEquals(folha.calcularDescontoImpostoRenda(), 0, 0.01);
 	}
 	
 	@Test
-	public void testaValorInsalubridade() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+	public void testeValorInsalubridade() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
 		
 		Ponto ponto1 = new Ponto(0, 0, 0, 0, 10, true, 0, 0);
 		jorge.setPonto(ponto1);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		assertEquals(folha1.calculaInsalubridade(), 110, 0.01);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		assertEquals(folha.calculaInsalubridade(), 110, 0.01);
 		
 		Ponto ponto2 = new Ponto(0, 0, 0, 0, 20, true, 0, 0);
 		jorge.setPonto(ponto2);
@@ -274,70 +197,160 @@ public class testeFolha {
 	}
 	
 	@Test
-	public void testaCalculaValorHoras() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
+	public void testeCalculaValorHoras() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2200.0);
 		Ponto ponto1 = new Ponto(220, 0, 0, 100, 20, true, 25, 115);
 		jorge.setPonto(ponto1);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		folha1.setSalarioBase(2200);
-		assertEquals(folha1.calculaValorHora(), 11, 0.01);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		assertEquals(folha.calculaValorHora(), 11, 0.01);
 	}
 	
 	@Test
-	public void testaCalculaValorHoras2() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
-		Ponto ponto1 = new Ponto(220, 0, 0, 100, 10, true, 25, 115);
-		jorge.setPonto(ponto1);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		assertEquals(folha1.calculaValorHora(), 10.50, 0.01);
+	public void testeValeTransporteTrue() {
+		CadastroColaborador cadastro = new CadastroColaborador();
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1500.0);
+		cadastro.addColaboradores(jorge);
+		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
+		jorge.setPonto(pontoJorge);		
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		assertEquals(folha.calcularDescontoValeTransporte(), 90, 0.01);
 	}
 	
 	@Test
-	public void testaCalculaValorHoras3() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
-		Ponto ponto1 = new Ponto(220, 0, 0, 100, 0, true, 25, 115);
-		jorge.setPonto(ponto1);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		assertEquals(folha1.calculaValorHora(), 10, 0.01);
+	public void testeValeTransporteFalse() {
+		CadastroColaborador cadastro = new CadastroColaborador();
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1900.0);
+		cadastro.addColaboradores(jorge);
+		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, false, 100, 25);
+		jorge.setPonto(pontoJorge);		
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		assertEquals(folha.calcularDescontoValeTransporte(), 0, 0.01);
 	}
 	
 	@Test
-	public void testaHoraExtra2() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
-		Ponto ponto1 = new Ponto(220, 15.50, 0, 100, 0, true, 25, 115);
-		jorge.setPonto(ponto1);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		assertNotEquals(folha1.valorHorasExtras(), 232.55, 0.01);
+	public void testeCalculaFolha() {
+		CadastroColaborador cadastro = new CadastroColaborador();
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1500.0);
+		cadastro.addColaboradores(jorge);
+		Ponto pontoJorge = new Ponto(220, 0, 0, 250, 0, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);		
+		
+		assertEquals(folha.calcularFolha(), 1342.50, 0.01);		
 	}
 	
 	@Test
-	public void testeHoraFaltas2() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
-		Ponto ponto1 = new Ponto(220, 0, 10, 100, 0, true, 25, 115);
-		jorge.setPonto(ponto1);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);
-		folha1.calculaValorHora();
-		assertEquals(folha1.valorHorasFaltas(), 100, 0.01 );
+	public void testeCalculaFolha2() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
+		jorge.setPonto(pontoJorge);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		assertEquals(folha.calcularFolha(), 2440.08, 0.01);		
 	}
+	
 	@Test
-	public void testeHoraFaltasComHorasExtras2() {
-		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2200.0);
-		Ponto ponto1 = new Ponto(220, 15, 10, 100, 0, true, 25, 115);
-		jorge.setPonto(ponto1);
-		Folha folha1 = new Folha(jorge);
-		jorge.addTotalFolhas(folha1);	
-		folha1.calculaValorHora();
-		double valor = folha1.valorHorasExtras() - folha1.valorHorasFaltas();
-		assertEquals(valor, 125, 0.01 );
-	}
-	
-	
-	
+	public void testeCalculaFolha3() {
 
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1200.0);
+		Ponto pontoJorge = new Ponto(220, 17.10, 7.46, 122, 40, true, 100, 15);
+		jorge.setPonto(pontoJorge);
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		double valor = folha.calcularFolha();
+		assertEquals(valor, 1501.86, 0.01);
+	}
+	
+	@Test
+	public void testeCalculoFolha4() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1345.0);
+		Ponto pontoJorge = new Ponto(175, 6.33, 2.71, 120, 10, true, 100, 0);
+		jorge.setPonto(pontoJorge);		
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		double valor = folha.calcularFolha();
+		assertEquals(valor, 996.11, 0.01);
+	}
+	
+	@Test
+	public void testeCalculoDeFeriasComVenda() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1500.0);
+		Ponto pontoJorge = new Ponto(220, 6.33, 2.71, 120, 10, true, 100, 0);
+		jorge.setPonto(pontoJorge);		
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		double valor = folha.calcularFerias(20, 10);
+		assertEquals(valor, 1910.04, 0.01);
+	}
+
+	@Test
+	public void testeCalculoDeFeriasComVenda2() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 3200.0);
+		Ponto pontoJorge = new Ponto(220, 6.33, 2.71, 120, 10, true, 100, 0);
+		jorge.setPonto(pontoJorge);		
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		double valor = folha.calcularFerias(20, 10);
+		assertEquals(valor, 3680.22, 0.01);
+	}
+	
+	@Test
+	public void testeCalculoDeFeriasSemVenda() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1500.0);
+		Ponto pontoJorge = new Ponto(220, 6.33, 2.71, 120, 0, true, 100, 0);
+		jorge.setPonto(pontoJorge);		
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		double valor = folha.calcularFerias(30, 0);
+		assertEquals(valor, 1780, 0.01);
+	}
+	
+	@Test
+	public void testeCalculoIRComDependente() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 3000.0);
+		Ponto pontoJorge = new Ponto(220, 0, 0, 0, 0, true, 100, 50);
+		jorge.setPonto(pontoJorge);	
+		jorge.addDependentes("Filho 1");
+		jorge.addDependentes("Filho 2");
+		Folha folha = new Folha(jorge);
+		
+		jorge.addTotalFolhas(folha);
+		
+		
+		//System.out.println(folha.getNumeroDependentes());
+		
+		double valor = folha.calcularFerias(30, 0);
+		//double valor = folha.calcularValorDeduzirDependente();
+		assertEquals(valor, 3437.67, 0.01);
+	}
+	
+	@Test
+	public void testDataAtual() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 3000.0);
+		Ponto pontoJorge = new Ponto(220, 0, 0, 0, 0, true, 100, 50);
+		jorge.setPonto(pontoJorge);	
+		Folha folha = new Folha(jorge);
+		
+		LocalDateTime dataTime = LocalDateTime.now();    
+	    DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	    String data = dataTime.format(dataFormatada);
+	    folha.setDataEmissao();
+	    String dataResult = folha.getDataEmissao(); 
+	    assertEquals(data, dataResult);
+	    
+	}
 	
 }

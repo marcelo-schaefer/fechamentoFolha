@@ -9,15 +9,15 @@ public class FiltroTest {
 	Folha folha0 = new Folha(0, "data1");
 	Folha folha1 = new Folha(1, "data2");
 	Folha folha2 = new Folha(2, "data3");
-	Colaborador colaborador0 = new Colaborador("Jorge", 0, "email1", 500.0); 
-	Colaborador colaborador1 = new Colaborador("Jorge2", 1, "email2", 500.0); 
+	ColaboradorFolha colaborador0 = new ColaboradorFolha("Jorge", 0, "email1", 500.0); 
+	ColaboradorFolha colaborador1 = new ColaboradorFolha("Jorge2", 1, "email2", 500.0); 
 	CadastroColaborador cadastro = new CadastroColaborador(); 
 	    
 	@Test
 	public void testFiltroUsuarioId() { 
 		cadastro.addColaboradores(colaborador0);
 		cadastro.addColaboradores(colaborador1);
-		Colaborador c = Filtro.filtro(0, cadastro);
+		ColaboradorFolha c = Filtro.filtro(0, cadastro);
 		assertEquals(0, c.getId());
 		
 	}
@@ -26,7 +26,7 @@ public class FiltroTest {
 	public void testFiltroUsuarioInexistenteId() {
 		cadastro.addColaboradores(colaborador0);
 		cadastro.addColaboradores(colaborador1);
-		Colaborador c = Filtro.filtro(5, cadastro);
+		ColaboradorFolha c = Filtro.filtro(5, cadastro);
 		assertEquals(null, c);
 	}
 	
@@ -51,15 +51,15 @@ public class FiltroTest {
 	@Test
 	public void testUsuarioFolhaTrue() {
 		CadastroColaborador cadastroteste = new CadastroColaborador();
-		Colaborador colaboradorteste0 = new Colaborador("Jorge", 0, "email1", 500.0); 
-		Colaborador colaboradorteste1 = new Colaborador("Jorge2", 1, "email2", 500.0);
+		ColaboradorFolha colaboradorteste0 = new ColaboradorFolha("Jorge", 0, "email1", 500.0); 
+		ColaboradorFolha colaboradorteste1 = new ColaboradorFolha("Jorge2", 1, "email2", 500.0);
 		cadastroteste.addColaboradores(colaboradorteste0);
 		cadastroteste.addColaboradores(colaboradorteste1);		
 		Folha folhateste0 = new Folha(0, "data");
 		Folha folhateste1 = new Folha(1, "data");
 		colaboradorteste0.addTotalFolhas(folhateste0);
 		colaboradorteste0.addTotalFolhas(folhateste1);
-		Colaborador c = Filtro.filtro(0, cadastroteste);	
+		ColaboradorFolha c = Filtro.filtro(0, cadastroteste);	
 		Folha f = Filtro.filtro(c, 0);
 		assertEquals(folhateste0, f);
 	}
@@ -67,15 +67,15 @@ public class FiltroTest {
 	@Test
 	public void testUsuarioFolhaFalse() {
 		CadastroColaborador cadastroteste = new CadastroColaborador();
-		Colaborador colaboradorteste0 = new Colaborador("Jorge", 0, "email1", 500.0); 
-		Colaborador colaboradorteste1 = new Colaborador("Jorge2", 1, "email2", 500.0);
+		ColaboradorFolha colaboradorteste0 = new ColaboradorFolha("Jorge", 0, "email1", 500.0); 
+		ColaboradorFolha colaboradorteste1 = new ColaboradorFolha("Jorge2", 1, "email2", 500.0);
 		cadastroteste.addColaboradores(colaboradorteste0);
 		cadastroteste.addColaboradores(colaboradorteste1);		
 		Folha folhateste0 = new Folha(0, "data");
 		Folha folhateste1 = new Folha(1, "data");
 		colaboradorteste0.addTotalFolhas(folhateste0);
 		colaboradorteste0.addTotalFolhas(folhateste1);
-		Colaborador c = Filtro.filtro(0, cadastroteste);	
+		ColaboradorFolha c = Filtro.filtro(0, cadastroteste);	
 		Folha f = Filtro.filtro(c, 6);
 		assertEquals(null, f);
 	}
@@ -84,7 +84,7 @@ public class FiltroTest {
 	public void testFiltroUsuarioEmail() {
 		cadastro.addColaboradores(colaborador0);
 		cadastro.addColaboradores(colaborador1);
-		Colaborador c = Filtro.filtro("email1", cadastro);
+		ColaboradorFolha c = Filtro.filtro("email1", cadastro);
 		assertEquals("email1", c.getEmail());
 		
 	}
@@ -93,7 +93,7 @@ public class FiltroTest {
 	public void testFiltroUsuarioInexistenteEmail() {
 		cadastro.addColaboradores(colaborador0);
 		cadastro.addColaboradores(colaborador1);
-		Colaborador c = Filtro.filtro("email3", cadastro);
+		ColaboradorFolha c = Filtro.filtro("email3", cadastro);
 		assertEquals(null, c);
 	}
 	

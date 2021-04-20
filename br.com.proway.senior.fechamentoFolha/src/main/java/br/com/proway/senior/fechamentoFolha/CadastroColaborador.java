@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public final class CadastroColaborador {
 	
-	private ArrayList<Colaborador> colaboradores = new ArrayList<Colaborador>();
+	private ArrayList<ColaboradorFolha> colaboradores = new ArrayList<ColaboradorFolha>();
 
-	public ArrayList<Colaborador> getColaboradores() {
+	public ArrayList<ColaboradorFolha> getColaboradores() {
 		return colaboradores;
 	}
 	
@@ -17,7 +17,7 @@ public final class CadastroColaborador {
 	 * 
 	 * @param c; Objeto da classe Colaborador
 	 */
-	public void addColaboradores(Colaborador c) {
+	public void addColaboradores(ColaboradorFolha c) {
 		this.colaboradores.add(c);
 	}	
 	
