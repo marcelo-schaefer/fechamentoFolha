@@ -22,7 +22,7 @@ public class Folha {
 	double impostoDeRenda;
 	double mensalidadePlanoSaude;
 	double valorCooparticipacaoPlanoSaude;
-	double valeTransporte = 50;
+	double valeTransporte = 0;
 	double fator = 0.5; // 50% adicional hora extra
 	double salarioMinimo = 1100;
 	double salarioBase;

@@ -65,37 +65,59 @@ public class testeFolha {
 	
 	@Test
 	public void testaAdicionarBonificacao() {
-		Folha folha = new Folha(0, 0, 0, 0, 100, 0, 0, 0, 0);
-		assertEquals(folha.adicionaBonificacao(), 100, 0.01);
+		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2500.0);
+		Ponto pontoMaria = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
+		maria.setPonto(pontoMaria);
+		
+		Folha folha1 = new Folha(maria);
+		maria.addTotalFolhas(folha1);
+		
+		assertEquals(folha1.adicionaBonificacao(), 250, 0.01);
 	}
 	@Test
 	public void testaPlanoSaude() {
-		Folha folha = new Folha(0, 0, 0, 0, 200, 0, 50, 20, 10);
-		folha.setSalarioBase(1600);
-		double bonificacao = folha.adicionaBonificacao();
-		double planoSaude = folha.descontaPlanoSaude();
-		double valeTransp = folha.calculaValeTransporte();
-		double salario = (bonificacao-planoSaude)-valeTransp ;
-		assertEquals(salario, 34, 0.01);
+		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 1600);
+		Ponto pontoMaria = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
+		maria.setPonto(pontoMaria);
+		Folha folha1 = new Folha(maria);
+		maria.addTotalFolhas(folha1);
+		
+		double descontoPlanoSaude = folha1.descontaPlanoSaude();
+		
+		assertEquals(descontoPlanoSaude, 125, 0.01);
 	}
 	@Test
 	public void testaImpostoRenda() {
-		Folha folha = new Folha(0, 0, 0, 0, 0, 0, 0, 0, 0);
-		folha.setSalarioBruto(2826.66);
-		assertEquals(folha.calculaImpostoRenda(), 69.19, 0.01);
+		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2826.66);
+		Ponto pontoMaria = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
+		maria.setPonto(pontoMaria);
+		Folha folha1 = new Folha(maria);
+		maria.addTotalFolhas(folha1);
+		
+		folha1.setSalarioBruto(2826.66);
+		assertEquals(folha1.calculaImpostoRenda(), 69.19, 0.01);
 	}
 	@Test
 	public void testaHoraExtra() {
-		Folha folha = new Folha(0, 0, 30, 0, 0, 0, 0, 0, 0);
-		folha.setSalarioBase(2000);
-		folha.calcularFolha();		
-		assertEquals(folha.valorHorasExtras(), 409.09, 0.01);
+		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2000);
+		Ponto pontoMaria = new Ponto(220, 30, 0, 0, 0, true, 0, 0);
+		maria.setPonto(pontoMaria);
+		Folha folha1 = new Folha(maria);
+		maria.addTotalFolhas(folha1);
+
+		folha1.calcularFolha();		
+		assertEquals(folha1.valorHorasExtras(), 409.09, 0.01);
 	}
 	@Test
 	public void testaInss() {
-		Folha folha = new Folha(0, 0, 30, 0, 0, 0, 0, 0, 0);
-		folha.setSalarioBruto(2300);
-		assertEquals(folha.descontoInss(), 253, 0.01);
+		Colaborador maria = new Colaborador("Maria", 0, "maria@gmail.com", 2300);
+		Ponto pontoMaria = new Ponto(220, 0, 0, 0, 0, false, 0, 0);
+		maria.setPonto(pontoMaria);
+		Folha folha1 = new Folha(maria);
+		maria.addTotalFolhas(folha1);
+		folha1.calcularFolha();
+
+		assertEquals(folha1.descontoInss(), 253, 0.01);
 	}
 	@Test
 	public void testaHorasFaltas() {
@@ -414,9 +436,7 @@ public class testeFolha {
 	
 	@Test
 	public void testeCalculoIntegrado2() {
-		CadastroColaborador cadastro = new CadastroColaborador();
 		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
-		cadastro.addColaboradores(jorge);
 		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
 		jorge.setPonto(pontoJorge);
 		

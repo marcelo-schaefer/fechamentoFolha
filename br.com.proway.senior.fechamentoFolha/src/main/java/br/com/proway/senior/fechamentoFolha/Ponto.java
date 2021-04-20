@@ -11,6 +11,21 @@ public final class Ponto {
 	private double mensalidadePlanoSaude;
 	private double valorCooparticipacaoPlanoSaude;
 	
+	
+	/**
+	 * Metodo Construtor do Ponto
+	 * 
+	 * Passa os dados do ponto para o atributo ponto na classe colaborador
+	 * 
+	 * @param horasTrabalhadas
+	 * @param horasExtra
+	 * @param horasFaltas
+	 * @param valorBonificacao
+	 * @param percentualInsalubridade
+	 * @param valeTransporte
+	 * @param mensalidadePlanoSaude
+	 * @param valorCooparticipacaoPlanoSaude
+	 */
 	public Ponto(double horasTrabalhadas, double horasExtra, double horasFaltas, double valorBonificacao,
 	double percentualInsalubridade, boolean valeTransporte, double mensalidadePlanoSaude, 
 	double valorCooparticipacaoPlanoSaude) {
