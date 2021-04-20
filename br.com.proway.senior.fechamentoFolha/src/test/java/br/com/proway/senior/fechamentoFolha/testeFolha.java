@@ -399,7 +399,7 @@ public class testeFolha {
 	@Test
 	public void testeCalculoIntegrado() {
 		CadastroColaborador cadastro = new CadastroColaborador();
-		Colaborador jorge = new Colaborador("jorge", 0, "jorge@gmail.com", 1500.0);
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 1500.0);
 		cadastro.addColaboradores(jorge);
 		Ponto pontoJorge = new Ponto(220, 0, 0, 250, 0, true, 100, 25);
 		jorge.setPonto(pontoJorge);
@@ -407,7 +407,6 @@ public class testeFolha {
 		Folha folha1 = new Folha(jorge);
 		jorge.addTotalFolhas(folha1);
 		
-		folha1.setSalarioBase(1500);
 		
 		assertEquals(folha1.calcularFolha(), 1342.50, 0.01);
 		
@@ -416,7 +415,7 @@ public class testeFolha {
 	@Test
 	public void testeCalculoIntegrado2() {
 		CadastroColaborador cadastro = new CadastroColaborador();
-		Colaborador jorge = new Colaborador("jorge", 0, "jorge@gmail.com", 2500.0);
+		Colaborador jorge = new Colaborador("Jorge", 0, "jorge@gmail.com", 2500.0);
 		cadastro.addColaboradores(jorge);
 		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
 		jorge.setPonto(pontoJorge);

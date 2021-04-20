@@ -25,7 +25,7 @@ public class Folha {
 	double valeTransporte = 50;
 	double fator = 0.5; // 50% adicional hora extra
 	double salarioMinimo = 1100;
-	double salarioBase = 2500;
+	double salarioBase;
 
 	public Folha(Colaborador colaborador) {
 		this.horasTrabalhadas = colaborador.getPonto().getHorasTrabalhadas();
@@ -35,6 +35,7 @@ public class Folha {
 		this.percentualInsalubridade = colaborador.getPonto().getpercentualInsalubridade();
 		this.mensalidadePlanoSaude = colaborador.getPonto().getMensalidadePlanoSaude();
 		this.valorCooparticipacaoPlanoSaude = colaborador.getPonto().getvalorCooparticipacaoPlanoSaude();
+		this.salarioBase = colaborador.getSalario();
 		//this.valeTransporte = colaborador.getPonto().isValeTransporte();
 	}
 	
