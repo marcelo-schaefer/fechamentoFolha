@@ -168,6 +168,19 @@ public class testeFolha {
 	}
 	
 	@Test
+	public void testeCalculoImpostoRendaDependente() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
+		Ponto pontoJorge = new Ponto(220, 9.17, 1.59, 158, 20, true, 25, 115);
+		jorge.setPonto(pontoJorge);
+		jorge.addDependentes("Craudio");
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		folha.calcularFolha();	
+		assertEquals(folha.getvalorImpostoDeRenda(), 45.12, 0.01);
+	}
+	
+	@Test
 	public void testeValorInsalubridade() {
 		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2500.0);
 		
@@ -319,7 +332,7 @@ public class testeFolha {
 	}
 	
 	@Test
-	public void testeCalculoIRComDependente() {
+	public void testeCalculoIRFeriasComDependente() {
 		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 3000.0);
 		Ponto pontoJorge = new Ponto(220, 0, 0, 0, 0, true, 100, 50);
 		jorge.setPonto(pontoJorge);	
@@ -338,7 +351,7 @@ public class testeFolha {
 	}
 	
 	@Test
-	public void testDataAtual() {
+	public void testeDataAtual() {
 		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 3000.0);
 		Ponto pontoJorge = new Ponto(220, 0, 0, 0, 0, true, 100, 50);
 		jorge.setPonto(pontoJorge);	
@@ -351,6 +364,18 @@ public class testeFolha {
 	    String dataResult = folha.getDataEmissao(); 
 	    assertEquals(data, dataResult);
 	    
+	}
+	
+	@Test
+	public void testeReflexoDSRHoraExtra() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1000.0);
+		Ponto pontoJorge = new Ponto(220, 10, 0, 0, 0, false, 0, 0);
+		jorge.setPonto(pontoJorge);	
+		Folha folha = new Folha(jorge);
+		
+		folha.calcularFolha();
+		
+		assertEquals(folha.getReflexoDSR(), 13.63, 0.01);
 	}
 	
 }

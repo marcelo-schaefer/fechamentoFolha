@@ -24,7 +24,7 @@ public class Folha {
 	private double percentualInsalubridade;
 	private double valorInsalubridade;
 	private double inss;
-	private double impostoDeRenda;
+	private double valorImpostoDeRenda;
 	private double mensalidadePlanoSaude;
 	private double valorCooparticipacaoPlanoSaude;
 	private double valorValeTransporte;
@@ -91,6 +91,7 @@ public class Folha {
 		this.salarioBruto += this.calcularHorasTrabalhadas();
 		this.salarioBruto -= this.calcularValorHorasFaltas();
 		this.salarioBruto += this.calcularValorHorasExtras();
+		//this.salarioBruto += this.calcularDSR();
 		this.salarioBruto += this.calcularBonificacao();
 		this.salarioBruto -= this.calcularDescontoInss();
 		this.salarioBruto -= this.calcularDescontoImpostoRenda();
@@ -213,41 +214,41 @@ public class Folha {
 	 * folha do colaborador, seleciona o salárioBruto e multiplica pela sua faixa
 	 * salarial e subtrai o valor a deduzir(exe:142,80).
 	 * 
-	 * @return impostoDeRenda = Retorna o valor que a ser descontado em folha
+	 * @return valorImpostoDeRenda = Retorna o valor que a ser descontado em folha
 	 *         referente ao Imposto de Renda.
 	 */
 	public double calcularDescontoImpostoRenda() { // **********************
-		this.salarioBruto -= this.calcularValorDeduzirDependente();
-		if (this.salarioBruto <= 1903.98) {
-			this.impostoDeRenda = 0;
-		} else if (this.salarioBruto >= 1903.99 && this.salarioBruto <= 2826.65) {
-			this.impostoDeRenda = (this.salarioBruto * 0.075) - 142.80;
-		} else if (this.salarioBruto >= 2826.66 && this.salarioBruto <= 3751.05) {
-			this.impostoDeRenda = (this.salarioBruto * 0.15) - 354.80;
-		} else if (this.salarioBruto >= 3751.06 && this.salarioBruto <= 4664.68) {
-			this.impostoDeRenda = (this.salarioBruto * 0.225) - 636.13;
+		double baseCalculoimpostoRenda = this.salarioBruto - this.calcularValorDeduzirDependente();
+		if (baseCalculoimpostoRenda <= 1903.98) {
+			this.valorImpostoDeRenda = 0;
+		} else if (baseCalculoimpostoRenda >= 1903.99 && baseCalculoimpostoRenda <= 2826.65) {
+			this.valorImpostoDeRenda = (baseCalculoimpostoRenda * 0.075) - 142.80;
+		} else if (baseCalculoimpostoRenda >= 2826.66 && baseCalculoimpostoRenda <= 3751.05) {
+			this.valorImpostoDeRenda = (baseCalculoimpostoRenda * 0.15) - 354.80;
+		} else if (baseCalculoimpostoRenda >= 3751.06 && baseCalculoimpostoRenda <= 4664.68) {
+			this.valorImpostoDeRenda = (baseCalculoimpostoRenda * 0.225) - 636.13;
 		} else {
-			this.impostoDeRenda = (this.salarioBruto * 0.275) - 869.36;
+			this.valorImpostoDeRenda = (baseCalculoimpostoRenda * 0.275) - 869.36;
 		}
 
-		return this.impostoDeRenda;
+		return this.valorImpostoDeRenda;
 	}
 
 	public double calcularDescontoImpostoRenda(double valorFerias) { // **********************
-		double baseCalculoImpostoRenda = valorFerias - this.calcularValorDeduzirDependente();
-		if (baseCalculoImpostoRenda <= 1903.98) {
-			this.impostoDeRenda = 0;
-		} else if (baseCalculoImpostoRenda >= 1903.99 && baseCalculoImpostoRenda <= 2826.65) {
-			this.impostoDeRenda = (baseCalculoImpostoRenda * 0.075) - 142.80;
-		} else if (baseCalculoImpostoRenda >= 2826.66 && baseCalculoImpostoRenda <= 3751.05) {
-			this.impostoDeRenda = (baseCalculoImpostoRenda * 0.15) - 354.80;
-		} else if (baseCalculoImpostoRenda >= 3751.06 && valorFerias <= 4664.68) {
-			this.impostoDeRenda = (baseCalculoImpostoRenda * 0.225) - 636.13;
+		double baseCalculoImpostoRendaFerias = valorFerias - this.calcularValorDeduzirDependente();
+		if (baseCalculoImpostoRendaFerias <= 1903.98) {
+			this.valorImpostoDeRenda = 0;
+		} else if (baseCalculoImpostoRendaFerias >= 1903.99 && baseCalculoImpostoRendaFerias <= 2826.65) {
+			this.valorImpostoDeRenda = (baseCalculoImpostoRendaFerias * 0.075) - 142.80;
+		} else if (baseCalculoImpostoRendaFerias >= 2826.66 && baseCalculoImpostoRendaFerias <= 3751.05) {
+			this.valorImpostoDeRenda = (baseCalculoImpostoRendaFerias * 0.15) - 354.80;
+		} else if (baseCalculoImpostoRendaFerias >= 3751.06 && valorFerias <= 4664.68) {
+			this.valorImpostoDeRenda = (baseCalculoImpostoRendaFerias * 0.225) - 636.13;
 		} else {
-			this.impostoDeRenda = (baseCalculoImpostoRenda * 0.275) - 869.36;
+			this.valorImpostoDeRenda = (baseCalculoImpostoRendaFerias * 0.275) - 869.36;
 		}
 
-		return this.impostoDeRenda;
+		return this.valorImpostoDeRenda;
 	}
 
 	/**
@@ -356,11 +357,11 @@ public class Folha {
 	 * 
 	 * Define o valor do Reflexo DSR por meio de alguns parâmetros passados
 	 */
-	public void calculoDSR() {
+	public double calcularDSR() {
 		double diasUteis = 25.0;
 		double domigosFeriados = 5.0;
-		double result = (getHoraExtra() / diasUteis) * domigosFeriados;
-		this.reflexoDSR = result;
+		this.reflexoDSR = (this.getValorHoraExtra() / diasUteis) * domigosFeriados;
+		return this.reflexoDSR;
 	}
 
 	/**
@@ -442,8 +443,8 @@ public class Folha {
 		return this.inss;
 	}
 
-	public double getImpostoDeRenda() {
-		return this.impostoDeRenda;
+	public double getvalorImpostoDeRenda() {
+		return this.valorImpostoDeRenda;
 	}
 
 	public double getMensalidadePlanoSaude() {
