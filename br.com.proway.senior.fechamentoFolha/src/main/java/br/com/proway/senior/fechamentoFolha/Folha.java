@@ -54,20 +54,30 @@ public class Folha {
 	public void setSalarioBase(double valor) {
 		this.salarioBase = valor;
 	}
+
+/*	
+	public static double calculaFolhaFinal(int colabId) {
+		double horaComInsalubridade = calculaHoraComInsalubridade(valorHoraColab, quantidadeHorasTrabalhadas,
+				percentualInsalubridadeColab);
+		double valorSalarioBruto = calcularHorasTrabalhadas(quantidadeHorasTrabalhadas, horaComInsalubridade);
+		valorSalarioBruto += calcularValorHorasExtras(quantidadeHorasExtrasColab, horaComInsalubridade, 0.5);
+		valorSalarioBruto += calcularBonificacao(valorBonificacaoColab);
+		double salarioDescontos = calcularValorHorasFaltas(horaComInsalubridade, quantidadeHorasFaltas)
+				+ calcularDescontoPlanoSaude(mensalidadePlanoSaudePlanoSaude, valorCoparticipacaoPlano)
+				+ calcularDescontoImpostoRenda(valorSalarioBruto) + calcularDescontoInss(valorSalarioBruto);
+		double salarioFinal = valorSalarioBruto - salarioDescontos;
+		return salarioFinal;
+	}
+*/
 	
-//	public static double calculaFolhaFinal(int colabId) {
-//		double horaComInsalubridade = calculaHoraComInsalubridade(valorHoraColab, quantidadeHorasTrabalhadas,
-//				percentualInsalubridadeColab);
-//		double valorSalarioBruto = calcularHorasTrabalhadas(quantidadeHorasTrabalhadas, horaComInsalubridade);
-//		valorSalarioBruto += calcularValorHorasExtras(quantidadeHorasExtrasColab, horaComInsalubridade, 0.5);
-//		valorSalarioBruto += calcularBonificacao(valorBonificacaoColab);
-//		double salarioDescontos = calcularValorHorasFaltas(horaComInsalubridade, quantidadeHorasFaltas)
-//				+ calcularDescontoPlanoSaude(mensalidadePlanoSaudePlanoSaude, valorCoparticipacaoPlano)
-//				+ calcularDescontoImpostoRenda(valorSalarioBruto) + calcularDescontoInss(valorSalarioBruto);
-//		double salarioFinal = valorSalarioBruto - salarioDescontos;
-//		return salarioFinal;
-//	}
-	
+	/**
+	 * Calcula a folha final
+	 * 
+	 * Método responsável por chamar todos os outros métodos que calculam
+	 * o fechamento da folha do mes.
+	 * 
+	 * @return Salário liquido do coaborador
+	 */
 	public double calcularFolha() {
 		
 		this.salarioBruto += this.calcularHorasTrabalhadas();
@@ -82,6 +92,7 @@ public class Folha {
 		
 		return this.salarioLiquido;	
 	}	
+	
 	/**
 	 * Calcula o valor de vale transporte a ser descontado do colaborador
 	 * 
