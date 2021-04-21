@@ -284,6 +284,20 @@ public class testeFolha {
 	}
 	
 	@Test
+	public void testeCalculaFolhaComDependente() {
+
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 2751.0);
+		Ponto pontoJorge = new Ponto(220, 19.37, 12.89, 153, 10, true, 100, 127);
+		jorge.setPonto(pontoJorge);
+		jorge.addDependentes("Tiburcio");
+		Folha folha = new Folha(jorge);
+		jorge.addTotalFolhas(folha);
+		
+		double valor = folha.calcularFolha();
+		assertEquals(valor, 2481.50, 0.01);
+	}
+	
+	@Test
 	public void testeCalculoFolha4() {
 		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1345.0);
 		Ponto pontoJorge = new Ponto(175, 6.33, 2.71, 120, 10, true, 100, 0);
@@ -341,7 +355,7 @@ public class testeFolha {
 		Folha folha = new Folha(jorge);
 		jorge.addTotalFolhas(folha);		
 		
-		double valor = folha.calcularFerias(30, 0);
+		double valor = folha.calcularFerias(20, 10);
 		assertEquals(valor, 3437.67, 0.01);
 	}
 	
