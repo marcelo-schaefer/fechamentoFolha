@@ -103,7 +103,7 @@ public class FiltroTest {
 		colaborador0.addTotalFolhas(folha1);
 		colaborador0.addTotalFolhas(folha2);
 		Folha f = Filtro.filtro(colaborador0, "data2");
-		assertEquals("data2", f.getData());		
+		assertEquals("data2", f.getDataEmissao());		
 	}
 	
 	@Test

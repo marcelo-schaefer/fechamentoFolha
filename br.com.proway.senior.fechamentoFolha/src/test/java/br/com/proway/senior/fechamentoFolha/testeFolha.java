@@ -56,7 +56,7 @@ public class testeFolha {
 		
 		folha.calcularFolha();
 		double inss = folha.getValorInss();
-		assertEquals(inss, 304.75, 0.01);
+		assertEquals(inss, 315.10, 0.01);
 	}
 	
 	@Test
@@ -69,7 +69,7 @@ public class testeFolha {
 		
 		folha.calcularFolha();
 		
-		assertEquals(folha.getValorInss(), 353.53, 0.01);
+		assertEquals(folha.getValorInss(), 357.47, 0.01);
 	}
 	
 	@Test
@@ -177,7 +177,7 @@ public class testeFolha {
 		jorge.addTotalFolhas(folha);
 		
 		folha.calcularFolha();	
-		assertEquals(folha.getvalorImpostoDeRenda(), 45.12, 0.01);
+		assertEquals(folha.getvalorImpostoDeRenda(), 47.39, 0.01);
 	}
 	
 	@Test
@@ -267,7 +267,7 @@ public class testeFolha {
 		Folha folha = new Folha(jorge);
 		jorge.addTotalFolhas(folha);
 		
-		assertEquals(folha.calcularFolha(), 2440.08, 0.01);		
+		assertEquals(folha.calcularFolha(), 2485.60, 0.01);		
 	}
 	
 	@Test
@@ -280,7 +280,7 @@ public class testeFolha {
 		jorge.addTotalFolhas(folha);
 		
 		double valor = folha.calcularFolha();
-		assertEquals(valor, 1501.86, 0.01);
+		assertEquals(valor, 1535.89, 0.01);
 	}
 	
 	@Test
@@ -292,7 +292,7 @@ public class testeFolha {
 		jorge.addTotalFolhas(folha);
 		
 		double valor = folha.calcularFolha();
-		assertEquals(valor, 996.11, 0.01);
+		assertEquals(valor, 1007.28, 0.01);
 	}
 	
 	@Test
@@ -339,14 +339,9 @@ public class testeFolha {
 		jorge.addDependentes("Filho 1");
 		jorge.addDependentes("Filho 2");
 		Folha folha = new Folha(jorge);
-		
-		jorge.addTotalFolhas(folha);
-		
-		
-		//System.out.println(folha.getNumeroDependentes());
+		jorge.addTotalFolhas(folha);		
 		
 		double valor = folha.calcularFerias(30, 0);
-		//double valor = folha.calcularValorDeduzirDependente();
 		assertEquals(valor, 3437.67, 0.01);
 	}
 	
@@ -362,21 +357,19 @@ public class testeFolha {
 	    String data = dataTime.format(dataFormatada);
 	    folha.setDataEmissao();
 	    String dataResult = folha.getDataEmissao(); 
-	    assertEquals(data, dataResult);
-	    
+	    assertEquals(data, dataResult);	    
 	}
 	
-//	@Test
-//	public void testeReflexoDSRHoraExtra() {
-//		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1000.0);
-//		Ponto pontoJorge = new Ponto(220, 10, 0, 0, 0, false, 0, 0);
-//		jorge.setPonto(pontoJorge);	
-//		Folha folha = new Folha(jorge);
-//		
-//		folha.calcularFolha();
-//		
-//		assertEquals(folha.getReflexoDSR(), 13.63, 0.01);
-//	}
+	@Test
+	public void testeReflexoDSRHoraExtra() {
+		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1000.0);
+		Ponto pontoJorge = new Ponto(220, 10, 0, 0, 0, false, 0, 0);
+		jorge.setPonto(pontoJorge);	
+		Folha folha = new Folha(jorge);
+		
+		folha.calcularFolha();		
+		assertEquals(folha.getReflexoDSR(), 13.63, 0.01);
+	}
 	
 	@Test
 	public void testeImpostoDeRendaComDependente() {

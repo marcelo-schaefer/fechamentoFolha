@@ -91,7 +91,7 @@ public class Folha {
 		this.salarioBruto += this.calcularHorasTrabalhadas();
 		this.salarioBruto -= this.calcularValorHorasFaltas();
 		this.salarioBruto += this.calcularValorHorasExtras();
-		//this.salarioBruto += this.calcularDSR();
+		this.salarioBruto += this.calcularDSR();
 		this.salarioBruto += this.calcularBonificacao();
 		this.salarioBruto -= this.calcularDescontoInss();
 		this.salarioBruto -= this.calcularDescontoImpostoRenda();
