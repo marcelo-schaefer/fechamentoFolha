@@ -1,4 +1,4 @@
-package br.com.proway.senior.fechamentoFolha;
+package br.com.proway.senior.model;
 
 public class Filtro {	
 	

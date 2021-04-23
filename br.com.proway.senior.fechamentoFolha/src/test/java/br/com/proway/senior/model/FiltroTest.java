@@ -1,8 +1,13 @@
-package br.com.proway.senior.fechamentoFolha;
+package br.com.proway.senior.model;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import br.com.proway.senior.model.CadastroColaborador;
+import br.com.proway.senior.model.ColaboradorFolha;
+import br.com.proway.senior.model.Filtro;
+import br.com.proway.senior.model.Folha;
 
 public class FiltroTest {	
 

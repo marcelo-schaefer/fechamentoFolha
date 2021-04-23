@@ -1,4 +1,4 @@
-package br.com.proway.senior.fechamentoFolha;
+package br.com.proway.senior.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -7,6 +7,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.Test;
+
+import br.com.proway.senior.model.CadastroColaborador;
+import br.com.proway.senior.model.ColaboradorFolha;
+import br.com.proway.senior.model.Folha;
+import br.com.proway.senior.model.Ponto;
 
 public class testeFolha {
 	
