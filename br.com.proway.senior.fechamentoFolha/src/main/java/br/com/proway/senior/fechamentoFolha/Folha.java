@@ -107,7 +107,7 @@ public class Folha {
 	 * Calcula o valor de vale transporte a ser descontado do colaborador
 	 * 
 	 * Chamada do metodo de Vale transporte que calcula o desconto, se o percentual
-	 * aplicado de 0.06% for maior ou igual que R$ 180,00 o desconto será este, se
+	 * aplicado de 6% (0,06) for maior ou igual que R$ 180,00 o desconto será este, se
 	 * for menor retorna este valor calculado, e se for informado um valor igual ou
 	 * menor que 0 retorna 0.
 	 * 

@@ -7,8 +7,8 @@ public class Filtro {
 	 * 
 	 * Recebe os parâmetros para verficar se o Colaborador existe e o retorna
 	 * 
-	 * @param email; referente ao Colaborador que o usuário deseja saber sobre 
-	 * @param cadastro; lista de todos os colaboradores cadastrados
+	 * @param email referente ao Colaborador que o usuário deseja saber sobre 
+	 * @param cadastro lista de todos os colaboradores cadastrados
 	 * 
 	 * @return Colaborador/null Colaborador desejado/Colaborador não existe
 	 */	
@@ -26,8 +26,8 @@ public class Filtro {
 	 * 
 	 * Recebe os parâmetros para verficar se o Colaborador existe e o retorna 
 	 * 
-	 * @param userId; ID referente ao Colaborador que o usuário deseja saber sobre 
-	 * @param cadastro; lista de todos os colaboradores cadastrados
+	 * @param userId ID referente ao Colaborador que o usuário deseja saber sobre 
+	 * @param cadastro lista de todos os colaboradores cadastrados
 	 * 
 	 * @return Colaborador/null Colaborador desejado/Colaborador não existe
 	 */	
@@ -45,8 +45,8 @@ public class Filtro {
 	 * 
 	 * Recebe os parâmetros para verficar se a Folha de determinado Colaborador existe e a retorma 
 	 * 
-	 * @param c; Colaborador dono da folha
-	 * @param idFolha; ID da Folha desejada
+	 * @param c Colaborador dono da folha
+	 * @param idFolha ID da Folha desejada
 	 * 
 	 * @return Folha/null Folha desejado/Folha não existe
 	 */		
@@ -64,8 +64,8 @@ public class Filtro {
 	 * 
 	 * Recebe os parâmetros para verficar se a Folha de determinado Colaborador existe e a retorma 
 	 * 
-	 * @param c; Colaborador Dono da folha
-	 * @param data; Data da Folha desejada
+	 * @param c Colaborador Dono da folha
+	 * @param data Data da Folha desejada
 	 * 
 	 * @return Folha/null Folha desejado/Folha não existe
 	 */	
