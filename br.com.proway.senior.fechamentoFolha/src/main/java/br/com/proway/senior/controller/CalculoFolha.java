@@ -1,5 +1,5 @@
 package br.com.proway.senior.controller;
 
-public class Folha { //Testing
+public class CalculoFolha { 
 
 }

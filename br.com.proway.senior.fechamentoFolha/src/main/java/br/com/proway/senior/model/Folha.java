@@ -88,7 +88,7 @@ public class Folha {
 	 */
 	public double calcularFolha() {
 
-		this.salarioBruto += this.calcularHorasTrabalhadas();
+		this.salarioBruto += this.calcularValorDasHorasTrabalhadas();
 		this.salarioBruto -= this.calcularValorHorasFaltas();
 		this.salarioBruto += this.calcularValorHorasExtras();
 		this.salarioBruto += this.calcularDSR();
@@ -298,7 +298,7 @@ public class Folha {
 	 * @return valor = Retorna o valor do salário inicial, considerando apenas a
 	 *         quantidade horas trabalhadas e o valor da hora com insalubridade.
 	 */
-	public double calcularHorasTrabalhadas() {
+	public double calcularValorDasHorasTrabalhadas() {
 
 		double valorHoras = this.calculaValorHora();
 		double valor = this.horasTrabalhadas * valorHoras;

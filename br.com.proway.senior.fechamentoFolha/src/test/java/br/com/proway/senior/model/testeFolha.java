@@ -47,7 +47,7 @@ public class testeFolha {
 		Folha folha = new Folha(jorge);
 		jorge.addTotalFolhas(folha);
 		
-		folha.calcularHorasTrabalhadas();
+		folha.calcularValorDasHorasTrabalhadas();
 		assertNotEquals(folha.calcularValorHorasExtras(), 232.55, 0.01);
 	}
 	
@@ -227,9 +227,7 @@ public class testeFolha {
 	
 	@Test
 	public void testeValeTransporteTrue() {
-		CadastroColaborador cadastro = new CadastroColaborador();
 		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1500.0);
-		cadastro.addColaboradores(jorge);
 		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, true, 100, 25);
 		jorge.setPonto(pontoJorge);		
 		Folha folha = new Folha(jorge);
@@ -240,9 +238,7 @@ public class testeFolha {
 	
 	@Test
 	public void testeValeTransporteFalse() {
-		CadastroColaborador cadastro = new CadastroColaborador();
 		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1900.0);
-		cadastro.addColaboradores(jorge);
 		Ponto pontoJorge = new Ponto(220, 15, 10, 250, 20, false, 100, 25);
 		jorge.setPonto(pontoJorge);		
 		Folha folha = new Folha(jorge);
@@ -253,9 +249,7 @@ public class testeFolha {
 	
 	@Test
 	public void testeCalculaFolha() {
-		CadastroColaborador cadastro = new CadastroColaborador();
 		ColaboradorFolha jorge = new ColaboradorFolha("Jorge", 0, "jorge@gmail.com", 1500.0);
-		cadastro.addColaboradores(jorge);
 		Ponto pontoJorge = new Ponto(220, 0, 0, 250, 0, true, 100, 25);
 		jorge.setPonto(pontoJorge);
 		Folha folha = new Folha(jorge);
