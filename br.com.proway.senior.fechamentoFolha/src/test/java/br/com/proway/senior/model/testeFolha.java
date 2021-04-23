@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.Test;
 
-import br.com.proway.senior.model.CadastroColaborador;
 import br.com.proway.senior.model.ColaboradorFolha;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.Ponto;

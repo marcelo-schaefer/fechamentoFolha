@@ -62,22 +62,6 @@ public class Folha {
 		this.salarioBase = valor;
 	}
 
-	/*
-	 * public static double calculaFolhaFinal(int colabId) { double
-	 * horaComInsalubridade = calculaHoraComInsalubridade(valorHoraColab,
-	 * quantidadeHorasTrabalhadas, percentualInsalubridadeColab); double
-	 * valorSalarioBruto = calcularHorasTrabalhadas(quantidadeHorasTrabalhadas,
-	 * horaComInsalubridade); valorSalarioBruto +=
-	 * calcularValorHorasExtras(quantidadeHorasExtrasColab, horaComInsalubridade,
-	 * 0.5); valorSalarioBruto += calcularBonificacao(valorBonificacaoColab); double
-	 * salarioDescontos = calcularValorHorasFaltas(horaComInsalubridade,
-	 * quantidadeHorasFaltas) +
-	 * calcularDescontoPlanoSaude(mensalidadePlanoSaudePlanoSaude,
-	 * valorCoparticipacaoPlano) + calcularDescontoImpostoRenda(valorSalarioBruto) +
-	 * calcularDescontoInss(valorSalarioBruto); double salarioFinal =
-	 * valorSalarioBruto - salarioDescontos; return salarioFinal; }
-	 */
-
 	/**
 	 * Calcula a folha final
 	 * 
@@ -99,7 +83,7 @@ public class Folha {
 		this.salarioBruto -= this.calcularDescontoValeTransporte();
 		this.salarioLiquido = this.salarioBruto;
 		this.setDataEmissao();
-		
+
 		return this.salarioLiquido;
 	}
 
@@ -107,9 +91,9 @@ public class Folha {
 	 * Calcula o valor de vale transporte a ser descontado do colaborador
 	 * 
 	 * Chamada do metodo de Vale transporte que calcula o desconto, se o percentual
-	 * aplicado de 6% (0,06) for maior ou igual que R$ 180,00 o desconto será este, se
-	 * for menor retorna este valor calculado, e se for informado um valor igual ou
-	 * menor que 0 retorna 0.
+	 * aplicado de 6% (0,06) for maior ou igual que R$ 180,00 o desconto será este,
+	 * se for menor retorna este valor calculado, e se for informado um valor igual
+	 * ou menor que 0 retorna 0.
 	 * 
 	 * @return valeTransporte = valor do vale transporte a ser descontado do salário
 	 *         base.
