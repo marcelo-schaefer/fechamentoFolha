@@ -36,7 +36,11 @@ public class Folha {
 		this.id = id;
 		this.dataEmissao = dataEmissao;
 	}
-
+	
+	public Folha(int id) {
+		this.id = id;
+	}
+	
 	public Folha(ColaboradorFolha colaborador) {
 		this.horasTrabalhadas = colaborador.getPonto().getHorasTrabalhadas();
 		this.horasExtra = colaborador.getPonto().getHorasExtra();
