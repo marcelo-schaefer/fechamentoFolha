@@ -3,9 +3,6 @@ package br.com.proway.senior.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-// TODO implementar setdataEmissaoEmissaoEmissao que a folha está sendo emitida
-//import java.time.LocalDateTime;
-
 public class Folha {
 	private int id;
 	private String dataEmissao;
@@ -65,22 +62,6 @@ public class Folha {
 		this.salarioBase = valor;
 	}
 
-	/*
-	 * public static double calculaFolhaFinal(int colabId) { double
-	 * horaComInsalubridade = calculaHoraComInsalubridade(valorHoraColab,
-	 * quantidadeHorasTrabalhadas, percentualInsalubridadeColab); double
-	 * valorSalarioBruto = calcularHorasTrabalhadas(quantidadeHorasTrabalhadas,
-	 * horaComInsalubridade); valorSalarioBruto +=
-	 * calcularValorHorasExtras(quantidadeHorasExtrasColab, horaComInsalubridade,
-	 * 0.5); valorSalarioBruto += calcularBonificacao(valorBonificacaoColab); double
-	 * salarioDescontos = calcularValorHorasFaltas(horaComInsalubridade,
-	 * quantidadeHorasFaltas) +
-	 * calcularDescontoPlanoSaude(mensalidadePlanoSaudePlanoSaude,
-	 * valorCoparticipacaoPlano) + calcularDescontoImpostoRenda(valorSalarioBruto) +
-	 * calcularDescontoInss(valorSalarioBruto); double salarioFinal =
-	 * valorSalarioBruto - salarioDescontos; return salarioFinal; }
-	 */
-
 	/**
 	 * Calcula a folha final
 	 * 
@@ -91,7 +72,7 @@ public class Folha {
 	 */
 	public double calcularFolha() {
 
-		this.salarioBruto += this.calcularHorasTrabalhadas();
+		this.salarioBruto += this.calcularValorDasHorasTrabalhadas();
 		this.salarioBruto -= this.calcularValorHorasFaltas();
 		this.salarioBruto += this.calcularValorHorasExtras();
 		this.salarioBruto += this.calcularDSR();
@@ -140,8 +121,8 @@ public class Folha {
 	 */
 	public double calcularValorHorasExtras() { // Testado
 		double valorHora50Porcento;
-		return this.valorHoraExtra = this.horasExtra
-				* (valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator));
+		valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator);
+		return this.valorHoraExtra = this.horasExtra * valorHora50Porcento;
 	}
 
 	/**
@@ -301,7 +282,7 @@ public class Folha {
 	 * @return valor = Retorna o valor do salário inicial, considerando apenas a
 	 *         quantidade horas trabalhadas e o valor da hora com insalubridade.
 	 */
-	public double calcularHorasTrabalhadas() {
+	public double calcularValorDasHorasTrabalhadas() {
 
 		double valorHoras = this.calculaValorHora();
 		double valor = this.horasTrabalhadas * valorHoras;

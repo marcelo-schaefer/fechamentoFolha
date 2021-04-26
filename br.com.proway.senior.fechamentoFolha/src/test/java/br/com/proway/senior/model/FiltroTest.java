@@ -4,9 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import br.com.proway.senior.model.CadastroColaborador;
+import br.com.proway.senior.controller.Filtro;
 import br.com.proway.senior.model.ColaboradorFolha;
-import br.com.proway.senior.model.Filtro;
 import br.com.proway.senior.model.Folha;
 
 public class FiltroTest {	
@@ -16,25 +15,7 @@ public class FiltroTest {
 	Folha folha2 = new Folha(2, "data3");
 	ColaboradorFolha colaborador0 = new ColaboradorFolha("Jorge", 0, "email1", 500.0); 
 	ColaboradorFolha colaborador1 = new ColaboradorFolha("Jorge2", 1, "email2", 500.0); 
-	CadastroColaborador cadastro = new CadastroColaborador(); 
 	    
-	@Test
-	public void testFiltroUsuarioId() { 
-		cadastro.addColaboradores(colaborador0);
-		cadastro.addColaboradores(colaborador1);
-		ColaboradorFolha c = Filtro.filtro(0, cadastro);
-		assertEquals(0, c.getId());
-		
-	}
-	
-	@Test
-	public void testFiltroUsuarioInexistenteId() {
-		cadastro.addColaboradores(colaborador0);
-		cadastro.addColaboradores(colaborador1);
-		ColaboradorFolha c = Filtro.filtro(5, cadastro);
-		assertEquals(null, c);
-	}
-	
 	@Test
 	public void testFiltroFolhaId() {
 		colaborador0.addTotalFolhas(folha0);
@@ -53,54 +34,6 @@ public class FiltroTest {
 		assertEquals(null, f);		
 	}
 	
-	@Test
-	public void testUsuarioFolhaTrue() {
-		CadastroColaborador cadastroteste = new CadastroColaborador();
-		ColaboradorFolha colaboradorteste0 = new ColaboradorFolha("Jorge", 0, "email1", 500.0); 
-		ColaboradorFolha colaboradorteste1 = new ColaboradorFolha("Jorge2", 1, "email2", 500.0);
-		cadastroteste.addColaboradores(colaboradorteste0);
-		cadastroteste.addColaboradores(colaboradorteste1);		
-		Folha folhateste0 = new Folha(0, "data");
-		Folha folhateste1 = new Folha(1, "data");
-		colaboradorteste0.addTotalFolhas(folhateste0);
-		colaboradorteste0.addTotalFolhas(folhateste1);
-		ColaboradorFolha c = Filtro.filtro(0, cadastroteste);	
-		Folha f = Filtro.filtro(c, 0);
-		assertEquals(folhateste0, f);
-	}
-	
-	@Test
-	public void testUsuarioFolhaFalse() {
-		CadastroColaborador cadastroteste = new CadastroColaborador();
-		ColaboradorFolha colaboradorteste0 = new ColaboradorFolha("Jorge", 0, "email1", 500.0); 
-		ColaboradorFolha colaboradorteste1 = new ColaboradorFolha("Jorge2", 1, "email2", 500.0);
-		cadastroteste.addColaboradores(colaboradorteste0);
-		cadastroteste.addColaboradores(colaboradorteste1);		
-		Folha folhateste0 = new Folha(0, "data");
-		Folha folhateste1 = new Folha(1, "data");
-		colaboradorteste0.addTotalFolhas(folhateste0);
-		colaboradorteste0.addTotalFolhas(folhateste1);
-		ColaboradorFolha c = Filtro.filtro(0, cadastroteste);	
-		Folha f = Filtro.filtro(c, 6);
-		assertEquals(null, f);
-	}
-	
-	@Test
-	public void testFiltroUsuarioEmail() {
-		cadastro.addColaboradores(colaborador0);
-		cadastro.addColaboradores(colaborador1);
-		ColaboradorFolha c = Filtro.filtro("email1", cadastro);
-		assertEquals("email1", c.getEmail());
-		
-	}
-	
-	@Test
-	public void testFiltroUsuarioInexistenteEmail() {
-		cadastro.addColaboradores(colaborador0);
-		cadastro.addColaboradores(colaborador1);
-		ColaboradorFolha c = Filtro.filtro("email3", cadastro);
-		assertEquals(null, c);
-	}
 	
 	@Test
 	public void testFiltroFolhaData() {
