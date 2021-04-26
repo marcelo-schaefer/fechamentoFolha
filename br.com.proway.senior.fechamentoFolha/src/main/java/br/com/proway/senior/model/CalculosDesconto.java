@@ -3,6 +3,16 @@ package br.com.proway.senior.model;
 public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, InterfaceValeTransporteDesconto,
 		InterfaceINSSDesconto, InterfacePlanoDeSaudeDesconto {
 
+	/**
+	 * Desconto de Plano de Saude.
+	 * 
+	 * Realiza o desconto de plano de saúde, somando o valor da mensalidade com o
+	 * valor de cooparticipação caso exista. A variável planoSaude retornará a soma
+	 * das variáveis mensalidadePlanoSaude e valorCooparticipacaoPlanoSaude.
+	 * 
+	 * @return planoSaude = retorna valor a ser descontado em folha, referente ao
+	 *         Plano de Saude.
+	 */
 	public double calcularDescontoPlanoSaude() {
 		Folha folha = new Folha();
 		if (folha.getMensalidadePlanoSaude() >= 0) {
@@ -21,6 +31,15 @@ public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, Interf
 		return folha.getPlanoSaude();
 	}
 
+	/**
+	 * Calcula o valor de INSS a ser descontado
+	 * 
+	 * Realiza o cálculo do valor de INSS a ser descontado em folha a partir do
+	 * salário informado. Pega a variável salarioBruto e multiplica pelo valor de
+	 * desconto fixado em 11%. Retorna o valor a ser descontado.
+	 * 
+	 * @return inss = Retorna o valor a ser descontado em folha.
+	 */
 	public double calcularDescontoInss() {
 		Folha folha = new Folha();
 		folha.setInss(folha.getSalarioBruto() * 0.11);
@@ -33,6 +52,16 @@ public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, Interf
 		return folha.getInss();
 	}
 
+	/**
+	 * Calcula o valor de Imposto de Renda a ser descontado em folha
+	 * 
+	 * Realiza o cálculo do valor a ser descontado referente ao Imposto de Renda na
+	 * folha do colaborador, seleciona o salárioBruto e multiplica pela sua faixa
+	 * salarial e subtrai o valor a deduzir(exe:142,80).
+	 * 
+	 * @return valorImpostoDeRenda = Retorna o valor que a ser descontado em folha
+	 *         referente ao Imposto de Renda.
+	 */
 	public double calcularDescontoImpostoRenda(double valorFerias) {
 		Folha folha = new Folha();
 		double baseCalculoimpostoRenda = valorFerias - this.calcularValorDeduzirDependente();
@@ -75,6 +104,17 @@ public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, Interf
 		return valor;
 	}
 
+	/**
+	 * Calcula o valor de vale transporte a ser descontado do colaborador
+	 * 
+	 * Chamada do metodo de Vale transporte que calcula o desconto, se o percentual
+	 * aplicado de 6% (0,06) for maior ou igual que R$ 180,00 o desconto será este,
+	 * se for menor retorna este valor calculado, e se for informado um valor igual
+	 * ou menor que 0 retorna 0.
+	 * 
+	 * @return valeTransporte = valor do vale transporte a ser descontado do salário
+	 *         base.
+	 */
 	public double calcularDescontoValeTransporte() {
 		Folha folha = new Folha();
 		if (folha.isValeTransporte()) {

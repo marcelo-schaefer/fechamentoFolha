@@ -88,30 +88,6 @@ public class Folha {
 	}
 
 	/**
-	 * Calcula o valor de vale transporte a ser descontado do colaborador
-	 * 
-	 * Chamada do metodo de Vale transporte que calcula o desconto, se o percentual
-	 * aplicado de 6% (0,06) for maior ou igual que R$ 180,00 o desconto será este,
-	 * se for menor retorna este valor calculado, e se for informado um valor igual
-	 * ou menor que 0 retorna 0.
-	 * 
-	 * @return valeTransporte = valor do vale transporte a ser descontado do salário
-	 *         base.
-	 */
-	public double calcularDescontoValeTransporte() {
-		if (valeTransporte) {
-			this.valorValeTransporte = this.salarioBase * 0.06;
-			if (this.valorValeTransporte > 180) {
-				this.valorValeTransporte = 180;
-			}
-		} else {
-			this.valorValeTransporte = 0;
-		}
-		return this.valorValeTransporte;
-
-	}
-
-	/**
 	 * Calcula o valor a ser pago em folha referente as horas extras
 	 * 
 	 * O valor retornado da multiplicação de valorHoras e fator, vai somar com o
@@ -123,135 +99,6 @@ public class Folha {
 		double valorHora50Porcento;
 		valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator);
 		return this.valorHoraExtra = this.horasExtra * valorHora50Porcento;
-	}
-
-	/**
-	 * Desconto de Plano de Saude.
-	 * 
-	 * Realiza o desconto de plano de saúde, somando o valor da mensalidade com o
-	 * valor de cooparticipação caso exista. A variável planoSaude retornará a soma
-	 * das variáveis mensalidadePlanoSaude e valorCooparticipacaoPlanoSaude.
-	 * 
-	 * @return planoSaude = retorna valor a ser descontado em folha, referente ao
-	 *         Plano de Saude.
-	 */
-	public double calcularDescontoPlanoSaude() { // Tratar mensalidade Zerada
-
-		if (this.mensalidadePlanoSaude >= 0) {
-			if (this.valorCooparticipacaoPlanoSaude >= 0) {
-				this.planoSaude = this.mensalidadePlanoSaude + this.valorCooparticipacaoPlanoSaude;
-			} else {
-				this.valorCooparticipacaoPlanoSaude = 0;
-				this.planoSaude = this.mensalidadePlanoSaude + this.valorCooparticipacaoPlanoSaude;
-			}
-		} else {
-			this.mensalidadePlanoSaude = 0;
-			this.valorCooparticipacaoPlanoSaude = 0;
-			this.planoSaude = this.mensalidadePlanoSaude + this.valorCooparticipacaoPlanoSaude;
-		}
-
-		return this.planoSaude;
-	}
-
-	/**
-	 * Recebe o valor de bonificação a ser acrescido na folha do colaborador
-	 * 
-	 * Recebe o valor da bonificação que será aplicado posteriormente nos proventos
-	 * do colaborador.
-	 * 
-	 * @return valorBonificacao = Retorna o valor de bonificação que será somado aos
-	 *         demais proventos na folha do colaborador
-	 */
-	public double calcularBonificacao() {
-
-		if (valorBonificacao > 0) {
-			return this.valorBonificacao;
-		} else {
-			return this.valorBonificacao = 0;
-		}
-	}
-
-	/**
-	 * Calcula o valor de INSS a ser descontado
-	 * 
-	 * Realiza o cálculo do valor de INSS a ser descontado em folha a partir do
-	 * salário informado. Pega a variável salarioBruto e multiplica pelo valor de
-	 * desconto fixado em 11%. Retorna o valor a ser descontado.
-	 * 
-	 * @return inss = Retorna o valor a ser descontado em folha.
-	 */
-	public double calcularDescontoInss() {
-		return this.inss = this.salarioBruto * 0.11;
-
-	}
-
-	public double calcularDescontoInss(double valorFerias) {
-		return this.inss = valorFerias * 0.11;
-
-	}
-
-	/**
-	 * Calcula o valor de Imposto de Renda a ser descontado em folha
-	 * 
-	 * Realiza o cálculo do valor a ser descontado referente ao Imposto de Renda na
-	 * folha do colaborador, seleciona o salárioBruto e multiplica pela sua faixa
-	 * salarial e subtrai o valor a deduzir(exe:142,80).
-	 * 
-	 * @return valorImpostoDeRenda = Retorna o valor que a ser descontado em folha
-	 *         referente ao Imposto de Renda.
-	 */
-	public double calcularDescontoImpostoRenda() { // **********************
-		double baseCalculoimpostoRenda = this.salarioBruto - this.calcularValorDeduzirDependente();
-		if (baseCalculoimpostoRenda <= 1903.98) {
-			this.valorImpostoDeRenda = 0;
-		} else if (baseCalculoimpostoRenda >= 1903.99 && baseCalculoimpostoRenda <= 2826.65) {
-			this.valorImpostoDeRenda = (baseCalculoimpostoRenda * 0.075) - 142.80;
-		} else if (baseCalculoimpostoRenda >= 2826.66 && baseCalculoimpostoRenda <= 3751.05) {
-			this.valorImpostoDeRenda = (baseCalculoimpostoRenda * 0.15) - 354.80;
-		} else if (baseCalculoimpostoRenda >= 3751.06 && baseCalculoimpostoRenda <= 4664.68) {
-			this.valorImpostoDeRenda = (baseCalculoimpostoRenda * 0.225) - 636.13;
-		} else {
-			this.valorImpostoDeRenda = (baseCalculoimpostoRenda * 0.275) - 869.36;
-		}
-
-		return this.valorImpostoDeRenda;
-	}
-
-	public double calcularDescontoImpostoRenda(double valorFerias) { // **********************
-		double baseCalculoImpostoRendaFerias = valorFerias - this.calcularValorDeduzirDependente();
-		if (baseCalculoImpostoRendaFerias <= 1903.98) {
-			this.valorImpostoDeRenda = 0;
-		} else if (baseCalculoImpostoRendaFerias >= 1903.99 && baseCalculoImpostoRendaFerias <= 2826.65) {
-			this.valorImpostoDeRenda = (baseCalculoImpostoRendaFerias * 0.075) - 142.80;
-		} else if (baseCalculoImpostoRendaFerias >= 2826.66 && baseCalculoImpostoRendaFerias <= 3751.05) {
-			this.valorImpostoDeRenda = (baseCalculoImpostoRendaFerias * 0.15) - 354.80;
-		} else if (baseCalculoImpostoRendaFerias >= 3751.06 && valorFerias <= 4664.68) {
-			this.valorImpostoDeRenda = (baseCalculoImpostoRendaFerias * 0.225) - 636.13;
-		} else {
-			this.valorImpostoDeRenda = (baseCalculoImpostoRendaFerias * 0.275) - 869.36;
-		}
-
-		return this.valorImpostoDeRenda;
-	}
-
-	/**
-	 * Calcula o valor da insalubridade
-	 * 
-	 * Realiza o cálculo do valor a ser implementado no salário mínimo, vai pegar a
-	 * variável salarioMinimo e multiplicar pela sua faixa de insalubridade.
-	 * 
-	 * @return valorInsalubridade = Retorna o valor a ser somado ao salário mínimo.
-	 */
-	public double calculaInsalubridade() {
-		if (this.percentualInsalubridade == 10) {
-			return this.valorInsalubridade = this.salarioMinimo * 0.10;
-		} else if (this.percentualInsalubridade == 20) {
-			return this.valorInsalubridade = this.salarioMinimo * 0.20;
-		} else if (this.percentualInsalubridade == 40) {
-			return this.valorInsalubridade = this.salarioMinimo * 0.40;
-		} else {
-			return this.valorInsalubridade = 0;
-		}
 	}
 
 	/**
@@ -328,23 +175,6 @@ public class Folha {
 		}
 		return valorTotalFerias;
 
-	}
-
-	public double calcularValorDeduzirDependente() {
-		double valor = this.numeroDependentes * this.valorPorDependente;
-		return valor;
-	}
-
-	/**
-	 * Calcula o DSR
-	 * 
-	 * Define o valor do Reflexo DSR por meio de alguns parâmetros passados
-	 */
-	public double calcularDSR() {
-		double diasUteis = 25.0;
-		double domigosFeriados = 5.0;
-		this.reflexoDSR = (this.getValorHoraExtra() / diasUteis) * domigosFeriados;
-		return this.reflexoDSR;
 	}
 
 	/**
