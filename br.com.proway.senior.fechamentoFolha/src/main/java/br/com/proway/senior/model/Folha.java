@@ -3,9 +3,6 @@ package br.com.proway.senior.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-// TODO implementar setdataEmissaoEmissaoEmissao que a folha está sendo emitida
-//import java.time.LocalDateTime;
-
 public class Folha {
 	private int id;
 	private String dataEmissao;
@@ -121,8 +118,8 @@ public class Folha {
 	 */
 	public double calcularValorHorasExtras() { // Testado
 		double valorHora50Porcento;
-		return this.valorHoraExtra = this.horasExtra
-				* (valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator));
+		valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator);
+		return this.valorHoraExtra = this.horasExtra * valorHora50Porcento;
 	}
 
 	/**
