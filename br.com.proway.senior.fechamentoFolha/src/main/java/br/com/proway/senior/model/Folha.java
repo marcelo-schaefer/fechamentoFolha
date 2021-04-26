@@ -35,6 +35,9 @@ public class Folha {
 	private int numeroDependentes;
 	private double valorPorDependente = 189.59;
 
+	public Folha() {
+	}
+
 	public Folha(int id, String dataEmissao) {
 		this.id = id;
 		this.dataEmissao = dataEmissao;
@@ -99,7 +102,7 @@ public class Folha {
 		this.salarioBruto -= this.calcularDescontoValeTransporte();
 		this.salarioLiquido = this.salarioBruto;
 		this.setDataEmissao();
-		
+
 		return this.salarioLiquido;
 	}
 
@@ -107,9 +110,9 @@ public class Folha {
 	 * Calcula o valor de vale transporte a ser descontado do colaborador
 	 * 
 	 * Chamada do metodo de Vale transporte que calcula o desconto, se o percentual
-	 * aplicado de 6% (0,06) for maior ou igual que R$ 180,00 o desconto será este, se
-	 * for menor retorna este valor calculado, e se for informado um valor igual ou
-	 * menor que 0 retorna 0.
+	 * aplicado de 6% (0,06) for maior ou igual que R$ 180,00 o desconto será este,
+	 * se for menor retorna este valor calculado, e se for informado um valor igual
+	 * ou menor que 0 retorna 0.
 	 * 
 	 * @return valeTransporte = valor do vale transporte a ser descontado do salário
 	 *         base.
@@ -378,88 +381,172 @@ public class Folha {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getDataEmissao() {
-		return this.dataEmissao;
+		return dataEmissao;
 	}
 
-	public double getReflexoDSR() {
-		return this.reflexoDSR;
-	}
-
-	public double getHoraExtra() {
-		return this.valorHoraExtra;
+	public void setDataEmissao(String dataEmissao) {
+		this.dataEmissao = dataEmissao;
 	}
 
 	public double getSalarioLiquido() {
-		return this.salarioLiquido;
+		return salarioLiquido;
+	}
+
+	public void setSalarioLiquido(double salarioLiquido) {
+		this.salarioLiquido = salarioLiquido;
 	}
 
 	public double getValorHoras() {
-		return this.valorHoras;
+		return valorHoras;
+	}
+
+	public void setValorHoras(double valorHoras) {
+		this.valorHoras = valorHoras;
 	}
 
 	public double getValorHoraComInsalubridade() {
-		return this.valorHoraComInsalubridade;
+		return valorHoraComInsalubridade;
+	}
+
+	public void setValorHoraComInsalubridade(double valorHoraComInsalubridade) {
+		this.valorHoraComInsalubridade = valorHoraComInsalubridade;
 	}
 
 	public double getHorasTrabalhadas() {
-		return this.horasTrabalhadas;
+		return horasTrabalhadas;
+	}
+
+	public void setHorasTrabalhadas(double horasTrabalhadas) {
+		this.horasTrabalhadas = horasTrabalhadas;
 	}
 
 	public double getHorasExtra() {
-		return this.horasExtra;
+		return horasExtra;
+	}
+
+	public void setHorasExtra(double horasExtra) {
+		this.horasExtra = horasExtra;
 	}
 
 	public double getValorHoraExtra() {
-		return this.valorHoraExtra;
+		return valorHoraExtra;
+	}
+
+	public void setValorHoraExtra(double valorHoraExtra) {
+		this.valorHoraExtra = valorHoraExtra;
+	}
+
+	public double getReflexoDSR() {
+		return reflexoDSR;
+	}
+
+	public void setReflexoDSR(double reflexoDSR) {
+		this.reflexoDSR = reflexoDSR;
 	}
 
 	public double getHorasFalta() {
-		return this.horasFalta;
+		return horasFalta;
+	}
+
+	public void setHorasFalta(double horasFalta) {
+		this.horasFalta = horasFalta;
 	}
 
 	public double getValorHorasFaltas() {
-		return this.valorHorasFaltas;
+		return valorHorasFaltas;
+	}
+
+	public void setValorHorasFaltas(double valorHorasFaltas) {
+		this.valorHorasFaltas = valorHorasFaltas;
 	}
 
 	public double getValorBonificacao() {
-		return this.valorBonificacao;
+		return valorBonificacao;
+	}
+
+	public void setValorBonificacao(double valorBonificacao) {
+		this.valorBonificacao = valorBonificacao;
 	}
 
 	public double getPlanoSaude() {
-		return this.planoSaude;
+		return planoSaude;
+	}
+
+	public void setPlanoSaude(double planoSaude) {
+		this.planoSaude = planoSaude;
 	}
 
 	public double getPercentualInsalubridade() {
-		return this.percentualInsalubridade;
+		return percentualInsalubridade;
+	}
+
+	public void setPercentualInsalubridade(double percentualInsalubridade) {
+		this.percentualInsalubridade = percentualInsalubridade;
 	}
 
 	public double getValorInsalubridade() {
-		return this.valorInsalubridade;
+		return valorInsalubridade;
+	}
+
+	public void setValorInsalubridade(double valorInsalubridade) {
+		this.valorInsalubridade = valorInsalubridade;
 	}
 
 	public double getInss() {
-		return this.inss;
+		return inss;
 	}
 
-	public double getvalorImpostoDeRenda() {
-		return this.valorImpostoDeRenda;
+	public void setInss(double inss) {
+		this.inss = inss;
+	}
+
+	public double getValorImpostoDeRenda() {
+		return valorImpostoDeRenda;
+	}
+
+	public void setValorImpostoDeRenda(double valorImpostoDeRenda) {
+		this.valorImpostoDeRenda = valorImpostoDeRenda;
 	}
 
 	public double getMensalidadePlanoSaude() {
-		return this.mensalidadePlanoSaude;
+		return mensalidadePlanoSaude;
+	}
+
+	public void setMensalidadePlanoSaude(double mensalidadePlanoSaude) {
+		this.mensalidadePlanoSaude = mensalidadePlanoSaude;
 	}
 
 	public double getValorCooparticipacaoPlanoSaude() {
-		return this.valorCooparticipacaoPlanoSaude;
+		return valorCooparticipacaoPlanoSaude;
+	}
+
+	public void setValorCooparticipacaoPlanoSaude(double valorCooparticipacaoPlanoSaude) {
+		this.valorCooparticipacaoPlanoSaude = valorCooparticipacaoPlanoSaude;
 	}
 
 	public double getValorValeTransporte() {
-		return this.valorValeTransporte;
+		return valorValeTransporte;
+	}
+
+	public void setValorValeTransporte(double valorValeTransporte) {
+		this.valorValeTransporte = valorValeTransporte;
+	}
+
+	public boolean isValeTransporte() {
+		return valeTransporte;
+	}
+
+	public void setValeTransporte(boolean valeTransporte) {
+		this.valeTransporte = valeTransporte;
 	}
 
 	public double getFator() {
-		return this.fator;
+		return fator;
 	}
 
 	public void setFator(double fator) {
@@ -467,27 +554,35 @@ public class Folha {
 	}
 
 	public double getSalarioMinimo() {
-		return this.salarioMinimo;
+		return salarioMinimo;
 	}
 
 	public void setSalarioMinimo(double salarioMinimo) {
 		this.salarioMinimo = salarioMinimo;
 	}
 
+	public int getNumeroDependentes() {
+		return numeroDependentes;
+	}
+
+	public void setNumeroDependentes(int numeroDependentes) {
+		this.numeroDependentes = numeroDependentes;
+	}
+
+	public double getValorPorDependente() {
+		return valorPorDependente;
+	}
+
+	public void setValorPorDependente(double valorPorDependente) {
+		this.valorPorDependente = valorPorDependente;
+	}
+
 	public double getSalarioBruto() {
-		return this.salarioBruto;
+		return salarioBruto;
 	}
 
 	public double getSalarioBase() {
-		return this.salarioBase;
-	}
-
-	public double getValorInss() {
-		return this.inss;
-	}
-
-	public int getNumeroDependentes() {
-		return this.numeroDependentes;
+		return salarioBase;
 	}
 
 }
