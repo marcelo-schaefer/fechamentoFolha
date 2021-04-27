@@ -4,20 +4,21 @@ import java.util.ArrayList;
 
 public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 
-	private double salario;
-	private ArrayList<Folha> totalFolhas = new ArrayList<Folha>();
-	private ArrayList<String> dependentes = new ArrayList<String>();
-	private Ponto ponto;
 	private int id;
 	private String nome;
 	private String email;
+	private double salario;
+	private boolean isValeTransporte;
+	private double planoSaudeMensalidade;
+	private double planoSaudeCooparticipacao;
+	private ArrayList<String> dependentes = new ArrayList<String>();
 
-	public ColaboradorFolha(String nome, int id, String email, double salario) {
-		this.nome = nome;
-		this.id = id;
-		this.email = email;
-		this.salario = salario;
-	}
+	public ColaboradorFolha() {}
+
+	/*
+	 * public ColaboradorFolha(String nome, int id, String email, double salario) {
+	 * this.nome = nome; this.id = id; this.email = email; this.salario = salario; }
+	 */
 
 	public int getId() {
 		return id;
@@ -51,19 +52,12 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 		this.salario = salario;
 	}
 
-	public ArrayList<Folha> getTotalFolhas() {
-		return totalFolhas;
+	public boolean isValeTransporte() {
+		return isValeTransporte;
 	}
 
-	/**
-	 * Cadastra Folha
-	 * 
-	 * Adiciona uma Folha do Colaborador em sua lista de folhas totais
-	 * 
-	 * @param f; Um objeto da classe Folha
-	 */
-	public void addTotalFolhas(Folha f) {
-		this.totalFolhas.add(f);
+	public void setValeTransporte(boolean isValeTransporte) {
+		this.isValeTransporte = isValeTransporte;
 	}
 
 	public ArrayList<String> getDependentes() {
@@ -85,12 +79,24 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 		this.dependentes.add(p);
 	}
 
-	public Ponto getPonto() {
-		return ponto;
+	public boolean getValeTransporte() {
+		return isValeTransporte;
 	}
 
-	public void setPonto(Ponto ponto) {
-		this.ponto = ponto;
+	public double getPlanoSaudeMensalidade() {
+		return planoSaudeMensalidade;
+	}
+
+	public void setPlanoSaudeMensalidade(double planoSaudeMensalidade) {
+		this.planoSaudeMensalidade = planoSaudeMensalidade;
+	}
+
+	public double getPlanoSaudeCooparticipacao() {
+		return planoSaudeCooparticipacao;
+	}
+
+	public void setPlanoSaudeCooparticipacao(double planoSaudeCooparticipacao) {
+		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
 	}
 
 }

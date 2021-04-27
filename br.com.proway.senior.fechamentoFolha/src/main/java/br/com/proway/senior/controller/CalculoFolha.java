@@ -1,13 +1,12 @@
 package br.com.proway.senior.controller;
 
+import br.com.proway.senior.model.CargoFolha;
+import br.com.proway.senior.model.ColaboradorFolha;
+import br.com.proway.senior.model.FeriasFolha;
+import br.com.proway.senior.model.Folha;
+import br.com.proway.senior.model.PontoFolha;
+
 public class CalculoFolha { 
-	
-//	calcular(){
-//		PontoFolha ponto = new PontoFolha();
-//		ColaboradorFolha colab = new ColaboradorFolha();
-//		Folha folha = new Folha(colab, ponto);
-//	}
-	
 	
 	/**
 	 * Calcula a folha final
@@ -17,6 +16,38 @@ public class CalculoFolha {
 	 * 
 	 * @return Salário liquido do coaborador
 	 */
+	public double calculoFolha(){
+		PontoFolha ponto = new PontoFolha();
+		ColaboradorFolha colab = new ColaboradorFolha();
+		CargoFolha cargo = new CargoFolha();
+		FeriasFolha ferias = new FeriasFolha();
+		
+		Folha folha = new Folha(colab, ponto, ferias, cargo);
+		CalcularHoras calculoHoras = new CalcularHoras();
+		CalcularFerias calculoFerias = new CalcularFerias();
+		CalculoData calculoData = new CalculoData();
+		CalculosDeExtras calculosDeExtras = new CalculosDeExtras();
+		CalculosDesconto calculosDesconto = new CalculosDesconto();
+		
+		calculoFerias.calcularFerias(folha);
+		calculoHoras.calcularValorDasHorasTrabalhadas(folha);
+		calculoHoras.calcularValorHorasFaltas(folha);
+		calculoHoras.calcularValorHorasExtras(folha);
+		calculosDeExtras.calcularDSR(folha);
+		calculosDeExtras.calcularBonificacao(folha);
+		calculosDesconto.calcularDescontoInss(folha);
+		calculosDesconto.calcularDescontoImpostoRenda(folha);
+		calculosDesconto.calcularDescontoPlanoSaude(folha);
+		calculosDesconto.calcularDescontoValeTransporte(folha);
+		
+		folha.setSalarioLiquido(folha.getSalarioBruto());
+		calculoData.setDataEmissao(folha);
+		
+		return folha.getSalarioLiquido();
+	}
+	
+	
+	/*
 	public double calcularFolha() {
 
 		this.salarioBruto += this.calcularValorDasHorasTrabalhadas();
@@ -33,5 +64,5 @@ public class CalculoFolha {
 
 		return this.salarioLiquido;
 	}
-
+*/
 }

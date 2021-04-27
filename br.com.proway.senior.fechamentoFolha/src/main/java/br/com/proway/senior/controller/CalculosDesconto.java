@@ -15,8 +15,7 @@ public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, Interf
 	 * @return planoSaude = retorna valor a ser descontado em folha, referente ao
 	 *         Plano de Saude.
 	 */
-	public double calcularDescontoPlanoSaude() {
-		Folha folha = new Folha();
+	public double calcularDescontoPlanoSaude(Folha folha) {
 		if (folha.getMensalidadePlanoSaude() >= 0) {
 			if (folha.getValorCooparticipacaoPlanoSaude() >= 0) {
 				folha.setPlanoSaude(folha.getMensalidadePlanoSaude() + folha.getValorCooparticipacaoPlanoSaude());
@@ -42,14 +41,12 @@ public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, Interf
 	 * 
 	 * @return inss = Retorna o valor a ser descontado em folha.
 	 */
-	public double calcularDescontoInss() {
-		Folha folha = new Folha();
+	public double calcularDescontoInss(Folha folha) {
 		folha.setInss(folha.getSalarioBruto() * 0.11);
 		return folha.getInss();
 	}
 
-	public double calcularDescontoInss(double valorFerias) {
-		Folha folha = new Folha();
+	public double calcularDescontoInss(double valorFerias, Folha folha) {
 		folha.setInss(valorFerias * 0.11);
 		return folha.getInss();
 	}
@@ -64,9 +61,8 @@ public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, Interf
 	 * @return valorImpostoDeRenda = Retorna o valor que a ser descontado em folha
 	 *         referente ao Imposto de Renda.
 	 */
-	public double calcularDescontoImpostoRenda(double valorFerias) {
-		Folha folha = new Folha();
-		double baseCalculoimpostoRenda = valorFerias - this.calcularValorDeduzirDependente();
+	public double calcularDescontoImpostoRenda(double valorFerias, Folha folha) {
+		double baseCalculoimpostoRenda = valorFerias - this.calcularValorDeduzirDependente(folha);
 		if (baseCalculoimpostoRenda <= 1903.98) {
 			folha.setValorImpostoDeRenda(0);
 		} else if (baseCalculoimpostoRenda >= 1903.99 && baseCalculoimpostoRenda <= 2826.65) {
@@ -82,9 +78,8 @@ public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, Interf
 		return folha.getValorImpostoDeRenda();
 	}
 
-	public double calcularDescontoImpostoRenda() {
-		Folha folha = new Folha();
-		double baseCalculoimpostoRenda = folha.getSalarioBruto() - this.calcularValorDeduzirDependente();
+	public double calcularDescontoImpostoRenda(Folha folha) {
+		double baseCalculoimpostoRenda = folha.getSalarioBruto() - this.calcularValorDeduzirDependente(folha);
 		if (baseCalculoimpostoRenda <= 1903.98) {
 			folha.setValorImpostoDeRenda(0);
 		} else if (baseCalculoimpostoRenda >= 1903.99 && baseCalculoimpostoRenda <= 2826.65) {
@@ -100,8 +95,7 @@ public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, Interf
 		return folha.getValorImpostoDeRenda();
 	}
 
-	private double calcularValorDeduzirDependente() {
-		Folha folha = new Folha();
+	private double calcularValorDeduzirDependente(Folha folha) {
 		double valor = folha.getNumeroDependentes() * folha.getValorPorDependente();
 		return valor;
 	}
@@ -117,8 +111,7 @@ public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, Interf
 	 * @return valeTransporte = valor do vale transporte a ser descontado do salário
 	 *         base.
 	 */
-	public double calcularDescontoValeTransporte() {
-		Folha folha = new Folha();
+	public double calcularDescontoValeTransporte(Folha folha) {
 		if (folha.isValeTransporte()) {
 			folha.setValorValeTransporte(folha.getSalarioBase() * 0.06);
 			if (folha.getValorValeTransporte() > 180) {

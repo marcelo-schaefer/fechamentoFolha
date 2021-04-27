@@ -1,6 +1,6 @@
 package br.com.proway.senior.model;
 
-public interface InterfaceCargo {
+public interface InterfaceCargoFolha {
 
 	public double getSalario();
 	

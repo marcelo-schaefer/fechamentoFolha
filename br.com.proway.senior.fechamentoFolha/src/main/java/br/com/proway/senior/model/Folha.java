@@ -1,8 +1,5 @@
 package br.com.proway.senior.model;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class Folha {
 	private int id;
 	private String dataEmissao;
@@ -31,12 +28,14 @@ public class Folha {
 	private double salarioBase;
 	private int numeroDependentes;
 	private double valorPorDependente = 189.59;
-	private InterfacePontoFolha ponto;
+	private int dias;
+	private int abono;
 
 	/**
 	 * Construtor
 	 * 
 	 */
+	
 	public Folha() {
 	}
 
@@ -51,8 +50,6 @@ public class Folha {
 	public Folha(int id, String dataEmissao) {
 		this.id = id;
 		this.dataEmissao = dataEmissao;
-		//instanci Ponto
-		this.ponto = ponto;
 	}
 	
 	public Folha(int id) {
@@ -61,7 +58,6 @@ public class Folha {
 	
 	
 	/**
-	 * 
 	 * Alterar conforme esse modelo: this.horasTrabalhadas = this.ponto.getHorasTrabalhadas();
 	 * 
 	 * Construtor que inicializa os métodos
@@ -69,16 +65,17 @@ public class Folha {
 	 * @param colaborador
 	 * @param ponto
 	 */
-	public Folha(InterfaceColaboradorFolha colaborador, InterfacePontoFolha ponto) {
-		this.horasTrabalhadas = this.ponto.getHorasTrabalhadas();
-		this.horasExtra = colaborador.getPonto().getHorasExtra();
-		this.horasFalta = colaborador.getPonto().getHorasFaltas();
-		this.valorBonificacao = colaborador.getPonto().getValorBonificacao();
-		this.percentualInsalubridade = colaborador.getPonto().getpercentualInsalubridade();
-		this.mensalidadePlanoSaude = colaborador.getPonto().getMensalidadePlanoSaude();
-		this.valorCooparticipacaoPlanoSaude = colaborador.getPonto().getvalorCooparticipacaoPlanoSaude();
-		this.salarioBase = colaborador.getSalario();
-		this.valeTransporte = colaborador.getPonto().isValeTransporte();
+	public Folha(InterfaceColaboradorFolha colaborador, InterfacePontoFolha ponto, 
+				InterfaceFeriasFolha ferias, InterfaceCargoFolha cargo) {
+		this.horasTrabalhadas = ponto.getHorasTrabalhadas();
+		this.horasExtra = ponto.getHorasExtra();
+		this.horasFalta = ponto.getHorasFaltas();
+		this.valorBonificacao = cargo.getValorBonificacao();
+		this.percentualInsalubridade = cargo.getPercentualInsalubridade();
+		this.mensalidadePlanoSaude = colaborador.getPlanoSaudeMensalidade();
+		this.valorCooparticipacaoPlanoSaude = colaborador.getPlanoSaudeCooparticipacao();
+		this.salarioBase = cargo.getSalario();
+		this.valeTransporte = colaborador.getValeTransporte();
 		this.numeroDependentes = colaborador.getDependentes().size();
 	}
 
@@ -89,48 +86,6 @@ public class Folha {
 
 	public void setSalarioBase(double valor) {
 		this.salarioBase = valor;
-	}
-
-	/**
-	 * Calcula férias
-	 * 
-	 * Vai virar uma interface e um método
-	 * 
-	 * Comentar esse método
-	 * 
-	 * 
-	 */
-	public double calcularFerias(int dias, int abono) {
-		double valorHorasDias = (double) 220 / 30; // 7,333333333
-		double valorDia = this.calculaValorHora() * valorHorasDias;
-		double valorFerias = dias * valorDia;
-		double valorFeriasUmTerco = valorFerias / 3;
-		double valorTotalFerias = 0;
-		if (abono <= 0) {
-			valorTotalFerias = valorFerias + valorFeriasUmTerco;
-			valorTotalFerias -= this.calcularDescontoInss(valorTotalFerias);
-			valorTotalFerias -= this.calcularDescontoImpostoRenda(valorTotalFerias);
-		} else {
-			double valorAbono = abono * valorDia;
-			double valorAbonoUmTerco = valorAbono / 3;
-			valorTotalFerias = (valorFerias + valorFeriasUmTerco) + (valorAbono + valorAbonoUmTerco);
-			valorTotalFerias -= this.calcularDescontoInss(valorTotalFerias);
-			valorTotalFerias -= this.calcularDescontoImpostoRenda(valorTotalFerias);
-		}
-		return valorTotalFerias;
-	}
-
-	/**
-	 * Pega a dataEmissao atual
-	 * 
-	 * Vai virar uma classe
-	 * 
-	 * Seta o atributo dataEmissao com a dataEmissao atual no formato DD/MM/AAAA
-	 */
-	public void setDataEmissao() {
-		LocalDateTime dataEmissaoTime = LocalDateTime.now();
-		DateTimeFormatter dataEmissaoFormatada = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		this.dataEmissao = dataEmissaoTime.format(dataEmissaoFormatada);
 	}
 
 	public int getId() {
@@ -339,6 +294,22 @@ public class Folha {
 
 	public double getSalarioBase() {
 		return salarioBase;
+	}
+
+	public int getDias() {
+		return dias;
+	}
+
+	public void setDias(int dias) {
+		this.dias = dias;
+	}
+
+	public int getAbono() {
+		return abono;
+	}
+
+	public void setAbono(int abono) {
+		this.abono = abono;
 	}
 
 }

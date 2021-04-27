@@ -10,8 +10,7 @@ public class CalculosDeExtras
 	 * 
 	 * Define o valor do Reflexo DSR por meio de alguns parâmetros passados
 	 */
-	public double calcularDSR() {
-		Folha folha = new Folha();
+	public double calcularDSR(Folha folha) {
 		double diasUteis = 25.0;
 		double domigosFeriados = 5.0;
 		folha.setReflexoDSR((folha.getValorHoraExtra() / diasUteis) * domigosFeriados);
@@ -26,8 +25,7 @@ public class CalculosDeExtras
 	 * 
 	 * @return valorInsalubridade = Retorna o valor a ser somado ao salário mínimo.
 	 */
-	public double calculaInsalubridade() {
-		Folha folha = new Folha();
+	public double calculaInsalubridade(Folha folha) {
 		if (folha.getPercentualInsalubridade() == 10) {
 			folha.setValorInsalubridade(folha.getSalarioMinimo() * 0.10);
 			return folha.getValorInsalubridade();
@@ -52,8 +50,7 @@ public class CalculosDeExtras
 	 * @return valorBonificacao = Retorna o valor de bonificação que será somado aos
 	 *         demais proventos na folha do colaborador
 	 */
-	public double calcularBonificacao() {
-		Folha folha = new Folha();
+	public double calcularBonificacao(Folha folha) {
 		if (folha.getValorBonificacao() > 0) {
 			return folha.getValorBonificacao();
 		} else {
