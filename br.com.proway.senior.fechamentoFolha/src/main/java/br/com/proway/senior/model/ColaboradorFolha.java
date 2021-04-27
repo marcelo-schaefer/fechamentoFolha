@@ -7,13 +7,20 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 	private int id;
 	private String nome;
 	private String email;
-	private double salario;
 	private boolean isValeTransporte;
 	private double planoSaudeMensalidade;
 	private double planoSaudeCooparticipacao;
 	private ArrayList<String> dependentes = new ArrayList<String>();
 
 	public ColaboradorFolha() {}
+	
+	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
+			double planoSaudeCooparticipacao) {
+		this.id = id;
+		this.isValeTransporte = isValeTransporte;
+		this.planoSaudeMensalidade = planoSaudeMensalidade;
+		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
+	}
 
 	/*
 	 * public ColaboradorFolha(String nome, int id, String email, double salario) {
@@ -42,14 +49,6 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public double getSalario() {
-		return salario;
-	}
-
-	public void setSalario(double salario) {
-		this.salario = salario;
 	}
 
 	public boolean isValeTransporte() {

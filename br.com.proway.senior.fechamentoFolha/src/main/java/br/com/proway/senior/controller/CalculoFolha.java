@@ -29,10 +29,10 @@ public class CalculoFolha {
 		CalculosDeExtras calculosDeExtras = new CalculosDeExtras();
 		CalculosDesconto calculosDesconto = new CalculosDesconto();
 		
-		calculoFerias.calcularFerias(folha);
 		calculoHoras.calcularValorDasHorasTrabalhadas(folha);
 		calculoHoras.calcularValorHorasFaltas(folha);
 		calculoHoras.calcularValorHorasExtras(folha);
+		calculoFerias.calcularFerias(folha);
 		calculosDeExtras.calcularDSR(folha);
 		calculosDeExtras.calcularBonificacao(folha);
 		calculosDesconto.calcularDescontoInss(folha);
