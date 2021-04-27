@@ -4,7 +4,7 @@ public class Folha {
 	private int id;
 	private String dataEmissao;
 	private double salarioLiquido;
-	private double salarioBruto;
+	private double salarioBruto = 0;
 	private double valorHoras;
 	private double valorHoraComInsalubridade;
 	private double horasTrabalhadas;
