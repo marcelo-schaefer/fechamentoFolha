@@ -31,6 +31,7 @@ public class Folha {
 	private double salarioBase;
 	private int numeroDependentes;
 	private double valorPorDependente = 189.59;
+	private InterfacePonto ponto;
 
 	public Folha() {
 	}
@@ -38,10 +39,12 @@ public class Folha {
 	public Folha(int id, String dataEmissao) {
 		this.id = id;
 		this.dataEmissao = dataEmissao;
+		//instanci Ponto
+		this.ponto = ponto;
 	}
 
-	public Folha(ColaboradorFolha colaborador) {
-		this.horasTrabalhadas = colaborador.getPonto().getHorasTrabalhadas();
+	public Folha(InterfaceCadastroColaborador colaborador, InterfacePonto ponto) {
+		this.horasTrabalhadas = this.ponto.getHorasTrabalhadas();
 		this.horasExtra = colaborador.getPonto().getHorasExtra();
 		this.horasFalta = colaborador.getPonto().getHorasFaltas();
 		this.valorBonificacao = colaborador.getPonto().getValorBonificacao();
