@@ -2,7 +2,7 @@ package br.com.proway.senior.model;
 
 import java.util.ArrayList;
 
-public final class ColaboradorFolha {
+public final class ColaboradorFolha implements InterfaceCadastroColaborador {
 
 	private double salario;
 	private ArrayList<Folha> totalFolhas = new ArrayList<Folha>();
