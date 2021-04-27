@@ -6,10 +6,17 @@ public interface InterfaceFolhaDAO {
 	
 	public ArrayList<Folha> getAll();
 	
-	public ArrayList<Folha> getFolhasPorId(int id);
+	public Folha getFolhasPorId(int id);
 	
-	public ArrayList<Folha> getFolhaPorDataEId(String data, int id);
+	public Folha getFolhaPorDataEId(String data, int id);
 
 	public void saveFolha(Folha folha);
+	
+	public boolean updateFolha(Folha folha, int id);
+	
+	public boolean removeFolha(int id);
+	
+	public Folha getFolhaIdColaborador(Integer idColaborador);
+	
 	
 }

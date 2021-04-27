@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Folha {
 	private int id;
+	private Integer idColaborador;
 	private String dataEmissao;
 	private double salarioLiquido;
 	private double salarioBruto;
@@ -40,7 +41,6 @@ public class Folha {
 	public Folha() {
 	}
 
-	
 	/**
 	 * 
 	 * Construtor
@@ -51,18 +51,18 @@ public class Folha {
 	public Folha(int id, String dataEmissao) {
 		this.id = id;
 		this.dataEmissao = dataEmissao;
-		//instanci Ponto
+		// instanci Ponto
 		this.ponto = ponto;
 	}
-	
+
 	public Folha(int id) {
 		this.id = id;
 	}
-	
-	
+
 	/**
 	 * 
-	 * Alterar conforme esse modelo: this.horasTrabalhadas = this.ponto.getHorasTrabalhadas();
+	 * Alterar conforme esse modelo: this.horasTrabalhadas =
+	 * this.ponto.getHorasTrabalhadas();
 	 * 
 	 * Construtor que inicializa os métodos
 	 * 
@@ -339,6 +339,14 @@ public class Folha {
 
 	public double getSalarioBase() {
 		return salarioBase;
+	}
+
+	public Integer getIdColaborador() {
+		return idColaborador;
+	}
+
+	public void setIdColaborador(Integer idColaborador) {
+		this.idColaborador = idColaborador;
 	}
 
 }
