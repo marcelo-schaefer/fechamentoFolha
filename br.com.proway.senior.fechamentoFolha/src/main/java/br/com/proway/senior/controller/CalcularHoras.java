@@ -15,8 +15,8 @@ public class CalcularHoras implements InterfaceHorasExtras, InterfaceHorasTrabal
 	 *         colaborador referente as horas faltas.
 	 */
 	public double calcularValorHorasFaltas(Folha folha) {
-		folha.setHorasTrabalhadas(folha.getHorasFalta() * folha.getValorHoras());
-		return folha.getHorasTrabalhadas();
+		folha.setValorHorasFaltas(folha.getHorasFalta() * folha.getValorHoras());
+		return folha.getValorHorasFaltas();
 	}
 
 	
@@ -55,7 +55,7 @@ public class CalcularHoras implements InterfaceHorasExtras, InterfaceHorasTrabal
 			folha.setValorHoras(folha.getSalarioBase() / 220);
 			return folha.getValorHoras();
 		} else {
-			folha.setValorHoras(folha.getSalarioBase() / 220);
+			folha.setValorHoras((folha.getSalarioBase() / 220) + valorHoraInsalubridade);
 			return folha.getValorHoras();
 		}
 	}

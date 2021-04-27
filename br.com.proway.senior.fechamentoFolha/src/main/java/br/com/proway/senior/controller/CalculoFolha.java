@@ -16,20 +16,15 @@ public class CalculoFolha {
 	 * 
 	 * @return Salário liquido do coaborador
 	 */
-	public double calculoFolha(){
-		PontoFolha ponto = new PontoFolha();
-		ColaboradorFolha colab = new ColaboradorFolha();
-		CargoFolha cargo = new CargoFolha();
-		FeriasFolha ferias = new FeriasFolha();
+	public double calculoFolha(Folha folha){
 		
-		Folha folha = new Folha(colab, ponto, ferias, cargo);
 		CalcularHoras calculoHoras = new CalcularHoras();
-		CalcularFerias calculoFerias = new CalcularFerias();
+		//CalcularFerias calculoFerias = new CalcularFerias();
 		CalculoData calculoData = new CalculoData();
 		CalculosDeExtras calculosDeExtras = new CalculosDeExtras();
 		CalculosDesconto calculosDesconto = new CalculosDesconto();
 		
-		calculoFerias.calcularFerias(folha);
+		//calculoFerias.calcularFerias(folha);
 		calculoHoras.calcularValorDasHorasTrabalhadas(folha);
 		calculoHoras.calcularValorHorasFaltas(folha);
 		calculoHoras.calcularValorHorasExtras(folha);
