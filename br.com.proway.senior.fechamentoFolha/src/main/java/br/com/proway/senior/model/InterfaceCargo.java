@@ -1,4 +1,4 @@
-package br.com.proway.senior.model.Interfaces;
+package br.com.proway.senior.model;
 
 public interface InterfaceCargo {
 

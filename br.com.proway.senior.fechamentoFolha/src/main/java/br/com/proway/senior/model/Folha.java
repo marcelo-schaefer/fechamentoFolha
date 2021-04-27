@@ -31,11 +31,23 @@ public class Folha {
 	private double salarioBase;
 	private int numeroDependentes;
 	private double valorPorDependente = 189.59;
-	private InterfacePonto ponto;
+	private InterfacePontoFolha ponto;
 
+	/**
+	 * Construtor
+	 * 
+	 */
 	public Folha() {
 	}
 
+	
+	/**
+	 * 
+	 * Construtor
+	 * 
+	 * @param id
+	 * @param dataEmissao
+	 */
 	public Folha(int id, String dataEmissao) {
 		this.id = id;
 		this.dataEmissao = dataEmissao;
@@ -47,7 +59,17 @@ public class Folha {
 		this.id = id;
 	}
 	
-	public Folha(InterfaceCadastroColaborador colaborador, InterfacePonto ponto) {
+	
+	/**
+	 * 
+	 * Alterar conforme esse modelo: this.horasTrabalhadas = this.ponto.getHorasTrabalhadas();
+	 * 
+	 * Construtor que inicializa os métodos
+	 * 
+	 * @param colaborador
+	 * @param ponto
+	 */
+	public Folha(InterfaceColaboradorFolha colaborador, InterfacePontoFolha ponto) {
 		this.horasTrabalhadas = this.ponto.getHorasTrabalhadas();
 		this.horasExtra = colaborador.getPonto().getHorasExtra();
 		this.horasFalta = colaborador.getPonto().getHorasFaltas();
@@ -70,96 +92,11 @@ public class Folha {
 	}
 
 	/**
-	 * Calcula a folha final
-	 * 
-	 * Método responsável por chamar todos os outros métodos que calculam o
-	 * fechamento da folha do mes.
-	 * 
-	 * @return Salário liquido do coaborador
-	 */
-	public double calcularFolha() {
-
-		this.salarioBruto += this.calcularValorDasHorasTrabalhadas();
-		this.salarioBruto -= this.calcularValorHorasFaltas();
-		this.salarioBruto += this.calcularValorHorasExtras();
-		this.salarioBruto += this.calcularDSR();
-		this.salarioBruto += this.calcularBonificacao();
-		this.salarioBruto -= this.calcularDescontoInss();
-		this.salarioBruto -= this.calcularDescontoImpostoRenda();
-		this.salarioBruto -= this.calcularDescontoPlanoSaude();
-		this.salarioBruto -= this.calcularDescontoValeTransporte();
-		this.salarioLiquido = this.salarioBruto;
-		this.setDataEmissao();
-
-		return this.salarioLiquido;
-	}
-
-	/**
-	 * Calcula o valor a ser pago em folha referente as horas extras
-	 * 
-	 * O valor retornado da multiplicação de valorHoras e fator, vai somar com o
-	 * valorHoras e depois multiplica pelas horasExtra
-	 * 
-	 * @return valor = Retorna o valor a ser pago de horas extras.
-	 */
-	public double calcularValorHorasExtras() { // Testado
-		double valorHora50Porcento;
-		valorHora50Porcento = this.valorHoras + (this.valorHoras * this.fator);
-		return this.valorHoraExtra = this.horasExtra * valorHora50Porcento;
-	}
-
-	/**
-	 * Calcula hora normal somando insalubridade.
-	 * 
-	 * Pega o valor do método calculaInsalubridade e divide pela variável
-	 * horasTrabalhadas
-	 *
-	 * @return valorHoras = vai retornar o valor ganho de insalubridade por hora
-	 */
-	// Correção a métodos redundantes de calculo de hora insalubre
-	public double calculaValorHora() { // Testado
-		double valorHoraInsalubridade = (this.calculaInsalubridade() / 220);
-		if (valorHoraInsalubridade < 0) {
-			return this.valorHoras = this.salarioBase / 220; // 11,68181818181818
-		} else {
-			return this.valorHoras = (this.salarioBase / 220) + valorHoraInsalubridade;
-		}
-	}
-
-	/**
-	 * Calcula o valor inicial do salário
-	 * 
-	 * Pega o valor do método calculaValorHora passa para a variável valorHoras,
-	 * após isso a variável valor recebe a multiplição de horasTrabalhas e
-	 * valorHoras
-	 * 
-	 * @return valor = Retorna o valor do salário inicial, considerando apenas a
-	 *         quantidade horas trabalhadas e o valor da hora com insalubridade.
-	 */
-	public double calcularValorDasHorasTrabalhadas() {
-
-		double valorHoras = this.calculaValorHora();
-		double valor = this.horasTrabalhadas * valorHoras;
-
-		return valor;
-	}
-
-	/**
-	 * Calcula o valor a ser descontado de horas faltas
-	 * 
-	 * Realiza o cálculo das horas faltas a serem descontadas na folha do
-	 * colaborador, recebe o valor de horasFalta e multiplica valorInsalubridade
-	 * 
-	 * @return valorFaltas = Retorna o valor a ser descontado na folha do
-	 *         colaborador referente as horas faltas.
-	 */
-	public double calcularValorHorasFaltas() { // Testado
-		this.valorHorasFaltas = this.horasFalta * this.valorHoras;
-		return this.valorHorasFaltas;
-	}
-
-	/**
 	 * Calcula férias
+	 * 
+	 * Vai virar uma interface e um método
+	 * 
+	 * Comentar esse método
 	 * 
 	 * 
 	 */
@@ -181,11 +118,12 @@ public class Folha {
 			valorTotalFerias -= this.calcularDescontoImpostoRenda(valorTotalFerias);
 		}
 		return valorTotalFerias;
-
 	}
 
 	/**
 	 * Pega a dataEmissao atual
+	 * 
+	 * Vai virar uma classe
 	 * 
 	 * Seta o atributo dataEmissao com a dataEmissao atual no formato DD/MM/AAAA
 	 */

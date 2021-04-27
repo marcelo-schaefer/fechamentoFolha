@@ -2,8 +2,6 @@ package br.com.proway.senior.model;
 
 import java.util.ArrayList;
 
-import br.com.proway.senior.model.Interfaces.InterfaceFolhaDAO;
-
 public final class FolhaDAO implements InterfaceFolhaDAO {
 
 	private static FolhaDAO instance;

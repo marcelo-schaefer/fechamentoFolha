@@ -1,4 +1,6 @@
-package br.com.proway.senior.model;
+package br.com.proway.senior.controller;
+
+import br.com.proway.senior.model.Folha;
 
 public class CalculosDeExtras
 		implements InterfaceBonificacaoExtra, InterfaceInsalubridadeExtra, InterfaceReflexoDsrExtra {

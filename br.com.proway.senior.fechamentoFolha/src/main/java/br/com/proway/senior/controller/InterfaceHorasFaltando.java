@@ -1,4 +1,4 @@
-package br.com.proway.senior.model;
+package br.com.proway.senior.controller;
 
 public interface InterfaceHorasFaltando {
 	public double calcularValorHorasFaltas();

@@ -1,8 +1,8 @@
-package br.com.proway.senior.model.Interfaces;
+package br.com.proway.senior.model;
 
 import java.util.ArrayList;
 
-public interface InterfaceCadastroColaborador {
+public interface InterfaceColaboradorFolha {
 
 	public int getId();
 	

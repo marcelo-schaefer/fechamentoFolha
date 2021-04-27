@@ -1,8 +1,6 @@
-package br.com.proway.senior.model.Interfaces;
+package br.com.proway.senior.model;
 
 import java.util.ArrayList;
-
-import br.com.proway.senior.model.Folha;
 
 public interface InterfaceFolhaDAO {
 	
