@@ -12,8 +12,6 @@ public interface InterfaceFolhaDAO {
 	
 	public ArrayList<Folha> getFolhaPorDataEId(String data, int id);
 
-	public void setListaFolhas(ArrayList<Folha> listaFolhas);
-	
 	public void saveFolha(Folha folha);
 	
 }

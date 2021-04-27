@@ -1,8 +1,6 @@
 package br.com.proway.senior.model;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -10,24 +8,21 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 public class FolhaDAOTest {
-	
-	@Test
-	public void testGetInstance() {
-		ArrayList<Folha> folhas = new ArrayList<Folha>();
-		Folha folha = new Folha(1);
-		folhas.add(folha);
-		FolhaDAO listaFolhas = FolhaDAO.getInstance(folhas);
-		assertArrayEquals(folhas, listaFolhas.getAll());
-	}
 
 	@Test
+	public void testGetInstance() {
+		Folha folha = new Folha(4);
+		FolhaDAO listaFolhas = FolhaDAO.getInstance();
+		listaFolhas.saveFolha(folha);
+		assertEquals(folha.getId(), listaFolhas.getAll().get(0).getId());
+	}
+
+	@Ignore
 	public void testGetFolhasPorId() {
-		ArrayList<Folha> folhas = new ArrayList<Folha>();
-		Folha folha = new Folha(0);
-		folhas.add(folha);
-		FolhaDAO listaFolhas = FolhaDAO.getInstance(folhas);
-		assertNotNull(listaFolhas.getFolhasPorId(0));
-		
+		Folha folha = new Folha(4);
+		FolhaDAO listaFolhas = FolhaDAO.getInstance();
+		assertEquals(4, listaFolhas.getFolhasPorId(0));	
+				
 	}
 
 	@Ignore
