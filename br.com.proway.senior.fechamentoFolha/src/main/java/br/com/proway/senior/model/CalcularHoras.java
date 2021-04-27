@@ -4,7 +4,7 @@ public class CalcularHoras implements InterfaceHorasExtras, InterfaceHorasTrabal
 
 	public double calcularValorHorasFaltas() {
 		Folha folha = new Folha();
-		folha.setHorasTrabalhadas(folha.getHorasFalta() * folha.getValorHoras()); 
+		folha.setHorasTrabalhadas(folha.getHorasFalta() * folha.getValorHoras());
 		return folha.getHorasTrabalhadas();
 	}
 
@@ -15,10 +15,10 @@ public class CalcularHoras implements InterfaceHorasExtras, InterfaceHorasTrabal
 
 		return valor;
 	}
-	
-	public double calculaValorHora() { 
+
+	public double calculaValorHora() {
 		CalculosDeExtras calculo = new CalculosDeExtras();
-		Folha folha = new Folha();		
+		Folha folha = new Folha();
 		double valorHoraInsalubridade = (calculo.calculaInsalubridade() / 220);
 		if (valorHoraInsalubridade < 0) {
 			folha.setValorHoras(folha.getSalarioBase() / 220);
@@ -28,12 +28,13 @@ public class CalcularHoras implements InterfaceHorasExtras, InterfaceHorasTrabal
 			return folha.getValorHoras();
 		}
 	}
-	
+
 	public double calcularValorHorasExtras() {
 		Folha folha = new Folha();
 		double valorHora50Porcento;
-		valorHora50Porcento = get.ValorHoras + (this.valorHoras * this.fator);
-		return this.valorHoraExtra = this.horasExtra * valorHora50Porcento;
+		valorHora50Porcento = folha.getValorHoras() + (folha.getValorHoras() * folha.getFator());
+		folha.setValorHoraExtra(folha.getHorasExtra() * valorHora50Porcento);
+		return folha.getValorHoraExtra();
 	}
 
 }
