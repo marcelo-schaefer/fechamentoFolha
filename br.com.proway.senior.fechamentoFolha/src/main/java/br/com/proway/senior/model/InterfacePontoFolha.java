@@ -4,7 +4,7 @@ public interface InterfacePontoFolha {
 
 	public double getHorasTrabalhadas();
 	
-	public double getHoraExtra();
+	public double getHorasExtra();
 	
 	public double getHorasFaltas();
 	

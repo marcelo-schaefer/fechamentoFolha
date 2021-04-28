@@ -10,7 +10,7 @@ public interface InterfaceColaboradorFolha {
 	
 	public String getEmail();
 	
-	public <Pessoa> ArrayList<Pessoa> getDependentes();
+	public ArrayList<String> getDependentes();
 	
 	public boolean getValeTransporte();
 	

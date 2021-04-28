@@ -4,20 +4,34 @@ import java.util.ArrayList;
 
 public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 
-	private double salario;
-	private ArrayList<Folha> totalFolhas = new ArrayList<Folha>();
-	private ArrayList<String> dependentes = new ArrayList<String>();
-	private Ponto ponto;
 	private int id;
 	private String nome;
 	private String email;
+	private boolean isValeTransporte;
+	private double planoSaudeMensalidade;
+	private double planoSaudeCooparticipacao;
+	private ArrayList<String> dependentes = new ArrayList<String>();
 
-	public ColaboradorFolha(String nome, int id, String email, double salario) {
-		this.nome = nome;
+	public ColaboradorFolha() {}
+	
+	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
+			double planoSaudeCooparticipacao) {
 		this.id = id;
-		this.email = email;
-		this.salario = salario;
+		this.isValeTransporte = isValeTransporte;
+		this.planoSaudeMensalidade = planoSaudeMensalidade;
+		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
 	}
+
+	public ColaboradorFolha(int id, boolean isValeTransporte,
+			double planoSaudeMensalidade, double planoSaudeCooparticipacao, ArrayList<String> dependentes) {
+		this.id = id;
+		this.isValeTransporte = isValeTransporte;
+		this.planoSaudeMensalidade = planoSaudeMensalidade;
+		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
+		this.dependentes = dependentes;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -43,27 +57,12 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 		this.email = email;
 	}
 
-	public double getSalario() {
-		return salario;
+	public boolean isValeTransporte() {
+		return isValeTransporte;
 	}
 
-	public void setSalario(double salario) {
-		this.salario = salario;
-	}
-
-	public ArrayList<Folha> getTotalFolhas() {
-		return totalFolhas;
-	}
-
-	/**
-	 * Cadastra Folha
-	 * 
-	 * Adiciona uma Folha do Colaborador em sua lista de folhas totais
-	 * 
-	 * @param f; Um objeto da classe Folha
-	 */
-	public void addTotalFolhas(Folha f) {
-		this.totalFolhas.add(f);
+	public void setValeTransporte(boolean isValeTransporte) {
+		this.isValeTransporte = isValeTransporte;
 	}
 
 	public ArrayList<String> getDependentes() {
@@ -85,12 +84,24 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 		this.dependentes.add(p);
 	}
 
-	public Ponto getPonto() {
-		return ponto;
+	public boolean getValeTransporte() {
+		return isValeTransporte;
 	}
 
-	public void setPonto(Ponto ponto) {
-		this.ponto = ponto;
+	public double getPlanoSaudeMensalidade() {
+		return planoSaudeMensalidade;
+	}
+
+	public void setPlanoSaudeMensalidade(double planoSaudeMensalidade) {
+		this.planoSaudeMensalidade = planoSaudeMensalidade;
+	}
+
+	public double getPlanoSaudeCooparticipacao() {
+		return planoSaudeCooparticipacao;
+	}
+
+	public void setPlanoSaudeCooparticipacao(double planoSaudeCooparticipacao) {
+		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
 	}
 
 }
