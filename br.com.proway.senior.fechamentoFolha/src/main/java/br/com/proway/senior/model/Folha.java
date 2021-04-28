@@ -36,8 +36,7 @@ public class Folha {
 	 * 
 	 */
 	
-	public Folha() {
-	}
+	public Folha() {}
 
 	
 	/**
@@ -77,6 +76,8 @@ public class Folha {
 		this.salarioBase = cargo.getSalario();
 		this.valeTransporte = colaborador.getValeTransporte();
 		this.numeroDependentes = colaborador.getDependentes().size();
+		this.dias = ferias.getDias();
+		this.abono = ferias.getAbono();
 	}
 
 	// Set criado somente para debugar

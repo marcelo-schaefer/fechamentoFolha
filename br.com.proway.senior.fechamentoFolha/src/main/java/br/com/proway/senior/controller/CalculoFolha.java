@@ -28,6 +28,15 @@ public class CalculoFolha {
 		
 		//CalcularFerias calculoFerias = new CalcularFerias();
 		//calculoFerias.calcularFerias(folha);
+		calculoHoras.calcularValorDasHorasTrabalhadas(folha);
+		calculoHoras.calcularValorHorasFaltas(folha);
+		calculoHoras.calcularValorHorasExtras(folha);
+		calculosDeExtras.calcularDSR(folha);
+		calculosDeExtras.calcularBonificacao(folha);
+		calculosDesconto.calcularDescontoInss(folha);
+		calculosDesconto.calcularDescontoImpostoRenda(folha);
+		calculosDesconto.calcularDescontoPlanoSaude(folha);
+		calculosDesconto.calcularDescontoValeTransporte(folha);
 		
 		calculoData.setDataEmissao(folha);
 

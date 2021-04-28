@@ -13,6 +13,14 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 	private ArrayList<String> dependentes = new ArrayList<String>();
 
 	public ColaboradorFolha() {}
+	
+	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
+			double planoSaudeCooparticipacao) {
+		this.id = id;
+		this.isValeTransporte = isValeTransporte;
+		this.planoSaudeMensalidade = planoSaudeMensalidade;
+		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
+	}
 
 	public ColaboradorFolha(int id, boolean isValeTransporte,
 			double planoSaudeMensalidade, double planoSaudeCooparticipacao, ArrayList<String> dependentes) {
