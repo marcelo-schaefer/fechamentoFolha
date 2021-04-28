@@ -8,6 +8,13 @@ public class CargoFolha implements InterfaceCargoFolha {
 	
 	public CargoFolha () {}
 
+	
+	/**
+	 * 
+	 * @param salario
+	 * @param valorBonificacao
+	 * @param percentualInsalubridade
+	 */
 	public CargoFolha(double salario, double valorBonificacao, double percentualInsalubridade) {
 		this.salario = salario;
 		this.valorBonificacao = valorBonificacao;

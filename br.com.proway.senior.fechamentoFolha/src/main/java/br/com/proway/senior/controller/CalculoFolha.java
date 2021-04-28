@@ -16,34 +16,34 @@ public class CalculoFolha {
 	 * 
 	 * @return Salário liquido do coaborador
 	 */
-	public double calculoFolha(){
-		PontoFolha ponto = new PontoFolha();
-		ColaboradorFolha colab = new ColaboradorFolha();
-		CargoFolha cargo = new CargoFolha();
-		FeriasFolha ferias = new FeriasFolha();
+	public double calculoFolha(Folha folha){
 		
-		Folha folha = new Folha(colab, ponto, ferias, cargo);
+		double salarioLiquido = 0;
+		
+		
 		CalcularHoras calculoHoras = new CalcularHoras();
-		CalcularFerias calculoFerias = new CalcularFerias();
 		CalculoData calculoData = new CalculoData();
 		CalculosDeExtras calculosDeExtras = new CalculosDeExtras();
 		CalculosDesconto calculosDesconto = new CalculosDesconto();
 		
-		calculoFerias.calcularFerias(folha);
-		calculoHoras.calcularValorDasHorasTrabalhadas(folha);
-		calculoHoras.calcularValorHorasFaltas(folha);
-		calculoHoras.calcularValorHorasExtras(folha);
-		calculosDeExtras.calcularDSR(folha);
-		calculosDeExtras.calcularBonificacao(folha);
-		calculosDesconto.calcularDescontoInss(folha);
-		calculosDesconto.calcularDescontoImpostoRenda(folha);
-		calculosDesconto.calcularDescontoPlanoSaude(folha);
-		calculosDesconto.calcularDescontoValeTransporte(folha);
+		//CalcularFerias calculoFerias = new CalcularFerias();
+		//calculoFerias.calcularFerias(folha);
 		
-		folha.setSalarioLiquido(folha.getSalarioBruto());
 		calculoData.setDataEmissao(folha);
+
+		salarioLiquido += calculoHoras.calcularValorDasHorasTrabalhadas(folha);
+		salarioLiquido -= calculoHoras.calcularValorHorasFaltas(folha);
+		salarioLiquido += calculoHoras.calcularValorHorasExtras(folha);
+		salarioLiquido += calculosDeExtras.calcularDSR(folha);
+		salarioLiquido += calculosDeExtras.calcularBonificacao(folha);
+		salarioLiquido -= calculosDesconto.calcularDescontoInss(folha);
+		salarioLiquido -= calculosDesconto.calcularDescontoImpostoRenda(folha);
+		salarioLiquido -= calculosDesconto.calcularDescontoPlanoSaude(folha);
+		salarioLiquido -= calculosDesconto.calcularDescontoValeTransporte(folha);
 		
-		return folha.getSalarioLiquido();
+		folha.setSalarioLiquido(salarioLiquido);
+		
+		return salarioLiquido;
 	}
 	
 	
