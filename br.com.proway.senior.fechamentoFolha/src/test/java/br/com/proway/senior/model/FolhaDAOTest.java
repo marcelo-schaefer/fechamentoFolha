@@ -17,7 +17,7 @@ public class FolhaDAOTest {
 		assertEquals(folha.getId(), listaFolhas.getAll().get(0).getId());
 	}
 
-	@Ignore
+	@Test
 	public void testGetFolhasPorId1() {
 		Folha folha = new Folha(4);
 		FolhaDAO listaFolhas = FolhaDAO.getInstance();
@@ -26,7 +26,7 @@ public class FolhaDAOTest {
 
 	}
 
-	@Ignore
+	@Test
 	public void testGetFolhaPorDataEId() {
 		Folha folha = new Folha(5);
 		folha.setDataEmissao("27/04/2021");
@@ -52,7 +52,7 @@ public class FolhaDAOTest {
 		assertNull(listaFolha.getFolhaPorDataEId("27/04/2021", 9));
 		}
 	
-	@Ignore
+	@Test
 	public void testRemoveFolha() {
 		Folha folha = new Folha(7);
 		FolhaDAO listaFolha = FolhaDAO.getInstance();
@@ -63,7 +63,7 @@ public class FolhaDAOTest {
 		
 	}
 	
-	@Ignore
+	@Test
 	public void testUpdateFolha() {
 		Folha folha = new Folha(7);
 		Folha folha3 = new Folha();
@@ -74,7 +74,7 @@ public class FolhaDAOTest {
 		assertTrue(listaFolha.updateFolha(folha3, 7));
 	}
 	
-	@Ignore
+	@Test
 	public void getFolhaIdColaborador() {
 		Folha folha = new Folha();
 		FolhaDAO listaFolha = FolhaDAO.getInstance();

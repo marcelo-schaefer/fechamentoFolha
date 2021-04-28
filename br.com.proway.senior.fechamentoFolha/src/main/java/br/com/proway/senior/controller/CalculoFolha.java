@@ -1,10 +1,6 @@
 package br.com.proway.senior.controller;
 
-import br.com.proway.senior.model.CargoFolha;
-import br.com.proway.senior.model.ColaboradorFolha;
-import br.com.proway.senior.model.FeriasFolha;
 import br.com.proway.senior.model.Folha;
-import br.com.proway.senior.model.PontoFolha;
 
 public class CalculoFolha { 
 	
@@ -26,20 +22,7 @@ public class CalculoFolha {
 		CalculosDeExtras calculosDeExtras = new CalculosDeExtras();
 		CalculosDesconto calculosDesconto = new CalculosDesconto();
 		
-		//CalcularFerias calculoFerias = new CalcularFerias();
-		//calculoFerias.calcularFerias(folha);
-//		calculoHoras.calcularValorDasHorasTrabalhadas(folha);
-//		calculoHoras.calcularValorHorasFaltas(folha);
-//		calculoHoras.calcularValorHorasExtras(folha);
-//		calculosDeExtras.calcularDSR(folha);
-//		calculosDeExtras.calcularBonificacao(folha);
-//		calculosDesconto.calcularDescontoInss(folha);
-//		calculosDesconto.calcularDescontoImpostoRenda(folha);
-//		calculosDesconto.calcularDescontoPlanoSaude(folha);
-//		calculosDesconto.calcularDescontoValeTransporte(folha);
-		
 		calculoData.setDataEmissao(folha);
-
 		salarioLiquido = calculoHoras.calcularValorDasHorasTrabalhadas(folha);
 		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
 		salarioLiquido = calculoHoras.calcularValorHorasFaltas(folha);
@@ -63,26 +46,5 @@ public class CalculoFolha {
 		
 		return folha.getSalarioLiquido();
 	}
-	
-//	private addSalarioBruto() {
-		
-//	}
-	/*
-	public double calcularFolha() {
 
-		this.salarioBruto += this.calcularValorDasHorasTrabalhadas();
-		this.salarioBruto -= this.calcularValorHorasFaltas();
-		this.salarioBruto += this.calcularValorHorasExtras();
-		this.salarioBruto += this.calcularDSR();
-		this.salarioBruto += this.calcularBonificacao();
-		this.salarioBruto -= this.calcularDescontoInss();
-		this.salarioBruto -= this.calcularDescontoImpostoRenda();
-		this.salarioBruto -= this.calcularDescontoPlanoSaude();
-		this.salarioBruto -= this.calcularDescontoValeTransporte();
-		this.salarioLiquido = this.salarioBruto;
-		this.setDataEmissao();
-
-		return this.salarioLiquido;
-	}
-*/
 }

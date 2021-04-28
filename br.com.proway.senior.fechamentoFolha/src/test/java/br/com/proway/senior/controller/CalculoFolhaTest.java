@@ -27,8 +27,8 @@ public class CalculoFolhaTest {
 		calculo.calculoFolha(folha);
 		
 		assertEquals(1342.50, folha.getSalarioLiquido(), 0.01);
-		
 	}
+	
 	@Test
 	public void testCalculoFolhaComDependente() {
 		dependentes.add("dependente");
