@@ -19,16 +19,25 @@ public class CalculoFolhaTest {
 	CalculoFolha calculo = new CalculoFolha();
 	
 	@Test
-	public void testeCalculoFolha4() {
-		ColaboradorFolha colab = new ColaboradorFolha(0, true, 100, 15, dependentes);
-		PontoFolha ponto = new PontoFolha(220, 17.10, 7.46);
-		CargoFolha cargo = new CargoFolha(1200, 122, 40);		
+	public void testeCalculoFolha() {
+		ColaboradorFolha colab = new ColaboradorFolha(0, true, 100, 25, dependentes);
+		PontoFolha ponto = new PontoFolha(220, 0, 0);
+		CargoFolha cargo = new CargoFolha(1500, 250, 0);		
 		Folha folha = new Folha(colab, ponto, feriasVazias, cargo);
-		
 		calculo.calculoFolha(folha);
-
-		assertEquals(1535.89, folha.getSalarioLiquido(), 0.01);
+		
+		assertEquals(1342.50, folha.getSalarioLiquido(), 0.01);
 		
 	}
-
+	@Test
+	public void testCalculoFolhaComDependente() {
+		dependentes.add("dependente");
+		ColaboradorFolha colab = new ColaboradorFolha(0, true, 100, 127, dependentes);
+		PontoFolha ponto = new PontoFolha(220, 19.37, 12.89);
+		CargoFolha cargo = new CargoFolha(2751.0, 153, 10);		
+		Folha folha = new Folha(colab, ponto, feriasVazias, cargo);
+		calculo.calculoFolha(folha);
+	
+		assertEquals(2481.50, folha.getSalarioLiquido(), 0.01);
+	}
 }

@@ -28,34 +28,45 @@ public class CalculoFolha {
 		
 		//CalcularFerias calculoFerias = new CalcularFerias();
 		//calculoFerias.calcularFerias(folha);
-		calculoHoras.calcularValorDasHorasTrabalhadas(folha);
-		calculoHoras.calcularValorHorasFaltas(folha);
-		calculoHoras.calcularValorHorasExtras(folha);
-		calculosDeExtras.calcularDSR(folha);
-		calculosDeExtras.calcularBonificacao(folha);
-		calculosDesconto.calcularDescontoInss(folha);
-		calculosDesconto.calcularDescontoImpostoRenda(folha);
-		calculosDesconto.calcularDescontoPlanoSaude(folha);
-		calculosDesconto.calcularDescontoValeTransporte(folha);
+//		calculoHoras.calcularValorDasHorasTrabalhadas(folha);
+//		calculoHoras.calcularValorHorasFaltas(folha);
+//		calculoHoras.calcularValorHorasExtras(folha);
+//		calculosDeExtras.calcularDSR(folha);
+//		calculosDeExtras.calcularBonificacao(folha);
+//		calculosDesconto.calcularDescontoInss(folha);
+//		calculosDesconto.calcularDescontoImpostoRenda(folha);
+//		calculosDesconto.calcularDescontoPlanoSaude(folha);
+//		calculosDesconto.calcularDescontoValeTransporte(folha);
 		
 		calculoData.setDataEmissao(folha);
 
-		salarioLiquido += calculoHoras.calcularValorDasHorasTrabalhadas(folha);
-		salarioLiquido -= calculoHoras.calcularValorHorasFaltas(folha);
-		salarioLiquido += calculoHoras.calcularValorHorasExtras(folha);
-		salarioLiquido += calculosDeExtras.calcularDSR(folha);
-		salarioLiquido += calculosDeExtras.calcularBonificacao(folha);
-		salarioLiquido -= calculosDesconto.calcularDescontoInss(folha);
-		salarioLiquido -= calculosDesconto.calcularDescontoImpostoRenda(folha);
-		salarioLiquido -= calculosDesconto.calcularDescontoPlanoSaude(folha);
-		salarioLiquido -= calculosDesconto.calcularDescontoValeTransporte(folha);
+		salarioLiquido = calculoHoras.calcularValorDasHorasTrabalhadas(folha);
+		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
+		salarioLiquido = calculoHoras.calcularValorHorasFaltas(folha);
+		folha.setSalarioBruto(folha.getSalarioBruto() - salarioLiquido);
+		salarioLiquido = calculoHoras.calcularValorHorasExtras(folha);
+		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
+		salarioLiquido = calculosDeExtras.calcularDSR(folha);
+		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
+		salarioLiquido = calculosDeExtras.calcularBonificacao(folha);
+		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
+		salarioLiquido = calculosDesconto.calcularDescontoInss(folha);
+		folha.setSalarioBruto(folha.getSalarioBruto() - salarioLiquido);
+		salarioLiquido = calculosDesconto.calcularDescontoImpostoRenda(folha);
+		folha.setSalarioBruto(folha.getSalarioBruto() - salarioLiquido);
+		salarioLiquido = calculosDesconto.calcularDescontoPlanoSaude(folha);
+		folha.setSalarioBruto(folha.getSalarioBruto() - salarioLiquido);
+		salarioLiquido = calculosDesconto.calcularDescontoValeTransporte(folha);
+		folha.setSalarioBruto(folha.getSalarioBruto() - salarioLiquido);
 		
-		folha.setSalarioLiquido(salarioLiquido);
+		folha.setSalarioLiquido(folha.getSalarioBruto());
 		
-		return salarioLiquido;
+		return folha.getSalarioLiquido();
 	}
 	
-	
+//	private addSalarioBruto() {
+		
+//	}
 	/*
 	public double calcularFolha() {
 
