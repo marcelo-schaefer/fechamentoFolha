@@ -1,5 +1,5 @@
 /**
-* @ Author - Vitor André Gehrke - vitor.gehrke@gmail.com
+* @author Vitor André Gehrke - vitor.gehrke@gmail.com
 */
 package br.com.proway.senior.controller;
 
