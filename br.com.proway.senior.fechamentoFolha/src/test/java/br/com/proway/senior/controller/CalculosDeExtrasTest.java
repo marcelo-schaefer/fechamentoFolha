@@ -1,8 +1,10 @@
+/**
+* @ Author - Vitor André Gehrke - vitor.gehrke@gmail.com
+*/
 package br.com.proway.senior.controller;
 
 import static org.junit.Assert.*;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.proway.senior.model.Folha;
