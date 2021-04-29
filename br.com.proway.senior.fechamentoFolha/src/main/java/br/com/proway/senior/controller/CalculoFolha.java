@@ -18,20 +18,21 @@ public class CalculoFolha {
 		
 		
 		CalcularHoras calculoHoras = new CalcularHoras();
-		CalculoData calculoData = new CalculoData();
-		CalculosDeExtras calculosDeExtras = new CalculosDeExtras();
+		CalculosDeExtras calculosDeProventos = new CalculosDeExtras();
 		CalculosDesconto calculosDesconto = new CalculosDesconto();
-		
-		calculoData.setDataEmissao(folha);
+
+		// Calculo de Horas
 		salarioLiquido = calculoHoras.calcularValorDasHorasTrabalhadas(folha);
 		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
 		salarioLiquido = calculoHoras.calcularValorHorasFaltas(folha);
 		folha.setSalarioBruto(folha.getSalarioBruto() - salarioLiquido);
 		salarioLiquido = calculoHoras.calcularValorHorasExtras(folha);
+		// Calculo de Extras
 		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
-		salarioLiquido = calculosDeExtras.calcularDSR(folha);
+		salarioLiquido = calculosDeProventos.calcularDSR(folha);
 		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
-		salarioLiquido = calculosDeExtras.calcularBonificacao(folha);
+		salarioLiquido = calculosDeProventos.calcularBonificacao(folha);
+		//Calculo Descontos		
 		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
 		salarioLiquido = calculosDesconto.calcularDescontoInss(folha);
 		folha.setSalarioBruto(folha.getSalarioBruto() - salarioLiquido);

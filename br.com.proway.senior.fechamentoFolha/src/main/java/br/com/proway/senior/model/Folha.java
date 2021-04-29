@@ -1,9 +1,13 @@
 package br.com.proway.senior.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Folha {
 	private int id;
 	private Integer idColaborador;
-	private String dataEmissao;
+	private LocalDate dataEmissao;
 	private double salarioLiquido;
 	private double salarioBruto = 0;
 	private double valorHoras;
@@ -33,29 +37,6 @@ public class Folha {
 	private int abono;
 
 	/**
-	 * Construtor
-	 * 
-	 */
-	
-	public Folha() {}
-
-	/**
-	 * 
-	 * Construtor
-	 * 
-	 * @param id
-	 * @param dataEmissao
-	 */
-	public Folha(int id, String dataEmissao) {
-		this.id = id;
-		this.dataEmissao = dataEmissao;
-	}
-
-	public Folha(int id) {
-		this.id = id;
-	}
-
-	/**
 	 * 
 	 * Alterar conforme esse modelo: this.horasTrabalhadas =
 	 * this.ponto.getHorasTrabalhadas();
@@ -79,6 +60,7 @@ public class Folha {
 		this.numeroDependentes = colaborador.getDependentes().size();
 		this.dias = ferias.getDias();
 		this.abono = ferias.getAbono();
+		setDataEmissao();
 	}
 
 	// Set criado somente para debugar
@@ -98,12 +80,13 @@ public class Folha {
 		this.id = id;
 	}
 
-	public String getDataEmissao() {
+	public LocalDate getDataEmissao() {
 		return dataEmissao;
 	}
 
-	public void setDataEmissao(String dataEmissao) {
-		this.dataEmissao = dataEmissao;
+	public void setDataEmissao() {
+		LocalDate dataEmissaoTime = LocalDate.now();
+		this.dataEmissao = dataEmissaoTime;
 	}
 
 	public double getSalarioLiquido() {

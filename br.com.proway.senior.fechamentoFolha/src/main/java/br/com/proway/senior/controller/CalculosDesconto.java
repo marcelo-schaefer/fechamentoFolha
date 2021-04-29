@@ -5,6 +5,7 @@ import br.com.proway.senior.model.Folha;
 public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, InterfaceValeTransporteDesconto,
 		InterfaceINSSDesconto, InterfacePlanoDeSaudeDesconto {
 
+	
 	/**
 	 * Desconto de Plano de Saude.
 	 * 

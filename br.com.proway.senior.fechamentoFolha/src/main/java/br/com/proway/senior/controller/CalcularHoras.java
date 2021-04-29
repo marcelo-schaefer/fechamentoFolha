@@ -14,7 +14,7 @@ public class CalcularHoras implements InterfaceHorasExtras, InterfaceHorasTrabal
 	 * @return valorFaltas = Retorna o valor a ser descontado na folha do
 	 *         colaborador referente as horas faltas.
 	 */
-	public double calcularValorHorasFaltas(Folha folha) {
+	public static double calcularValorHorasFaltas(Folha folha) {
 		folha.setValorHorasFaltas(folha.getHorasFalta() * folha.getValorHoras());
 		return folha.getValorHorasFaltas();
 	}
