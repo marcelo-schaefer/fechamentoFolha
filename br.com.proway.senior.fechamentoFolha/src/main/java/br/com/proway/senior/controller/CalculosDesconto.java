@@ -2,8 +2,7 @@ package br.com.proway.senior.controller;
 
 import br.com.proway.senior.model.Folha;
 
-public class CalculosDesconto implements InterfaceImpostoDeRendaDesconto, InterfaceValeTransporteDesconto,
-		InterfaceINSSDesconto, InterfacePlanoDeSaudeDesconto {
+public class CalculosDesconto extends AbstractCalculosDesconto {
 
 	
 	/**

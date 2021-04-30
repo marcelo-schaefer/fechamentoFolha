@@ -12,26 +12,27 @@ public class CalculoFolha {
 	 * 
 	 * @return Salário liquido do coaborador
 	 */
-	public double calculoFolha(Folha folha){
+	public double calculoFolha(
+			Folha folha, 
+			AbstractCalcularHoras calculoHoras, 
+			AbstractCalculosDeExtras calculosDeProventos,
+			AbstractCalculosDesconto calculosDesconto){
 		
 		double salarioLiquido = 0;
 		
-		
-		CalcularHoras calculoHoras = new CalcularHoras();
-		CalculosDeExtras calculosDeProventos = new CalculosDeExtras();
-		CalculosDesconto calculosDesconto = new CalculosDesconto();
-
 		// Calculo de Horas
 		salarioLiquido = calculoHoras.calcularValorDasHorasTrabalhadas(folha);
 		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
 		salarioLiquido = calculoHoras.calcularValorHorasFaltas(folha);
 		folha.setSalarioBruto(folha.getSalarioBruto() - salarioLiquido);
 		salarioLiquido = calculoHoras.calcularValorHorasExtras(folha);
+		
 		// Calculo de Extras
 		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
 		salarioLiquido = calculosDeProventos.calcularDSR(folha);
 		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
 		salarioLiquido = calculosDeProventos.calcularBonificacao(folha);
+		
 		//Calculo Descontos		
 		folha.setSalarioBruto(folha.getSalarioBruto() + salarioLiquido);
 		salarioLiquido = calculosDesconto.calcularDescontoInss(folha);

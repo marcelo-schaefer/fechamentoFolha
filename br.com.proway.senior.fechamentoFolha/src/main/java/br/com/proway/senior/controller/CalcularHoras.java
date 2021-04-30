@@ -2,7 +2,7 @@ package br.com.proway.senior.controller;
 
 import br.com.proway.senior.model.Folha;
 
-public class CalcularHoras implements InterfaceHorasExtras, InterfaceHorasTrabalhadas, InterfaceHorasFaltando {
+public class CalcularHoras extends AbstractCalcularHoras{
 
 	
 	/**
@@ -14,7 +14,7 @@ public class CalcularHoras implements InterfaceHorasExtras, InterfaceHorasTrabal
 	 * @return valorFaltas = Retorna o valor a ser descontado na folha do
 	 *         colaborador referente as horas faltas.
 	 */
-	public static double calcularValorHorasFaltas(Folha folha) {
+	public double calcularValorHorasFaltas(Folha folha) {
 		folha.setValorHorasFaltas(folha.getHorasFalta() * folha.getValorHoras());
 		return folha.getValorHorasFaltas();
 	}
