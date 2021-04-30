@@ -1,7 +1,7 @@
 package br.com.proway.senior.controller;
 
-import br.com.proway.senior.model.Folha;
+import br.com.proway.senior.model.PontoFolha;
 
 public interface InterfaceHorasExtras {
-	public double calcularValorHorasExtras(Folha folha);
+	public double calcularValorHorasExtras(PontoFolha pontoFolha, double valorHorasTrabalhadas);
 }

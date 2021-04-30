@@ -2,7 +2,7 @@ package br.com.proway.senior.model;
 
 public interface InterfaceCargoFolha {
 
-	public double getSalario();
+	public double getSalarioBase();
 	
 	public double getValorBonificacao();
 	

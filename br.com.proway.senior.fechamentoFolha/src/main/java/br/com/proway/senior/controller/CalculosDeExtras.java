@@ -18,30 +18,6 @@ public class CalculosDeExtras
 	}
 
 	/**
-	 * Calcula o valor da insalubridade
-	 * 
-	 * Realiza o cálculo do valor a ser implementado no salário mínimo, vai pegar a
-	 * variável salarioMinimo e multiplicar pela sua faixa de insalubridade.
-	 * 
-	 * @return valorInsalubridade = Retorna o valor a ser somado ao salário mínimo.
-	 */
-	public double calculaInsalubridade(Folha folha) {
-		if (folha.getPercentualInsalubridade() == 10) {
-			folha.setValorInsalubridade(folha.getSalarioMinimo() * 0.10);
-			return folha.getValorInsalubridade();
-		} else if (folha.getPercentualInsalubridade() == 20) {
-			folha.setValorInsalubridade(folha.getSalarioMinimo() * 0.20);
-			return folha.getValorInsalubridade();
-		} else if (folha.getPercentualInsalubridade() == 40) {
-			folha.setValorInsalubridade(folha.getSalarioMinimo() * 0.40);
-			return folha.getValorInsalubridade();
-		} else {
-			folha.setValorInsalubridade(0);
-			return folha.getValorInsalubridade();
-		}
-	}
-
-	/**
 	 * Recebe o valor de bonificação a ser acrescido na folha do colaborador
 	 * 
 	 * Recebe o valor da bonificação que será aplicado posteriormente nos proventos

@@ -5,32 +5,38 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Folha {
-	private int id;
-	private Integer idColaborador;
-	private LocalDate dataEmissao;
-	private double salarioLiquido;
-	private double salarioBruto = 0;
-	private double valorHoras;
-	private double valorHoraComInsalubridade;
-	private double horasTrabalhadas;
-	private double horasExtra;
-	private double valorHoraExtra;
-	private double reflexoDSR;
-	private double horasFalta;
-	private double valorHorasFaltas;
-	private double valorBonificacao;
-	private double planoSaude;
-	private double percentualInsalubridade;
-	private double valorInsalubridade;
-	private double inss;
-	private double valorImpostoDeRenda;
+	private int id; //
+	private Integer idColaborador; //
+	private LocalDate dataEmissao; //
+	
+	private double salarioLiquido; //
+	private double salarioBruto = 0; //
+	
+
+	private double valorHorasTrabalhadas;
+	
+	private double valorHoraExtra; //
+	private double horasExtra; // XXX
+	
+	private double reflexoDSR; // não sendo usado. tem haver com horas extras
+	
+	private double valorHorasFaltas; //
+	private double horasFalta; // XXX
+	
+	private double valorPlanoSaude; // valor
 	private double mensalidadePlanoSaude;
 	private double valorCooparticipacaoPlanoSaude;
+	
+	
+	private double valorBonificacao; // XXX - excluido pelo professor
+	
+	private double valorInss; // valor
+	
+	private double valorImpostoDeRenda;
+	
 	private double valorValeTransporte;
 	private boolean valeTransporte;
-	private double fator = 0.5; // 50% adicional hora extra
-	private double salarioMinimo = 1100;
-	private double salarioBase;
+	
 	private int numeroDependentes;
 	private double valorPorDependente = 189.59;
 	private int dias;
@@ -63,6 +69,8 @@ public class Folha {
 		setDataEmissao();
 	}
 
+	
+	
 	// Set criado somente para debugar
 	public void setSalarioBruto(double valor) {
 		this.salarioBruto = valor;
@@ -170,11 +178,11 @@ public class Folha {
 	}
 
 	public double getPlanoSaude() {
-		return planoSaude;
+		return valorPlanoSaude;
 	}
 
 	public void setPlanoSaude(double planoSaude) {
-		this.planoSaude = planoSaude;
+		this.valorPlanoSaude = planoSaude;
 	}
 
 	public double getPercentualInsalubridade() {
@@ -194,11 +202,11 @@ public class Folha {
 	}
 
 	public double getInss() {
-		return inss;
+		return valorInss;
 	}
 
 	public void setInss(double inss) {
-		this.inss = inss;
+		this.valorInss = inss;
 	}
 
 	public double getValorImpostoDeRenda() {
@@ -303,5 +311,19 @@ public class Folha {
 	public void setAbono(int abono) {
 		this.abono = abono;
 	}
+
+
+
+	public double getValorHorasTrabalhadas() {
+		return valorHorasTrabalhadas;
+	}
+
+
+
+	public void setValorHorasTrabalhadas(double valorHorasTrabalhadas) {
+		this.valorHorasTrabalhadas = valorHorasTrabalhadas;
+	}
+	
+	
 
 }

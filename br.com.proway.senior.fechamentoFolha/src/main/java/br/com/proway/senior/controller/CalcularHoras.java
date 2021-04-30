@@ -1,24 +1,13 @@
 package br.com.proway.senior.controller;
 
-import br.com.proway.senior.model.Folha;
+import br.com.proway.senior.model.CargoFolha;
+import br.com.proway.senior.model.PontoFolha;
 
 public class CalcularHoras extends AbstractCalcularHoras{
 
-	
-	/**
-	 * Calcula o valor a ser descontado de horas faltas
-	 * 
-	 * Realiza o cálculo das horas faltas a serem descontadas na folha do
-	 * colaborador, recebe o valor de horasFalta e multiplica valorInsalubridade
-	 * 
-	 * @return valorFaltas = Retorna o valor a ser descontado na folha do
-	 *         colaborador referente as horas faltas.
-	 */
-	public double calcularValorHorasFaltas(Folha folha) {
-		folha.setValorHorasFaltas(folha.getHorasFalta() * folha.getValorHoras());
-		return folha.getValorHorasFaltas();
-	}
-
+	private double salarioMinimo = 1100; // Regra de Negócio
+	private double valorHora;
+	private double fator = 0.5; // 50% adicional hora extra
 	
 	/**
 	 * Calcula o valor inicial do salário
@@ -27,14 +16,12 @@ public class CalcularHoras extends AbstractCalcularHoras{
 	 * após isso a variável valor recebe a multiplição de horasTrabalhas e
 	 * valorHoras
 	 * 
-	 * @return valor = Retorna o valor do salário inicial, considerando apenas a
+	 * @return valorDasHorasTrabalhadas = Retorna o valor do salário inicial, considerando apenas a
 	 *         quantidade horas trabalhadas e o valor da hora com insalubridade.
 	 */
-	public double calcularValorDasHorasTrabalhadas(Folha folha) {
-		double valorHoras = this.calculaValorHora(folha);
-		double valor = folha.getHorasTrabalhadas() * valorHoras;
-
-		return valor;
+	public double calcularValorDasHorasTrabalhadas(CargoFolha cargoFolha, PontoFolha pontoFolha) {
+		this.valorHora = calculaValorHora(cargoFolha);
+		return valorHora * pontoFolha.getHorasTrabalhadas();
 	}
 
 	
@@ -48,18 +35,47 @@ public class CalcularHoras extends AbstractCalcularHoras{
 	 *
 	 * @return valorHoras = vai retornar o valor ganho de insalubridade por hora
 	 */
-	public double calculaValorHora(Folha folha) {
-		CalculosDeExtras calculo = new CalculosDeExtras();
-		double valorHoraInsalubridade = (calculo.calculaInsalubridade(folha) / 220);
-		if (valorHoraInsalubridade < 0) {
-			folha.setValorHoras(folha.getSalarioBase() / 220);
-			return folha.getValorHoras();
+	private double calculaValorHora(CargoFolha cargoFolha) {
+		double valorHoraInsalubridade = calculaInsalubridade(cargoFolha) / 220;
+		if (valorHoraInsalubridade < 0) {	
+			return cargoFolha.getSalarioBase() / 220;
 		} else {
-			folha.setValorHoras((folha.getSalarioBase() / 220) + valorHoraInsalubridade);
-			return folha.getValorHoras();
+			return ((cargoFolha.getSalarioBase() / 220) + valorHoraInsalubridade);
+		}
+	}
+	
+	/**
+	 * Calcula o valor da insalubridade
+	 * 
+	 * Realiza o cálculo do valor a ser implementado no salário mínimo, vai pegar a
+	 * variável salarioMinimo e multiplicar pela sua faixa de insalubridade.
+	 * 
+	 * @return valorInsalubridade = Retorna o valor a ser somado ao salário mínimo.
+	 */
+	private double calculaInsalubridade(CargoFolha cargoFolha) {
+		if (cargoFolha.getPercentualInsalubridade() == 10) {
+			return salarioMinimo * 0.10;
+		} else if (cargoFolha.getPercentualInsalubridade() == 20) {
+			return salarioMinimo * 0.20;
+		} else if (cargoFolha.getPercentualInsalubridade() == 40) {
+			return salarioMinimo * 0.40;
+		} else {
+			return 0;
 		}
 	}
 
+	/**
+	 * Calcula o valor a ser descontado de horas faltas
+	 * 
+	 * Realiza o cálculo das horas faltas a serem descontadas na folha do
+	 * colaborador, recebe o valor de horasFalta e multiplica valorInsalubridade
+	 * 
+	 * @return valorFaltas = Retorna o valor a ser descontado na folha do
+	 *         colaborador referente as horas faltas.
+	 */
+	public double calcularValorHorasFaltas(PontoFolha pontoFolha) {
+		return pontoFolha.getHorasFaltas() * this.valorHora;
+	}
 	
 	/**
 	 * Calcula o valor a ser pago em folha referente as horas extras
@@ -69,10 +85,7 @@ public class CalcularHoras extends AbstractCalcularHoras{
 	 * 
 	 * @return valor = Retorna o valor a ser pago de horas extras.
 	 */
-	public double calcularValorHorasExtras(Folha folha) {
-		double valorHora50Porcento;
-		valorHora50Porcento = folha.getValorHoras() + (folha.getValorHoras() * folha.getFator());
-		folha.setValorHoraExtra(folha.getHorasExtra() * valorHora50Porcento);
-		return folha.getValorHoraExtra();
+	public double calcularValorHorasExtras(PontoFolha pontoFolha, double valorHorasTrabalhadas) {
+		return pontoFolha.getHorasExtra() * (valorHora + (valorHora * fator));
 	}
 }
