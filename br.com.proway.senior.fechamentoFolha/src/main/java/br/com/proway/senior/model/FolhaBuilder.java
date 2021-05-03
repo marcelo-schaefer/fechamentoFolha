@@ -154,10 +154,6 @@ public class FolhaBuilder implements InterfaceFolhaBuilder {
 		return horasFalta;
 	}
 
-	public void setHorasFalta(double horasFalta) {
-		this.horasFalta = horasFalta;
-	}
-
 	public double getValorHorasFaltas() {
 		return valorHorasFaltas;
 	}
@@ -300,6 +296,16 @@ public class FolhaBuilder implements InterfaceFolhaBuilder {
 
 	public void setAbono(InterfaceFeriasFolha ferias) {
 		this.abono = ferias.getAbono();
+	}
+
+	public void setHorasFalta(InterfacePontoFolha ponto) {
+		this.horasFalta = ponto.getHorasFaltas();
+		
+	}
+
+	public void setValorHorasFaltas(double valor) {
+		this.valorHorasFaltas = valor;
+		
 	}
 
 

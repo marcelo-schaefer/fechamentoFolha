@@ -2,7 +2,7 @@ package br.com.proway.senior.model;
 
 import java.time.LocalDate;
 
-public class Folha {
+public class Folha implements InterfaceFolha{
 	private int id;
 	private Integer idColaborador;
 	private LocalDate dataEmissao;
@@ -58,7 +58,7 @@ public class Folha {
 		this.numeroDependentes = colaborador.getDependentes().size();
 		this.dias = ferias.getDias();
 		this.abono = ferias.getAbono();
-		setDataEmissao();
+		//setDataEmissao();
 	}
 
 
@@ -66,10 +66,6 @@ public class Folha {
 	// Set criado somente para debugar
 	public void setSalarioBruto(double valor) {
 		this.salarioBruto = valor;
-	}
-
-	public void setSalarioBase(double valor) {
-		this.salarioBase = valor;
 	}
 
 	public int getId() {
@@ -115,10 +111,6 @@ public class Folha {
 
 	public double getHorasTrabalhadas() {
 		return horasTrabalhadas;
-	}
-
-	public void setHorasTrabalhadas(double horasTrabalhadas) {
-		this.horasTrabalhadas = horasTrabalhadas;
 	}
 
 	public double getHorasExtra() {
@@ -179,10 +171,6 @@ public class Folha {
 
 	public double getPercentualInsalubridade() {
 		return percentualInsalubridade;
-	}
-
-	public void setPercentualInsalubridade(double percentualInsalubridade) {
-		this.percentualInsalubridade = percentualInsalubridade;
 	}
 
 	public double getValorInsalubridade() {
@@ -261,10 +249,6 @@ public class Folha {
 		return numeroDependentes;
 	}
 
-	public void setNumeroDependentes(int numeroDependentes) {
-		this.numeroDependentes = numeroDependentes;
-	}
-
 	public double getValorPorDependente() {
 		return valorPorDependente;
 	}
@@ -292,16 +276,67 @@ public class Folha {
 		return dias;
 	}
 
-	public void setDias(int dias) {
-		this.dias = dias;
-	}
-
 	public int getAbono() {
 		return abono;
 	}
 
-	public void setAbono(int abono) {
-		this.abono = abono;
+// ------------------------------------------------------------------//
+	
+	public void setId(InterfaceColaboradorFolha colaborador) {
+		// TODO
+	}
+
+	public void setDataEmissao(LocalDate dataEmissao) {
+		// TODO Auto-generated method stub
+	}
+
+	public void setHorasTrabalhadas(InterfacePontoFolha ponto) {
+		this.horasTrabalhadas = ponto.getHorasTrabalhadas();
+		
+	}
+
+	public void setHorasExtra(InterfacePontoFolha ponto) {
+		this.horasExtra = ponto.getHorasExtra();
+	}
+
+	public void setValorHorasFaltas(InterfacePontoFolha ponto) {
+		// TODO Auto-generated method stub
+	}
+
+	public void setValorBonificacao(InterfaceCargoFolha cargo) {
+		this.valorBonificacao = cargo.getValorBonificacao();
+	}
+
+	public void setPercentualInsalubridade(InterfaceCargoFolha cargo) {
+		this.percentualInsalubridade = cargo.getPercentualInsalubridade();
+	}
+
+	public void setMensalidadePlanoSaude(InterfaceColaboradorFolha colab) {
+		this.mensalidadePlanoSaude = colab.getPlanoSaudeMensalidade();
+	}
+
+	public void setValorCooparticipacaoPlanoSaude(InterfaceColaboradorFolha colab) {
+		this.valorCooparticipacaoPlanoSaude = colab.getPlanoSaudeCooparticipacao();
+	}
+
+	public void setValeTransporte(InterfaceColaboradorFolha colab) {
+		this.valeTransporte = colab.getValeTransporte();
+	}
+
+	public void setSalarioBase(InterfaceCargoFolha cargo) {
+		this.salarioBase = cargo.getSalario();
+	}
+
+	public void setNumeroDependentes(InterfaceColaboradorFolha colab) {
+		this.numeroDependentes = colab.getDependentes().size();
+	}
+
+	public void setDias(InterfaceFeriasFolha ferias) {
+		this.dias = ferias.getDias();
+	}
+
+	public void setAbono(InterfaceFeriasFolha ferias) {
+		this.abono = ferias.getAbono();
 	}
 
 }

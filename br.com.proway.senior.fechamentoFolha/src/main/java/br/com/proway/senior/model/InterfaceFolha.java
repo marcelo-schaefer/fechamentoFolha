@@ -6,10 +6,8 @@ public interface InterfaceFolha {
 
 	public int getId(); 
 	
-
 	public void setId(InterfaceColaboradorFolha colaborador); 
 	
-
 	public Integer getIdColaborador(); 
 	
 
