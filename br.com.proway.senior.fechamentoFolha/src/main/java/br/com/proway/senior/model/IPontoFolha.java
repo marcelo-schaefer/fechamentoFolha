@@ -1,6 +1,6 @@
 package br.com.proway.senior.model;
 
-public interface InterfacePontoFolha {
+public interface IPontoFolha {
 
 	public double getHorasTrabalhadas();
 	

@@ -17,7 +17,7 @@ public class CalcularHorasTest {
 	
 	ArrayList<String> dependentes = new ArrayList<String>();
 	FeriasFolha feriasVazias = new FeriasFolha();
-	CalcularHoras horas = new CalcularHoras();
+	CalculoHoras horas = new CalculoHoras();
 	
 	@Test
 	public void testeHorasFaltas() {

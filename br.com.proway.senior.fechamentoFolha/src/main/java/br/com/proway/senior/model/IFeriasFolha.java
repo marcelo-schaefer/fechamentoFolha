@@ -1,6 +1,6 @@
 package br.com.proway.senior.model;
 
-public interface InterfaceFeriasFolha {
+public interface IFeriasFolha {
 
 	public int getDias(); 
 	

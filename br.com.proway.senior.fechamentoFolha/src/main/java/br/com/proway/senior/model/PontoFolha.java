@@ -1,13 +1,11 @@
 package br.com.proway.senior.model;
 
-public class PontoFolha implements InterfacePontoFolha{
+public class PontoFolha implements IPontoFolha{
 	
 	private double horasTrabalhadas;
 	private double horasExtra;
 	private double horasFaltas;
 	
-	public PontoFolha () {}
-
 	public PontoFolha(double horasTrabalhadas, double horasExtra, double horasFaltas) {
 		this.horasTrabalhadas = horasTrabalhadas;
 		this.horasExtra = horasExtra;
