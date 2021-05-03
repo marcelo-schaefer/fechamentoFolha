@@ -17,7 +17,7 @@ public interface InterfaceFolhaDAO {
 	
 	public boolean removeFolha(int id);
 	
-	public Folha getFolhaIdColaborador(Integer idColaborador);
+	public ArrayList<Folha> getFolhaIdColaborador(Integer idColaborador);
 	
 	
 }

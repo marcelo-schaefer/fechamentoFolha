@@ -115,10 +115,31 @@ public class FolhaDAOTest {
 			for(ArrayList<String> row : lista) {
 				System.out.println(row.toString());
 			}
-			assertEquals(8, lista.size());
+			
+			
 			
 		}
-		@After
+		
+		@Test
+		public void testeFolhaPorId() {
+			FolhaDAO folhaDAO = FolhaDAO.getInstance();
+			Folha folha = folhaDAO.getFolhasPorId(30);
+			System.out.println(folha.toString());
+				
+		}
+		
+		@Test
+		public void testeFolhaPorIdColaborador() {
+			FolhaDAO folhaDAO = FolhaDAO.getInstance();
+			ArrayList<Folha> folhas = folhaDAO.getFolhasPorColaborador(10);
+			for(Folha folha : folhas) {
+				System.out.println(folha.toString());
+			}
+				
+		}
+		
+		
+		@Ignore
 		public void cleanDb() {
 			String delete = "DELETE FROM folha";
 		
