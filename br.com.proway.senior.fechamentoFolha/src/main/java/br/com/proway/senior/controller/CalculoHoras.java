@@ -1,32 +1,15 @@
 package br.com.proway.senior.controller;
 
-import br.com.proway.senior.model.CargoFolha;
-import br.com.proway.senior.model.Folha;
-import br.com.proway.senior.model.PontoFolha;
+import br.com.proway.senior.model.ICargoFolha;
+import br.com.proway.senior.model.IPontoFolha;
 
 public class CalculoHoras implements ICalculoHoras{
 
 	private double salarioMinimo = 1100; // Regra de Negócio
-	private double valorHora;
-	private double fator = 0.5; // 50% adicional hora extra
 	private double valorHorasExtras;
-	final double valorHorasDias = (double) 220 / 30;
+	private double fator = 0.5; // 50% adicional hora extra
 	
-	/**
-	 * Calcula o valor inicial do salário
-	 * 
-	 * Pega o valor do método calculaValorHora passa para a variável valorHoras,
-	 * após isso a variável valor recebe a multiplição de horasTrabalhas e
-	 * valorHoras
-	 * 
-	 * @return valorDasHorasTrabalhadas = Retorna o valor do salário inicial, considerando apenas a
-	 *         quantidade horas trabalhadas e o valor da hora com insalubridade.
-	 */
-	public double calcularValorDasHorasTrabalhadas(CargoFolha cargoFolha, PontoFolha pontoFolha) {
-		this.valorHora = calculaValorHora(cargoFolha);
-		return valorHora * pontoFolha.getHorasTrabalhadas();
-	}
-
+	final double valorHorasDias = (double) 220 / 30;
 	
 	/**
 	 * Calcula hora normal somando insalubridade.
@@ -38,14 +21,31 @@ public class CalculoHoras implements ICalculoHoras{
 	 *
 	 * @return valorHoras = vai retornar o valor ganho de insalubridade por hora
 	 */
-	private double calculaValorHora(CargoFolha cargoFolha) {
+	public double calculaValorHora(ICargoFolha cargoFolha) {
 		double valorHoraInsalubridade = calculaInsalubridade(cargoFolha) / 220;
 		if (valorHoraInsalubridade < 0) {	
 			return cargoFolha.getSalarioBase() / 220;
 		} else {
 			return ((cargoFolha.getSalarioBase() / 220) + valorHoraInsalubridade);
 		}
+	}	
+	
+	/**
+	 * Calcula o valor inicial do salário
+	 * 
+	 * Pega o valor do método calculaValorHora passa para a variável valorHoras,
+	 * após isso a variável valor recebe a multiplição de horasTrabalhas e
+	 * valorHoras
+	 * 
+	 * @return valorDasHorasTrabalhadas = Retorna o valor do salário inicial, considerando apenas a
+	 *         quantidade horas trabalhadas e o valor da hora com insalubridade.
+	 */
+	public double calcularValorDasHorasTrabalhadas(IPontoFolha pontoFolha, double valorHora) {
+		return valorHora * pontoFolha.getHorasTrabalhadas();
 	}
+
+	
+
 	
 	/**
 	 * Calcula o valor da insalubridade
@@ -55,7 +55,7 @@ public class CalculoHoras implements ICalculoHoras{
 	 * 
 	 * @return valorInsalubridade = Retorna o valor a ser somado ao salário mínimo.
 	 */
-	private double calculaInsalubridade(CargoFolha cargoFolha) {
+	private double calculaInsalubridade(ICargoFolha cargoFolha) {
 		if (cargoFolha.getPercentualInsalubridade() == 10) {
 			return salarioMinimo * 0.10;
 		} else if (cargoFolha.getPercentualInsalubridade() == 20) {
@@ -76,8 +76,8 @@ public class CalculoHoras implements ICalculoHoras{
 	 * @return valorFaltas = Retorna o valor a ser descontado na folha do
 	 *         colaborador referente as horas faltas.
 	 */
-	public double calcularValorHorasFaltas(PontoFolha pontoFolha) {
-		return pontoFolha.getHorasFaltas() * this.valorHora;
+	public double calcularValorHorasFaltas(IPontoFolha pontoFolha, double valorHora) {
+		return pontoFolha.getHorasFaltas() * valorHora;
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public class CalculoHoras implements ICalculoHoras{
 	 * 
 	 * @return valor = Retorna o valor a ser pago de horas extras.
 	 */
-	public double calcularValorHorasExtras(PontoFolha pontoFolha, double valorHorasTrabalhadas) {
+	public double calcularValorHorasExtras(IPontoFolha pontoFolha, double valorHorasTrabalhadas, double valorHora) {
 		valorHorasExtras = pontoFolha.getHorasExtra() * (valorHora + (valorHora * fator));
 		return valorHorasExtras;
 	}
@@ -111,7 +111,7 @@ public class CalculoHoras implements ICalculoHoras{
 	 * @param valorHoras
 	 * @return
 	 */
-	public double calcularFerias(int dias, int abono) {
+	public double calcularFerias(int dias, int abono, double valorHora) {
 		double valorDia = valorHora * valorHorasDias;
 		double valorFerias = dias * valorDia;
 		double valorFeriasUmTerco = valorFerias / 3;

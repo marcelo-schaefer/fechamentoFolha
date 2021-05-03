@@ -1,8 +1,7 @@
 package br.com.proway.senior.controller;
 
-import br.com.proway.senior.model.ColaboradorFolha;
-import br.com.proway.senior.model.Folha;
-import br.com.proway.senior.model.CargoFolha;
+import br.com.proway.senior.model.ICargoFolha;
+import br.com.proway.senior.model.IColaboradorFolha;
 
 public class CalculoDesconto implements ICalculoDesconto {
 
@@ -17,8 +16,8 @@ public class CalculoDesconto implements ICalculoDesconto {
 	 * 
 	 * @return inss = Retorna o valor a ser descontado em folha.
 	 */
-	public double calcularDescontoInss(double salarioBrutoAcumulado) {
-		return (salarioBrutoAcumulado * 0.11);
+	public double calcularDescontoInss(double valorAcumulado) {
+		return (valorAcumulado * 0.11);
 	}
 
 	
@@ -32,7 +31,7 @@ public class CalculoDesconto implements ICalculoDesconto {
 	 * @return valorImpostoDeRenda = Retorna o valor que a ser descontado em folha
 	 *         referente ao Imposto de Renda.
 	 */
-	public double calcularDescontoImpostoRenda(ColaboradorFolha colaboradorFolha, double salarioBrutoAcumulado) {
+	public double calcularDescontoImpostoRenda(IColaboradorFolha colaboradorFolha, double salarioBrutoAcumulado) {
 		double baseCalculoimpostoRenda = salarioBrutoAcumulado - calcularValorDeduzirDependente(colaboradorFolha.getNumeroDeDependentes());
 		if (baseCalculoimpostoRenda <= 1903.98) {
 			return 0;
@@ -61,7 +60,7 @@ public class CalculoDesconto implements ICalculoDesconto {
 	 * @return planoSaude = retorna valor a ser descontado em folha, referente ao
 	 *         Plano de Saude.
 	 */
-	public double calcularDescontoPlanoSaude(ColaboradorFolha colaboradorFolha) {
+	public double calcularDescontoPlanoSaude(IColaboradorFolha colaboradorFolha) {
 		double mensalidadePlanoSaude = colaboradorFolha.getPlanoSaudeMensalidade();
 		double valorCooparticipacao = colaboradorFolha.getPlanoSaudeCooparticipacao();
 		return mensalidadePlanoSaude + valorCooparticipacao;
@@ -79,7 +78,7 @@ public class CalculoDesconto implements ICalculoDesconto {
 	 * @return valeTransporte = valor do vale transporte a ser descontado do salário
 	 *         base.
 	 */
-	public double calcularDescontoValeTransporte(ColaboradorFolha colaboradorFolha, CargoFolha cargoFolha) {
+	public double calcularDescontoValeTransporte(IColaboradorFolha colaboradorFolha, ICargoFolha cargoFolha) {
 		if (colaboradorFolha.isValeTransporte()) {
 			double valorValorValeTransporte = (cargoFolha.getSalarioBase() * 0.06);
 			if (valorValorValeTransporte > 180) {

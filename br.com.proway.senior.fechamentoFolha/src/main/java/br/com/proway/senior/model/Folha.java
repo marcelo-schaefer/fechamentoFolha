@@ -1,10 +1,8 @@
 package br.com.proway.senior.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-public class Folha {
+public class Folha implements IFolha {
 	private int id; //
 	private Integer idColaborador; 
 	private LocalDate dataEmissao; 
@@ -37,145 +35,112 @@ public class Folha {
 	 * @param colaborador
 	 * @param ponto
 	 */
-	public Folha(IColaboradorFolha colaborador) {
-		this.idColaborador = colaborador.getId();
-		// Talvez chamar método calculoFolha?
+
+	public Folha(int id, Integer idColaborador, LocalDate dataEmissao, double valorHorasTrabalhadas,
+			double valorHorasFaltas, double valorHorasExtras, double valorReflexoDSR, double valorInss,
+			double valorImpostoDeRenda, double valorPlanoSaude, double valorValeTransporte, double salarioBruto,
+			double salarioLiquido, double valorFerias, double valorInssFerias, double valorImpostoDeRendaFerias,
+			double feriasLiquido) {
+		this.id = id;
+		this.idColaborador = idColaborador;
+		this.dataEmissao = dataEmissao;
+		this.valorHorasTrabalhadas = valorHorasTrabalhadas;
+		this.valorHorasFaltas = valorHorasFaltas;
+		this.valorHorasExtras = valorHorasExtras;
+		this.valorReflexoDSR = valorReflexoDSR;
+		this.valorInss = valorInss;
+		this.valorImpostoDeRenda = valorImpostoDeRenda;
+		this.valorPlanoSaude = valorPlanoSaude;
+		this.valorValeTransporte = valorValeTransporte;
+		this.salarioBruto = salarioBruto;
+		this.salarioLiquido = salarioLiquido;
+		this.valorFerias = valorFerias;
+		this.valorInssFerias = valorInssFerias;
+		this.valorImpostoDeRendaFerias = valorImpostoDeRendaFerias;
+		this.feriasLiquido = feriasLiquido;
 	}
+
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public Integer getIdColaborador() {
 		return idColaborador;
-	}
-
-	public void setIdColaborador(Integer idColaborador) {
-		this.idColaborador = idColaborador;
 	}
 
 	public LocalDate getDataEmissao() {
 		return dataEmissao;
 	}
 
-	public void setDataEmissao(LocalDate dataEmissao) {
-		this.dataEmissao = dataEmissao;
-	}
-
-	public double getSalarioLiquido() {
-		return salarioLiquido;
-	}
-
-	public void setSalarioLiquido(double salarioLiquido) {
-		this.salarioLiquido = salarioLiquido;
-	}
-
-	public double getSalarioBruto() {
-		return salarioBruto;
-	}
-
-	public void setSalarioBruto(double salarioBruto) {
-		this.salarioBruto = salarioBruto;
-	}
-
 	public double getValorHorasTrabalhadas() {
 		return valorHorasTrabalhadas;
-	}
-
-	public void setValorHorasTrabalhadas(double valorHorasTrabalhadas) {
-		this.valorHorasTrabalhadas = valorHorasTrabalhadas;
 	}
 
 	public double getValorHorasFaltas() {
 		return valorHorasFaltas;
 	}
 
-	public void setValorHorasFaltas(double valorHorasFaltas) {
-		this.valorHorasFaltas = valorHorasFaltas;
-	}
-
 	public double getValorHorasExtras() {
 		return valorHorasExtras;
-	}
-
-	public void setValorHorasExtras(double valorHorasExtras) {
-		this.valorHorasExtras = valorHorasExtras;
 	}
 
 	public double getValorReflexoDSR() {
 		return valorReflexoDSR;
 	}
 
-	public void setValorReflexoDSR(double valorReflexoDSR) {
-		this.valorReflexoDSR = valorReflexoDSR;
-	}
-
 	public double getValorInss() {
 		return valorInss;
-	}
-
-	public void setValorInss(double valorInss) {
-		this.valorInss = valorInss;
 	}
 
 	public double getValorImpostoDeRenda() {
 		return valorImpostoDeRenda;
 	}
 
-	public void setValorImpostoDeRenda(double valorImpostoDeRenda) {
-		this.valorImpostoDeRenda = valorImpostoDeRenda;
-	}
-
 	public double getValorPlanoSaude() {
 		return valorPlanoSaude;
-	}
-
-	public void setValorPlanoSaude(double valorPlanoSaude) {
-		this.valorPlanoSaude = valorPlanoSaude;
 	}
 
 	public double getValorValeTransporte() {
 		return valorValeTransporte;
 	}
 
-	public void setValorValeTransporte(double valorValeTransporte) {
-		this.valorValeTransporte = valorValeTransporte;
+	public double getSalarioBruto() {
+		return salarioBruto;
+	}
+
+	public double getSalarioLiquido() {
+		return salarioLiquido;
 	}
 
 	public double getValorFerias() {
 		return valorFerias;
 	}
 
-	public void setValorFerias(double valorFerias) {
-		this.valorFerias = valorFerias;
-	}
-
 	public double getValorInssFerias() {
 		return valorInssFerias;
-	}
-
-	public void setValorInssFerias(double valorInssFerias) {
-		this.valorInssFerias = valorInssFerias;
 	}
 
 	public double getValorImpostoDeRendaFerias() {
 		return valorImpostoDeRendaFerias;
 	}
 
-	public void setValorImpostoDeRendaFerias(double valorImpostoDeRendaFerias) {
-		this.valorImpostoDeRendaFerias = valorImpostoDeRendaFerias;
-	}
-
 	public double getFeriasLiquido() {
 		return feriasLiquido;
 	}
 
-	public void setFeriasLiquido(double feriasLiquido) {
-		this.feriasLiquido = feriasLiquido;
-	}
 
+	@Override
+	public String toString() {
+		return "Folha [id=" + id + ", idColaborador=" + idColaborador + ", dataEmissao=" + dataEmissao
+				+ ", valorHorasTrabalhadas=" + valorHorasTrabalhadas + ", valorHorasFaltas=" + valorHorasFaltas
+				+ ", valorHorasExtras=" + valorHorasExtras + ", valorReflexoDSR=" + valorReflexoDSR + ", valorInss="
+				+ valorInss + ", valorImpostoDeRenda=" + valorImpostoDeRenda + ", valorPlanoSaude=" + valorPlanoSaude
+				+ ", valorValeTransporte=" + valorValeTransporte + ", salarioBruto=" + salarioBruto
+				+ ", salarioLiquido=" + salarioLiquido + ", valorFerias=" + valorFerias + ", valorInssFerias="
+				+ valorInssFerias + ", valorImpostoDeRendaFerias=" + valorImpostoDeRendaFerias + ", feriasLiquido="
+				+ feriasLiquido + "]";
+	}
+	
 }

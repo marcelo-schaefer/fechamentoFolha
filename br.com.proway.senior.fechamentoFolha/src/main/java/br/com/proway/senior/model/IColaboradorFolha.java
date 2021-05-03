@@ -18,4 +18,8 @@ public interface IColaboradorFolha {
 	
 	public double getPlanoSaudeCooparticipacao();
 	
+	public boolean isValeTransporte();
+	
+	public int getNumeroDeDependentes();
+	
 }

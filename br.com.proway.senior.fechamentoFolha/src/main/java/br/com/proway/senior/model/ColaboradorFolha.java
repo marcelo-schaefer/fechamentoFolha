@@ -10,7 +10,7 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 	private boolean isValeTransporte;
 	private double planoSaudeMensalidade;
 	private double planoSaudeCooparticipacao;
-	private ArrayList<String> dependentes = new ArrayList<String>();
+	private ArrayList<String> dependentes;
 	
 	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
 			double planoSaudeCooparticipacao) {
@@ -18,6 +18,7 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 		this.isValeTransporte = isValeTransporte;
 		this.planoSaudeMensalidade = planoSaudeMensalidade;
 		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
+		this.dependentes = new ArrayList<String>();
 	}
 
 	public ColaboradorFolha(int id, boolean isValeTransporte,
@@ -103,6 +104,10 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 	}
 
 	public int getNumeroDeDependentes() {
-		return dependentes.size();
+		if(dependentes.isEmpty()) {
+			return 0;
+		} else {
+			return dependentes.size();
+		}		
 	}
 }
