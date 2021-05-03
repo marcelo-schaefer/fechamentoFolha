@@ -2,7 +2,7 @@ package br.com.proway.senior.model;
 
 import java.util.ArrayList;
 
-public final class ColaboradorFolha implements InterfaceColaboradorFolha {
+public final class ColaboradorFolha implements IColaboradorFolha {
 
 	private int id;
 	private String nome;
@@ -10,9 +10,7 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 	private boolean isValeTransporte;
 	private double planoSaudeMensalidade;
 	private double planoSaudeCooparticipacao;
-	private ArrayList<String> dependentes = new ArrayList<String>();
-
-	public ColaboradorFolha() {}
+	private ArrayList<String> dependentes;
 	
 	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
 			double planoSaudeCooparticipacao) {
@@ -20,6 +18,7 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 		this.isValeTransporte = isValeTransporte;
 		this.planoSaudeMensalidade = planoSaudeMensalidade;
 		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
+		this.dependentes = new ArrayList<String>();
 	}
 
 	public ColaboradorFolha(int id, boolean isValeTransporte,
@@ -104,4 +103,11 @@ public final class ColaboradorFolha implements InterfaceColaboradorFolha {
 		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
 	}
 
+	public int getNumeroDeDependentes() {
+		if(dependentes.isEmpty()) {
+			return 0;
+		} else {
+			return dependentes.size();
+		}		
+	}
 }

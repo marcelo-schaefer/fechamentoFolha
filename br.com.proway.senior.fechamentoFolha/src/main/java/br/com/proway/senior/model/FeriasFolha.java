@@ -1,12 +1,10 @@
 package br.com.proway.senior.model;
 
-public class FeriasFolha implements InterfaceFeriasFolha {
+public class FeriasFolha implements IFeriasFolha {
 
 	int dias;
 	int abono;
 	
-	public FeriasFolha () {}
-
 	/**
 	 * Construtor
 	 * 

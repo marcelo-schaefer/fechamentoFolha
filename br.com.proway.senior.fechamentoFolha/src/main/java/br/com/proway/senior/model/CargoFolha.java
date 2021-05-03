@@ -1,37 +1,26 @@
 package br.com.proway.senior.model;
 
-public class CargoFolha implements InterfaceCargoFolha {
+public class CargoFolha implements ICargoFolha {
 
-	private double salario;
-	private double valorBonificacao;
+	private double salarioBase;
 	private double percentualInsalubridade;
-	
-	public CargoFolha () {}
 
-	
 	/**
 	 * 
-	 * @param salario
+	 * @param salarioBase
 	 * @param valorBonificacao
 	 * @param percentualInsalubridade
 	 */
-	public CargoFolha(double salario, double valorBonificacao, double percentualInsalubridade) {
-		this.salario = salario;
-		this.valorBonificacao = valorBonificacao;
+	public CargoFolha(double salarioBase, double percentualInsalubridade) {
+		this.salarioBase = salarioBase;
 		this.percentualInsalubridade = percentualInsalubridade;
 	}
 	
-	public double getSalario() {
-		return salario;
+	public double getSalarioBase() {
+		return salarioBase;
 	}
 
 	public double getPercentualInsalubridade() {
 		return percentualInsalubridade;
 	}
-
-
-	public double getValorBonificacao() {
-		return valorBonificacao;
-	}
-
 }

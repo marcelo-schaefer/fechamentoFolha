@@ -2,7 +2,7 @@ package br.com.proway.senior.model;
 
 import java.util.ArrayList;
 
-public interface InterfaceColaboradorFolha {
+public interface IColaboradorFolha {
 
 	public int getId();
 	
@@ -17,5 +17,9 @@ public interface InterfaceColaboradorFolha {
 	public double getPlanoSaudeMensalidade();
 	
 	public double getPlanoSaudeCooparticipacao();
+	
+	public boolean isValeTransporte();
+	
+	public int getNumeroDeDependentes();
 	
 }

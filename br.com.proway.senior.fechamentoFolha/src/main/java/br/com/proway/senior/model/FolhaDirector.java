@@ -2,30 +2,33 @@ package br.com.proway.senior.model;
 
 public class FolhaDirector {
 	
-	public InterfaceFolhaBuilder builder;
+	public IFolhaBuilder builder;
 	
-	public FolhaDirector(InterfaceFolhaBuilder builder){
+	public FolhaDirector(IFolhaBuilder builder){
 		this.builder = builder;
 	};
-		
-	public void createFolha(InterfaceColaboradorFolha colaborador, InterfacePontoFolha ponto, InterfaceFeriasFolha ferias, InterfaceCargoFolha cargo) {
-		builder.setColaboradorFolha(colaborador);
-		builder.setPonto(ponto);
-		builder.setFerias(ferias);
-		builder.setCargo(cargo);
-		
-		builder.setHorasTrabalhadas(ponto);
-		builder.setHorasExtra(ponto);
-		builder.setHorasFalta(ponto);
-		builder.setValorBonificacao(cargo);
-		builder.setPercentualInsalubridade(cargo);
-		builder.setMensalidadePlanoSaude(colaborador);
-		builder.setValorCooparticipacaoPlanoSaude(colaborador);
-		builder.setSalarioBase(cargo);
-		builder.setValeTransporte(colaborador);
-		builder.setNumeroDependentes(colaborador);
-		builder.setDias(ferias);
-		builder.setAbono(ferias);
-		//return (Folha) builder.build();
+			
+	public void createFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo) {
+		builder.iniciarCalculos(colaborador, cargo);
+		builder.calcularHorasNormais(ponto, cargo);
+		builder.calcularDescontoNormal(colaborador, cargo);
+		builder.build();
 	}
+	
+	public void createFolhaFerias(IColaboradorFolha colaborador, IFeriasFolha ferias, ICargoFolha cargo) {
+		builder.iniciarCalculos(colaborador, cargo);			
+		builder.calcularHorasFerias(ferias);
+		builder.calcularDescontoFerias(colaborador);
+		builder.build();
+	}
+		
+	public void createFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, IFeriasFolha ferias) {
+		builder.iniciarCalculos(colaborador, cargo);	
+		builder.calcularHorasNormais(ponto, cargo);
+		builder.calcularDescontoNormal(colaborador, cargo);
+		builder.calcularHorasFerias(ferias);
+		builder.calcularDescontoFerias(colaborador);
+		builder.build();				
+	}
+
 }
