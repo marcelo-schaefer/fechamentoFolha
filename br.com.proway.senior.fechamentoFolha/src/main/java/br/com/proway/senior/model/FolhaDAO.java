@@ -1,11 +1,14 @@
 package br.com.proway.senior.model;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public final class FolhaDAO implements InterfaceFolhaDAO {
 
 	private static FolhaDAO instance;
-	private ArrayList<Folha> listaFolhas = new ArrayList<Folha>();
+//	private ArrayList<Folha> listaFolhas = new ArrayList<Folha>();
 
 	private FolhaDAO() {
 	}
@@ -18,12 +21,35 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 
 	/**
-	 * Busca todas as folhas cadastradas
+	 * Busca todas as folhas cadastradas na tabela folha do banco de dados
 	 * 
-	 * @return folhas
+	 * @return ArrayList<ResultSet>
 	 */
-	public ArrayList<Folha> getAll() {
-		return listaFolhas;
+	public ArrayList<ArrayList<String>> getAll() {
+
+		ArrayList<ArrayList<String>> lista = new ArrayList<ArrayList<String>>();
+		String select = "SELECT * FROM folha";
+		ResultSet rs;
+		try {
+			if (PostgresConnector.con == null){
+				PostgresConnector.connect();
+			}
+			rs = PostgresConnector.executeQuery(select);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int todasAsColunas = rsmd.getColumnCount();
+			while (rs.next()) {
+				ArrayList<String> linha = new ArrayList<>();
+				for (int i = 1; i <= todasAsColunas; i++) {
+					linha.add(rs.getString(i));
+				}
+				lista.add(linha);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lista;
+
 	}
 
 	/**
@@ -81,7 +107,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * Recebe uma folha nova e o id do objeto e substitui na lista do objeto
 	 * 
 	 * @param Folha folha, objeto atualizado
-	 * @param int id, id da folha que será atualizada
+	 * @param int   id, id da folha que será atualizada
 	 * 
 	 * @return boolean, retorna se foi atualizado, ou não.
 	 * 
@@ -98,11 +124,11 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		return false;
 
 	}
-	
+
 	/**
 	 * Remove folha.
 	 * 
-	 * Recebe um id e deleta da lista. 
+	 * Recebe um id e deleta da lista.
 	 * 
 	 * @param int id, folha que será deletada.
 	 * 
@@ -120,27 +146,25 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		return false;
 
 	}
-	
+
 	/**
 	 * Busca por IdColaborador
 	 * 
-	 * Busca a folha na listaFolhas através do idColaborador 
+	 * Busca a folha na listaFolhas através do idColaborador
 	 * 
 	 * @param Integer idColaborador, id de busca
 	 * 
-	 * @retorn Folha, objeto inteiro da folha 
+	 * @retorn Folha, objeto inteiro da folha
 	 * 
 	 */
-	
+
 	public Folha getFolhaIdColaborador(Integer idColaborador) {
 		for (Folha folha : listaFolhas) {
 			if (folha.getIdColaborador() == idColaborador) {
-					return folha;
+				return folha;
 			}
 		}
 		return null;
 	}
-		
-	
 
 }

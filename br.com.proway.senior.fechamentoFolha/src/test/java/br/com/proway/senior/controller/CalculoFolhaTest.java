@@ -24,7 +24,7 @@ public class CalculoFolhaTest {
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
 		CargoFolha cargo = new CargoFolha(1500, 250, 0);		
 		Folha folha = new Folha(colab, ponto, feriasVazias, cargo);
-		calculo.calculoFolha(folha);
+		calculo.calculoFolha(folha, null, null, null);
 		
 		assertEquals(1342.50, folha.getSalarioLiquido(), 0.01);
 	}

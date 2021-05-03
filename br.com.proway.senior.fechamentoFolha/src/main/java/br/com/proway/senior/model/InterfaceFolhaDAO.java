@@ -1,10 +1,11 @@
 package br.com.proway.senior.model;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public interface InterfaceFolhaDAO {
 	
-	public ArrayList<Folha> getAll();
+	public ArrayList<ArrayList<String>> getAll();
 	
 	public Folha getFolhasPorId(int id);
 	
