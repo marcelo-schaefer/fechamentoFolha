@@ -2,7 +2,7 @@ package br.com.proway.senior.model;
 
 import java.util.ArrayList;
 
-public interface InterfaceColaboradorFolha {
+public interface IColaboradorFolha {
 
 	public int getId();
 	

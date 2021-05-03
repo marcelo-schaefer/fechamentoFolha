@@ -1,14 +1,11 @@
 package br.com.proway.senior.model;
 
-public class CargoFolha implements InterfaceCargoFolha {
+public class CargoFolha implements ICargoFolha {
 
 	private double salarioBase;
 	private double valorBonificacao;
 	private double percentualInsalubridade;
-	
-	public CargoFolha () {}
 
-	
 	/**
 	 * 
 	 * @param salarioBase
