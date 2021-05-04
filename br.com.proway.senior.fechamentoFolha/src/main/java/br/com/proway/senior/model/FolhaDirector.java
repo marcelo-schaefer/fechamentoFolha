@@ -5,35 +5,80 @@ import br.com.proway.senior.model.externo.IColaboradorFolha;
 import br.com.proway.senior.model.externo.IFeriasFolha;
 import br.com.proway.senior.model.externo.IPontoFolha;
 
+/**
+ * FolhaDirector
+ * 
+ * É uma classe que contém a lógica de direção da construção de uma Folha
+ * seguindo o design pattern builder com director.
+ * 
+ * @author Lucas Grijó
+ * @author Lucas Walim
+ * @author Marcelo Schaefer
+ */
 public class FolhaDirector {
-	
+
 	private IFolhaBuilder builder;
-	
-	public FolhaDirector(IFolhaBuilder builder){
+
+	/**
+	 * Método Construtor
+	 * 
+	 * @author Lucas Grijó
+	 * @author Lucas Walim
+	 * @author Marcelo Schaefer
+	 */
+	public FolhaDirector(IFolhaBuilder builder) {
 		this.builder = builder;
 	};
-			
+
+	/**
+	 * Criar folha normal
+	 * 
+	 * Constrói uma folha regular ou seja, sem qualquer contabilidade de férias.
+	 * 
+	 * @author Lucas Grijó
+	 * @author Lucas Walim
+	 * @author Marcelo Schaefer
+	 */	
 	public void createFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo) {
 		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasNormais(ponto, cargo);
 		builder.calcularDescontoNormal(colaborador, cargo);
 		builder.build();
 	}
-	
+
+	/**
+	 * Criar folha férias
+	 * 
+	 * Constrói uma folha exclusiva de férias.
+	 * 
+	 * @author Lucas Grijó
+	 * @author Lucas Walim
+	 * @author Marcelo Schaefer
+	 */	
 	public void createFolhaFerias(IColaboradorFolha colaborador, ICargoFolha cargo, IFeriasFolha ferias) {
-		builder.iniciarCalculos(colaborador, cargo);			
+		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasFerias(ferias);
 		builder.calcularDescontoFerias(colaborador);
 		builder.build();
 	}
-		
-	public void createFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, IFeriasFolha ferias) {
-		builder.iniciarCalculos(colaborador, cargo);	
+
+	/**
+	 * Criar folha hibrida
+	 * 
+	 * Constrói uma folha que contabiliza tanto horas de trabalho normais quanto horas de férias.
+	 * 
+	 * @author Lucas Grijó
+	 * @author Lucas Walim
+	 * @author Marcelo Schaefer
+	 */	
+	public void createFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo,
+			IFeriasFolha ferias) {
+		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasNormais(ponto, cargo);
 		builder.calcularDescontoNormal(colaborador, cargo);
 		builder.calcularHorasFerias(ferias);
 		builder.calcularDescontoFerias(colaborador);
-		builder.build();				
+		builder.build();
 	}
 
 }

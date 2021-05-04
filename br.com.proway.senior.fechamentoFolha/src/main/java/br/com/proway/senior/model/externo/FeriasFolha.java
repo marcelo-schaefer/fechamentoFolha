@@ -1,16 +1,18 @@
 package br.com.proway.senior.model.externo;
 
+/**
+ * FeriasFolha
+ * 
+ * Objeto conténdo os dados necessários de férias para utilização interna na
+ * criação de uma folha.
+ * 
+ * @author sprint3
+ */
 public class FeriasFolha implements IFeriasFolha {
 
 	int dias;
 	int abono;
-	
-	/**
-	 * Construtor
-	 * 
-	 * @param dias
-	 * @param abono Dias de abono
-	 */
+
 	public FeriasFolha(int dias, int abono) {
 		this.dias = dias;
 		this.abono = abono;

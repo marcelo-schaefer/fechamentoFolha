@@ -2,6 +2,14 @@ package br.com.proway.senior.model.externo;
 
 import java.util.ArrayList;
 
+/**
+ * ColaboradorFolha
+ * 
+ * Objeto conténdo os dados necessários de um colaborador para utilização interna na
+ * criação de uma folha.
+ * 
+ * @author sprint3
+ */
 public final class ColaboradorFolha implements IColaboradorFolha {
 
 	private int id;
@@ -11,7 +19,7 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 	private double planoSaudeMensalidade;
 	private double planoSaudeCooparticipacao;
 	private ArrayList<String> dependentes;
-	
+
 	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
 			double planoSaudeCooparticipacao) {
 		this.id = id;
@@ -21,16 +29,14 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 		this.dependentes = new ArrayList<String>();
 	}
 
-	public ColaboradorFolha(int id, boolean isValeTransporte,
-			double planoSaudeMensalidade, double planoSaudeCooparticipacao, ArrayList<String> dependentes) {
+	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
+			double planoSaudeCooparticipacao, ArrayList<String> dependentes) {
 		this.id = id;
 		this.isValeTransporte = isValeTransporte;
 		this.planoSaudeMensalidade = planoSaudeMensalidade;
 		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
 		this.dependentes = dependentes;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -104,10 +110,10 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 	}
 
 	public int getNumeroDeDependentes() {
-		if(dependentes.isEmpty()) {
+		if (dependentes.isEmpty()) {
 			return 0;
 		} else {
 			return dependentes.size();
-		}		
+		}
 	}
 }
