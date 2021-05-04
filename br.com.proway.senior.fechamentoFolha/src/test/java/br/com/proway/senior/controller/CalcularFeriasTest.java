@@ -1,15 +1,12 @@
 package br.com.proway.senior.controller;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Ignore;
 import org.junit.Test;
-
 import br.com.proway.senior.model.Folha;
-import br.com.proway.senior.model.externo.CargoFolha;
-import br.com.proway.senior.model.externo.ColaboradorFolha;
-import br.com.proway.senior.model.externo.FeriasFolha;
-import br.com.proway.senior.model.externo.PontoFolha;
+import br.com.proway.senior.model.FolhaBuilder;
+import br.com.proway.senior.model.FolhaDirector;
+import br.com.proway.senior.model.PontoFolha;
 
 public class CalcularFeriasTest {
 	
@@ -26,16 +23,19 @@ public class CalcularFeriasTest {
 	 * 220, 0, 0, 0, 0, true, 100, 50
 	 */
 
-	@Ignore
+	@Test
 	public void testeCalculoDeFeriasComVenda() {
-		ColaboradorFolha jorge = new ColaboradorFolha(0, true, 100, 0);
-		PontoFolha ponto = new PontoFolha(220, 6.33, 2.71);
-		FeriasFolha ferias = new FeriasFolha(20,10);
-		CargoFolha cargo = new CargoFolha(1500.0, 0, 0);
-		Folha folhaJorge = new Folha(jorge, ponto, ferias, cargo);
-		CalcularFerias calcularFerias = new CalcularFerias();
-		double valor = calcularFerias.calcularFerias(folhaJorge);
-		assertEquals(1910.04, valor, 0.01);
+		ColaboradorFolha jorge = new ColaboradorFolha(1, true, 100, 0);
+		PontoFolha ponto = new PontoFolha(74, 0, 0);
+		FeriasFolha ferias = new FeriasFolha(20,40);
+		CargoFolha cargo = new CargoFolha(1500.0, 0);
+		
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
+		director.createFolhaHibrida(jorge, ponto, cargo, ferias);
+		Folha folha = builder.build();
+		
+		assertEquals(0, folha.getSalarioLiquido(), 0.01);
 	}
 
 	@Ignore
