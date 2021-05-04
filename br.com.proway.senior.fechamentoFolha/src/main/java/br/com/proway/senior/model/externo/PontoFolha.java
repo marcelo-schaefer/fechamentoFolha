@@ -1,11 +1,19 @@
-package br.com.proway.senior.model;
+package br.com.proway.senior.model.externo;
 
-public class PontoFolha implements IPontoFolha{
-	
+/**
+ * PontoFolha
+ * 
+ * Objeto conténdo os dados necessários de pontos para utilização interna na
+ * criação de uma folha.
+ * 
+ * @author sprint3
+ */
+public class PontoFolha implements IPontoFolha {
+
 	private double horasTrabalhadas;
 	private double horasExtra;
 	private double horasFaltas;
-	
+
 	public PontoFolha(double horasTrabalhadas, double horasExtra, double horasFaltas) {
 		this.horasTrabalhadas = horasTrabalhadas;
 		this.horasExtra = horasExtra;
@@ -23,5 +31,5 @@ public class PontoFolha implements IPontoFolha{
 	public double getHorasFaltas() {
 		return horasFaltas;
 	}
-	
+
 }

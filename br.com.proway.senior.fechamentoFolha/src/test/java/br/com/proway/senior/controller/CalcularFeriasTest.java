@@ -1,13 +1,8 @@
 package br.com.proway.senior.controller;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Ignore;
 import org.junit.Test;
-
-import br.com.proway.senior.model.CargoFolha;
-import br.com.proway.senior.model.ColaboradorFolha;
-import br.com.proway.senior.model.FeriasFolha;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDirector;
