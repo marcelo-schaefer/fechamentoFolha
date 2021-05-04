@@ -1,34 +1,84 @@
 package br.com.proway.senior.model;
 
+import br.com.proway.senior.model.externo.ICargoFolha;
+import br.com.proway.senior.model.externo.IColaboradorFolha;
+import br.com.proway.senior.model.externo.IFeriasFolha;
+import br.com.proway.senior.model.externo.IPontoFolha;
+
+/**
+ * FolhaDirector
+ * 
+ * É uma classe que contém a lógica de direção da construção de uma Folha
+ * seguindo o design pattern builder com director.
+ * 
+ * @author Lucas Grijó
+ * @author Lucas Walim
+ * @author Marcelo Schaefer
+ */
 public class FolhaDirector {
-	
-	public IFolhaBuilder builder;
-	
-	public FolhaDirector(IFolhaBuilder builder){
+
+	private IFolhaBuilder builder;
+
+	/**
+	 * Método Construtor
+	 * 
+	 * @author Lucas Grijó
+	 * @author Lucas Walim
+	 * @author Marcelo Schaefer
+	 */
+	public FolhaDirector(IFolhaBuilder builder) {
 		this.builder = builder;
 	};
-			
-	public void createFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo) {
+
+	/**
+	 * Criar folha normal
+	 * 
+	 * Constrói uma folha regular ou seja, sem qualquer contabilidade de férias.
+	 * 
+	 * @author Lucas Grijó
+	 * @author Lucas Walim
+	 * @author Marcelo Schaefer
+	 */	
+	public Folha createFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo) {
 		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasNormais(ponto, cargo);
 		builder.calcularDescontoNormal(colaborador, cargo);
-		builder.build();
+		return builder.build();
 	}
-	
-	public void createFolhaFerias(IColaboradorFolha colaborador, IFeriasFolha ferias, ICargoFolha cargo) {
-		builder.iniciarCalculos(colaborador, cargo);			
+
+	/**
+	 * Criar folha férias
+	 * 
+	 * Constrói uma folha exclusiva de férias.
+	 * 
+	 * @author Lucas Grijó
+	 * @author Lucas Walim
+	 * @author Marcelo Schaefer
+	 */	
+	public Folha createFolhaFerias(IColaboradorFolha colaborador, ICargoFolha cargo, IFeriasFolha ferias) {
+		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasFerias(ferias);
 		builder.calcularDescontoFerias(colaborador);
-		builder.build();
+		return builder.build();
 	}
-		
-	public void createFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, IFeriasFolha ferias) {
-		builder.iniciarCalculos(colaborador, cargo);	
+
+	/**
+	 * Criar folha hibrida
+	 * 
+	 * Constrói uma folha que contabiliza tanto horas de trabalho normais quanto horas de férias.
+	 * 
+	 * @author Lucas Grijó
+	 * @author Lucas Walim
+	 * @author Marcelo Schaefer
+	 */	
+	public Folha createFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo,
+			IFeriasFolha ferias) {
+		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasNormais(ponto, cargo);
 		builder.calcularDescontoNormal(colaborador, cargo);
 		builder.calcularHorasFerias(ferias);
 		builder.calcularDescontoFerias(colaborador);
-		builder.build();				
+		return builder.build();
 	}
 
 }
