@@ -23,7 +23,7 @@ public class CalculoHoras implements ICalculoHoras{
 	 */
 	public double calculaValorHora(ICargoFolha cargoFolha) {
 		double valorHoraInsalubridade = calculaInsalubridade(cargoFolha) / 220;
-		if (valorHoraInsalubridade < 0) {	
+		if (valorHoraInsalubridade <= 0) {	
 			return cargoFolha.getSalarioBase() / 220;
 		} else {
 			return ((cargoFolha.getSalarioBase() / 220) + valorHoraInsalubridade);
