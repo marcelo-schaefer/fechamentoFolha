@@ -2,10 +2,14 @@ package br.com.proway.senior.model;
 
 import java.time.LocalDate;
 
-import br.com.proway.senior.controller.CalculoDesconto;
-import br.com.proway.senior.controller.CalculoHoras;
-import br.com.proway.senior.controller.ICalculoDesconto;
-import br.com.proway.senior.controller.ICalculoHoras;
+import br.com.proway.senior.controller.calculos.CalculoDesconto;
+import br.com.proway.senior.controller.calculos.CalculoHoras;
+import br.com.proway.senior.controller.calculos.ICalculoDesconto;
+import br.com.proway.senior.controller.calculos.ICalculoHoras;
+import br.com.proway.senior.model.externo.ICargoFolha;
+import br.com.proway.senior.model.externo.IColaboradorFolha;
+import br.com.proway.senior.model.externo.IFeriasFolha;
+import br.com.proway.senior.model.externo.IPontoFolha;
 
 public class FolhaBuilder implements IFolhaBuilder {
 
@@ -49,7 +53,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 		idColaborador = colaborador.getId();
 		this.calculoHoras = new CalculoHoras();
 		this.calculoDesconto = new CalculoDesconto();
-		valorHora = (calculoHoras.calculaValorHora(cargo));
+		valorHora = (calculoHoras.calcularValorHora(cargo));
 		
 	}
 

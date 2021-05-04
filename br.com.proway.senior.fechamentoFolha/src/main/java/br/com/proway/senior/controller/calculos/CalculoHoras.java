@@ -1,13 +1,12 @@
-package br.com.proway.senior.controller;
+package br.com.proway.senior.controller.calculos;
 
-import br.com.proway.senior.model.ICargoFolha;
-import br.com.proway.senior.model.IPontoFolha;
+import br.com.proway.senior.model.externo.ICargoFolha;
+import br.com.proway.senior.model.externo.IPontoFolha;
 
 public class CalculoHoras implements ICalculoHoras{
 
 	private double salarioMinimo = 1100; // Regra de Negócio
-	private double fator = 0.5; // 50% adicional hora extra
-	
+	private double fator = 0.5; // 50% adicional hora extra	
 	final double valorHorasDias = (double) 220 / 30;
 	
 	/**
@@ -20,8 +19,8 @@ public class CalculoHoras implements ICalculoHoras{
 	 *
 	 * @return valorHoras = vai retornar o valor ganho de insalubridade por hora
 	 */
-	public double calculaValorHora(ICargoFolha cargoFolha) {
-		double valorHoraInsalubridade = calculaInsalubridade(cargoFolha) / 220;
+	public double calcularValorHora(ICargoFolha cargoFolha) {
+		double valorHoraInsalubridade = calcularInsalubridade(cargoFolha) / 220;
 		if (valorHoraInsalubridade < 0) {	
 			return cargoFolha.getSalarioBase() / 220;
 		} else {
@@ -54,7 +53,7 @@ public class CalculoHoras implements ICalculoHoras{
 	 * 
 	 * @return valorInsalubridade = Retorna o valor a ser somado ao salário mínimo.
 	 */
-	private double calculaInsalubridade(ICargoFolha cargoFolha) {
+	private double calcularInsalubridade(ICargoFolha cargoFolha) {
 		if (cargoFolha.getPercentualInsalubridade() == 10) {
 			return salarioMinimo * 0.10;
 		} else if (cargoFolha.getPercentualInsalubridade() == 20) {

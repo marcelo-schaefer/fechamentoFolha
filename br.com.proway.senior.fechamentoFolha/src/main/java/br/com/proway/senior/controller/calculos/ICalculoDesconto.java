@@ -1,7 +1,7 @@
-package br.com.proway.senior.controller;
+package br.com.proway.senior.controller.calculos;
 
-import br.com.proway.senior.model.ICargoFolha;
-import br.com.proway.senior.model.IColaboradorFolha;
+import br.com.proway.senior.model.externo.ICargoFolha;
+import br.com.proway.senior.model.externo.IColaboradorFolha;
 
 public interface ICalculoDesconto {
 	public double calcularDescontoInss(double salarioBrutoAcumulado);

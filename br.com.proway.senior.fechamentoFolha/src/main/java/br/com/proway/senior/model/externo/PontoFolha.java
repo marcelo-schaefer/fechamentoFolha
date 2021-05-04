@@ -1,4 +1,4 @@
-package br.com.proway.senior.model;
+package br.com.proway.senior.model.externo;
 
 public class PontoFolha implements IPontoFolha{
 	

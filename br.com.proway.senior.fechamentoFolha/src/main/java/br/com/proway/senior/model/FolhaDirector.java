@@ -1,8 +1,13 @@
 package br.com.proway.senior.model;
 
+import br.com.proway.senior.model.externo.ICargoFolha;
+import br.com.proway.senior.model.externo.IColaboradorFolha;
+import br.com.proway.senior.model.externo.IFeriasFolha;
+import br.com.proway.senior.model.externo.IPontoFolha;
+
 public class FolhaDirector {
 	
-	public IFolhaBuilder builder;
+	private IFolhaBuilder builder;
 	
 	public FolhaDirector(IFolhaBuilder builder){
 		this.builder = builder;
@@ -15,7 +20,7 @@ public class FolhaDirector {
 		builder.build();
 	}
 	
-	public void createFolhaFerias(IColaboradorFolha colaborador, IFeriasFolha ferias, ICargoFolha cargo) {
+	public void createFolhaFerias(IColaboradorFolha colaborador, ICargoFolha cargo, IFeriasFolha ferias) {
 		builder.iniciarCalculos(colaborador, cargo);			
 		builder.calcularHorasFerias(ferias);
 		builder.calcularDescontoFerias(colaborador);

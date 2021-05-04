@@ -5,11 +5,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import br.com.proway.senior.model.CargoFolha;
-import br.com.proway.senior.model.ColaboradorFolha;
-import br.com.proway.senior.model.FeriasFolha;
 import br.com.proway.senior.model.Folha;
-import br.com.proway.senior.model.PontoFolha;
+import br.com.proway.senior.model.externo.CargoFolha;
+import br.com.proway.senior.model.externo.ColaboradorFolha;
+import br.com.proway.senior.model.externo.FeriasFolha;
+import br.com.proway.senior.model.externo.PontoFolha;
 
 public class CalcularFeriasTest {
 	
