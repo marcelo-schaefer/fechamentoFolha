@@ -92,7 +92,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	public void calcularHorasNormais(IPontoFolha ponto, ICargoFolha cargo) {
 		valorHorasTrabalhadas = (calculoHoras.calcularValorDasHorasTrabalhadas(ponto, valorHora));
 		valorHorasFaltas = (calculoHoras.calcularValorHorasFaltas(ponto, valorHora));
-		valorHorasExtras = (calculoHoras.calcularValorHorasExtras(ponto, valorHorasTrabalhadas, valorHora));
+		valorHorasExtras = (calculoHoras.calcularValorHorasExtras(ponto, valorHora));
 		valorReflexoDSR = (calculoHoras.calcularDSR(valorHorasExtras));
 		salarioBruto = (valorHorasTrabalhadas - valorHorasFaltas + valorHorasExtras + valorReflexoDSR);
 	}

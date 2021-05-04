@@ -39,11 +39,11 @@ public class FolhaDirector {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */	
-	public void createFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo) {
+	public Folha createFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo) {
 		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasNormais(ponto, cargo);
 		builder.calcularDescontoNormal(colaborador, cargo);
-		builder.build();
+		return builder.build();
 	}
 
 	/**
@@ -55,11 +55,11 @@ public class FolhaDirector {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */	
-	public void createFolhaFerias(IColaboradorFolha colaborador, ICargoFolha cargo, IFeriasFolha ferias) {
+	public Folha createFolhaFerias(IColaboradorFolha colaborador, ICargoFolha cargo, IFeriasFolha ferias) {
 		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasFerias(ferias);
 		builder.calcularDescontoFerias(colaborador);
-		builder.build();
+		return builder.build();
 	}
 
 	/**
@@ -71,14 +71,14 @@ public class FolhaDirector {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */	
-	public void createFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo,
+	public Folha createFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo,
 			IFeriasFolha ferias) {
 		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasNormais(ponto, cargo);
 		builder.calcularDescontoNormal(colaborador, cargo);
 		builder.calcularHorasFerias(ferias);
 		builder.calcularDescontoFerias(colaborador);
-		builder.build();
+		return builder.build();
 	}
 
 }

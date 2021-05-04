@@ -22,8 +22,7 @@ public class TesteBuilder {
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaNormal(colaborador, ponto, cargo);
-		Folha folha = folhaBuilder.build();
+		Folha folha = director.createFolhaNormal(colaborador, ponto, cargo);
 		
 		System.out.println("TESTE FOLHA NORMAL");
 		System.out.println(folha.toString());
