@@ -12,7 +12,11 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 
 	private FolhaDAO() {
 	}
-
+	
+	/**
+	 * Metodo getInstance que retorna uma instância FolhaDAO
+	 * @return instance
+	 */
 	public static FolhaDAO getInstance() {
 		if (instance == null) {
 			instance = new FolhaDAO();
@@ -21,7 +25,9 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 
 	/**
-	 * Busca todas as folhas cadastradas na tabela folha do banco de dados
+	 * Busca todas as folhas cadastradas na tabela "folha" do banco de dados "FechamentoFolha"
+	 * utilizando a classe PostgresConnector para a conexao com o banco e com query SELECT traz
+	 * todas as linhas/colunas encontradas.
 	 * 
 	 * @return ArrayList<ArrayList<String>
 	 */
@@ -53,10 +59,12 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 
 	/**
-	 * Busca todas as folhas do usuário com determinado id
-	 * 
-	 * @param id do usuário desejado
-	 * 
+	 * Metodo de consulta de folhas por ID
+	 * Busca todas as folhas cadastradas na tabela "folha" do banco de dados "FechamentoFolha"
+	 * utilizando a classe PostgresConnector para a conexao com o banco e com query SELECT traz
+	 * as informações de folha consultada por ID.
+	 * 	 * 
+	 * @param id da folha desejada
 	 * @return folhas
 	 */
 	public Folha getFolhasPorId(int id) {
@@ -97,6 +105,15 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		return null;
 	}
 
+	/**
+	 * Metodo de consulta de Folhas Por Colaborador
+	 * Busca todas as folhas cadastradas na tabela "folha" do banco de dados "FechamentoFolha"
+	 * utilizando a classe PostgresConnector para a conexao com o banco e com query SELECT traz
+	 * as informações de folha de um determinado Colaborador com a pesquisa feita pelo ID.
+	 * 	 * 
+	 * @param id do colaborador desejado
+	 * @return folhas
+	 */
 	public ArrayList<Folha> getFolhasPorColaborador(int idColaborador) {
 		try {
 			if (PostgresConnector.con == null) {
@@ -139,10 +156,11 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Salva nova folha
-	 * 
+	 * Metodo de salvamento de Folha.
+	 * Atraves deste metodo o codigo salva os parametros que o usuário passou atraves
+	 * dos "gets" no Banco de dados. 
 	 * Recebe um objeto e salva na lista do objeto
 	 * 
 	 * @param Folha folha, folha que sera adicionada
@@ -167,15 +185,11 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 
 	/**
-	 * Atualiza folha
+	 * Metodo de Atualizacao das alteracoes de uma folha
 	 * 
-	 * Recebe uma folha nova e o id do objeto e substitui na lista do objeto
-	 * 
-	 * @param Folha folha, objeto atualizado
+	 * Recebe uma folha nova e o id do objeto e substitui na lista do objeto 
 	 * @param int   id, id da folha que será atualizada
-	 * 
-	 * @return boolean, retorna se foi atualizado, ou não.
-	 * 
+	 *  
 	 */
 	public void updateFolha(Folha folha, int id) {
 		try {
@@ -203,13 +217,10 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 
 	/**
-	 * Remove folha.
+	 * Metodo de remoção de uma folha de pagamento.
 	 * 
-	 * Recebe um id e deleta da lista.
-	 * 
+	 * Recebe um id e deleta do Banco de dados a linha.
 	 * @param int id, folha que será deletada.
-	 * 
-	 * @return boolean, retorna se foi deletado, ou nao.
 	 * 
 	 */
 	public void deleteFolha(int id) {

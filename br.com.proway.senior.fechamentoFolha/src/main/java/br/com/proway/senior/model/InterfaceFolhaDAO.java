@@ -2,6 +2,11 @@ package br.com.proway.senior.model;
 
 import java.util.ArrayList;
 
+/**
+ * Interface do CRUD
+ * @author senior
+ *
+ */
 public interface InterfaceFolhaDAO {
 	
 	public ArrayList<ArrayList<String>> getAll();

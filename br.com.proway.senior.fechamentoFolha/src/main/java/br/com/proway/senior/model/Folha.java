@@ -11,7 +11,7 @@ import java.time.LocalDate;
  * 
  * @author Bruno Oliveira
  * @author Leonado Pereira
- * @author Lucas Grijó
+ * @author Lucas GrijÃ³
  * @author Lucas Walim
  * @author Marcelo Schaefer
  */
@@ -30,14 +30,14 @@ public class Folha implements IFolha {
 	private double valorValeTransporte;
 	private double salarioBruto = 0;
 	private double salarioLiquido;
-	// Folha Férias
+	// Folha FÃ©rias
 	private double valorFerias;
 	private double valorInssFerias;
 	private double valorImpostoDeRendaFerias;
 	private double feriasLiquido;
 
 	/**
-	 * Método Construtor da Folha.
+	 * MÃ©todo Construtor da Folha.
 	 * 
 	 * @param id
 	 * @param idColaborador
@@ -57,7 +57,7 @@ public class Folha implements IFolha {
 	 * @param valorImpostoDeRendaFerias
 	 * @param feriasLiquido
 	 * @return Folha
-	 * @author Lucas Grijó
+	 * @author Lucas GrijÃ³
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
