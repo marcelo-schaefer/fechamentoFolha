@@ -1,98 +1,27 @@
 package br.com.proway.senior.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 
 public class FolhaDAOTest {
 
-//	@Ignore
-//	public void testGetInstance() {
-//		Folha folha = new Folha(4);
-//		FolhaDAO listaFolhas = FolhaDAO.getInstance();
-//		listaFolhas.saveFolha(folha);
-//		assertEquals(folha.getId(), listaFolhas.getAll().get(0).getId());
-//	}
-//
-////	@Test
-//	public void testGetFolhasPorId1() {
-//		Folha folha = new Folha(4);
-//		FolhaDAO listaFolhas = FolhaDAO.getInstance();
-//		listaFolhas.saveFolha(folha);
-//		assertEquals(folha, listaFolhas.getFolhasPorId(4));
-//
-//	}
-//
-//	@Test
-//	public void testGetFolhaPorDataEId() {
-//		Folha folha = new Folha(5);
-//		folha.setDataEmissao("27/04/2021");
-//		folha.setIdColaborador(9);
-//		FolhaDAO listaFolha = FolhaDAO.getInstance();
-//		listaFolha.saveFolha(folha);
-//		assertEquals(folha, listaFolha.getFolhaPorDataEId("27/04/2021", 9));
-//	}
-//
-//	@Ignore
-//	public void testGetFolhaPorDataEIdNull() {
-//		Folha folha = new Folha(5);
-//		FolhaDAO listaFolha = FolhaDAO.getInstance();
-//		listaFolha.saveFolha(folha);
-//		assertNull(listaFolha.getFolhaPorDataEId("27/04/2021", 9));
-//	}
-//
-//	@Ignore
-//	public void testSaveFolha() {
-//		Folha folha = new Folha();
-//		FolhaDAO listaFolha = FolhaDAO.getInstance();
-//		listaFolha.saveFolha(folha);
-//		assertNull(listaFolha.getFolhaPorDataEId("27/04/2021", 9));
-//		}
-//	
-//	@Test
-//	public void testRemoveFolha() {
-//		Folha folha = new Folha(7);
-//		FolhaDAO listaFolha = FolhaDAO.getInstance();
-//		Folha folha2 = new Folha(8);
-//		listaFolha.saveFolha(folha);
-//		listaFolha.saveFolha(folha2);
-//		assertTrue(listaFolha.removeFolha(8));
-//		
-//	}
-//	
-//	@Test
-//	public void testUpdateFolha() {
-//		Folha folha = new Folha(7);
-//		Folha folha3 = new Folha();
-//		FolhaDAO listaFolha = FolhaDAO.getInstance();
-//		Folha folha2 = new Folha(8);
-//		listaFolha.saveFolha(folha);
-//		listaFolha.saveFolha(folha2);
-//		assertTrue(listaFolha.updateFolha(folha3, 7));
-//	}
-//	
-//	@Test
-//	public void getFolhaIdColaborador() {
-//		Folha folha = new Folha();
-//		FolhaDAO listaFolha = FolhaDAO.getInstance();
-//		listaFolha.saveFolha(folha);
-//		folha.setIdColaborador(10);
-//		assertEquals(folha, listaFolha.getFolhaIdColaborador(10));
-//	}
-//	
+	/**
+	 * TDD que testa a conexao ao Banco dados considerando seus metadados.
+	 */
 	@Test
 	public void testDbVersion() {
 		String version = PostgresConnector.dbVersion();
 		assertEquals("PostgreSQL 13.2, compiled by Visual C++ build 1914, 64-bit", version);
 	}
+
+	/**
+	 * TDD que verifica a inserção de dados em folha
+	 */
 
 	@Ignore
 	public void testInsert() {
@@ -108,6 +37,11 @@ public class FolhaDAOTest {
 		}
 	}
 
+	/**
+	 * TDD que verifica se o metodo getAll esta trazendo todas as linhas/colunas da
+	 * tabela "folha".
+	 */
+
 	@Test
 	public void testeSelectAllBancoDeDados() {
 		FolhaDAO folha = FolhaDAO.getInstance();
@@ -118,30 +52,47 @@ public class FolhaDAOTest {
 		}
 
 	}
+
+	/**
+	 * TDD que verifica se o metodo saveFolha esta inserindo novas folhas ao Banco de dados
+	 * tabela "folha".
+	 */	
 	
 	@Test
 	public void testeInserirFolhaBancoDeDados() {
 		FolhaDAO folha = FolhaDAO.getInstance();
-		Folha folhaTeste = new Folha(0,2,LocalDate.of(2021,5, 4),10.00,20.00,30.00,40.00,500.00,600.00,200.00,100.00,2020.00,1200.53,1170.00,225.00,250.00,1500.00);
+		Folha folhaTeste = new Folha(0, 2, LocalDate.of(2021, 5, 4), 10.00, 20.00, 30.00, 40.00, 500.00, 600.00, 200.00,
+				100.00, 2020.00, 1200.53, 1170.00, 225.00, 250.00, 1500.00);
 		folha.saveFolha(folhaTeste);
 	}
+	
+	/**
+	 * TDD que verifica se o metodo updateFolha esta alterando informações quando se passa um ID
+	 * de colaborador.
+	 */
+
 	@Test
 	public void testeUpdateFolha() {
 		FolhaDAO folha = FolhaDAO.getInstance();
-		Folha folhaTeste = new Folha(0,2,LocalDate.of(2021,6,5),80.00,90.00,50.00,40.00,5800.00,600.00,700.00,100.00,2020.00,1200.53,1170.00,225.00,250.00,1500.00);
-		folha.updateFolha(folhaTeste,30);
+		Folha folhaTeste = new Folha(0, 2, LocalDate.of(2021, 6, 5), 80.00, 90.00, 50.00, 40.00, 5800.00, 600.00,
+				700.00, 100.00, 2020.00, 1200.53, 1170.00, 225.00, 250.00, 1500.00);
+		folha.updateFolha(folhaTeste, 30);
 	}
-	
+
+	/**
+	 * TDD que verifica se o metodo deletefolha esta apagando as informações quando se passa um ID
+	 * de colaborador.
+	 */
 	@Test
 	public void testeDeleteFolha() {
 		FolhaDAO folha = FolhaDAO.getInstance();
 		folha.deleteFolha(30);
 	}
-	
+
 	@Test
 	public void testeFolhaPorId() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
-		Folha folha = folhaDAO.getFolhasPorId(30);
+		Folha folha = folhaDAO.getFolhasPorId(31);
 		System.out.println(folha.toString());
 
 	}

@@ -1,7 +1,11 @@
 package br.com.proway.senior.model;
 
 import java.time.LocalDate;
-
+/**
+ * 
+ * @author senior
+ * Declarações de variáveis
+ */
 public class Folha implements IFolha {
 	private int id; //
 	private Integer idColaborador; 
