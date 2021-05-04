@@ -2,13 +2,13 @@ package br.com.proway.senior.model;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public final class FolhaDAO implements InterfaceFolhaDAO {
 
 	private static FolhaDAO instance;
-//	private ArrayList<Folha> listaFolhas = new ArrayList<Folha>();
 
 	private FolhaDAO() {
 	}
@@ -95,7 +95,6 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 
 	public ArrayList<Folha> getFolhasPorColaborador(int idColaborador) {
@@ -140,24 +139,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		}
 		return null;
 	}
-
-	/**
-	 * Busca todas a folha de um determinado usuário e determinada data
-	 * 
-	 * @param data da folha desejada
-	 * @param id   do usuário desejado
-	 * @return folhas
-	 */
-	public Folha getFolhaPorDataEId(String data, int idColaborador) {
-		for (Folha folha : listaFolhas) {
-			String dataEmissao = folha.getDataEmissao();
-			if (dataEmissao != null && dataEmissao.equals(data) && folha.getIdColaborador() == idColaborador) {
-				return folha;
-			}
-		}
-		return null;
-	}
-
+	
 	/**
 	 * Salva nova folha
 	 * 
@@ -166,7 +148,22 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * @param Folha folha, folha que sera adicionada
 	 */
 	public void saveFolha(Folha folha) {
-		this.listaFolhas.add(folha);
+		String insert = "INSERT INTO folha (idColaborador, dataEmissao,valorHorasTrabalhadas,valorHorasFaltas, valorHorasExtras,valorReflexoDSR,valorInss,valorImpostoDeRenda,valorPlanoSaude, valorValeTransporte,salarioBruto,salarioLiquido,valorFerias,valorInssFerias,valorImpostoDeRendaFerias,feriasLiquido) "
+				+ "VALUES (" + folha.getIdColaborador() + ",'" + folha.getDataEmissao() + "' ,"
+				+ folha.getValorHorasTrabalhadas() + "," + folha.getValorHorasFaltas() + ","
+				+ folha.getValorHorasExtras() + " , " + folha.getValorReflexoDSR() + " , " + folha.getValorInss()
+				+ " , " + folha.getValorImpostoDeRenda() + " , " + folha.getValorPlanoSaude() + " ,  "
+				+ folha.getValorValeTransporte() + "," + folha.getSalarioBruto() + "," + folha.getSalarioLiquido() + ","
+				+ folha.getValorFerias() + "," + folha.getValorInssFerias() + "," + folha.getValorImpostoDeRendaFerias()
+				+ "," + folha.getFeriasLiquido() + " )";
+		try {
+			if (PostgresConnector.con == null) {
+				PostgresConnector.connect();
+			}
+			PostgresConnector.executeUpdate(insert);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -180,17 +177,29 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * @return boolean, retorna se foi atualizado, ou não.
 	 * 
 	 */
-	public boolean updateFolha(Folha folha, int id) {
-		for (Folha up : listaFolhas) {
-			if (up.getId() == id) {
-				int i = listaFolhas.indexOf(up);
-				listaFolhas.remove(i);
-				listaFolhas.add(i, folha);
-				return true;
+	public void updateFolha(Folha folha, int id) {
+		try {
+			if (PostgresConnector.con == null) {
+				PostgresConnector.connect();
 			}
-		}
-		return false;
 
+			String update = "UPDATE folha SET idColaborador = " + folha.getIdColaborador() + ", dataEmissao = '"
+					+ folha.getDataEmissao() + "', valorHorasTrabalhadas = " + folha.getValorHorasTrabalhadas()
+					+ ", valorHorasFaltas = " + folha.getValorHorasFaltas() + ", valorHorasExtras = "
+					+ folha.getValorHorasExtras() + ", valorReflexoDSR = " + folha.getValorReflexoDSR()
+					+ ", valorInss = " + folha.getValorInss() + ", valorImpostoDeRenda = "
+					+ folha.getValorImpostoDeRenda() + ", valorPlanoSaude = " + folha.getValorPlanoSaude()
+					+ ", valorValeTransporte = " + folha.getValorValeTransporte() + ", salarioBruto = "
+					+ folha.getSalarioBruto() + ", salarioLiquido = " + folha.getSalarioLiquido() + ", valorFerias = "
+					+ folha.getValorFerias() + ", valorInssFerias = " + folha.getValorInssFerias()
+					+ ", valorImpostoDeRendaFerias = " + folha.getValorImpostoDeRendaFerias() + ", feriasLiquido = "
+					+ folha.getFeriasLiquido() + " WHERE id = " + id;
+
+			PostgresConnector.executeUpdate(update);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -203,36 +212,18 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * @return boolean, retorna se foi deletado, ou nao.
 	 * 
 	 */
-
-	public boolean removeFolha(int id) {
-		for (Folha folha : listaFolhas) {
-			if (folha.getId() == id) {
-				listaFolhas.remove(folha);
-				return true;
+	public void deleteFolha(int id) {
+		try {
+			if (PostgresConnector.con == null) {
+				PostgresConnector.connect();
 			}
+
+			String delete = "DELETE FROM folha where id = " + id;
+			PostgresConnector.executeUpdate(delete);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return false;
-
-	}
-
-	/**
-	 * Busca por IdColaborador
-	 * 
-	 * Busca a folha na listaFolhas através do idColaborador
-	 * 
-	 * @param Integer idColaborador, id de busca
-	 * 
-	 * @retorn Folha, objeto inteiro da folha
-	 * 
-	 */
-
-	public Folha getFolhaIdColaborador(Integer idColaborador) {
-		for (Folha folha : listaFolhas) {
-			if (folha.getIdColaborador() == idColaborador) {
-				return folha;
-			}
-		}
-		return null;
 	}
 
 }
