@@ -42,6 +42,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 				for (int i = 1; i <= todasAsColunas; i++) {
 					linha.add(rs.getString(i));
 				}
+				
 				lista.add(linha);
 			}
 
