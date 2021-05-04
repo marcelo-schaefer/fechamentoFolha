@@ -1,45 +1,66 @@
 package br.com.proway.senior.model;
 
 import java.time.LocalDate;
+
 /**
+ * Folha.
  * 
- * @author senior
- * Declarações de variáveis
+ * Objeto central do sistema. Refere-se a uma folha de pagamento de um
+ * colaborador. Implementado para utilizar o design pattern builder com
+ * director.
+ * 
+ * @author Bruno Oliveira
+ * @author Leonado Pereira
+ * @author Lucas GrijÃ³
+ * @author Lucas Walim
+ * @author Marcelo Schaefer
  */
 public class Folha implements IFolha {
-	private int id; //
-	private Integer idColaborador; 
-	private LocalDate dataEmissao; 
-	
+	private int id;
+	private Integer idColaborador;
+	private LocalDate dataEmissao;
 	// Folha Normal
 	private double valorHorasTrabalhadas;
-	private double valorHorasFaltas; 
-	private double valorHorasExtras; 
+	private double valorHorasFaltas;
+	private double valorHorasExtras;
 	private double valorReflexoDSR;
 	private double valorInss;
-	private double valorImpostoDeRenda;	
-	private double valorPlanoSaude; 
+	private double valorImpostoDeRenda;
+	private double valorPlanoSaude;
 	private double valorValeTransporte;
 	private double salarioBruto = 0;
 	private double salarioLiquido;
-	
-	// Folha Férias
-	private double valorFerias; // férias bruto.
+	// Folha FÃ©rias
+	private double valorFerias;
 	private double valorInssFerias;
 	private double valorImpostoDeRendaFerias;
 	private double feriasLiquido;
 
 	/**
+	 * MÃ©todo Construtor da Folha.
 	 * 
-	 * Alterar conforme esse modelo: this.horasTrabalhadas =
-	 * this.ponto.getHorasTrabalhadas();
-	 * 
-	 * Construtor que inicializa os métodos
-	 * 
-	 * @param colaborador
-	 * @param ponto
+	 * @param id
+	 * @param idColaborador
+	 * @param dataEmissao
+	 * @param valorHorasTrabalhadas
+	 * @param valorHorasFaltas
+	 * @param valorHorasExtras
+	 * @param valorReflexoDSR
+	 * @param valorInss
+	 * @param valorImpostoDeRenda
+	 * @param valorPlanoSaude
+	 * @param valorValeTransporte
+	 * @param salarioBruto
+	 * @param salarioLiquido
+	 * @param valorFerias
+	 * @param valorInssFerias
+	 * @param valorImpostoDeRendaFerias
+	 * @param feriasLiquido
+	 * @return Folha
+	 * @author Lucas GrijÃ³
+	 * @author Lucas Walim
+	 * @author Marcelo Schaefer
 	 */
-
 	public Folha(int id, Integer idColaborador, LocalDate dataEmissao, double valorHorasTrabalhadas,
 			double valorHorasFaltas, double valorHorasExtras, double valorReflexoDSR, double valorInss,
 			double valorImpostoDeRenda, double valorPlanoSaude, double valorValeTransporte, double salarioBruto,
@@ -64,11 +85,9 @@ public class Folha implements IFolha {
 		this.feriasLiquido = feriasLiquido;
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
 
 	public Integer getIdColaborador() {
 		return idColaborador;
@@ -134,7 +153,6 @@ public class Folha implements IFolha {
 		return feriasLiquido;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Folha [id=" + id + ", idColaborador=" + idColaborador + ", dataEmissao=" + dataEmissao
@@ -146,5 +164,5 @@ public class Folha implements IFolha {
 				+ valorInssFerias + ", valorImpostoDeRendaFerias=" + valorImpostoDeRendaFerias + ", feriasLiquido="
 				+ feriasLiquido + "]";
 	}
-	
+
 }

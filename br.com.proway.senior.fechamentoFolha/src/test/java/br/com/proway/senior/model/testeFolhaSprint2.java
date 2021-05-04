@@ -10,6 +10,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.proway.senior.model.Ponto;
+import br.com.proway.senior.model.externo.ColaboradorFolha;
 
 
 /**

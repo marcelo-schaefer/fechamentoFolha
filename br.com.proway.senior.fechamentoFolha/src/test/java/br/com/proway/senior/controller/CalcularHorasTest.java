@@ -7,11 +7,12 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import br.com.proway.senior.model.CargoFolha;
-import br.com.proway.senior.model.ColaboradorFolha;
-import br.com.proway.senior.model.FeriasFolha;
+import br.com.proway.senior.controller.calculos.CalculoHoras;
 import br.com.proway.senior.model.Folha;
-import br.com.proway.senior.model.PontoFolha;
+import br.com.proway.senior.model.externo.CargoFolha;
+import br.com.proway.senior.model.externo.ColaboradorFolha;
+import br.com.proway.senior.model.externo.FeriasFolha;
+import br.com.proway.senior.model.externo.PontoFolha;
 
 public class CalcularHorasTest {
 	
@@ -25,7 +26,7 @@ public class CalcularHorasTest {
 		PontoFolha ponto = new PontoFolha(220, 30, 20);
 		CargoFolha cargo = new CargoFolha(1598, 0, 0);		
 		Folha folha = new Folha(colab, ponto, feriasVazias, cargo);
-		horas.calculaValorHora(folha);
+		horas.calcularValorHora(folha);
 		assertEquals(145.27 , horas.calcularValorHorasFaltas(folha), 0.01);
 	}
 	
@@ -36,7 +37,7 @@ public class CalcularHorasTest {
 		CargoFolha cargo = new CargoFolha(2200, 100, 0);		
 		Folha folha = new Folha(colab, ponto, feriasVazias, cargo);
 		
-		horas.calculaValorHora(folha);
+		horas.calcularValorHora(folha);
 		assertEquals(165.90, horas.calcularValorHorasFaltas(folha), 0.01 );
 	}
 	
@@ -47,7 +48,7 @@ public class CalcularHorasTest {
 		folha.setHorasTrabalhadas(220);
 		folha.setHorasExtra(30);
 		folha.setHorasFalta(20);
-		horas.calculaValorHora(folha);
+		horas.calcularValorHora(folha);
 		horas.calcularValorHorasFaltas(folha);
 		assertEquals(145.27, folha.getValorHorasFaltas(), 0.01);
 	}
@@ -59,7 +60,7 @@ public class CalcularHorasTest {
 		folha.setHorasTrabalhadas(220);
 		folha.setHorasExtra(0);
 		folha.setHorasFalta(16.59);
-		horas.calculaValorHora(folha);
+		horas.calcularValorHora(folha);
 		horas.calcularValorHorasFaltas(folha);
 		
 		assertEquals(165.90, folha.getValorHorasFaltas(), 0.01 );
@@ -108,7 +109,7 @@ public class CalcularHorasTest {
 		folha.setSalarioBase(2200);
 		folha.setHorasTrabalhadas(220);
 		
-		horas.calculaValorHora(folha);
+		horas.calcularValorHora(folha);
 		assertEquals(10, folha.getValorHoras(), 0.01);
 	}
 }

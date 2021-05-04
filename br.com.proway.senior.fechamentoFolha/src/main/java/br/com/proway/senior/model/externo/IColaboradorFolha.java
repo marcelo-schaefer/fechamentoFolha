@@ -1,4 +1,4 @@
-package br.com.proway.senior.model;
+package br.com.proway.senior.model.externo;
 
 import java.util.ArrayList;
 

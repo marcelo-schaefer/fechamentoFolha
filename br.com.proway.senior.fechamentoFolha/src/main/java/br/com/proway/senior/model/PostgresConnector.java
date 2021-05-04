@@ -9,7 +9,7 @@ import java.sql.Statement;
 /**
  * PostgresConnector
  * 
- * Classe que cont�m a implementacao do JDBC para acessar o banco postgres.
+ * Classe que contém a implementação do JDBC para acessar o banco postgres.
  * 
  * @author Bruno Oliveira
  * @author Leonado Pereira
@@ -24,7 +24,7 @@ public class PostgresConnector {
 	/**
 	 * Connect
 	 * 
-	 * Realiza conexao com o banco.
+	 * Realiza coneção com o banco.
 	 * 
 	 * @author Bruno Oliveira
 	 * @author Leonado Pereira
@@ -55,7 +55,7 @@ public class PostgresConnector {
 	/**
 	 * Atualiza por Query
 	 * 
-	 * Realiza uma query no banco, n�o tem retorno.
+	 * Realiza uma query no banco, não tem retorno.
 	 * 
 	 * @param String query
 	 * @throws SQLException
@@ -68,6 +68,15 @@ public class PostgresConnector {
 		st.executeUpdate(query);
 	}
 
+	/**
+	 * Verificar versão
+	 * 
+	 * Verifica a versão do banco de dados.
+	 * 
+	 * @return String version
+	 * @author Bruno Oliveira
+	 * @author Leonado Pereira
+	 */
 	public static String dbVersion() {
 		try {
 			if (con == null) {
