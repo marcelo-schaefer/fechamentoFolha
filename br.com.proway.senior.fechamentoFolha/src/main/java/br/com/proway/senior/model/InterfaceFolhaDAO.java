@@ -1,10 +1,11 @@
 package br.com.proway.senior.model;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public interface InterfaceFolhaDAO {
 	
-	public ArrayList<Folha> getAll();
+	public ArrayList<ArrayList<String>> getAll();
 	
 	public Folha getFolhasPorId(int id);
 	
@@ -16,7 +17,7 @@ public interface InterfaceFolhaDAO {
 	
 	public boolean removeFolha(int id);
 	
-	public Folha getFolhaIdColaborador(Integer idColaborador);
+	public ArrayList<Folha> getFolhaIdColaborador(Integer idColaborador);
 	
 	
 }
