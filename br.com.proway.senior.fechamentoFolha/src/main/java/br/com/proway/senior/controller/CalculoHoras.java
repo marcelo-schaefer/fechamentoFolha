@@ -6,7 +6,6 @@ import br.com.proway.senior.model.IPontoFolha;
 public class CalculoHoras implements ICalculoHoras{
 
 	private double salarioMinimo = 1100; // Regra de Negócio
-	private double valorHorasExtras;
 	private double fator = 0.5; // 50% adicional hora extra
 	
 	final double valorHorasDias = (double) 220 / 30;
@@ -89,8 +88,7 @@ public class CalculoHoras implements ICalculoHoras{
 	 * @return valor = Retorna o valor a ser pago de horas extras.
 	 */
 	public double calcularValorHorasExtras(IPontoFolha pontoFolha, double valorHorasTrabalhadas, double valorHora) {
-		valorHorasExtras = pontoFolha.getHorasExtra() * (valorHora + (valorHora * fator));
-		return valorHorasExtras;
+		return pontoFolha.getHorasExtra() * (valorHora + (valorHora * fator));
 	}
 	
 	/**
@@ -98,7 +96,7 @@ public class CalculoHoras implements ICalculoHoras{
 	 * 
 	 * Define o valor do Reflexo DSR por meio de alguns parâmetros passados
 	 */
-	public double calcularDSR() {
+	public double calcularDSR(double valorHorasExtras) {
 		double diasUteis = 25.0;
 		double domigosFeriados = 5.0;
 		return (valorHorasExtras / diasUteis) * domigosFeriados;

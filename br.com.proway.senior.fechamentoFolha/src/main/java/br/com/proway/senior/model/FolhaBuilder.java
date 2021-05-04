@@ -30,14 +30,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private double valorInssFerias;
 	private double valorImpostoDeRendaFerias;
 	private double feriasLiquido;
-	
-	// Dados Externos
-	private IColaboradorFolha colaboradorFolha;
-	private IPontoFolha ponto;
-	private IFeriasFolha ferias;
-	private ICargoFolha cargo;
-
-	
+		
 	// Dados de Criação
 	private ICalculoHoras calculoHoras;
 	private ICalculoDesconto calculoDesconto;
@@ -66,7 +59,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorHorasTrabalhadas = (calculoHoras.calcularValorDasHorasTrabalhadas(ponto, valorHora));
 		valorHorasFaltas = (calculoHoras.calcularValorHorasFaltas(ponto, valorHora));
 		valorHorasExtras = (calculoHoras.calcularValorHorasExtras(ponto, valorHorasTrabalhadas, valorHora));
-		valorReflexoDSR = (calculoHoras.calcularDSR());
+		valorReflexoDSR = (calculoHoras.calcularDSR(valorHorasExtras));
 		salarioBruto = (valorHorasTrabalhadas - valorHorasFaltas + valorHorasExtras + valorReflexoDSR);
 	}
 	

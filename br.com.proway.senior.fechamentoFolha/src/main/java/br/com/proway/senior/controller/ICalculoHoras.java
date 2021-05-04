@@ -8,6 +8,6 @@ public interface ICalculoHoras {
 	public double calcularValorDasHorasTrabalhadas(IPontoFolha pontoFolha, double valorHora);
 	public double calcularValorHorasFaltas(IPontoFolha pontoFolha, double valorHora);
 	public double calcularValorHorasExtras(IPontoFolha pontoFolha, double valorHorasTrabalhadas, double valorHora);
-	public double calcularDSR();
+	public double calcularDSR(double valorHorasExtras);
 	public double calcularFerias(int dias, int abono, double valorHora);
 }
