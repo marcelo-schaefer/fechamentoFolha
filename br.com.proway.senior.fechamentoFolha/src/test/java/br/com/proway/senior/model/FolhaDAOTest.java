@@ -2,11 +2,18 @@ package br.com.proway.senior.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+
 import java.util.ArrayList;
+
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import br.com.proway.senior.model.externo.CargoFolha;
+import br.com.proway.senior.model.externo.ColaboradorFolha;
+import br.com.proway.senior.model.externo.FeriasFolha;
+import br.com.proway.senior.model.externo.PontoFolha;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FolhaDAOTest {
@@ -60,7 +67,7 @@ public class FolhaDAOTest {
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
-		director.createFolhaFerias(colab, ferias, cargo);
+		director.createFolhaFerias(colab, cargo, ferias);
 		Folha folha = builder.build();
 				
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
@@ -158,8 +165,13 @@ public class FolhaDAOTest {
 		
 	}	
 	
-	@Ignore
-	public void testeReiniciarDB() {
+	@Test
+	public void versaoIDB() {		
+		assertEquals("PostgreSQL 13.2, compiled by Visual C++ build 1914, 64-bit",PostgresConnector.dbVersion());
+	}
+	
+	@Test
+	public void testeJReiniciarDB() {
 		String query = "TRUNCATE folha; ALTER SEQUENCE folha_id_seq RESTART 1;";
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
 		try {

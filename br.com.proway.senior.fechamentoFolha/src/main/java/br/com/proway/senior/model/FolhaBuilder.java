@@ -112,7 +112,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorImpostoDeRenda = (calculoDesconto.calcularDescontoImpostoRenda(colaborador, salarioLiquido));
 		valorPlanoSaude = (calculoDesconto.calcularDescontoPlanoSaude(colaborador));
 		valorValeTransporte = (calculoDesconto.calcularDescontoValeTransporte(colaborador, cargo));
-		salarioLiquido = (salarioBruto - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude);
+		salarioLiquido = (salarioLiquido - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude);
 	}
 
 	/**

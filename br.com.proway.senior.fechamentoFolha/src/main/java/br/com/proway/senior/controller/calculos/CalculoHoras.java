@@ -43,7 +43,7 @@ public class CalculoHoras implements ICalculoHoras {
 	 */
 	public double calcularValorHora(ICargoFolha cargoFolha) {
 		double valorHoraInsalubridade = calcularInsalubridade(cargoFolha) / 220;
-		if (valorHoraInsalubridade < 0) {
+		if (valorHoraInsalubridade <= 0) {
 			return cargoFolha.getSalarioBase() / 220;
 		} else {
 			return ((cargoFolha.getSalarioBase() / 220) + valorHoraInsalubridade);
@@ -152,21 +152,23 @@ public class CalculoHoras implements ICalculoHoras {
 	 * @author Marcelo Schaefer
 	 */
 	public double calcularDSR(double valorHorasExtras) {
-
-		LocalDate data = LocalDate.now();
-		ArrayList<Integer> lista = new ArrayList<Integer>();
-		YearMonth mesAtual = YearMonth.of(data.getYear(), data.getMonth());
-		for (int i = 0; i < mesAtual.lengthOfMonth(); i++) {
-			if (mesAtual.isValidDay(i)) {
-				Integer j = i;
-				lista.add(j);
-			}
-		}
-
-		double diasUteis = lista.size();
-		double domigosFeriados = lista.size() - mesAtual.lengthOfMonth();
-
+		double diasUteis = 25.0;
+		double domigosFeriados = 5.0;
 		return (valorHorasExtras / diasUteis) * domigosFeriados;
+//		LocalDate data = LocalDate.now();
+//		ArrayList<Integer> lista = new ArrayList<Integer>();
+//		YearMonth mesAtual = YearMonth.of(data.getYear(), data.getMonth());
+//		for (int i = 0; i < mesAtual.lengthOfMonth(); i++) {
+//			if (mesAtual.isValidDay(i)) {
+//				Integer j = i;
+//				lista.add(j);
+//			}
+//		}
+//
+//		double diasUteis = lista.size();
+//		double domigosFeriados = lista.size() - mesAtual.lengthOfMonth();
+//
+//		return (valorHorasExtras / diasUteis) * domigosFeriados;
 
 	}
 

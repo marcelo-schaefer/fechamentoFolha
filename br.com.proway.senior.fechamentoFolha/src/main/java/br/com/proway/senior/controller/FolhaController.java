@@ -1,16 +1,15 @@
 package br.com.proway.senior.controller;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-import br.com.proway.senior.model.CargoFolha;
-import br.com.proway.senior.model.ColaboradorFolha;
-import br.com.proway.senior.model.FeriasFolha;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDAO;
 import br.com.proway.senior.model.FolhaDirector;
-import br.com.proway.senior.model.PontoFolha;
+import br.com.proway.senior.model.externo.CargoFolha;
+import br.com.proway.senior.model.externo.ColaboradorFolha;
+import br.com.proway.senior.model.externo.FeriasFolha;
+import br.com.proway.senior.model.externo.PontoFolha;
 
 
 /**
@@ -41,7 +40,7 @@ public class FolhaController {
 	public Folha construirFolhaFerias(ColaboradorFolha colaborador, FeriasFolha ferias, CargoFolha cargo) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaFerias(colaborador, ferias, cargo);
+		director.createFolhaFerias(colaborador, cargo, ferias);
 		return folhaBuilder.build();
 	}
 	

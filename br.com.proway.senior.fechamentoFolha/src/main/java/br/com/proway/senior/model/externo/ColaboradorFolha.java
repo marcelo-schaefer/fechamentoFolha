@@ -29,14 +29,14 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 		this.dependentes = new ArrayList<String>();
 	}
 
-	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
-			double planoSaudeCooparticipacao, ArrayList<String> dependentes) {
-		this.id = id;
-		this.isValeTransporte = isValeTransporte;
-		this.planoSaudeMensalidade = planoSaudeMensalidade;
-		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
-		this.dependentes = dependentes;
-	}
+//	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
+//			double planoSaudeCooparticipacao, ArrayList<String> dependentes) {
+//		this.id = id;
+//		this.isValeTransporte = isValeTransporte;
+//		this.planoSaudeMensalidade = planoSaudeMensalidade;
+//		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
+//		this.dependentes = dependentes;
+//	}
 
 	public int getId() {
 		return id;
