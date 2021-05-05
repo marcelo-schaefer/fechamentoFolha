@@ -11,7 +11,7 @@ CREATE TABLE folha
     dataemissao date NOT NULL,
     valorhorastrabalhadas decimal NOT NULL,
     valorhorasfaltas decimal NOT NULL,
-    doublevalorhorasextras decimal NOT NULL,
+    valorhorasextras decimal NOT NULL,
     valorreflexodsr decimal NOT NULL,
     valorinss decimal NOT NULL,
     valorimpostoderenda decimal NOT NULL,
