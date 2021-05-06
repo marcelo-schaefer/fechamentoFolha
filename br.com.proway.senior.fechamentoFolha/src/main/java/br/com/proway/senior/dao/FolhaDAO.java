@@ -1,10 +1,12 @@
-package br.com.proway.senior.model;
+package br.com.proway.senior.dao;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import br.com.proway.senior.model.Folha;
 
 public final class FolhaDAO implements InterfaceFolhaDAO {
 
@@ -14,7 +16,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 	
 	/**
-	 * Metodo getInstance que retorna uma instância FolhaDAO
+	 * Metodo getInstance que retorna uma instï¿½ncia FolhaDAO
 	 * @return instance
 	 */
 	public static FolhaDAO getInstance() {
@@ -63,7 +65,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * Metodo de consulta de folhas por ID
 	 * Busca todas as folhas cadastradas na tabela "folha" do banco de dados "FechamentoFolha"
 	 * utilizando a classe PostgresConnector para a conexao com o banco e com query SELECT traz
-	 * as informações de folha consultada por ID.
+	 * as informaï¿½ï¿½es de folha consultada por ID.
 	 * 	 * 
 	 * @param id da folha desejada
 	 * @return folhas
@@ -110,7 +112,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * Metodo de consulta de Folhas Por Colaborador
 	 * Busca todas as folhas cadastradas na tabela "folha" do banco de dados "FechamentoFolha"
 	 * utilizando a classe PostgresConnector para a conexao com o banco e com query SELECT traz
-	 * as informações de folha de um determinado Colaborador com a pesquisa feita pelo ID.
+	 * as informaï¿½ï¿½es de folha de um determinado Colaborador com a pesquisa feita pelo ID.
 	 * 	 * 
 	 * @param id do colaborador desejado
 	 * @return folhas
@@ -160,7 +162,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 
 	/**
 	 * Metodo de salvamento de Folha.
-	 * Atraves deste metodo o codigo salva os parametros que o usuário passou atraves
+	 * Atraves deste metodo o codigo salva os parametros que o usuï¿½rio passou atraves
 	 * dos "gets" no Banco de dados. 
 	 * Recebe um objeto e salva na lista do objeto
 	 * 
@@ -189,7 +191,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * Metodo de Atualizacao das alteracoes de uma folha
 	 * 
 	 * Recebe uma folha nova e o id do objeto e substitui na lista do objeto 
-	 * @param int   id, id da folha que será atualizada
+	 * @param int   id, id da folha que serï¿½ atualizada
 	 *  
 	 */
 	public void updateFolha(Folha folha, int id) {
@@ -218,10 +220,10 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 
 	/**
-	 * Metodo de remoção de uma folha de pagamento.
+	 * Metodo de remoï¿½ï¿½o de uma folha de pagamento.
 	 * 
 	 * Recebe um id e deleta do Banco de dados a linha.
-	 * @param int id, folha que será deletada.
+	 * @param int id, folha que serï¿½ deletada.
 	 * 
 	 */
 	public void deleteFolha(int id) {

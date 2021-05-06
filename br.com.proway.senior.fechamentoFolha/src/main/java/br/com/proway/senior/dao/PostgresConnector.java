@@ -1,4 +1,4 @@
-package br.com.proway.senior.model;
+package br.com.proway.senior.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +19,7 @@ public class PostgresConnector {
 	static String url = "jdbc:postgresql://localhost:5432/FechamentoFolha";
 	static String user = "postgres";
 	static String password = "admin";
-	static Connection con;
+	public static Connection con;
 
 	/**
 	 * Connect

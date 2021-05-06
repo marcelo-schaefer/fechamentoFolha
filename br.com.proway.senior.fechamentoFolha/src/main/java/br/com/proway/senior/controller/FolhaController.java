@@ -2,9 +2,9 @@ package br.com.proway.senior.controller;
 
 import java.util.ArrayList;
 
+import br.com.proway.senior.dao.FolhaDAO;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
-import br.com.proway.senior.model.FolhaDAO;
 import br.com.proway.senior.model.FolhaDirector;
 import br.com.proway.senior.model.externo.CargoFolha;
 import br.com.proway.senior.model.externo.ColaboradorFolha;
@@ -13,13 +13,13 @@ import br.com.proway.senior.model.externo.PontoFolha;
 
 
 /**
- * Controller criado pensado em receber dados e através do builder
- * tratar esses dados para criar um tipo específico de folha para enviar para
+ * Controller criado pensado em receber dados e atravï¿½s do builder
+ * tratar esses dados para criar um tipo especï¿½fico de folha para enviar para
  * o DAO e atualizar o banco de dados. 
  * 
  * 
  * @author Bruno Oliveira
- * @author Lucas Grijó
+ * @author Lucas Grijï¿½
  *
  */
 public class FolhaController {
@@ -54,7 +54,7 @@ public class FolhaController {
 	/**
 	 * CREATE
 	 * Metodo que recebe um tipo de folha e envia para o DAO, 
-	 * para a criação de uma nova Folha do Banco de dados.
+	 * para a criaï¿½ï¿½o de uma nova Folha do Banco de dados.
 	 * 
 	 * @param folha gerada pelo builder
 	 */
@@ -67,7 +67,7 @@ public class FolhaController {
 	/**
 	 * UPDATE
 	 * Metodo que recebe uma nova folha e um id de uma folha existente no Banco de dados,
-	 * e envia para o DAO, para a atualização das informações da folha existente no Banco de dados.
+	 * e envia para o DAO, para a atualizaï¿½ï¿½o das informaï¿½ï¿½es da folha existente no Banco de dados.
 	 *  
 	 * @param folha nova gerada pelo builder
 	 * @param id de folha ja existente no Banco de dados.

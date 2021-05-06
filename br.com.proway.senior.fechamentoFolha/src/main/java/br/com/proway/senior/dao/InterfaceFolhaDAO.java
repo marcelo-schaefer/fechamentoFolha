@@ -1,6 +1,8 @@
-package br.com.proway.senior.model;
+package br.com.proway.senior.dao;
 
 import java.util.ArrayList;
+
+import br.com.proway.senior.model.Folha;
 
 /**
  * Interface do CRUD

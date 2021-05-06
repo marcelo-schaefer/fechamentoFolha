@@ -10,6 +10,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import br.com.proway.senior.dao.FolhaDAO;
+import br.com.proway.senior.dao.PostgresConnector;
 import br.com.proway.senior.model.externo.CargoFolha;
 import br.com.proway.senior.model.externo.ColaboradorFolha;
 import br.com.proway.senior.model.externo.FeriasFolha;
