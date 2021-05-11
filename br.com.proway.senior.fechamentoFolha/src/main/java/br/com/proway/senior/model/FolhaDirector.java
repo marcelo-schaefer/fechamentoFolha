@@ -80,5 +80,4 @@ public class FolhaDirector {
 		builder.calcularDescontoFerias(colaborador);
 		return builder.build();
 	}
-
 }

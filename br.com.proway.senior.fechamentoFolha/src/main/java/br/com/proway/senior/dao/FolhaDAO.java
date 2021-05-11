@@ -170,14 +170,14 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * @param Folha folha, folha que sera adicionada
 	 */
 	public void saveFolha(Folha folha) {
-		String insert = "INSERT INTO folha (idColaborador, dataEmissao,valorHorasTrabalhadas,valorHorasFaltas, valorHorasExtras,valorReflexoDSR,valorInss,valorImpostoDeRenda,valorPlanoSaude, valorValeTransporte,salarioBruto,salarioLiquido,valorFerias,valorInssFerias,valorImpostoDeRendaFerias,feriasLiquido) "
+		String insert = "INSERT INTO folha (idColaborador, dataEmissao,valorHorasTrabalhadas,valorHorasFaltas, valorHorasExtras,valorReflexoDSR,valorInss,valorImpostoDeRenda,valorPlanoSaude, valorValeTransporte,salarioBruto,salarioLiquido,valorFerias,valorInssFerias,valorImpostoDeRendaFerias,feriasLiquido,valorfgts) "
 				+ "VALUES (" + folha.getIdColaborador() + ",'" + folha.getDataEmissao() + "' ,"
 				+ folha.getValorHorasTrabalhadas() + "," + folha.getValorHorasFaltas() + ","
 				+ folha.getValorHorasExtras() + " , " + folha.getValorReflexoDSR() + " , " + folha.getValorInss()
 				+ " , " + folha.getValorImpostoDeRenda() + " , " + folha.getValorPlanoSaude() + " ,  "
 				+ folha.getValorValeTransporte() + "," + folha.getSalarioBruto() + "," + folha.getSalarioLiquido() + ","
 				+ folha.getValorFerias() + "," + folha.getValorInssFerias() + "," + folha.getValorImpostoDeRendaFerias()
-				+ "," + folha.getFeriasLiquido() + " )";
+				+ "," + folha.getFeriasLiquido() + "," + folha.getValorFGTS() + " )";
 		try {
 			if (PostgresConnector.con == null) {
 				PostgresConnector.connect();

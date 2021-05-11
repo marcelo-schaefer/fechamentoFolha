@@ -73,14 +73,10 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 		this.dependentes = dependentes;
 	}
 	
-
 	public double getValorFGTS() {
 		return valorFGTS;
 	}
 	
-
-	
-
 	/**
 	 * Cadastra dependente
 	 * 
@@ -119,5 +115,4 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 			return dependentes.size();
 		}
 	}
-
 }

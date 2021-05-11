@@ -17,7 +17,7 @@ import java.sql.Statement;
 public class PostgresConnector {
 
 	static String url = "jdbc:postgresql://localhost:5432/FechamentoFolha";
-	static String urlTest = "jdbc:postgresql://localhost:5432/FechamentoFolha";
+	static String urlTest = "jdbc:postgresql://localhost:5432/testFechamentoFolha";
 	static String user = "postgres";
 	static String password = "admin";
 	public static Connection con;
@@ -74,6 +74,14 @@ public class PostgresConnector {
 	public static void executeUpdate(String query) throws SQLException {
 		if (con == null) {
 			connect();
+		}
+		Statement st = con.createStatement();
+		st.executeUpdate(query);
+	}
+	
+	public static void executeUpdateTest(String query) throws SQLException {
+		if (con == null) {
+			connectTest();
 		}
 		Statement st = con.createStatement();
 		st.executeUpdate(query);

@@ -42,10 +42,8 @@ public class CalculoDesconto implements ICalculoDesconto {
 	 * @author Sabrina
 	 * @param 
 	 */
-	
 	public double calcularFGTS(double salarioBrutoAcumulado) {
-		return (salarioBrutoAcumulado * 0.08);
-		
+		return (salarioBrutoAcumulado * 0.08);	
 	}
 
 	/**

@@ -1,18 +1,17 @@
 package br.com.proway.senior.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 import br.com.proway.senior.dao.FolhaDAO;
 import br.com.proway.senior.dao.PostgresConnector;
@@ -21,16 +20,11 @@ import br.com.proway.senior.model.externo.ColaboradorFolha;
 import br.com.proway.senior.model.externo.FeriasFolha;
 import br.com.proway.senior.model.externo.PontoFolha;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FolhaDAOTest {
 	
-	@BeforeClass
-	public static void initializeDatabase() {
-		Folha folha = new Folha(0, 2, LocalDate.now(), 300, 40, 0, 85, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 205);
-		
-		String queryDropTable = "DROP TABLE folha";
-		
-		String queryCreateTable = "CREATE TABLE public.folha ("
+	@Before
+	public void createTable() {		
+		String queryCreateTable = "CREATE TABLE folha ("
 				+ " id serial primary key NOT NULL,"
 				+ " idcolaborador integer NOT NULL,"
 				+ " dataemissao date NOT NULL,"
@@ -47,21 +41,12 @@ public class FolhaDAOTest {
 				+ " valorferias numeric NOT NULL,"
 				+ " valorinssferias numeric NOT NULL,"
 				+ " valorimpostoderendaferias numeric NOT NULL,"
-				+ " feriasliquido numeric NOT NULL"
+				+ " feriasliquido numeric NOT NULL,"
+				+ "	valorFGTS numeric NOT NULL"
 				+ ");";
 		
-		String insert = "INSERT INTO folha (idColaborador, dataEmissao,valorHorasTrabalhadas,valorHorasFaltas, valorHorasExtras,valorReflexoDSR,valorInss,valorImpostoDeRenda,valorPlanoSaude, valorValeTransporte,salarioBruto,salarioLiquido,valorFerias,valorInssFerias,valorImpostoDeRendaFerias,feriasLiquido) "
-				+ "VALUES (" + folha.getIdColaborador() + ",'" + folha.getDataEmissao() + "' ,"
-				+ folha.getValorHorasTrabalhadas() + "," + folha.getValorHorasFaltas() + ","
-				+ folha.getValorHorasExtras() + " , " + folha.getValorReflexoDSR() + " , " + folha.getValorInss()
-				+ " , " + folha.getValorImpostoDeRenda() + " , " + folha.getValorPlanoSaude() + " ,  "
-				+ folha.getValorValeTransporte() + "," + folha.getSalarioBruto() + "," + folha.getSalarioLiquido() + ","
-				+ folha.getValorFerias() + "," + folha.getValorInssFerias() + "," + folha.getValorImpostoDeRendaFerias()
-				+ "," + folha.getFeriasLiquido() + " );";
 		try {
-			PostgresConnector.executeUpdate(queryDropTable);
 			PostgresConnector.executeUpdate(queryCreateTable);
-			PostgresConnector.executeUpdate(insert);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -71,22 +56,31 @@ public class FolhaDAOTest {
 	public void cleanDAO() {
 		FolhaDAO.newInstance();
 	}
+	
+	@After
+	public void dropTable() {
+		String queryDropTable = "DROP TABLE folha";
+		try {
+			PostgresConnector.executeUpdate(queryDropTable);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
  
 	@Test
-	public void testASalvarFolhaNormalBuilder() {
+	public void testSalvarFolhaNormalBuilder() {
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
 		CargoFolha cargo = new CargoFolha(1752, 20);
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
-		director.createFolhaNormal(colab, ponto, cargo);
-		Folha folha = builder.build();
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
 				
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
 		folhaDAO.saveFolha(folha);
 		
-		assertEquals(2, folhaDAO.getAll().size());
+		assertEquals(1, folhaDAO.getAll().size());
 	}
 
 	/**
@@ -95,8 +89,8 @@ public class FolhaDAOTest {
 	 */	
 	
 	@Test
-	public void testBSalvarFolhaBuilderHibrida() {
-		ColaboradorFolha colab = new ColaboradorFolha(1, false, 153, 27,205);
+	public void testSalvarFolhaBuilderHibrida() {
+		ColaboradorFolha colab = new ColaboradorFolha(1, false, 153, 27, 205);
 		PontoFolha ponto = new PontoFolha(220, 5.53, 3.67);
 		CargoFolha cargo = new CargoFolha(1752, 20);
 		FeriasFolha ferias = new FeriasFolha(20, 10);
@@ -109,128 +103,230 @@ public class FolhaDAOTest {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
 		folhaDAO.saveFolha(folha);
 		
-		assertEquals(3, folhaDAO.getAll().size());
+		assertEquals(1, folhaDAO.getAll().size());
+		assertTrue((int) folhaDAO.getFolhasPorId(1).getIdColaborador() == 1);
 	}
 	
 	@Test
-	public void testCSalvarFolhaBuilderFerias() {
+	public void testSalvarFolhaBuilderFerias() {
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 153, 27, 205);
-		PontoFolha ponto = new PontoFolha(0, 0, 0);
 		CargoFolha cargo = new CargoFolha(1752, 20);
 		FeriasFolha ferias = new FeriasFolha(30, 0);
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
-		director.createFolhaFerias(colab, cargo, ferias);
-		Folha folha = builder.build();
+		Folha folha = director.createFolhaFerias(colab, cargo, ferias);
 				
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
 		folhaDAO.saveFolha(folha);
 		
-		assertEquals(3, folhaDAO.getAll().size());
+		assertEquals(1, folhaDAO.getAll().size());
+		assertTrue(folhaDAO.getFolhasPorId(1).getFeriasLiquido() == 2307.3986666666665);
 	}	
 	
 	@Test
-	public void testDSalvarFolhaBuilder4() {
-		ColaboradorFolha colab = new ColaboradorFolha(2, true, 127, 12,205);
+	public void testSalvarFolhaBuilder4() {
+		ColaboradorFolha colab = new ColaboradorFolha(666, true, 127, 12,205);
 		PontoFolha ponto = new PontoFolha(220, 13.15, 3.37);
 		CargoFolha cargo = new CargoFolha(2570, 20);
-		FeriasFolha ferias = new FeriasFolha(0, 0);
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
-		director.createFolhaNormal(colab, ponto, cargo);
-		Folha folha = builder.build();
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
 				
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
 		folhaDAO.saveFolha(folha);
 		
-		assertEquals(4, folhaDAO.getAll().size());
-	}		
-	
-	@Test
-	public void testEFolhaPorId() {
-		FolhaDAO folhaDAO = FolhaDAO.getInstance();
-		Folha folha = folhaDAO.getFolhasPorId(3);
-		assertEquals(
-				"Folha [id=3, idColaborador=1, dataEmissao=2021-05-11,"
-				+ " valorHorasTrabalhadas=1972.0000000000002,"
-				+ " valorHorasFaltas=32.89654545454546,"
-				+ " valorHorasExtras=74.35336363636365,"
-				+ " valorReflexoDSR=14.870672727272732,"
-				+ " valorInss=223.116024, valorImpostoDeRenda=0.0,"
-				+ " valorPlanoSaude=180.0, valorValeTransporte=0.0,"
-				+ " salarioBruto=2028.327490909091, salarioLiquido=1625.211466909091,"
-				+ " valorFerias=2629.3333333333335, valorInssFerias=289.2266666666667,"
-				+ " valorImpostoDeRendaFerias=32.70799999999997,"
-				+ " feriasLiquido=2307.3986666666665]",
-				folha.toString());
+		assertEquals(1, folhaDAO.getAll().size());
+		assertTrue(folhaDAO.getFolhasPorId(1).getIdColaborador() == 666);
 	}
 	
 	@Test
-	public void testFFolhaPorIdColaborador() {
+	public void testSalvarFolhaBuilderFalse() {
+		ColaboradorFolha colab = new ColaboradorFolha(667, true, 127, 12,205);
+		PontoFolha ponto = new PontoFolha(220, 13.15, 3.37);
+		CargoFolha cargo = new CargoFolha(2570, 20);
+		
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
+				
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
-		ArrayList<Folha> folhas = folhaDAO.getFolhasPorColaborador(1);
-		for (Folha folha : folhas) {
-			System.out.println(folha.toString());
-		}
-		assertEquals(3, folhas.size());
+		folhaDAO.saveFolha(folha);
+		
+		assertEquals(1, folhaDAO.getAll().size());
+		assertFalse(folhaDAO.getFolhasPorId(1).getIdColaborador() == 666);
+	}	
+	
+	@Test
+	public void testFolhaPorId() {
+		FolhaDAO folhaDAO = FolhaDAO.getInstance();
+		ColaboradorFolha colab = new ColaboradorFolha(666, true, 127, 12,205);
+		PontoFolha ponto = new PontoFolha(220, 13.15, 3.37);
+		CargoFolha cargo = new CargoFolha(2570, 20);
+		
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
+		
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
+				
+		folhaDAO.saveFolha(folha);
+		
+		FolhaDAO.newInstance();
+		
+		colab = new ColaboradorFolha(667, true, 127, 12,205);
+		ponto = new PontoFolha(220, 13.15, 3.37);
+		cargo = new CargoFolha(2570, 20);
+		
+		folha = director.createFolhaNormal(colab, ponto, cargo);
+		
+		folhaDAO.saveFolha(folha);
+		
+		FolhaDAO.newInstance();
+		
+		colab = new ColaboradorFolha(668, true, 127, 12,205);
+		ponto = new PontoFolha(220, 13.15, 3.37);
+		cargo = new CargoFolha(2570, 20);
+		
+		folha = director.createFolhaNormal(colab, ponto, cargo);
+		
+		folhaDAO.saveFolha(folha);
+		
+		assertTrue(folhaDAO.getFolhasPorId(2).getIdColaborador() == 667);
+		assertTrue(folhaDAO.getAll().size() == 3);
 	}
 	
 	@Test
-	public void testGFolhaPorIdColaborador2() {
+	public void testFolhaPorIdColaborador() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
-		ArrayList<Folha> folhas = folhaDAO.getFolhasPorColaborador(2);
-		for (Folha folha : folhas) {
-			System.out.println(folha.toString());
-		}
-		assertEquals(1, folhas.size());
-	}
+		ColaboradorFolha colab = new ColaboradorFolha(666, true, 127, 12,205);
+		PontoFolha ponto = new PontoFolha(220, 13.15, 3.37);
+		CargoFolha cargo = new CargoFolha(2570, 20);
+		
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
+		
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
+				
+		folhaDAO.saveFolha(folha);
+		
+		FolhaDAO.newInstance();
+		
+		colab = new ColaboradorFolha(667, true, 127, 12,205);
+		ponto = new PontoFolha(220, 13.15, 3.37);
+		cargo = new CargoFolha(2570, 20);
+		
+		folha = director.createFolhaNormal(colab, ponto, cargo);
+		
+		folhaDAO.saveFolha(folha);
+		
+		FolhaDAO.newInstance();
+		
+		colab = new ColaboradorFolha(667, true, 127, 12,205);
+		ponto = new PontoFolha(220, 13.15, 3.37);
+		cargo = new CargoFolha(2570, 20);
+		
+		folha = director.createFolhaNormal(colab, ponto, cargo);
+		
+		folhaDAO.saveFolha(folha);
+		
+		assertTrue(folhaDAO.getFolhasPorColaborador(667).size() == 2);
+	} 
 	
 	@Test
-	public void testHSelectAllBancoDeDados() {
-		FolhaDAO folha = FolhaDAO.getInstance();
-		ArrayList<ArrayList<String>> lista = folha.getAll();
-		// System.out.println(lista.toString());
-		for (ArrayList<String> row : lista) {
-			System.out.println(row.toString());
-		}
+	public void testSelectAllBancoDeDados() {
+		FolhaDAO folhaDAO = FolhaDAO.getInstance();
+		ColaboradorFolha colab = new ColaboradorFolha(666, true, 127, 12,205);
+		PontoFolha ponto = new PontoFolha(220, 13.15, 3.37);
+		CargoFolha cargo = new CargoFolha(2570, 20);
+		
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
+		
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
+				
+		folhaDAO.saveFolha(folha);
+		ArrayList<ArrayList<String>> lista = folhaDAO.getAll();
+		ArrayList<String> listaEsperada = lista.get(0);
+		
+		assertEquals("[1, 666, 2021-05-11,"
+				+ " 2790.0, 42.73772727272728,"
+				+ " 250.14886363636364, 50.02977272727273,"
+				+ " 335.2185, 60.616680681818195,"
+				+ " 139.0, 154.2,"
+				+ " 3047.4409090909094, 2358.4057284090914,"
+				+ " 0.0, 0.0, 0.0,"
+				+ " 0.0, 243.79527272727276]", listaEsperada.toString());
 	}
 	
 	@Test
 	public void testIDeleteFolha() {
-		FolhaDAO folha = FolhaDAO.getInstance();
+		FolhaDAO folhaDAO = FolhaDAO.getInstance();
+		ColaboradorFolha colab = new ColaboradorFolha(666, true, 127, 12,205);
+		PontoFolha ponto = new PontoFolha(220, 13.15, 3.37);
+		CargoFolha cargo = new CargoFolha(2570, 20);
 		
-		int tamanhoTabelaAntes = folha.getAll().size();
-		folha.deleteFolha(1);
-		int tamanhoTabelaDepois = folha.getAll().size();
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
 		
-		assertEquals((tamanhoTabelaAntes - 1), tamanhoTabelaDepois);
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
+				
+		folhaDAO.saveFolha(folha);
+		
+		FolhaDAO.newInstance();
+		
+		colab = new ColaboradorFolha(667, true, 127, 12,205);
+		ponto = new PontoFolha(220, 13.15, 3.37);
+		cargo = new CargoFolha(2570, 20);
+		
+		folha = director.createFolhaNormal(colab, ponto, cargo);
+		
+		folhaDAO.saveFolha(folha);
+		
+		FolhaDAO.newInstance();
+		
+		colab = new ColaboradorFolha(667, true, 127, 12,205);
+		ponto = new PontoFolha(220, 13.15, 3.37);
+		cargo = new CargoFolha(2570, 20);
+		
+		folha = director.createFolhaNormal(colab, ponto, cargo);
+		
+		folhaDAO.saveFolha(folha);
+		
+		folhaDAO.deleteFolha(2);
+		
+		assertTrue(folhaDAO.getAll().size() == 2);
 	}
 	
 	@Test
-	public void testHUpdateFolha() {
+	public void testUpdateFolha() {
 		ColaboradorFolha colab = new ColaboradorFolha(1, true, 98, 18,205);
 		PontoFolha ponto = new PontoFolha(220, 11, 1.63);
 		CargoFolha cargo = new CargoFolha(1750, 20);
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
-		director.createFolhaNormal(colab, ponto, cargo);
-		Folha folhaAtualizada = builder.build();
+		Folha folhaAnterior = director.createFolhaNormal(colab, ponto, cargo);
 		
 		FolhaDAO folhaDAO = FolhaDAO.getInstance();
-		Folha folhaAnterior = folhaDAO.getFolhasPorId(3);
 		
+		folhaDAO.saveFolha(folhaAnterior);
 		
-		folhaDAO.updateFolha(folhaAtualizada, 3);
+		FolhaDAO.newInstance();
 		
-		assertNotEquals(folhaAtualizada.getSalarioLiquido(), folhaAnterior.getSalarioLiquido(), 0.01);
+		colab = new ColaboradorFolha(1, true, 98, 18,205);
+		ponto = new PontoFolha(210, 11, 5.63);
+		cargo = new CargoFolha(1750, 20);
+		
+		Folha folhaAtualizada = director.createFolhaNormal(colab, ponto, cargo);
+		
+		folhaDAO.updateFolha(folhaAtualizada, 1);
+		assertNotEquals(folhaDAO.getFolhasPorId(1).getSalarioLiquido(), folhaAnterior.getSalarioLiquido(), 0.01);
 	}	
 	
 	@Test
 	public void versaoIDB() {		
-		assertEquals("PostgreSQL 13.2, compiled by Visual C++ build 1914, 64-bit",PostgresConnector.dbVersion());
+		assertEquals("PostgreSQL 13.2, compiled by Visual C++ build 1914, 64-bit", PostgresConnector.dbVersion());
 	}
 	
 	@Ignore

@@ -62,7 +62,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 		dataEmissao = LocalDate.now();
 		return new Folha(id, idColaborador, dataEmissao, valorHorasTrabalhadas, valorHorasFaltas, valorHorasExtras,
 				valorReflexoDSR, valorInss, valorImpostoDeRenda, valorPlanoSaude, valorValeTransporte, salarioBruto,
-				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido,valorFGTS);
+				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido, valorFGTS);
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @author Marcelo Schaefer
 	 */
 	public void calcularHorasFerias(IFeriasFolha feriasFolha) {
-		valorFerias = (calculoHoras.calcularFerias(feriasFolha.getDias(), feriasFolha.getAbono(), valorHora));
+		this.valorFerias = (calculoHoras.calcularFerias(feriasFolha.getDias(), feriasFolha.getAbono(), valorHora));
 	}
 
 	/**
