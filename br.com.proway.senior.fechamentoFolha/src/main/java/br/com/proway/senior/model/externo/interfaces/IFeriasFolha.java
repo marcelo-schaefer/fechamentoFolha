@@ -1,4 +1,4 @@
-package br.com.proway.senior.model.externo;
+package br.com.proway.senior.model.externo.interfaces;
 
 public interface IFeriasFolha {
 

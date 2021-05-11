@@ -1,5 +1,7 @@
 package br.com.proway.senior.model.externo;
 
+import br.com.proway.senior.model.externo.interfaces.IFeriasFolha;
+
 /**
  * FeriasFolha
  * 

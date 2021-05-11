@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 
-import br.com.proway.senior.model.externo.ICargoFolha;
-import br.com.proway.senior.model.externo.IPontoFolha;
+import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
+import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 /**
  * calcular horas

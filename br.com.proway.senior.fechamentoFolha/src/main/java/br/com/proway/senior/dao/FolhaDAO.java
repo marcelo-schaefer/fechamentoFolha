@@ -11,9 +11,6 @@ import br.com.proway.senior.model.Folha;
 public final class FolhaDAO implements InterfaceFolhaDAO {
 
 	private static FolhaDAO instance;
-
-	private FolhaDAO() {
-	}
 	
 	/**
 	 * Metodo getInstance que retorna uma inst�ncia FolhaDAO
@@ -23,6 +20,10 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		if (instance == null) {
 			instance = new FolhaDAO();
 		}
+		return instance;
+	}
+	public static FolhaDAO newInstance() {
+		instance = new FolhaDAO();
 		return instance;
 	}
 
@@ -49,16 +50,13 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 				ArrayList<String> linha = new ArrayList<String>();
 				for (int i = 1; i <= todasAsColunas; i++) {
 					linha.add(rs.getString(i));
-				}
-				
+				}			
 				lista.add(linha);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return lista;
-
 	}
 
 	/**
@@ -101,7 +99,6 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 						valorValeTransporte, salarioBruto, salarioLiquido, valorFerias, valorInssFerias,
 						valorImpostoDeRendaFerias, feriasLiquido);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -150,10 +147,8 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 						valorValeTransporte, salarioBruto, salarioLiquido, valorFerias, valorInssFerias,
 						valorImpostoDeRendaFerias, feriasLiquido);
 				listaFolhas.add(temp);
-
 			}
 			return listaFolhas;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -213,7 +208,6 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 					+ folha.getFeriasLiquido() + " WHERE id = " + id;
 
 			PostgresConnector.executeUpdate(update);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -234,10 +228,8 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 
 			String delete = "DELETE FROM folha where id = " + id;
 			PostgresConnector.executeUpdate(delete);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }

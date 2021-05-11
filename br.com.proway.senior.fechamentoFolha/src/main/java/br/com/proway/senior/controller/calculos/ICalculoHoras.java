@@ -1,7 +1,7 @@
 package br.com.proway.senior.controller.calculos;
 
-import br.com.proway.senior.model.externo.ICargoFolha;
-import br.com.proway.senior.model.externo.IPontoFolha;
+import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
+import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 public interface ICalculoHoras {
 	public double calcularValorHora(ICargoFolha cargoFolha);

@@ -6,10 +6,10 @@ import br.com.proway.senior.controller.calculos.CalculoDesconto;
 import br.com.proway.senior.controller.calculos.CalculoHoras;
 import br.com.proway.senior.controller.calculos.ICalculoDesconto;
 import br.com.proway.senior.controller.calculos.ICalculoHoras;
-import br.com.proway.senior.model.externo.ICargoFolha;
-import br.com.proway.senior.model.externo.IColaboradorFolha;
-import br.com.proway.senior.model.externo.IFeriasFolha;
-import br.com.proway.senior.model.externo.IPontoFolha;
+import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
+import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
+import br.com.proway.senior.model.externo.interfaces.IFeriasFolha;
+import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 /**
  * FolhaBuilder
@@ -143,5 +143,4 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorImpostoDeRendaFerias = (calculoDesconto.calcularDescontoImpostoRenda(colaborador, feriasLiquido));
 		feriasLiquido = (feriasLiquido - valorImpostoDeRendaFerias);
 	}
-
 }
