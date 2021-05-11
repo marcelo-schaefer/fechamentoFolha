@@ -7,8 +7,8 @@ import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 /**
  * ColaboradorFolha
  * 
- * Objeto conténdo os dados necessários de um colaborador para utilização interna na
- * criação de uma folha.
+ * Objeto contï¿½ndo os dados necessï¿½rios de um colaborador para utilizaï¿½ï¿½o
+ * interna na criaï¿½ï¿½o de uma folha.
  * 
  * @author sprint3
  */
@@ -21,24 +21,17 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 	private double planoSaudeMensalidade;
 	private double planoSaudeCooparticipacao;
 	private ArrayList<String> dependentes;
+	private double valorFGTS;
 
 	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
-			double planoSaudeCooparticipacao) {
+			double planoSaudeCooparticipacao, double valorFGTS) {
 		this.id = id;
 		this.isValeTransporte = isValeTransporte;
 		this.planoSaudeMensalidade = planoSaudeMensalidade;
 		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
+		this.valorFGTS = valorFGTS;
 		this.dependentes = new ArrayList<String>();
 	}
-
-//	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
-//			double planoSaudeCooparticipacao, ArrayList<String> dependentes) {
-//		this.id = id;
-//		this.isValeTransporte = isValeTransporte;
-//		this.planoSaudeMensalidade = planoSaudeMensalidade;
-//		this.planoSaudeCooparticipacao = planoSaudeCooparticipacao;
-//		this.dependentes = dependentes;
-//	}
 
 	public int getId() {
 		return id;
@@ -79,6 +72,14 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 	public void setDependentes(ArrayList<String> dependentes) {
 		this.dependentes = dependentes;
 	}
+	
+
+	public double getValorFGTS() {
+		return valorFGTS;
+	}
+	
+
+	
 
 	/**
 	 * Cadastra dependente
@@ -118,4 +119,5 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 			return dependentes.size();
 		}
 	}
+
 }

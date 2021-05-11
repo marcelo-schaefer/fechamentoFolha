@@ -18,21 +18,19 @@ public class TesteBuilder {
 
 	@Test
 	public void testFolhaNormal() {
-		ColaboradorFolha colaborador = new ColaboradorFolha(1, true, 100, 25);
+		ColaboradorFolha colaborador = new ColaboradorFolha(1, true, 100, 25, 205);
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
 		CargoFolha cargo = new CargoFolha(35000, 0);
-		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		Folha folha = director.createFolhaNormal(colaborador, ponto, cargo);
-		
 		System.out.println("TESTE FOLHA NORMAL");
 		System.out.println(folha.toString());
 	}
 	
 	@Test
 	public void testFolhaFerias() {
-		ColaboradorFolha colaborador = new ColaboradorFolha(2, true, 100, 25);
+		ColaboradorFolha colaborador = new ColaboradorFolha(2, true, 100, 25,205);
 		CargoFolha cargo = new CargoFolha(3500, 20);
 		FeriasFolha ferias = new FeriasFolha(15, 3);
 		
@@ -47,7 +45,7 @@ public class TesteBuilder {
 	
 	@Test
 	public void testFolhaHibrida() {
-		ColaboradorFolha colaborador = new ColaboradorFolha(3, true, 100, 25);
+		ColaboradorFolha colaborador = new ColaboradorFolha(3, true, 100, 25,205);
 		PontoFolha ponto = new PontoFolha(220, 30, 45);
 		CargoFolha cargo = new CargoFolha(2578, 10);
 		FeriasFolha ferias = new FeriasFolha(20, 10);
@@ -63,7 +61,7 @@ public class TesteBuilder {
 	
 	@Test
 	public void testFolhaNormalDeMesa() {
-		ColaboradorFolha colaborador = new ColaboradorFolha(4, true, 100, 15);
+		ColaboradorFolha colaborador = new ColaboradorFolha(4, true, 100, 15,205);
 		PontoFolha ponto = new PontoFolha(220, 13.58, 7.46);
 		CargoFolha cargo = new CargoFolha(1850, 40);
 		
@@ -78,7 +76,7 @@ public class TesteBuilder {
 	
 	@Test
 	public void testFolhaNormalComDependente() {
-		ColaboradorFolha colaborador = new ColaboradorFolha(5, false, 217, 127);
+		ColaboradorFolha colaborador = new ColaboradorFolha(5, false, 217, 127,205);
 		colaborador.setNome("Lucas Walim");
 		colaborador.setEmail("lucas@gmail.com");
 		colaborador.addDependentes("Lucas Grijo");
@@ -98,7 +96,7 @@ public class TesteBuilder {
 	
 	@Test
 	public void testFolhaNormal2() {
-		ColaboradorFolha colaborador = new ColaboradorFolha(5, false, 0, 0);
+		ColaboradorFolha colaborador = new ColaboradorFolha(5, false, 0, 0,205);
 			
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
 		CargoFolha cargo = new CargoFolha(4500, 0);
@@ -115,7 +113,7 @@ public class TesteBuilder {
 	@Test
 	public void testGetSet() {
 		// Teste inutil pra subir Coverage
-		ColaboradorFolha colaborador = new ColaboradorFolha(6, false, 0, 0);
+		ColaboradorFolha colaborador = new ColaboradorFolha(6, false, 0, 0,205);
 		colaborador.setNome("Joao");
 		colaborador.setEmail("joao@gmail.com");
 		colaborador.setId(6);
