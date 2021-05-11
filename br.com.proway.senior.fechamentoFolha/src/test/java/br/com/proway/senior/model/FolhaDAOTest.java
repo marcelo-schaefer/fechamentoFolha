@@ -22,7 +22,7 @@ public class FolhaDAOTest {
  
 	@Test
 	public void testASalvarFolhaBuilder() {
-		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43);
+		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43,205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
 		CargoFolha cargo = new CargoFolha(1752, 20);
 		
@@ -44,7 +44,7 @@ public class FolhaDAOTest {
 	
 	@Test
 	public void testBSalvarFolhaBuilder2() {
-		ColaboradorFolha colab = new ColaboradorFolha(1, false, 153, 27);
+		ColaboradorFolha colab = new ColaboradorFolha(1, false, 153, 27,205);
 		PontoFolha ponto = new PontoFolha(220, 5.53, 3.67);
 		CargoFolha cargo = new CargoFolha(1752, 20);
 		FeriasFolha ferias = new FeriasFolha(20, 10);
@@ -62,7 +62,7 @@ public class FolhaDAOTest {
 	
 	@Test
 	public void testCSalvarFolhaBuilder3() {
-		ColaboradorFolha colab = new ColaboradorFolha(1, false, 153, 27);
+		ColaboradorFolha colab = new ColaboradorFolha(1, false, 153, 27,205);
 		PontoFolha ponto = new PontoFolha(0, 0, 0);
 		CargoFolha cargo = new CargoFolha(1752, 20);
 		FeriasFolha ferias = new FeriasFolha(30, 0);
@@ -80,7 +80,7 @@ public class FolhaDAOTest {
 	
 	@Test
 	public void testDSalvarFolhaBuilder4() {
-		ColaboradorFolha colab = new ColaboradorFolha(2, true, 127, 12);
+		ColaboradorFolha colab = new ColaboradorFolha(2, true, 127, 12,205);
 		PontoFolha ponto = new PontoFolha(220, 13.15, 3.37);
 		CargoFolha cargo = new CargoFolha(2570, 20);
 		FeriasFolha ferias = new FeriasFolha(0, 0);
@@ -148,7 +148,7 @@ public class FolhaDAOTest {
 	
 	@Test
 	public void testHUpdateFolha() {
-		ColaboradorFolha colab = new ColaboradorFolha(1, true, 98, 18);
+		ColaboradorFolha colab = new ColaboradorFolha(1, true, 98, 18,205);
 		PontoFolha ponto = new PontoFolha(220, 11, 1.63);
 		CargoFolha cargo = new CargoFolha(1750, 20);
 		

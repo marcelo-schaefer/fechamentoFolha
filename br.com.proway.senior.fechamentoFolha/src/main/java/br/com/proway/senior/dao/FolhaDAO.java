@@ -14,9 +14,10 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 
 	private FolhaDAO() {
 	}
-	
+
 	/**
 	 * Metodo getInstance que retorna uma inst�ncia FolhaDAO
+	 * 
 	 * @return instance
 	 */
 	public static FolhaDAO getInstance() {
@@ -26,10 +27,11 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		return instance;
 	}
 
+	
 	/**
-	 * Busca todas as folhas cadastradas na tabela "folha" do banco de dados "FechamentoFolha"
-	 * utilizando a classe PostgresConnector para a conexao com o banco e com query SELECT traz
-	 * todas as linhas/colunas encontradas.
+	 * Busca todas as folhas cadastradas na tabela "folha" do banco de dados
+	 * "FechamentoFolha" utilizando a classe PostgresConnector para a conexao com o
+	 * banco e com query SELECT traz todas as linhas/colunas encontradas.
 	 * 
 	 * @return ArrayList<ArrayList<String>
 	 */
@@ -50,7 +52,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 				for (int i = 1; i <= todasAsColunas; i++) {
 					linha.add(rs.getString(i));
 				}
-				
+
 				lista.add(linha);
 			}
 
@@ -62,11 +64,11 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 
 	/**
-	 * Metodo de consulta de folhas por ID
-	 * Busca todas as folhas cadastradas na tabela "folha" do banco de dados "FechamentoFolha"
-	 * utilizando a classe PostgresConnector para a conexao com o banco e com query SELECT traz
-	 * as informa��es de folha consultada por ID.
-	 * 	 * 
+	 * Metodo de consulta de folhas por ID Busca todas as folhas cadastradas na
+	 * tabela "folha" do banco de dados "FechamentoFolha" utilizando a classe
+	 * PostgresConnector para a conexao com o banco e com query SELECT traz as
+	 * informa��es de folha consultada por ID. *
+	 * 
 	 * @param id da folha desejada
 	 * @return folhas
 	 */
@@ -96,10 +98,11 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 				double valorInssFerias = Double.parseDouble(rs.getString(15));
 				double valorImpostoDeRendaFerias = Double.parseDouble(rs.getString(16));
 				double feriasLiquido = Double.parseDouble(rs.getString(17));
+				double valorFGTS = Double.parseDouble(rs.getString(18));
 				return new Folha(id, idColaborador, dataEmissao, valorHorasTrabalhadas, valorHorasFaltas,
 						valorHorasExtras, valorReflexoDSR, valorInss, valorImpostoDeRenda, valorPlanoSaude,
 						valorValeTransporte, salarioBruto, salarioLiquido, valorFerias, valorInssFerias,
-						valorImpostoDeRendaFerias, feriasLiquido);
+						valorImpostoDeRendaFerias, feriasLiquido,valorFGTS);
 			}
 
 		} catch (Exception e) {
@@ -109,11 +112,12 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 
 	/**
-	 * Metodo de consulta de Folhas Por Colaborador
-	 * Busca todas as folhas cadastradas na tabela "folha" do banco de dados "FechamentoFolha"
-	 * utilizando a classe PostgresConnector para a conexao com o banco e com query SELECT traz
-	 * as informa��es de folha de um determinado Colaborador com a pesquisa feita pelo ID.
-	 * 	 * 
+	 * Metodo de consulta de Folhas Por Colaborador Busca todas as folhas
+	 * cadastradas na tabela "folha" do banco de dados "FechamentoFolha" utilizando
+	 * a classe PostgresConnector para a conexao com o banco e com query SELECT traz
+	 * as informa��es de folha de um determinado Colaborador com a pesquisa feita
+	 * pelo ID. *
+	 * 
 	 * @param id do colaborador desejado
 	 * @return folhas
 	 */
@@ -145,10 +149,11 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 				double valorInssFerias = rs.getDouble("valorinssferias");
 				double valorImpostoDeRendaFerias = rs.getDouble("valorimpostoderendaferias");
 				double feriasLiquido = rs.getDouble("feriasliquido");
+				double valorFGTS = rs.getDouble("valorFGTS");
 				Folha temp = new Folha(id, idColaborador, dataEmissao, valorHorasTrabalhadas, valorHorasFaltas,
 						valorHorasExtras, valorReflexoDSR, valorInss, valorImpostoDeRenda, valorPlanoSaude,
 						valorValeTransporte, salarioBruto, salarioLiquido, valorFerias, valorInssFerias,
-						valorImpostoDeRendaFerias, feriasLiquido);
+						valorImpostoDeRendaFerias, feriasLiquido,valorFGTS);
 				listaFolhas.add(temp);
 
 			}
@@ -161,10 +166,9 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	}
 
 	/**
-	 * Metodo de salvamento de Folha.
-	 * Atraves deste metodo o codigo salva os parametros que o usu�rio passou atraves
-	 * dos "gets" no Banco de dados. 
-	 * Recebe um objeto e salva na lista do objeto
+	 * Metodo de salvamento de Folha. Atraves deste metodo o codigo salva os
+	 * parametros que o usu�rio passou atraves dos "gets" no Banco de dados. Recebe
+	 * um objeto e salva na lista do objeto
 	 * 
 	 * @param Folha folha, folha que sera adicionada
 	 */
@@ -190,9 +194,10 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	/**
 	 * Metodo de Atualizacao das alteracoes de uma folha
 	 * 
-	 * Recebe uma folha nova e o id do objeto e substitui na lista do objeto 
-	 * @param int   id, id da folha que ser� atualizada
-	 *  
+	 * Recebe uma folha nova e o id do objeto e substitui na lista do objeto
+	 * 
+	 * @param int id, id da folha que ser� atualizada
+	 * 
 	 */
 	public void updateFolha(Folha folha, int id) {
 		try {
@@ -223,6 +228,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * Metodo de remo��o de uma folha de pagamento.
 	 * 
 	 * Recebe um id e deleta do Banco de dados a linha.
+	 * 
 	 * @param int id, folha que ser� deletada.
 	 * 
 	 */

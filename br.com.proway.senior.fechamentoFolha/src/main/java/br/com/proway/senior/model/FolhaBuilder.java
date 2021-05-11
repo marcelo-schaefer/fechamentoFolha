@@ -14,12 +14,13 @@ import br.com.proway.senior.model.externo.IPontoFolha;
 /**
  * FolhaBuilder
  * 
- * É uma classe que contém a lógica de construção de uma Folha seguindo o design
+ * ï¿½ uma classe que contï¿½m a lï¿½gica de construï¿½ï¿½o de uma Folha seguindo o design
  * pattern builder.
  * 
- * @author Lucas Grijó
+ * @author Lucas Grijï¿½
  * @author Lucas Walim
  * @author Marcelo Schaefer
+ * @author Leonardo Pereira
  */
 public class FolhaBuilder implements IFolhaBuilder {
 
@@ -37,12 +38,13 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private double valorValeTransporte;
 	private double salarioBruto = 0;
 	private double salarioLiquido;
-	// Folha Férias
+	private double valorFGTS;
+	// Folha Fï¿½rias
 	private double valorFerias;
 	private double valorInssFerias;
 	private double valorImpostoDeRendaFerias;
 	private double feriasLiquido;
-	// Dados para construção/calculo.
+	// Dados para construï¿½ï¿½o/calculo.
 	private ICalculoHoras calculoHoras;
 	private ICalculoDesconto calculoDesconto;
 	private double valorHora;
@@ -50,9 +52,9 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * build
 	 * 
-	 * Constrói a folha com os dados calculados. Também determina a data de emissão.
+	 * Constrï¿½i a folha com os dados calculados. Tambï¿½m determina a data de emissï¿½o.
 	 * 
-	 * @author Lucas Grijó
+	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
@@ -60,15 +62,15 @@ public class FolhaBuilder implements IFolhaBuilder {
 		dataEmissao = LocalDate.now();
 		return new Folha(id, idColaborador, dataEmissao, valorHorasTrabalhadas, valorHorasFaltas, valorHorasExtras,
 				valorReflexoDSR, valorInss, valorImpostoDeRenda, valorPlanoSaude, valorValeTransporte, salarioBruto,
-				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido);
+				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido,valorFGTS);
 	}
 
 	/**
 	 * Inicializa Calculos
 	 * 
-	 * Realiza os calculos inicias e instancia os objetos necessários para o calculos de qualquer tipo de folha.
+	 * Realiza os calculos inicias e instancia os objetos necessï¿½rios para o calculos de qualquer tipo de folha.
 	 * 
-	 * @author Lucas Grijó
+	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
@@ -85,7 +87,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * 
 	 * Realiza os calculo do valor recebido pertinente a horas trabalhadas, faltas, horas extras e reflexo DSR.
 	 * 
-	 * @author Lucas Grijó
+	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
@@ -95,14 +97,15 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorHorasExtras = (calculoHoras.calcularValorHorasExtras(ponto, valorHora));
 		valorReflexoDSR = (calculoHoras.calcularDSR(valorHorasExtras));
 		salarioBruto = (valorHorasTrabalhadas - valorHorasFaltas + valorHorasExtras + valorReflexoDSR);
+		valorFGTS = (valorFGTS*salarioBruto);
 	}
 
 	/**
 	 * Calculo de descontos em folha normal.
 	 * 
-	 * Atribui descontos no salario pertinente a inss, imposto de renda, plano de saude e vale transporte. Também determina o salário liquido.
+	 * Atribui descontos no salario pertinente a inss, imposto de renda, plano de saude e vale transporte. Tambï¿½m determina o salï¿½rio liquido.
 	 * 
-	 * @author Lucas Grijó
+	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
@@ -113,14 +116,17 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorPlanoSaude = (calculoDesconto.calcularDescontoPlanoSaude(colaborador));
 		valorValeTransporte = (calculoDesconto.calcularDescontoValeTransporte(colaborador, cargo));
 		salarioLiquido = (salarioLiquido - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude);
+		valorFGTS = (calculoDesconto.calcularFGTS(salarioBruto));
 	}
+	
+	
 
 	/**
-	 * Calculo das horas férias
+	 * Calculo das horas fï¿½rias
 	 * 
-	 * Realiza os calculo do valor recebido pertinente a horas de férias.
+	 * Realiza os calculo do valor recebido pertinente a horas de fï¿½rias.
 	 * 
-	 * @author Lucas Grijó
+	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
@@ -129,11 +135,11 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
-	 * Calculo de descontos em folha férias.
+	 * Calculo de descontos em folha fï¿½rias.
 	 * 
-	 * Atribui descontos no valor das férias pertinente a inss e imposto de renda. Também determina a férias liquido.
+	 * Atribui descontos no valor das fï¿½rias pertinente a inss e imposto de renda. Tambï¿½m determina a fï¿½rias liquido.
 	 * 
-	 * @author Lucas Grijó
+	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */

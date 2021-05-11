@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * 
  * Especifica uma folha para ser utilizada pelo builder.
  * 
- * @author Lucas Grijó
+ * @author Lucas Grijï¿½
  * @author Lucas Walim
  * @author Marcelo Schaefer
  */
@@ -45,4 +45,6 @@ public interface IFolha {
 	public double getValorImpostoDeRendaFerias();
 
 	public double getFeriasLiquido();
+	
+	public double getValorFGTS();
 }

@@ -22,4 +22,6 @@ public interface IColaboradorFolha {
 	
 	public int getNumeroDeDependentes();
 	
+	public double getValorFGTS();
+	
 }

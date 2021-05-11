@@ -21,16 +21,31 @@ public class CalculoDesconto implements ICalculoDesconto {
 	/**
 	 * Calcula o valor de INSS a ser descontado
 	 * 
-	 * Realiza o cálculo do valor de INSS a ser descontado em folha a partir do
-	 * valor acumulado. Pega a variável e multiplica pelo valor de desconto fixado
+	 * Realiza o cï¿½lculo do valor de INSS a ser descontado em folha a partir do
+	 * valor acumulado. Pega a variï¿½vel e multiplica pelo valor de desconto fixado
 	 * em 11%. Retorna o valor a ser descontado.
 	 * 
 	 * @param double valorAcumulado, valor a ser multiplicado pela porcentagem
 	 * @return double inss = Retorna o valor a ser descontado em folha.
 	 * @author sprint2
 	 */
-	public double calcularDescontoInss(double valorAcumulado) {
-		return (valorAcumulado * 0.11);
+	public double calcularDescontoInss(double salarioBrutoAcumulado) {
+		return (salarioBrutoAcumulado * 0.11);
+	}
+	
+	/**
+	 * Calcula o valor do FGTS depositado na conta do FGTS.
+	 * 
+	 * Realiza o calculo do valor do FGTS a ser depositado ao colaborador
+	 * na conta do FGTS na CEF.
+	 * @author Leo Pereira 
+	 * @author Sabrina
+	 * @param 
+	 */
+	
+	public double calcularFGTS(double salarioBrutoAcumulado) {
+		return (salarioBrutoAcumulado * 0.08);
+		
 	}
 
 	/**
@@ -87,8 +102,8 @@ public class CalculoDesconto implements ICalculoDesconto {
 	/**
 	 * Desconto de Plano de Saude.
 	 * 
-	 * Realiza o desconto de plano de saúde, somando o valor da mensalidade com o
-	 * valor de cooparticipação.
+	 * Realiza o desconto de plano de saï¿½de, somando o valor da mensalidade com o
+	 * valor de cooparticipaï¿½ï¿½o.
 	 * 
 	 * @param IColaboradorFolha colaboradorFolha, interface de onde puxara os
 	 *                          valores
@@ -109,7 +124,7 @@ public class CalculoDesconto implements ICalculoDesconto {
 	 * Calcula o valor de vale transporte a ser descontado do colaborador
 	 * 
 	 * verifica se o colaborador possui vale transporte, se sim, pega 6 porcento do
-	 * salario base, se for maior ou igual que R$ 180,00 o desconto será este, se
+	 * salario base, se for maior ou igual que R$ 180,00 o desconto serï¿½ este, se
 	 * for menor retorna este valor calculado.
 	 * 
 	 * @param IColaboradorFolha colaboradorFolha, busca para verificar se possui o

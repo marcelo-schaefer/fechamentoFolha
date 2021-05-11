@@ -8,4 +8,5 @@ public interface ICalculoDesconto {
 	public double calcularDescontoImpostoRenda(IColaboradorFolha colaboradorFolha, double salarioBrutoAcumulado);
 	public double calcularDescontoPlanoSaude(IColaboradorFolha colaboradorFolha);	
 	public double calcularDescontoValeTransporte(IColaboradorFolha colaboradorFolha, ICargoFolha cargoFolha);
+	public double calcularFGTS(double salarioBrutoAcumulado);
 }
