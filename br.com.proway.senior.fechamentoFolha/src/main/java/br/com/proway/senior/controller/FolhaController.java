@@ -115,7 +115,5 @@ public class FolhaController {
 		folhaDao = FolhaDAO.getInstance();
 		ArrayList<Folha> folhas = folhaDao.getFolhasPorColaborador(10);
 		return folhas;
-
 	}
-
 }
