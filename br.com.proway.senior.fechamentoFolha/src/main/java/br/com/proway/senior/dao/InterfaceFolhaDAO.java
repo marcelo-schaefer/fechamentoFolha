@@ -1,6 +1,6 @@
 package br.com.proway.senior.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import br.com.proway.senior.model.Folha;
 
@@ -11,10 +11,10 @@ import br.com.proway.senior.model.Folha;
  */
 public interface InterfaceFolhaDAO {
 	
-	public ArrayList<ArrayList<String>> getAll();
-	public Folha getFolhasPorId(int id);
-	public void saveFolha(Folha folha);
-	public void updateFolha(Folha folha, int id);
-	public void deleteFolha(int id);
-	public ArrayList<Folha> getFolhasPorColaborador(int idColaborador);
+	public List<Folha> getAll();
+	//public Folha getFolhasPorId(int id);
+	public void insert(Folha folha);
+	public void update(Folha folha);
+	public void delete(Folha folha);
+	//public ArrayList<Folha> getFolhasPorColaborador(int idColaborador);
 }
