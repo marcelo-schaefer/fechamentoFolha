@@ -133,7 +133,6 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * @return {@link Folha}
 	 */
 	public Folha getById(int id) {
-
 		return session.get(Folha.class, id);
 	}
 
