@@ -2,6 +2,12 @@ package br.com.proway.senior.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Folha.
  * 
@@ -15,12 +21,16 @@ import java.time.LocalDate;
  * @author Lucas Walim
  * @author Marcelo Schaefer
  */
+@Entity
 public class Folha implements IFolha {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private Integer idColaborador;
-	private LocalDate dataEmissao;
+	
+	private LocalDate dataEmissao; //data_emissao
 	// Folha Normal
-	private double valorHorasTrabalhadas;
+	private double valorHorasTrabalhadas; //valor_hora_trabalhadas
 	private double valorHorasFaltas;
 	private double valorHorasExtras;
 	private double valorReflexoDSR;
@@ -36,9 +46,16 @@ public class Folha implements IFolha {
 	private double valorInssFerias;
 	private double valorImpostoDeRendaFerias;
 	private double feriasLiquido;
-
+	
+	@Column(name = "colaborador_id")
+	private Integer idColaborador;
+	
+	
+	public void setDataEmissao(LocalDate dataEmissao) {
+		this.dataEmissao = dataEmissao;
+	}
 	/**
-	 * MÃ©todo Construtor da Folha.
+	 * Método Construtor da Folha.
 	 * 
 	 * @param id
 	 * @param idColaborador
@@ -88,6 +105,8 @@ public class Folha implements IFolha {
 		this.valorFGTS = valorFGTS;
 	}
 
+	public Folha() {}
+	
 	public int getId() {
 		return id;
 	}

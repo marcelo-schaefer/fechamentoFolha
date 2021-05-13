@@ -1,73 +1,18 @@
 package br.com.proway.senior.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.time.LocalDate;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.proway.senior.dao.FolhaDAO;
 import br.com.proway.senior.dao.PostgresConnector;
-import br.com.proway.senior.model.externo.CargoFolha;
-import br.com.proway.senior.model.externo.ColaboradorFolha;
-import br.com.proway.senior.model.externo.FeriasFolha;
-import br.com.proway.senior.model.externo.PontoFolha;
 
 public class FolhaDAOTest {
-	
-	@Before
-	public void createTable() {		
-		String queryCreateTable = "CREATE TABLE folha ("
-				+ " id serial primary key NOT NULL,"
-				+ " idcolaborador integer NOT NULL,"
-				+ " dataemissao date NOT NULL,"
-				+ " valorhorastrabalhadas numeric NOT NULL,"
-				+ " valorhorasfaltas numeric NOT NULL,"
-				+ " valorhorasextras numeric NOT NULL,"
-				+ " valorreflexodsr numeric NOT NULL,"
-				+ " valorinss numeric NOT NULL,"
-				+ " valorimpostoderenda numeric NOT NULL,"
-				+ " valorplanosaude numeric NOT NULL,"
-				+ " valorvaletransporte numeric NOT NULL,"
-				+ " salariobruto numeric NOT NULL,"
-				+ " salarioliquido numeric NOT NULL,"
-				+ " valorferias numeric NOT NULL,"
-				+ " valorinssferias numeric NOT NULL,"
-				+ " valorimpostoderendaferias numeric NOT NULL,"
-				+ " feriasliquido numeric NOT NULL,"
-				+ "	valorFGTS numeric NOT NULL"
-				+ ");";
-		
-		try {
-			PostgresConnector.executeUpdate(queryCreateTable);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Before
-	public void cleanDAO() {
-		FolhaDAO.newInstance();
-	}
-	
-	@After
-	public void dropTable() {
-		String queryDropTable = "DROP TABLE folha";
-		try {
-			PostgresConnector.executeUpdate(queryDropTable);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
  
-	@Test
+	/*@Test
 	public void testSalvarFolhaNormalBuilder() {
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
@@ -76,11 +21,38 @@ public class FolhaDAOTest {
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
 		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
-				
-		FolhaDAO folhaDAO = FolhaDAO.getInstance();
-		folhaDAO.saveFolha(folha);
+		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		folhaDAO.insert(folha);
 		
-		assertEquals(1, folhaDAO.getAll().size());
+		assertEquals(5, folhaDAO.getAll().size());
+	}*/
+	
+	/*@Test
+	public void testDeletarFolhaNormalBuilder() {
+		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
+		PontoFolha ponto = new PontoFolha(220, 2, 1);
+		CargoFolha cargo = new CargoFolha(1752, 20);
+		
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
+		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		folhaDAO.insert(folha);
+		folhaDAO.delete(folha);
+		
+		assertEquals(4, folhaDAO.getAll().size());
+	}*/
+	
+	@Test
+	public void testAtualizarFolhaNormalBuilder() {
+		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		Folha primeiraFolha = folhaDAO.getAll().get(folhaDAO.getAll().size() - 1);
+		LocalDate dataAntiga = primeiraFolha.getDataEmissao();
+		primeiraFolha.setDataEmissao(LocalDate.of(1988, 02, 18));
+		folhaDAO.update(primeiraFolha);
+		Folha folhaAtualizada = folhaDAO.getAll().get(folhaDAO.getAll().size() - 1);
+	
+		assertNotEquals(dataAntiga, folhaAtualizada.getDataEmissao());
 	}
 
 	/**
@@ -88,7 +60,7 @@ public class FolhaDAOTest {
 	 * tabela "folha".
 	 */	
 	
-	@Test
+	/*@Test
 	public void testSalvarFolhaBuilderHibrida() {
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 153, 27, 205);
 		PontoFolha ponto = new PontoFolha(220, 5.53, 3.67);
@@ -342,5 +314,5 @@ public class FolhaDAOTest {
 			e.printStackTrace();
 		}
 		assertEquals(0, folhaDAO.getAll().size());
-	}
+	}*/
 }

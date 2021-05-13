@@ -1,8 +1,7 @@
 package br.com.proway.senior.controller;
 
-import java.util.ArrayList;
-
 import br.com.proway.senior.dao.FolhaDAO;
+import br.com.proway.senior.dao.PostgresConnector;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDirector;
@@ -59,8 +58,8 @@ public class FolhaController {
 	 * @param folha gerada pelo builder
 	 */
 	public void salvarFolha(Folha folha) {
-		folhaDao = FolhaDAO.getInstance();
-		folhaDao.saveFolha(folha);
+		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
+		folhaDao.insert(folha);
 	}
 	
 
@@ -72,9 +71,9 @@ public class FolhaController {
 	 * @param folha nova gerada pelo builder
 	 * @param id de folha ja existente no Banco de dados.
 	 */
-	public void editarFolha(Folha folha, int id) {
-		folhaDao = FolhaDAO.getInstance();
-		folhaDao.updateFolha(folha, id);
+	public void editarFolha(Folha folha) {
+		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
+		folhaDao.update(folha);
 	}
 
 	/**
@@ -84,9 +83,9 @@ public class FolhaController {
 	 * 
 	 * @param id de folha existente no Banco de dados
 	 */
-	public void deletarFolha(int id) {
-		folhaDao = FolhaDAO.getInstance();
-		folhaDao.deleteFolha(id);
+	public void deletarFolha(Folha folha) {
+		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
+		folhaDao.delete(folha);
 	}
 
 	/**
@@ -97,11 +96,11 @@ public class FolhaController {
 	 * @param id de uma folha existente do Banco de dados
 	 * @return Folha recebida do respectivo id
 	 */
-	public Folha selecionarFolhaPorId(int id) {
-		folhaDao = FolhaDAO.getInstance();
+	/*public Folha selecionarFolhaPorId(int id) {
+		folhaDao = FolhaDAO.getInstance(FolhaDAO.session);
 		return folhaDao.getFolhasPorId(id);
 
-	}
+	}*/
 
 	/**
 	 * SELECT POR ID DO COLABORADOR
@@ -111,9 +110,11 @@ public class FolhaController {
 	 * @param id de um colaborador
 	 * @return ArrayList de folhas de um colaborador
 	 */
-	public ArrayList<Folha> selecionarFolhaPorColaborador(int id) {
+	/*public ArrayList<Folha> selecionarFolhaPorColaborador(int id) {
 		folhaDao = FolhaDAO.getInstance();
 		ArrayList<Folha> folhas = folhaDao.getFolhasPorColaborador(10);
 		return folhas;
-	}
+
+	}*/
+
 }
