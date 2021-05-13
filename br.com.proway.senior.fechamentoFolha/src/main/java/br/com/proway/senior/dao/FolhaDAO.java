@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
@@ -147,7 +148,6 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * @return List<Folha>
 	 */
 	public List<Folha> getByDate(LocalDate data) {
-
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
 
@@ -157,6 +157,46 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		Root<Folha> root = criteria.from(Folha.class);
 
 		criteria.where(builder.equal(root.get("dataEmissao"), data));
+
+		List<Folha> folha = session.createQuery(criteria).getResultList();
+
+		return folha;
+	}
+	
+	public List<Folha> getDoubleByColumn(String column, Double value) {
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
+		
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Folha> criteria = builder.createQuery(Folha.class);
+
+		Root<Folha> root = criteria.from(Folha.class);
+		
+		CriteriaQuery<Folha> rootQuery = criteria.select(root);
+		
+		Expression<?> columnExpression = (Expression<?>) root.get(column);
+
+		criteria.select(root).where(builder.equal(columnExpression, value));
+
+		List<Folha> folha = session.createQuery(criteria).getResultList();
+
+		return folha;
+	}
+	
+	public List<Folha> getValuesBetween(String column, Double valueInicial, Double valueFinal) {
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
+		
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Folha> criteria = builder.createQuery(Folha.class);
+
+		Root<Folha> root = criteria.from(Folha.class);
+		
+		CriteriaQuery<Folha> rootQuery = criteria.select(root);
+		
+		Expression<Double> columnExpression = root.get(column);
+		
+		criteria.select(root).where(builder.between(columnExpression, valueInicial, valueFinal));
 
 		List<Folha> folha = session.createQuery(criteria).getResultList();
 
