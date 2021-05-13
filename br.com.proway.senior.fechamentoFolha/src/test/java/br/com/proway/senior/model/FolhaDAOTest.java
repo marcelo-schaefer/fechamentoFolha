@@ -4,15 +4,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
+
 import br.com.proway.senior.dao.FolhaDAO;
 import br.com.proway.senior.dao.PostgresConnector;
+import br.com.proway.senior.model.externo.CargoFolha;
+import br.com.proway.senior.model.externo.ColaboradorFolha;
+import br.com.proway.senior.model.externo.PontoFolha;
 
 public class FolhaDAOTest {
  
-	/*@Test
+	@Test
 	public void testSalvarFolhaNormalBuilder() {
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
@@ -25,9 +30,9 @@ public class FolhaDAOTest {
 		folhaDAO.insert(folha);
 		
 		assertEquals(5, folhaDAO.getAll().size());
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	public void testDeletarFolhaNormalBuilder() {
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
@@ -41,7 +46,7 @@ public class FolhaDAOTest {
 		folhaDAO.delete(folha);
 		
 		assertEquals(4, folhaDAO.getAll().size());
-	}*/
+	}
 	
 	@Test
 	public void testAtualizarFolhaNormalBuilder() {
@@ -53,6 +58,24 @@ public class FolhaDAOTest {
 		Folha folhaAtualizada = folhaDAO.getAll().get(folhaDAO.getAll().size() - 1);
 	
 		assertNotEquals(dataAntiga, folhaAtualizada.getDataEmissao());
+	}
+	
+	@Test
+	public void testGetById() {
+		
+		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		Folha folha = folhaDAO.getById(5);
+		System.out.println(folha.toString());	
+	}
+	
+	@Test
+	public void testGetByDate() {
+		
+		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		
+		ArrayList<Folha> folhas =  (ArrayList<Folha>) folhaDAO.getByDate(LocalDate.now());
+		
+		System.out.println(folhas.toString());	
 	}
 
 	/**
