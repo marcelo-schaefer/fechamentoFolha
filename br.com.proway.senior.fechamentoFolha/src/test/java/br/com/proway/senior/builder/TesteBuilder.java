@@ -20,18 +20,17 @@ public class TesteBuilder {
 	public void testFolhaNormal() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(1, true, 100, 25, 205);
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
-		CargoFolha cargo = new CargoFolha(35000, 0);
+		CargoFolha cargo = new CargoFolha(35000, 0, 25);
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		Folha folha = director.createFolhaNormal(colaborador, ponto, cargo);
-		System.out.println("TESTE FOLHA NORMAL");
-		System.out.println(folha.toString());
+	
 	}
 	
 	@Test
 	public void testFolhaFerias() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(2, true, 100, 25,205);
-		CargoFolha cargo = new CargoFolha(3500, 20);
+		CargoFolha cargo = new CargoFolha(3500, 20, 25);
 		FeriasFolha ferias = new FeriasFolha(15, 3);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
@@ -39,15 +38,13 @@ public class TesteBuilder {
 		director.createFolhaFerias(colaborador, cargo, ferias);
 		Folha folha = folhaBuilder.build();
 		folha.getId(); // 
-		System.out.println("TESTE FOLHA FERIAS");
-		System.out.println(folha.toString());
 	}
 	
 	@Test
 	public void testFolhaHibrida() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(3, true, 100, 25,205);
 		PontoFolha ponto = new PontoFolha(220, 30, 45);
-		CargoFolha cargo = new CargoFolha(2578, 10);
+		CargoFolha cargo = new CargoFolha(2578, 10, 25);
 		FeriasFolha ferias = new FeriasFolha(20, 10);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
@@ -55,23 +52,20 @@ public class TesteBuilder {
 		director.createFolhaHibrida(colaborador, ponto, cargo, ferias);
 		Folha folha = folhaBuilder.build();
 		
-		System.out.println("TESTE FOLHA HIBRIDA");
-		System.out.println(folha.toString());
 	}
 	
 	@Test
 	public void testFolhaNormalDeMesa() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(4, true, 100, 15,205);
 		PontoFolha ponto = new PontoFolha(220, 13.58, 7.46);
-		CargoFolha cargo = new CargoFolha(1850, 40);
+		CargoFolha cargo = new CargoFolha(1850, 40, 25);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaNormal(colaborador, ponto, cargo);
 		Folha folha = folhaBuilder.build();
 		//assertEquals(2466.78, folha.getSalarioBruto(),0.01);
-		System.out.println("TESTE FOLHA NORMAL MESA");
-		System.out.println(folha.toString());
+
 	}
 	
 	@Test
@@ -83,14 +77,13 @@ public class TesteBuilder {
 		colaborador.addDependentes("Marcelo");
 		
 		PontoFolha ponto = new PontoFolha(220, 17.33, 2.17);
-		CargoFolha cargo = new CargoFolha(4600, 40);
+		CargoFolha cargo = new CargoFolha(4600, 40, 25);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaNormal(colaborador, ponto, cargo);
 		Folha folha = folhaBuilder.build();
 		
-		System.out.println(folha.toString());
 		assertEquals(4310.72, folha.getSalarioLiquido(), 0.01);
 	}
 	
@@ -99,14 +92,13 @@ public class TesteBuilder {
 		ColaboradorFolha colaborador = new ColaboradorFolha(5, false, 0, 0,205);
 			
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
-		CargoFolha cargo = new CargoFolha(4500, 0);
+		CargoFolha cargo = new CargoFolha(4500, 0, 25);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaNormal(colaborador, ponto, cargo);
 		Folha folha = folhaBuilder.build();
-		
-		System.out.println(folha.toString());
+	
 		assertEquals(3740.00, folha.getSalarioLiquido(), 0.01);
 	}
 	
@@ -130,5 +122,19 @@ public class TesteBuilder {
 		double planoSaude = colaborador.getPlanoSaudeCooparticipacao() + colaborador.getPlanoSaudeMensalidade();
 		ArrayList<String> dependentes = colaborador.getDependentes();
 	}
-
+	
+	@Test
+	public void verBonificacao() {
+		ColaboradorFolha colaborador = new ColaboradorFolha(2, true, 100, 25,205);
+		CargoFolha cargo = new CargoFolha(3500, 20, 25);
+		FeriasFolha ferias = new FeriasFolha(15, 3);
+		
+		cargo.setPorcentagemBonificacaoCargo(24);
+		
+		FolhaBuilder folhaBuilder = new FolhaBuilder();	
+		FolhaDirector director = new FolhaDirector(folhaBuilder);
+		director.createFolhaFerias(colaborador, cargo, ferias);
+		
+		assertEquals(4340, folhaBuilder.atribuiBonificacaoCargo(cargo),0.1);
+	}
 }

@@ -10,7 +10,7 @@ public class FolhaControllerTest {
 
 	@Test
 	public void testConstruirCargoFolha() {
-		CargoFolha cargo = new CargoFolha(2570.0, 0);
+		CargoFolha cargo = new CargoFolha(2570.0, 0, 0);
 		fail("Not yet implemented");
 	}
 

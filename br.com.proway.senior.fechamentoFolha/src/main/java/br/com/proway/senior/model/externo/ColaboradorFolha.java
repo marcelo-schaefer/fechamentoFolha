@@ -7,10 +7,9 @@ import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 /**
  * ColaboradorFolha
  * 
- * Objeto cont�ndo os dados necess�rios de um colaborador para utiliza��o
+ * Objeto contendo os dados necessarios de um colaborador para utiliza��o
  * interna na cria��o de uma folha.
- * 
- * @author sprint3
+ *  
  */
 public final class ColaboradorFolha implements IColaboradorFolha {
 
@@ -22,6 +21,7 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 	private double planoSaudeCooparticipacao;
 	private ArrayList<String> dependentes;
 	private double valorFGTS;
+	
 
 	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
 			double planoSaudeCooparticipacao, double valorFGTS) {

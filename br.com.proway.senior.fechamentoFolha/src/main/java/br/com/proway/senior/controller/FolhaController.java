@@ -25,8 +25,8 @@ public class FolhaController {
 
 	private FolhaDAO folhaDao;
 	
-	public CargoFolha construirCargoFolha(double salarioBase, double percentualInsalubridade) {
-		return new CargoFolha(salarioBase, percentualInsalubridade);
+	public CargoFolha construirCargoFolha(double salarioBase, double percentualInsalubridade,double porcentagemBonificacaoCargo) {
+		return new CargoFolha(salarioBase, percentualInsalubridade,porcentagemBonificacaoCargo);
 	}
 	
 	public Folha construirFolhaNormal(ColaboradorFolha colaborador, PontoFolha ponto, CargoFolha cargo) {

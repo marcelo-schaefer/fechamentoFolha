@@ -6,4 +6,5 @@ public interface ICargoFolha {
 		
 	public double getPercentualInsalubridade();
 	
+	public double getPorcentagemBonificacaoCargo();
 }
