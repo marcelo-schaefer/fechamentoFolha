@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Folha.
+ * Folha
  * 
  * Objeto central do sistema. Refere-se a uma folha de pagamento de um
  * colaborador. Implementado para utilizar o design pattern builder com
@@ -28,9 +28,9 @@ public class Folha implements IFolha {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	private LocalDate dataEmissao; //data_emissao
-	// Folha Normal
-	private double valorHorasTrabalhadas; //valor_hora_trabalhadas
+	private LocalDate dataEmissao;
+	//Folha Normal
+	private double valorHorasTrabalhadas;
 	private double valorHorasFaltas;
 	private double valorHorasExtras;
 	private double valorReflexoDSR;
@@ -41,7 +41,7 @@ public class Folha implements IFolha {
 	private double salarioBruto = 0;
 	private double salarioLiquido;
 	private double valorFGTS;
-	// Folha FÃ©rias
+	//Folha Férias
 	private double valorFerias;
 	private double valorInssFerias;
 	private double valorImpostoDeRendaFerias;
@@ -76,7 +76,7 @@ public class Folha implements IFolha {
 	 * @param valorImpostoDeRendaFerias
 	 * @param feriasLiquido
 	 * @return Folha
-	 * @author Lucas GrijÃ³
+	 * @author Lucas Grijó
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 * @author Leonardo Pereira
