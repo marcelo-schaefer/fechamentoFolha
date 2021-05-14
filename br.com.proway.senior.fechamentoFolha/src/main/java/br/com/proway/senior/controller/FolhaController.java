@@ -6,9 +6,6 @@ import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDirector;
 import br.com.proway.senior.model.externo.CargoFolha;
-import br.com.proway.senior.model.externo.ColaboradorFolha;
-import br.com.proway.senior.model.externo.FeriasFolha;
-import br.com.proway.senior.model.externo.PontoFolha;
 import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
 import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 import br.com.proway.senior.model.externo.interfaces.IFeriasFolha;
@@ -23,8 +20,9 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
  * e cria um objeto especifico de folha{@link Folha}, no fim, o envia para banco de dados.
  * 
  * @author Bruno Oliveira
- * @author Lucas Grij�
+ * @author Lucas Grijo
  * 
+ * Sprint 5:
  * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
  * @author Bruna Carvalho <sh4323202@gmail.com>;
  * @author Leonardo Pereira <leonardopereirajr@gmail.com>;

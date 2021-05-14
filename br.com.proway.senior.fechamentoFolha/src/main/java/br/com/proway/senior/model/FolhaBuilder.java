@@ -15,13 +15,21 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 /**
  * FolhaBuilder
  * 
- * � uma classe que cont�m a l�gica de constru��o de uma Folha seguindo o design
- * pattern builder.
+ * E uma classe que contem a logica de construcao de uma Folha seguindo 
+ * o design pattern builder.
  * 
  * @author Lucas Grij�
  * @author Lucas Walim
  * @author Marcelo Schaefer
  * @author Leonardo Pereira
+ *
+ * Sprint 5:
+ * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
+ *
  */
 public class FolhaBuilder implements IFolhaBuilder {
 
@@ -52,13 +60,21 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private double valorPlr;
 
 	/**
-	 * build
+	 * Constoi a folha com os dados calculados.
 	 * 
-	 * Constr�i a folha com os dados calculados. Tamb�m determina a data de emiss�o.
+	 * Constroi uma folha{@link Folha} e determina a data de emissao da mesma.
 	 * 
 	 * @author Lucas Grij�
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
+	 *
+	 * Sprint 5:
+	 * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
+	 * @author Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 *
 	 */
 	public Folha build() {
 		dataEmissao = LocalDate.now();
@@ -68,11 +84,12 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
-	 * Inicializa Calculos
+	 * Inicializa Calculos.
 	 * 
-	 * Realiza os calculos inicias e instancia os objetos necess�rios para o calculos de qualquer tipo de folha.
+	 * Realiza os calculos inicias e instancia os objetos necessarios
+	 * para qualquer calculo necessario para cada tipo de folha.
 	 * 
-	 * @author Lucas Grij�
+	 * @author Lucas Grijo
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
@@ -84,9 +101,10 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
-	 * Calculo das Horas Normais
+	 * Calculo das Horas Normais.
 	 * 
-	 * Realiza os calculo do valor recebido pertinente a horas trabalhadas, faltas, horas extras e reflexo DSR.
+	 * Realiza os calculo do valor recebido pertinente a horas trabalhadas, 
+	 * faltas, horas extras e reflexo DSR.
 	 * 
 	 * @author Lucas Grij�
 	 * @author Lucas Walim
@@ -105,7 +123,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * Calculo de descontos em folha normal.
 	 * 
-	 * Atribui descontos no salario pertinente a inss, imposto de renda, plano de saude e vale transporte. Tamb�m determina o sal�rio liquido.
+	 * Atribui descontos no salario pertinente a inss, imposto de renda, 
+	 * plano de saude e vale transporte. Tambem determina o sal�rio liquido.
 	 * 
 	 * @author Lucas Grij�
 	 * @author Lucas Walim
@@ -120,13 +139,13 @@ public class FolhaBuilder implements IFolhaBuilder {
 		salarioLiquido = (salarioLiquido - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude) + plr.getPlr();
 		valorFGTS = (calculoDesconto.calcularFGTS(salarioBruto));
 	}
-	
+
 	/**
-	 * Calculo das horas f�rias
+	 * Calculo das horas ferias.
 	 * 
-	 * Realiza os calculo do valor recebido pertinente a horas de f�rias.
+	 * Realiza os calculo do valor recebido pertinente a horas de ferias.
 	 * 
-	 * @author Lucas Grij�
+	 * @author Lucas Grijo
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
@@ -135,11 +154,12 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
-	 * Calculo de descontos em folha f�rias.
+	 * Calculo de descontos em folha ferias.
 	 * 
-	 * Atribui descontos no valor das f�rias pertinente a inss e imposto de renda. Tamb�m determina a f�rias liquido.
+	 * Atribui descontos no valor das ferias pertinente a inss e 
+	 * imposto de renda. Tambem determina o valor de ferias liquido.
 	 * 
-	 * @author Lucas Grij�
+	 * @author Lucas Grijo
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */

@@ -13,6 +13,9 @@ import org.hibernate.Session;
 import br.com.proway.senior.model.Folha;
 
 /**
+ *Faz ligacao com o banco de dados.
+ *
+ *Possue os metodos CRUD.
  * 
  * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
  * @author Bruna Carvalho <sh4323202@gmail.com>;
@@ -172,7 +175,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 
 		Root<Folha> root = criteria.from(Folha.class);
 		
-		CriteriaQuery<Folha> rootQuery = criteria.select(root);
+		//CriteriaQuery<Folha> rootQuery = criteria.select(root);
 		
 		Expression<?> columnExpression = (Expression<?>) root.get(column);
 
@@ -192,7 +195,7 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 
 		Root<Folha> root = criteria.from(Folha.class);
 		
-		CriteriaQuery<Folha> rootQuery = criteria.select(root);
+		//CriteriaQuery<Folha> rootQuery = criteria.select(root);
 		
 		Expression<Double> columnExpression = root.get(column);
 		

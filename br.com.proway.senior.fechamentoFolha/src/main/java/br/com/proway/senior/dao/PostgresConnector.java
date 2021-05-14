@@ -7,12 +7,19 @@ import org.hibernate.cfg.Configuration;
 import br.com.proway.senior.model.Folha;
 
 /**
- * PostgresConnector
+ * PostgresConnector.
  * 
  * Classe que contém a implementação do JDBC para acessar o banco postgres.
  * 
  * @author Bruno Oliveira
  * @author Leonado Pereira
+ * 
+ * Sprint 5:
+ * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
  */
 public class PostgresConnector {
 

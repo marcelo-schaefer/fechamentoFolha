@@ -5,12 +5,19 @@ import java.util.ArrayList;
 import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 
 /**
- * ColaboradorFolha
+ * Pega dados do Colaborador.
  * 
- * Objeto cont�ndo os dados necess�rios de um colaborador para utiliza��o
- * interna na cria��o de uma folha.
+ * Contem os dados necessarios de um Colaborador para a criação de uma 
+ * folha{@link Folha}.
  * 
  * @author sprint3
+ * 
+ * Sprint 5:
+ * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
  */
 public final class ColaboradorFolha implements IColaboradorFolha {
 

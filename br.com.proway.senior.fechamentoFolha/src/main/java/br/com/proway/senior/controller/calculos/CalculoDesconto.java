@@ -12,7 +12,8 @@ import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
  * @author Lucas Grijo
  * @author Lucas walim
  * @author Marcelo Schaefer
- *
+ * 
+ * Sprint 5:
  * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
  * @author Bruna Carvalho <sh4323202@gmail.com>;
  * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
@@ -25,7 +26,7 @@ public class CalculoDesconto implements ICalculoDesconto {
 	private double valorPorDependentes = 189.59;
 
 	/**
-	 * Calcula o valor de INSS a ser descontado
+	 * Calcula o valor de INSS a ser descontado.
 	 * 
 	 * Realiza o c�lculo do valor de INSS a ser descontado em folha a partir do
 	 * valor acumulado. Pega a vari�vel e multiplica pelo valor de desconto fixado
@@ -33,7 +34,6 @@ public class CalculoDesconto implements ICalculoDesconto {
 	 * 
 	 * @param double valorAcumulado
 	 * @return double
-	 * @author sprint2
 	 */
 	public double calcularDescontoInss(double salarioBrutoAcumulado) {
 		return (salarioBrutoAcumulado * 0.11);
