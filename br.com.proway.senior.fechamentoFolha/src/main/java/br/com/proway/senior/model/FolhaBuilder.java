@@ -9,6 +9,7 @@ import br.com.proway.senior.controller.calculos.ICalculoHoras;
 import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
 import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 import br.com.proway.senior.model.externo.interfaces.IFeriasFolha;
+import br.com.proway.senior.model.externo.interfaces.IPlr;
 import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 /**
@@ -48,6 +49,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private ICalculoHoras calculoHoras;
 	private ICalculoDesconto calculoDesconto;
 	private double valorHora;
+	private double valorPlr;
 
 	/**
 	 * build
@@ -79,7 +81,6 @@ public class FolhaBuilder implements IFolhaBuilder {
 		this.calculoHoras = new CalculoHoras();
 		this.calculoDesconto = new CalculoDesconto();
 		valorHora = (calculoHoras.calcularValorHora(cargo));
-
 	}
 
 	/**
@@ -91,13 +92,14 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
-	public void calcularHorasNormais(IPontoFolha ponto, ICargoFolha cargo) {
+	public void calcularHorasNormais(IPontoFolha ponto, ICargoFolha cargo, IPlr plr) {
 		valorHorasTrabalhadas = (calculoHoras.calcularValorDasHorasTrabalhadas(ponto, valorHora));
 		valorHorasFaltas = (calculoHoras.calcularValorHorasFaltas(ponto, valorHora));
 		valorHorasExtras = (calculoHoras.calcularValorHorasExtras(ponto, valorHora));
 		valorReflexoDSR = (calculoHoras.calcularDSR(valorHorasExtras));
 		salarioBruto = (valorHorasTrabalhadas - valorHorasFaltas + valorHorasExtras + valorReflexoDSR);
 		valorFGTS = (valorFGTS*salarioBruto);
+		valorPlr = plr.getPlr();
 	}
 
 	/**
@@ -109,18 +111,16 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
-	public void calcularDescontoNormal(IColaboradorFolha colaborador, ICargoFolha cargo) {
+	public void calcularDescontoNormal(IColaboradorFolha colaborador, ICargoFolha cargo, IPlr plr) {
 		valorInss = (calculoDesconto.calcularDescontoInss(salarioBruto));
 		salarioLiquido = (salarioBruto - valorInss);
 		valorImpostoDeRenda = (calculoDesconto.calcularDescontoImpostoRenda(colaborador, salarioLiquido));
 		valorPlanoSaude = (calculoDesconto.calcularDescontoPlanoSaude(colaborador));
 		valorValeTransporte = (calculoDesconto.calcularDescontoValeTransporte(colaborador, cargo));
-		salarioLiquido = (salarioLiquido - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude);
+		salarioLiquido = (salarioLiquido - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude) + plr.getPlr();
 		valorFGTS = (calculoDesconto.calcularFGTS(salarioBruto));
 	}
 	
-	
-
 	/**
 	 * Calculo das horas f�rias
 	 * 
@@ -149,4 +149,5 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorImpostoDeRendaFerias = (calculoDesconto.calcularDescontoImpostoRenda(colaborador, feriasLiquido));
 		feriasLiquido = (feriasLiquido - valorImpostoDeRendaFerias);
 	}
+
 }

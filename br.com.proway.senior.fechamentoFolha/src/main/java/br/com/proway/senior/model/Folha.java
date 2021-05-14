@@ -41,12 +41,12 @@ public class Folha implements IFolha {
 	private double salarioBruto = 0;
 	private double salarioLiquido;
 	private double valorFGTS;
-	//Folha Férias
+	//Folha Fï¿½rias
 	private double valorFerias;
 	private double valorInssFerias;
 	private double valorImpostoDeRendaFerias;
 	private double feriasLiquido;
-	private double valorPlr;
+	private double valorPlr = 0.0;
 	
 	@Column(name = "colaborador_id")
 	private Integer idColaborador;
@@ -76,7 +76,7 @@ public class Folha implements IFolha {
 	 * @param valorImpostoDeRendaFerias
 	 * @param feriasLiquido
 	 * @return Folha
-	 * @author Lucas Grijó
+	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 * @author Leonardo Pereira
@@ -177,16 +177,16 @@ public class Folha implements IFolha {
 		return feriasLiquido;
 	}
 	
-	public double getValorPlr() {
-		return valorPlr;
-	}
-	
 	public double getValorFGTS() {
 		return valorFGTS;
 	}
 	
 	public void setValorFGTS(double valorFGTS) {
 		this.valorFGTS = valorFGTS;
+	}
+	
+	public double getValorPlr() {
+		return this.valorPlr;
 	}
 
 	@Override
@@ -200,5 +200,4 @@ public class Folha implements IFolha {
 				+ valorInssFerias + ", valorImpostoDeRendaFerias=" + valorImpostoDeRendaFerias + ", feriasLiquido="
 				+ feriasLiquido + ",valorFGTS= "+ valorFGTS+",valorPLR= "+ valorPlr+ "]";
 	}
-
 }

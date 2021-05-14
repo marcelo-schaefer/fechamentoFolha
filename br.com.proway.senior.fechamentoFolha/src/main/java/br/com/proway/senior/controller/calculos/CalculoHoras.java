@@ -1,9 +1,5 @@
 package br.com.proway.senior.controller.calculos;
 
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.ArrayList;
-
 import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
 import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
@@ -20,7 +16,7 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
  */
 public class CalculoHoras implements ICalculoHoras {
 
-	private double salarioMinimo = 1100; // Regra de Negócio
+	private double salarioMinimo = 1100; // Regra de Negï¿½cio
 	private double fator = 0.5; // 50% adicional hora extra
 	final double valorHorasDias = (double) 220 / 30;
 
@@ -28,7 +24,7 @@ public class CalculoHoras implements ICalculoHoras {
 	 * Calcula o valor das horas
 	 *
 	 * o metodo chama o metodo de calcular insalubridade dividido por 220, verifica
-	 * se é menor que 0, se sim, retorna salario base dividido por 220, se nao,
+	 * se ï¿½ menor que 0, se sim, retorna salario base dividido por 220, se nao,
 	 * retorna o mesmo mais o valor da issalubridade.
 	 *
 	 * @param ICargoFolha cargoFolha, busca o salario base e passa de parametro para
@@ -53,7 +49,7 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * Calcula o valor das horas que foram trabalhadas
 	 * 
-	 * o metodo multiplica e retorna o falor da multiplicação entre o valor das
+	 * o metodo multiplica e retorna o falor da multiplicaï¿½ï¿½o entre o valor das
 	 * horas e quantas horas o funcionario trabalhou
 	 * 
 	 * @param IPontoFolha pontoFolha, busca a quantidade de horas trabalhadas do
@@ -74,8 +70,8 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * Calcula o valor da insalubridade
 	 * 
-	 * Realiza o cálculo do valor a ser implementado no salário mínimo, vai pegar a
-	 * variável salarioMinimo e multiplicar pela sua faixa de insalubridade,
+	 * Realiza o cï¿½lculo do valor a ser implementado no salï¿½rio mï¿½nimo, vai pegar a
+	 * variï¿½vel salarioMinimo e multiplicar pela sua faixa de insalubridade,
 	 * dependendode onde ela se encaixar.
 	 * 
 	 * @param ICargoFolha cargoFolha, busca o valor do percentual de insalubridade
@@ -101,7 +97,7 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * Calcula o valor a ser descontado de horas faltas
 	 * 
-	 * Realiza o cálculo das horas faltas a serem descontadas na folha do
+	 * Realiza o cï¿½lculo das horas faltas a serem descontadas na folha do
 	 * colaborador, recebe o valor de horasFalta e multiplica pelo valor da hora
 	 * 
 	 * @param IPontoFolha pontoFolha, busca as horas faltas do funcionario
@@ -120,7 +116,7 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * Calcula o valor horas extras
 	 * 
-	 * O valor retornado da multiplicação de valorHoras e fator, vai somar com o
+	 * O valor retornado da multiplicaï¿½ï¿½o de valorHoras e fator, vai somar com o
 	 * valorHoras e depois multiplica pelas horasExtra
 	 * 
 	 * @param IPontoFolha pontoFolha, busca as horas extras do funcionario
@@ -175,7 +171,7 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * calcula as ferias
 	 * 
-	 * o metodo verifica se o abono é menor que 0, se for, valor de ferias é igual
+	 * o metodo verifica se o abono ï¿½ menor que 0, se for, valor de ferias ï¿½ igual
 	 * ou valor dela mais um terco, se nao, calcula o abono e pega um terco dele
 	 * 
 	 * @param int    dias, numero de dias

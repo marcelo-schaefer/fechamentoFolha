@@ -46,5 +46,7 @@ public interface IFolha {
 
 	public double getFeriasLiquido();
 	
+	public double getValorPlr();
+	
 	public double getValorFGTS();
 }

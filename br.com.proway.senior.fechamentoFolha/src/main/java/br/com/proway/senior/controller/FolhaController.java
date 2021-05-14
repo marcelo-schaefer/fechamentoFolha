@@ -9,6 +9,7 @@ import br.com.proway.senior.model.externo.CargoFolha;
 import br.com.proway.senior.model.externo.ColaboradorFolha;
 import br.com.proway.senior.model.externo.FeriasFolha;
 import br.com.proway.senior.model.externo.PontoFolha;
+import br.com.proway.senior.model.externo.interfaces.IPlr;
 
 
 /**
@@ -29,10 +30,14 @@ public class FolhaController {
 		return new CargoFolha(salarioBase, percentualInsalubridade);
 	}
 	
-	public Folha construirFolhaNormal(ColaboradorFolha colaborador, PontoFolha ponto, CargoFolha cargo) {
+	public void atualizarPlr(double valorPlr) {
+		
+	}
+	
+	public Folha construirFolhaNormal(ColaboradorFolha colaborador, PontoFolha ponto, CargoFolha cargo, IPlr plr) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaNormal(colaborador, ponto, cargo);
+		director.createFolhaNormal(colaborador, ponto, cargo, plr);
 		return folhaBuilder.build();
 	}
 
@@ -43,10 +48,10 @@ public class FolhaController {
 		return folhaBuilder.build();
 	}
 	
-	public Folha construirFolhaHibrida(ColaboradorFolha colaborador, PontoFolha ponto, CargoFolha cargo, FeriasFolha ferias) {
+	public Folha construirFolhaHibrida(ColaboradorFolha colaborador, PontoFolha ponto, CargoFolha cargo, FeriasFolha ferias, IPlr plr) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaHibrida(colaborador, ponto, cargo, ferias);
+		director.createFolhaHibrida(colaborador, ponto, cargo, ferias, plr);
 		return folhaBuilder.build();
 	}
 	
@@ -87,34 +92,4 @@ public class FolhaController {
 		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
 		folhaDao.delete(folha);
 	}
-
-	/**
-	 * SELECT POR ID FOLHA
-	 * Metodo que recebe um id de uma folha existente no Banco de dados,
-	 * envia para o DAO, para receber a Folha e retorna-la.
-	 * 
-	 * @param id de uma folha existente do Banco de dados
-	 * @return Folha recebida do respectivo id
-	 */
-	/*public Folha selecionarFolhaPorId(int id) {
-		folhaDao = FolhaDAO.getInstance(FolhaDAO.session);
-		return folhaDao.getFolhasPorId(id);
-
-	}*/
-
-	/**
-	 * SELECT POR ID DO COLABORADOR
-	 * Metodo que recebe um id de um colaborador,
-	 * envia para o DAO, para receber as folhas do mesmo.
-	 * 
-	 * @param id de um colaborador
-	 * @return ArrayList de folhas de um colaborador
-	 */
-	/*public ArrayList<Folha> selecionarFolhaPorColaborador(int id) {
-		folhaDao = FolhaDAO.getInstance();
-		ArrayList<Folha> folhas = folhaDao.getFolhasPorColaborador(10);
-		return folhas;
-
-	}*/
-
 }
