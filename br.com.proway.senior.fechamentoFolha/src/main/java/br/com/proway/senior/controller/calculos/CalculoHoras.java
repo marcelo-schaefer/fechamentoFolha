@@ -149,21 +149,6 @@ public class CalculoHoras implements ICalculoHoras {
 		double diasUteis = 25.0;
 		double domigosFeriados = 5.0;
 		return (valorHorasExtras / diasUteis) * domigosFeriados;
-//		LocalDate data = LocalDate.now();
-//		ArrayList<Integer> lista = new ArrayList<Integer>();
-//		YearMonth mesAtual = YearMonth.of(data.getYear(), data.getMonth());
-//		for (int i = 0; i < mesAtual.lengthOfMonth(); i++) {
-//			if (mesAtual.isValidDay(i)) {
-//				Integer j = i;
-//				lista.add(j);
-//			}
-//		}
-//
-//		double diasUteis = lista.size();
-//		double domigosFeriados = lista.size() - mesAtual.lengthOfMonth();
-//
-//		return (valorHorasExtras / diasUteis) * domigosFeriados;
-
 	}
 
 	/**
