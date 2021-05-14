@@ -15,7 +15,8 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
  * @author Lucas Grij�
  * @author Lucas Walim
  * @author Marcelo Schaefer
- * 
+ *
+ * Sprint 5:
  * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
  * @author Bruna Carvalho <sh4323202@gmail.com>;
  * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
@@ -27,7 +28,9 @@ public class FolhaDirector {
 	private IFolhaBuilder builder;
 
 	/**
-	 * M�todo Construtor
+	 * Metodo Construtor.
+	 * 
+	 * @param builder {@link IFolhaBuilder}.
 	 * 
 	 * @author Lucas Grij�
 	 * @author Lucas Walim
@@ -38,9 +41,11 @@ public class FolhaDirector {
 	};
 
 	/**
-	 * Criar folha normal
+	 * Criar folha normal.
 	 * 
-	 * Constr�i uma folha regular ou seja, sem qualquer contabilidade de f�rias.
+	 * Constroi uma folha regular, sem qualquer contabilidade de ferias.
+	 * 
+	 * @return builder {@link FolhaDirector#builder}.
 	 * 
 	 * @author Lucas Grij�
 	 * @author Lucas Walim
@@ -54,9 +59,11 @@ public class FolhaDirector {
 	}
 
 	/**
-	 * Criar folha ferias
+	 * Criar folha ferias.
 	 * 
 	 * Constroi uma folha exclusiva de {@link Ferias}
+	 * 
+	 * @return builder {@link FolhaDirector#builder}.
 	 * 
 	 * @author Lucas Grij�
 	 * @author Lucas Walim
@@ -72,7 +79,10 @@ public class FolhaDirector {
 	/**
 	 * Criar folha hibrida
 	 * 
-	 * Constr�i uma folha que contabiliza tanto horas de trabalho normais quanto horas de f�rias.
+	 * Constroi uma folha que contabiliza tanto horas de trabalho normais
+	 * quanto horas de ferias.
+	 * 
+	 * @return builder {@link FolhaDirector#builder}.
 	 * 
 	 * @author Lucas Grij�
 	 * @author Lucas Walim

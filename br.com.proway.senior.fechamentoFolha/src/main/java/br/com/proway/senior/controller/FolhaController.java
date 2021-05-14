@@ -20,8 +20,9 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
  * e cria um objeto especifico de folha{@link Folha}, no fim, o envia para banco de dados.
  * 
  * @author Bruno Oliveira
- * @author Lucas Grij�
+ * @author Lucas Grijo
  * 
+ * Sprint 5:
  * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
  * @author Bruna Carvalho <sh4323202@gmail.com>;
  * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
