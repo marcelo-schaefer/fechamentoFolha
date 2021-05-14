@@ -6,9 +6,6 @@ import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDirector;
 import br.com.proway.senior.model.externo.CargoFolha;
-import br.com.proway.senior.model.externo.ColaboradorFolha;
-import br.com.proway.senior.model.externo.FeriasFolha;
-import br.com.proway.senior.model.externo.PontoFolha;
 import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
 import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 import br.com.proway.senior.model.externo.interfaces.IFeriasFolha;
@@ -37,7 +34,7 @@ public class FolhaController {
 	private FolhaDAO folhaDao;
 	
 	/**
-	 * Constroi a folha {@link Folha} com base no salario do
+	 * Retorna uma insância de {@link CargoFolha} com base no salario do
 	 * colaborador{@link IColaboradorFolha} e percentual de 
 	 * insalubridade.
 	 * 

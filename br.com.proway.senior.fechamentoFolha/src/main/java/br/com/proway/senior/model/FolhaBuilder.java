@@ -149,5 +149,4 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorImpostoDeRendaFerias = (calculoDesconto.calcularDescontoImpostoRenda(colaborador, feriasLiquido));
 		feriasLiquido = (feriasLiquido - valorImpostoDeRendaFerias);
 	}
-
 }

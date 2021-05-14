@@ -1,6 +1,7 @@
 package br.com.proway.senior.builder;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -21,14 +22,20 @@ public class TesteBuilder {
 	public void testFolhaNormal() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(1, true, 100, 25, 205);
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
-		CargoFolha cargo = new CargoFolha(35000, 0);
+		CargoFolha cargo = new CargoFolha(3500, 0);
 		Plr plr = new Plr();
 		plr.setPlr(350.0);
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		Folha folha = director.createFolhaNormal(colaborador, ponto, cargo, plr);
-		System.out.println("TESTE FOLHA NORMAL");
-		System.out.println(folha.toString());
+		assertEquals("Folha [id=0, idColaborador=1, dataEmissao=2021-05-14, "
+				+ "valorHorasTrabalhadas=3500.0, valorHorasFaltas=0.0, "
+				+ "valorHorasExtras=0.0, valorReflexoDSR=0.0, valorInss=385.0, "
+				+ "valorImpostoDeRenda=112.44999999999999, valorPlanoSaude=125.0, "
+				+ "valorValeTransporte=180.0, salarioBruto=3500.0, salarioLiquido=3047.55, "
+				+ "valorFerias=0.0, valorInssFerias=0.0, valorImpostoDeRendaFerias=0.0, "
+				+ "feriasLiquido=0.0,valorFGTS= 280.0,valorPLR= 350.0]", folha.toString());
+		assertTrue(350.0 == folha.getValorPlr());
 	}
 	
 	@Test
@@ -102,7 +109,7 @@ public class TesteBuilder {
 		Folha folha = folhaBuilder.build();
 		
 		System.out.println(folha.toString());
-		assertEquals(4310.72, folha.getSalarioLiquido(), 0.01);
+		assertEquals(4660.7299065454545, folha.getSalarioLiquido(), 0.01);
 	}
 	
 	@Test
@@ -121,7 +128,7 @@ public class TesteBuilder {
 		Folha folha = folhaBuilder.build();
 		
 		System.out.println(folha.toString());
-		assertEquals(3740.00, folha.getSalarioLiquido(), 0.01);
+		assertEquals(3740.00 + 350.0, folha.getSalarioLiquido(), 0.01);
 	}
 	
 	@Test
