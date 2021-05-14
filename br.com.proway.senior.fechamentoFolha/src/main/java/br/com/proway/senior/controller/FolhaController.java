@@ -9,46 +9,102 @@ import br.com.proway.senior.model.externo.CargoFolha;
 import br.com.proway.senior.model.externo.ColaboradorFolha;
 import br.com.proway.senior.model.externo.FeriasFolha;
 import br.com.proway.senior.model.externo.PontoFolha;
+import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
+import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
+import br.com.proway.senior.model.externo.interfaces.IFeriasFolha;
 import br.com.proway.senior.model.externo.interfaces.IPlr;
+import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 
 /**
- * Controller criado pensado em receber dados e atrav�s do builder
- * tratar esses dados para criar um tipo espec�fico de folha para enviar para
- * o DAO e atualizar o banco de dados. 
+ * Cria Folha.
  * 
+ * Recebe dados atraves do builder{@link FolhaBuilder}, trata estes dados
+ * e cria um objeto especifico de folha{@link Folha}, no fim, o envia para banco de dados.
  * 
  * @author Bruno Oliveira
  * @author Lucas Grij�
+ * 
+ * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
  *
  */
 public class FolhaController {
 
 	private FolhaDAO folhaDao;
 	
+	/**
+	 * Constroi a folha {@link Folha} com base no salario do
+	 * colaborador{@link IColaboradorFolha} e percentual de 
+	 * insalubridade.
+	 * 
+	 * @param salarioBase
+	 * @param percentualInsalubridade
+	 * @return
+	 */
 	public CargoFolha construirCargoFolha(double salarioBase, double percentualInsalubridade) {
 		return new CargoFolha(salarioBase, percentualInsalubridade);
 	}
 	
-	public void atualizarPlr(double valorPlr) {
-		
-	}
-	
-	public Folha construirFolhaNormal(ColaboradorFolha colaborador, PontoFolha ponto, CargoFolha cargo, IPlr plr) {
+	/** Constroi uma FolhaNormal.
+	 * 
+	 * Recebe um objeto {@link IColaboradorFolha}, um objeto {@link IPontoFolha}, 
+	 * um objeto {@link ICargoFolha}, um objeto {@link IFeriasFolha} e 
+	 * um objeto {@link IPlr} E cria um novo objeto {@link Folha}.
+	 * 
+	 * @param colaborador {@link IColaboradorFolha};
+	 * @param ponto {@link IPontoFolha};
+	 * @param cargo {@link ICargoFolha};
+	 * @param plr {@link IPlr}.
+	 * 
+	 * @return folha {@link Folha}.
+	*/
+	public Folha construirFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, IPlr plr) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaNormal(colaborador, ponto, cargo, plr);
 		return folhaBuilder.build();
 	}
 
-	public Folha construirFolhaFerias(ColaboradorFolha colaborador, FeriasFolha ferias, CargoFolha cargo) {
+	/**
+	 * Constroi uma FolhaFerias.
+	 * 
+	 * Recebe um objeto {@link IColaboradorFolha}, um objeto {@link IPontoFolha}, 
+	 * um objeto {@link ICargoFolha} E cria um novo objeto {@link Folha}.
+	 * 
+	 * @param colaborador {@link IColaboradorFolha};
+	 * @param ponto {@link IPontoFolha};
+	 * @param cargo {@link ICargoFolha};
+	 * @param ferias {@link IFeriasFolha};
+	 * 
+	 * @return folha {@link Folha}.
+	 */
+	public Folha construirFolhaFerias(IColaboradorFolha colaborador, IFeriasFolha ferias, ICargoFolha cargo) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaFerias(colaborador, cargo, ferias);
 		return folhaBuilder.build();
 	}
 	
-	public Folha construirFolhaHibrida(ColaboradorFolha colaborador, PontoFolha ponto, CargoFolha cargo, FeriasFolha ferias, IPlr plr) {
+	/**
+	 * Constroi uma FolhaHibrida.
+	 * 
+	 * Recebe um objeto {@link IColaboradorFolha}, um objeto {@link IPontoFolha}, 
+	 * um objeto {@link ICargoFolha}, um objeto {@link IFeriasFolha} e 
+	 * um objeto {@link IPlr} E cria um novo objeto {@link Folha}.
+	 * 
+	 * @param colaborador {@link IColaboradorFolha};
+	 * @param ponto {@link IPontoFolha};
+	 * @param cargo {@link ICargoFolha};
+	 * @param ferias {@link IFeriasFolha};
+	 * @param plr {@link IPlr}.
+	 * 
+	 * @return folha {@link Folha}.
+	 */
+	public Folha construirFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, IFeriasFolha ferias, IPlr plr) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaHibrida(colaborador, ponto, cargo, ferias, plr);
@@ -56,25 +112,24 @@ public class FolhaController {
 	}
 	
 	/**
-	 * CREATE
-	 * Metodo que recebe um tipo de folha e envia para o DAO, 
-	 * para a cria��o de uma nova Folha do Banco de dados.
+	 * Salva uma folha no banco de dados.
 	 * 
-	 * @param folha gerada pelo builder
+	 * Recebe um objeto {@link Folha}, chama a instancia do {@link FolhaDAO}
+	 * e insere o objeto no banco de dados.
+	 * 
+	 * @param objeto {@link Folha}
 	 */
 	public void salvarFolha(Folha folha) {
 		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
 		folhaDao.insert(folha);
 	}
 	
-
 	/**
-	 * UPDATE
-	 * Metodo que recebe uma nova folha e um id de uma folha existente no Banco de dados,
-	 * e envia para o DAO, para a atualiza��o das informa��es da folha existente no Banco de dados.
-	 *  
-	 * @param folha nova gerada pelo builder
-	 * @param id de folha ja existente no Banco de dados.
+	 * Atualiza uma Folha no banco.
+	 * 
+	 *Realiza a atualizacao de um objeto {@link Folha} ja existente no banco.
+	 *
+	 * @param objeto {@link Folha}
 	 */
 	public void editarFolha(Folha folha) {
 		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
@@ -82,11 +137,12 @@ public class FolhaController {
 	}
 
 	/**
-	 * DELETE
-	 * Metodo que recebe um id de uma folha existente no Banco de dados,
-	 * para enviar para o Dao e deletar tal folha.
+	 * Deletar folha do banco.
 	 * 
-	 * @param id de folha existente no Banco de dados
+	 * O metodo recebe um objeto {@link Folha} existente no banco de dados,
+	 * e deleta o mesmo.
+	 * 
+	 * @param objeto {@link Folha}. 
 	 */
 	public void deletarFolha(Folha folha) {
 		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());

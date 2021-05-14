@@ -27,9 +27,8 @@ public class CalculoHoras implements ICalculoHoras {
 	 * se � menor que 0, se sim, retorna salario base dividido por 220, se nao,
 	 * retorna o mesmo mais o valor da issalubridade.
 	 *
-	 * @param ICargoFolha cargoFolha, busca o salario base e passa de parametro para
-	 *                    o metodo
-	 * @return double, valor de horas trabalhadas
+	 * @param cargoFolha {@link ICargoFolha}
+	 * @return double
 	 * 
 	 * @author sprint2
 	 * @author Lucas Grijo
@@ -52,10 +51,9 @@ public class CalculoHoras implements ICalculoHoras {
 	 * o metodo multiplica e retorna o falor da multiplica��o entre o valor das
 	 * horas e quantas horas o funcionario trabalhou
 	 * 
-	 * @param IPontoFolha pontoFolha, busca a quantidade de horas trabalhadas do
-	 *                    funcionario
-	 * @param double      valorHoras, valor das horas
-	 * @return double, retorna o resultado da multiplicacao
+	 * @param pontoFolha {@link IPontoFolha}
+	 * @param valorHoras double
+	 * @return double
 	 * 
 	 * @author sprint2
 	 * @author Lucas Grijo
@@ -74,8 +72,8 @@ public class CalculoHoras implements ICalculoHoras {
 	 * vari�vel salarioMinimo e multiplicar pela sua faixa de insalubridade,
 	 * dependendode onde ela se encaixar.
 	 * 
-	 * @param ICargoFolha cargoFolha, busca o valor do percentual de insalubridade
-	 * @return double, valor do salario minimo pela porcentagem respectiva
+	 * @param cargoFolha {@link ICargoFolha}
+	 * @return double
 	 * 
 	 * @author sprint2
 	 * @author Lucas Grijo
@@ -100,9 +98,9 @@ public class CalculoHoras implements ICalculoHoras {
 	 * Realiza o c�lculo das horas faltas a serem descontadas na folha do
 	 * colaborador, recebe o valor de horasFalta e multiplica pelo valor da hora
 	 * 
-	 * @param IPontoFolha pontoFolha, busca as horas faltas do funcionario
-	 * @param double      valorHora, valor das horas
-	 * @return double, resultado da multiplicacao
+	 * @param pontoFolha {@link IPontoFolha}
+	 * @param double valorHora
+	 * @return double
 	 * 
 	 * @author sprint2
 	 * @author Lucas Grijo
@@ -119,9 +117,9 @@ public class CalculoHoras implements ICalculoHoras {
 	 * O valor retornado da multiplica��o de valorHoras e fator, vai somar com o
 	 * valorHoras e depois multiplica pelas horasExtra
 	 * 
-	 * @param IPontoFolha pontoFolha, busca as horas extras do funcionario
-	 * @param double      valorHoras, valor das horas
-	 * @return valor = Retorna o valor a ser pago de horas extras.
+	 * @param pontoFolha {@link IPontoFolha}
+	 * @param double valorHoras
+	 * @return valor
 	 * 
 	 * @author sprint2
 	 * @author Lucas Grijo
