@@ -44,19 +44,18 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private double valorImpostoDeRenda;
 	private double valorPlanoSaude;
 	private double valorValeTransporte;
-	private double salarioBruto = 0;
+	private double salarioBruto = 0.0;
 	private double salarioLiquido;
 	private double valorFGTS;
-	// Folha F�rias
 	private double valorFerias;
 	private double valorInssFerias;
 	private double valorImpostoDeRendaFerias;
 	private double feriasLiquido;
-	// Dados para constru��o/calculo.
 	private ICalculoHoras calculoHoras;
 	private ICalculoDesconto calculoDesconto;
 	private double valorHora;
 	private double valorPlr;
+
 	Bonificacao bonificacao;
 	
 	/**
@@ -81,7 +80,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 		double valorPLR = 0;
 		return new Folha(id, idColaborador, dataEmissao, valorHorasTrabalhadas, valorHorasFaltas, valorHorasExtras,
 				valorReflexoDSR, valorInss, valorImpostoDeRenda, valorPlanoSaude, valorValeTransporte, salarioBruto,
-				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido, valorFGTS,valorPLR);
+				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido, valorFGTS,
+				valorPLR);
 	}
 
 	/**
@@ -117,6 +117,12 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorHorasExtras = (calculoHoras.calcularValorHorasExtras(ponto, valorHora));
 		valorReflexoDSR = (calculoHoras.calcularDSR(valorHorasExtras));
 		salarioBruto = (valorHorasTrabalhadas - valorHorasFaltas + valorHorasExtras + valorReflexoDSR);
+
+		valorFGTS = (valorFGTS * salarioBruto);
+		valorPlr = plr.getValorPlr();
+
+		valorFGTS = (valorFGTS * salarioBruto);
+
 		valorFGTS = (valorFGTS*salarioBruto);
 		valorPlr = plr.getValorPlr();
 	}
@@ -172,13 +178,20 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Altera a bonifica��o por colaborador atribuindo ao salarioBruto o valor atribuido
 	 * @param colaborador 
+=======
+	 * Altera a bonifica��o por colaborador atribuindo ao salarioBruto o valor
+	 * atribuido
+	 * 
+	 * @param colaborador
+>>>>>>> 2fa5cd01f63e651ee40d6d428c873e7c4fdb1db3
 	 */
 	public double atribuiBonificacaoColaborador(IColaboradorFolha colaborador) {
 		return (salarioBruto * bonificacao.getPorcentagemBonificacaoColaborador());
 	}
-	
+
 	/**
 	 * Altera a bonifica��o por Cargo atribuindo ao salarioBruto o valor atribuido 
 	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devere�o ser implementadas
@@ -186,10 +199,10 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @param cargo
 	 */
 	public double atribuiBonificacaoCargo(ICargoFolha cargo) {
-		double b = cargo.getSalarioBase();
-		b += (b * cargo.getPorcentagemBonificacaoCargo());
+	double b =+  cargo.getSalarioBase() * bonificacao.getPorcentagemBonificacaoCargo();
 		return b;
 	}
+
 	
 	/**
 	 * Altera a bonifica��o por Cargo atribuindo ao salarioBruto o valor atribuido 
@@ -207,4 +220,6 @@ public class FolhaBuilder implements IFolhaBuilder {
 	public double pegatribuiBonificacaoEmpresa(IEmpresa empresa) {
 		return (empresa.getSalarioBase() * b.getPorcentagemBonificacaoCargo());
 	}	 */
+
+
 }

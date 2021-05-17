@@ -30,7 +30,13 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * Calcula o valor das horas
 	 *
+<<<<<<< HEAD
+	 * o metodo chama o metodo de calcular insalubridade dividido por 220, verifica
+	 * se ï¿½ menor que 0, se sim, retorna salario base dividido por 220, se nao,
+	 * retorna o mesmo mais o valor da issalubridade.
+=======
 	 * O metodo chama o metodo de calcular insalubridade dividido por 220, verifica
+>>>>>>> c230790fca0271d59e8ea2990cbb609a22a0a150
 	 * se é menor que 0, se sim, retorna salario base dividido por 220, se nao,
 	 * retorna o mesmo mais o valor da insalubridade.
 	 *

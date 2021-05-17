@@ -43,8 +43,8 @@ public class FolhaController {
 	 * @param percentualInsalubridade
 	 * @return
 	 */
-	public CargoFolha construirCargoFolha(double salarioBase, double percentualInsalubridade,double porcentagemBonificacaoCargo) {
-		return new CargoFolha(salarioBase, percentualInsalubridade, porcentagemBonificacaoCargo);
+	public CargoFolha construirCargoFolha(double salarioBase, double percentualInsalubridade) {
+		return new CargoFolha(salarioBase, percentualInsalubridade);
 	}
 	
 	/** Constroi uma FolhaNormal.

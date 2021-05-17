@@ -16,14 +16,15 @@ import br.com.proway.senior.model.externo.ColaboradorFolha;
 import br.com.proway.senior.model.externo.FeriasFolha;
 import br.com.proway.senior.model.externo.PontoFolha;
 
-public class TesteBuilder {
+public class TesteBuilder{
 	
 	/*
 	@Test
 	public void testFolhaNormal() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(1, true, 100, 25, 205);
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
-		CargoFolha cargo = new CargoFolha(3500, 0, 0);
+		CargoFolha cargo = new CargoFolha(3500, 0);
+
 		Plr plr = new Plr();
 		plr.setPlr(350.0);
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
@@ -42,7 +43,7 @@ public class TesteBuilder {
 	@Test
 	public void testFolhaFerias() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(2, true, 100, 25,205);
-		CargoFolha cargo = new CargoFolha(3500, 20, 25);
+		CargoFolha cargo = new CargoFolha(3500, 20);
 		FeriasFolha ferias = new FeriasFolha(15, 3);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
@@ -56,7 +57,7 @@ public class TesteBuilder {
 	public void testFolhaHibrida() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(3, true, 100, 25,205);
 		PontoFolha ponto = new PontoFolha(220, 30, 45);
-		CargoFolha cargo = new CargoFolha(2578, 10, 25);
+		CargoFolha cargo = new CargoFolha(2578, 10);
 		FeriasFolha ferias = new FeriasFolha(20, 10);
 		Plr plr = new Plr();
 		plr.setPlr(350.0);
@@ -72,9 +73,12 @@ public class TesteBuilder {
 	public void testFolhaNormalDeMesa() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(4, true, 100, 15,205);
 		PontoFolha ponto = new PontoFolha(220, 13.58, 7.46);
+
+		CargoFolha cargo = new CargoFolha(1850, 40);
 		Plr plr = new Plr();
 		plr.setPlr(350.0);
-		CargoFolha cargo = new CargoFolha(1850, 40, 25);
+
+		plr.setPlr(350.0);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
@@ -96,13 +100,13 @@ public class TesteBuilder {
 		plr.setPlr(350.0);
 		
 		PontoFolha ponto = new PontoFolha(220, 17.33, 2.17);
-		CargoFolha cargo = new CargoFolha(4600, 40, 25);
+		CargoFolha cargo = new CargoFolha(4600, 40);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaNormal(colaborador, ponto, cargo, plr);
 		Folha folha = folhaBuilder.build();
-		
+		System.out.println(folha.toString());
 		assertEquals(4660.7299065454545, folha.getSalarioLiquido(), 0.01);
 		assertEquals(4310.72, folha.getSalarioLiquido(), 0.01);
 	}
@@ -112,10 +116,11 @@ public class TesteBuilder {
 		ColaboradorFolha colaborador = new ColaboradorFolha(5, false, 0, 0,205);
 			
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
+
+		CargoFolha cargo = new CargoFolha(4500, 0);
 		Plr plr = new Plr();
 		plr.setPlr(350.0);
 		
-		CargoFolha cargo = new CargoFolha(4500, 0, 25);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
@@ -124,6 +129,9 @@ public class TesteBuilder {
 		
 		System.out.println(folha.toString());
 		assertEquals(3740.00 + 350.0, folha.getSalarioLiquido(), 0.01);
+
+	
+		assertEquals(3740.00, folha.getSalarioLiquido(), 0.01);
 	}
 	
 	@Test
@@ -150,10 +158,9 @@ public class TesteBuilder {
 	@Test
 	public void verBonificacao() {
 		ColaboradorFolha colaborador = new ColaboradorFolha(2, true, 100, 25,205);
-		CargoFolha cargo = new CargoFolha(3500, 20, 25);
+		CargoFolha cargo = new CargoFolha(3500, 20);
 		FeriasFolha ferias = new FeriasFolha(15, 3);
 		
-		cargo.setPorcentagemBonificacaoCargo(24);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
@@ -161,5 +168,7 @@ public class TesteBuilder {
 		
 		assertEquals(4340, folhaBuilder.atribuiBonificacaoCargo(cargo),0.1);
 	}
+<<<<<<< HEAD
 	*/
 }
+

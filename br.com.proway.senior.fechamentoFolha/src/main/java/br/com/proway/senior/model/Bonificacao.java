@@ -16,11 +16,10 @@ import br.com.proway.senior.model.externo.CargoFolha;
 public class Bonificacao {
 	
 	public double porcentagemBonificacaoColaborador;
+	public double porcentagemBonificacaoCargo;
 	public double porcentagemBonificacaoSetor;
 	public double porcentagemBonificacaoEmpresa;
-	//public double porcentagemBonificacaoCargo;
-	CargoFolha c;
-	private double porcentagemBonificacaoCargo;
+	
 	/**
 	 * @return the porcentagemBonificacaoColaborador
 	 */
@@ -38,49 +37,21 @@ public class Bonificacao {
 	 */
 	public double getPorcentagemBonificacaoEmpresa() {
 		return porcentagemBonificacaoEmpresa;
-	}
+	}		
 	/**
-	 * Metodo Bonificacao que recebe 
-	 * @param porcentagemBonificacaoColaborador, porcentagemBonificacaoSetor,
-	 * porcentagemBonificacaoEmpresa, porcentagemBonificacaoCargo
-	 *  
+	 * @return the porcentagemBonificacaoCargo
 	 */
-		
+	public double getPorcentagemBonificacaoCargo() {
+		return porcentagemBonificacaoCargo;
+	}
+	
 	public Bonificacao(double porcentagemBonificacaoColaborador, double porcentagemBonificacaoSetor,
 			double porcentagemBonificacaoEmpresa, double porcentagemBonificacaoCargo) {
 		super();
 		this.porcentagemBonificacaoColaborador = porcentagemBonificacaoColaborador;
 		this.porcentagemBonificacaoSetor = porcentagemBonificacaoSetor;
 		this.porcentagemBonificacaoEmpresa = porcentagemBonificacaoEmpresa;
-		this.porcentagemBonificacaoCargo = c.getPorcentagemBonificacaoCargo();
-	}
-
-	
-	/**
-	 * @param bonificacao the porcentagemBonificacaoColaborador to set
-	 */
-	public void setPorcentagemBonificacaoColaborador(double bonificacao) {
-		this.porcentagemBonificacaoColaborador = (bonificacao/100);
-	}
-	
-	/**
-	 * @param bonificacao the porcentagemBonificacaoCargo to set
-	
-	public void setPorcentagemBonificacaoCargo(double bonificacao) {
-		c.setPorcentagemBonificacaoCargo(bonificacao/100);
-	}*/
-	/**
-	 * @param bonificacao the porcentagemBonificacaoSetor to set
-	 
-	public void setPorcentagemBonificacaoSetor(double bonificacao) {
-		this.porcentagemBonificacaoSetor = (bonificacao/100);
-	}
-	
-	 * @param bonificacao the porcentagemBonificacaoEmpresa to set
-	 
-	public void setPorcentagemBonificacaoEmpresa(double bonificacao) {
-		this.porcentagemBonificacaoEmpresa = (bonificacao/100);
-	}*/
+	}	
 	
 	@Override
 	public String toString() {

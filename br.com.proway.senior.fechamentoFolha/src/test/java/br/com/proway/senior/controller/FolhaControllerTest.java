@@ -18,24 +18,13 @@ import br.com.proway.senior.model.externo.PontoFolha;
 
 public class FolhaControllerTest {
 	
-	/*
-	@Before
-	public void openSession() {
-		PostgresConnector.getSession();
-	}
-	
-	@After
-	public void closeSession() {
-		PostgresConnector.shutdown();;
-	}
-	*/
-	/*
+
 	@Test
 	public void testConstruirCargoFolha() {
 		CargoFolha cargo = new CargoFolha(3500, 0);
 		FolhaController fc = new FolhaController();
 			
-		CargoFolha cargoFolha = fc.construirCargoFolha(cargo.getSalarioBase(), cargo.getPercentualInsalubridade(), 0); 
+		CargoFolha cargoFolha = fc.construirCargoFolha(cargo.getSalarioBase(), cargo.getPercentualInsalubridade()); 
 		assertNotNull(cargoFolha);
 	}
 	
@@ -48,7 +37,7 @@ public class FolhaControllerTest {
 		ColaboradorFolha colaborador = new ColaboradorFolha(0, false, 0, 0, 0);
 		PontoFolha ponto = new PontoFolha(0, 0, 0);
 		Plr plr = new Plr();
-		plr.setPlr(250);
+		plr.setValorPlr(250);
 		
 		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, plr);
 		
@@ -80,7 +69,7 @@ public class FolhaControllerTest {
 		FeriasFolha ferias = new FeriasFolha(0, 0);
 		PontoFolha ponto = new PontoFolha(0, 0, 0);
 		Plr plr = new Plr();
-		plr.setPlr(250);
+		plr.setValorPlr(250);
 		
 		Folha folha = fc.construirFolhaHibrida(colaborador, ponto, cargoFolha, ferias, plr);
 		
@@ -98,7 +87,7 @@ public class FolhaControllerTest {
 		ColaboradorFolha colaborador = new ColaboradorFolha(0, false, 0, 0, 0);
 		PontoFolha ponto = new PontoFolha(0, 0, 0);
 		Plr plr = new Plr();
-		plr.setPlr(250);
+		plr.setValorPlr(250);
 		
 		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, plr);
 		
@@ -117,12 +106,12 @@ public class FolhaControllerTest {
 		ColaboradorFolha colaborador = new ColaboradorFolha(0, false, 0, 0, 0);
 		PontoFolha ponto = new PontoFolha(0, 0, 0);
 		Plr plr = new Plr();
-		plr.setPlr(350);
+		plr.setValorPlr(350);
 		
 		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, plr);
 		
 		fc.editarFolha(folha);
 		assertTrue(db.getAll().get(0).getValorPlr() == 350);
 	}
-	*/
+	
 }
