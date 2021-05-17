@@ -23,8 +23,8 @@ public class FolhaDAOTest {
 		
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
-		CargoFolha cargo = new CargoFolha(1752, 20);
 		Plr plr = new Plr();
+		CargoFolha cargo = new CargoFolha(1752, 20, 25);
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
@@ -44,8 +44,8 @@ public class FolhaDAOTest {
 	public void testDelete() {
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
-		CargoFolha cargo = new CargoFolha(1752, 20);
 		Plr plr = new Plr();
+		CargoFolha cargo = new CargoFolha(1752, 20, 25);
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
@@ -92,8 +92,8 @@ public class FolhaDAOTest {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
 		ColaboradorFolha colab = new ColaboradorFolha(9, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
-		CargoFolha cargo = new CargoFolha(1752, 20);
 		Plr plr = new Plr();
+		CargoFolha cargo = new CargoFolha(1752, 20, 25);
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);

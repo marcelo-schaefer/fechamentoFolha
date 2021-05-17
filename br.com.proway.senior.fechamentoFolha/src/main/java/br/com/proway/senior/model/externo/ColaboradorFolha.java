@@ -7,7 +7,7 @@ import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 /**
  * Pega dados do Colaborador.
  * 
- * Contem os dados necessarios de um Colaborador para a criação de uma 
+ * Contem os dados necessarios de um Colaborador para a criacao de uma 
  * folha{@link Folha}.
  * 
  * @author sprint3
@@ -18,6 +18,7 @@ import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
  * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
  * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
  * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
+ *  
  */
 public final class ColaboradorFolha implements IColaboradorFolha {
 
@@ -29,6 +30,7 @@ public final class ColaboradorFolha implements IColaboradorFolha {
 	private double planoSaudeCooparticipacao;
 	private ArrayList<String> dependentes;
 	private double valorFGTS;
+	
 
 	public ColaboradorFolha(int id, boolean isValeTransporte, double planoSaudeMensalidade,
 			double planoSaudeCooparticipacao, double valorFGTS) {

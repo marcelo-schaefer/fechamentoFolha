@@ -15,8 +15,13 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 /**
  * FolhaBuilder
  * 
+<<<<<<< HEAD
  * E uma classe que contem a logica de construcao de uma Folha seguindo 
  * o design pattern builder.
+=======
+ * ï¿½ uma classe que contï¿½m a lï¿½gica de construï¿½ï¿½o de uma Folha
+ * seguindo o design pattern builder.
+>>>>>>> minhaBranch
  * 
  * @author Lucas Grijï¿½
  * @author Lucas Walim
@@ -58,13 +63,14 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private ICalculoDesconto calculoDesconto;
 	private double valorHora;
 	private double valorPlr;
-
+	Bonificacao bonificacao;
+	
 	/**
 	 * Constoi a folha com os dados calculados.
 	 * 
 	 * Constroi uma folha{@link Folha} e determina a data de emissao da mesma.
 	 * 
-	 * @author Lucas Grijï¿½
+	 * @author Lucas Grijo
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 *
@@ -78,16 +84,22 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 */
 	public Folha build() {
 		dataEmissao = LocalDate.now();
+		double valorPLR = 0;
 		return new Folha(id, idColaborador, dataEmissao, valorHorasTrabalhadas, valorHorasFaltas, valorHorasExtras,
 				valorReflexoDSR, valorInss, valorImpostoDeRenda, valorPlanoSaude, valorValeTransporte, salarioBruto,
-				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido, valorFGTS, valorPlr);
+				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido, valorFGTS,valorPLR);
 	}
 
 	/**
 	 * Inicializa Calculos.
 	 * 
+<<<<<<< HEAD
 	 * Realiza os calculos inicias e instancia os objetos necessarios
 	 * para qualquer calculo necessario para cada tipo de folha.
+=======
+	 * Realiza os calculos inicias e instancia os objetos necessï¿½rios para o
+	 * calculos de qualquer tipo de folha.
+>>>>>>> minhaBranch
 	 * 
 	 * @author Lucas Grijo
 	 * @author Lucas Walim
@@ -103,7 +115,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * Calculo das Horas Normais.
 	 * 
-	 * Realiza os calculo do valor recebido pertinente a horas trabalhadas, 
+	 * Realiza os calculos do valor recebido pertinente a horas trabalhadas, 
 	 * faltas, horas extras e reflexo DSR.
 	 * 
 	 * @author Lucas Grijï¿½
@@ -132,7 +144,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 */
 	public void calcularDescontoNormal(IColaboradorFolha colaborador, ICargoFolha cargo, IPlr plr) {
 		valorInss = (calculoDesconto.calcularDescontoInss(salarioBruto));
-		salarioLiquido = (salarioBruto - valorInss);
+		salarioLiquido = ((salarioBruto) - valorInss);
 		valorImpostoDeRenda = (calculoDesconto.calcularDescontoImpostoRenda(colaborador, salarioLiquido));
 		valorPlanoSaude = (calculoDesconto.calcularDescontoPlanoSaude(colaborador));
 		valorValeTransporte = (calculoDesconto.calcularDescontoValeTransporte(colaborador, cargo));
@@ -169,4 +181,41 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorImpostoDeRendaFerias = (calculoDesconto.calcularDescontoImpostoRenda(colaborador, feriasLiquido));
 		feriasLiquido = (feriasLiquido - valorImpostoDeRendaFerias);
 	}
+
+	/**
+	 * Altera a bonificação por colaborador atribuindo ao salarioBruto o valor atribuido
+	 * @param colaborador 
+	 */
+	public double atribuiBonificacaoColaborador(IColaboradorFolha colaborador) {
+		return (salarioBruto * bonificacao.getPorcentagemBonificacaoColaborador());
+	}
+	
+	/**
+	 * Altera a bonificação por Cargo atribuindo ao salarioBruto o valor atribuido 
+	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereão ser implementadas
+	 * a variavel b recebe o cargo e com o percentual da bonificação resulta o novo valor Bruto
+	 * @param cargo
+	 */
+	public double atribuiBonificacaoCargo(ICargoFolha cargo) {
+		double b = cargo.getSalarioBase();
+		b += (b * cargo.getPorcentagemBonificacaoCargo());
+		return b;
+	}
+	
+	/**
+	 * Altera a bonificação por Cargo atribuindo ao salarioBruto o valor atribuido 
+	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereão ser implementadas
+	 * @param colaborador
+	
+	public double pegatribuiBonificacaoSetor(ISetor setor,double valor) {
+		return (setor.getSalarioBase() * b.getPorcentagemBonificacaoCargo());
+	*/
+	/**
+	 * Altera a bonificação por Empresa atribuindo ao salarioBruto o valor atribuido 
+	 * variavel cargo do Empresa se refere ao IEmpresa, e as variaveis que devereão ser implementadas
+	 * @param empresa
+	
+	public double pegatribuiBonificacaoEmpresa(IEmpresa empresa) {
+		return (empresa.getSalarioBase() * b.getPorcentagemBonificacaoCargo());
+	}	 */
 }

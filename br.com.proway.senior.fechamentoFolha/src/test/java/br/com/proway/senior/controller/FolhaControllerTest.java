@@ -35,7 +35,7 @@ public class FolhaControllerTest {
 		CargoFolha cargo = new CargoFolha(3500, 0);
 		FolhaController fc = new FolhaController();
 			
-		CargoFolha cargoFolha = fc.construirCargoFolha(cargo.getSalarioBase(), cargo.getPercentualInsalubridade()); 
+		CargoFolha cargoFolha = fc.construirCargoFolha(cargo.getSalarioBase(), cargo.getPercentualInsalubridade(), 0); 
 		assertNotNull(cargoFolha);
 	}
 	
