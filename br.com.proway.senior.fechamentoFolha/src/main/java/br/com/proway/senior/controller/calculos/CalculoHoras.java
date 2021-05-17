@@ -6,12 +6,19 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 /**
  * calcular horas
  * 
- * classe que pussui todos os metodos de calculos relacionados a soma no salario
- * bruto
+ * classe que pussui todos os metodos de calculos relacionados a 
+ * soma no salario bruto.
  * 
  * @author Lucas Grijo
  * @author Lucas walim
  * @author Marcelo Schaefer
+ *
+ * Sprint 5:
+ * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
  *
  */
 public class CalculoHoras implements ICalculoHoras {
@@ -23,9 +30,13 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * Calcula o valor das horas
 	 *
+<<<<<<< HEAD
 	 * o metodo chama o metodo de calcular insalubridade dividido por 220, verifica
 	 * se ï¿½ menor que 0, se sim, retorna salario base dividido por 220, se nao,
 	 * retorna o mesmo mais o valor da issalubridade.
+=======
+	 * O metodo chama o metodo de calcular insalubridade dividido por 220, verifica
+>>>>>>> c230790fca0271d59e8ea2990cbb609a22a0a150
 	 * se é menor que 0, se sim, retorna salario base dividido por 220, se nao,
 	 * retorna o mesmo mais o valor da insalubridade.
 	 *
@@ -70,8 +81,8 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * Calcula o valor da insalubridade
 	 * 
-	 * Realiza o cï¿½lculo do valor a ser implementado no salï¿½rio mï¿½nimo, vai pegar a
-	 * variï¿½vel salarioMinimo e multiplicar pela sua faixa de insalubridade,
+	 * Realiza o calculo do valor a ser implementado no salario minimo, vai pegar a
+	 * variavel salarioMinimo e multiplicar pela sua faixa de insalubridade,
 	 * dependendode onde ela se encaixar.
 	 * 
 	 * @param cargoFolha {@link ICargoFolha}
@@ -97,7 +108,7 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * Calcula o valor a ser descontado de horas faltas
 	 * 
-	 * Realiza o cï¿½lculo das horas faltas a serem descontadas na folha do
+	 * Realiza o cálculo das horas faltas a serem descontadas na folha do
 	 * colaborador, recebe o valor de horasFalta e multiplica pelo valor da hora
 	 * 
 	 * @param pontoFolha {@link IPontoFolha}
@@ -116,7 +127,7 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * Calcula o valor horas extras
 	 * 
-	 * O valor retornado da multiplicaï¿½ï¿½o de valorHoras e fator, vai somar com o
+	 * O valor retornado da multiplicao de valorHoras e fator, vai somar com o
 	 * valorHoras e depois multiplica pelas horasExtra
 	 * 
 	 * @param pontoFolha {@link IPontoFolha}
@@ -156,13 +167,13 @@ public class CalculoHoras implements ICalculoHoras {
 	/**
 	 * calcula as ferias
 	 * 
-	 * o metodo verifica se o abono ï¿½ menor que 0, se for, valor de ferias ï¿½ igual
+	 * o metodo verifica se o abono eh menor que 0, se for, valor de ferias eh igual
 	 * ou valor dela mais um terco, se nao, calcula o abono e pega um terco dele
 	 * 
-	 * @param int    dias, numero de dias
-	 * @param int    abono, numero de abono
-	 * @param double valorHoras, valor das horas
-	 * @return double valorTotalFerias, resultado dos calcolos dependendo do abono
+	 * @param int dias
+	 * @param int abono
+	 * @param double valorHoras
+	 * @return double valorTotalFerias
 	 * 
 	 * @author sprint2
 	 * @author Lucas Grijo

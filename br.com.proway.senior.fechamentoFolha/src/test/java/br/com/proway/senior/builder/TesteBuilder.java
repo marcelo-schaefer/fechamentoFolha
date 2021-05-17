@@ -23,6 +23,7 @@ public class TesteBuilder {
 		ColaboradorFolha colaborador = new ColaboradorFolha(1, true, 100, 25, 205);
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
 		CargoFolha cargo = new CargoFolha(3500, 0);
+
 		Plr plr = new Plr();
 		plr.setPlr(350.0);
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
@@ -36,7 +37,6 @@ public class TesteBuilder {
 				+ "valorFerias=0.0, valorInssFerias=0.0, valorImpostoDeRendaFerias=0.0, "
 				+ "feriasLiquido=0.0,valorFGTS= 280.0,valorPLR= 350.0]", folha.toString());
 		assertTrue(350.0 == folha.getValorPlr());
-	
 	}
 	
 	@Test
@@ -77,13 +77,13 @@ public class TesteBuilder {
 		Plr plr = new Plr();
 		plr.setPlr(350.0);
 
+		plr.setPlr(350.0);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaNormal(colaborador, ponto, cargo, plr);
 		Folha folha = folhaBuilder.build();
 		//assertEquals(2466.78, folha.getSalarioBruto(),0.01);
-
 	}
 	
 	@Test
@@ -105,10 +105,8 @@ public class TesteBuilder {
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaNormal(colaborador, ponto, cargo, plr);
 		Folha folha = folhaBuilder.build();
-
 		System.out.println(folha.toString());
 		assertEquals(4660.7299065454545, folha.getSalarioLiquido(), 0.01);
-
 		assertEquals(4310.72, folha.getSalarioLiquido(), 0.01);
 	}
 	
@@ -121,7 +119,7 @@ public class TesteBuilder {
 		CargoFolha cargo = new CargoFolha(4500, 0);
 		Plr plr = new Plr();
 		plr.setPlr(350.0);
-
+		
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
@@ -155,8 +153,6 @@ public class TesteBuilder {
 		double planoSaude = colaborador.getPlanoSaudeCooparticipacao() + colaborador.getPlanoSaudeMensalidade();
 		ArrayList<String> dependentes = colaborador.getDependentes();
 	}
-
-
 	
 	@Test
 	public void verBonificacao() {
@@ -172,3 +168,4 @@ public class TesteBuilder {
 		assertEquals(4340, folhaBuilder.atribuiBonificacaoCargo(cargo),0.1);
 	}
 }
+

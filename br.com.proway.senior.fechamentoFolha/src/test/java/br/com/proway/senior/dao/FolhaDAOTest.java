@@ -23,8 +23,10 @@ public class FolhaDAOTest {
 		
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
+
 		CargoFolha cargo = new CargoFolha(1752, 20);
 		Plr plr = new Plr();
+
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);

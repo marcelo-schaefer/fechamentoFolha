@@ -3,12 +3,19 @@ package br.com.proway.senior.model.externo;
 import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 /**
- * PontoFolha
+ * Dados do Ponto usados para a criacao interna da folha.
  * 
- * Objeto conténdo os dados necessários de pontos para utilização interna na
- * criação de uma folha.
+ *Objeto que possue dados especificos do Ponto para ser 
+ * usado na criacao interna de uma folha {@link Folha}.
  * 
  * @author sprint3
+ * 
+ * Sprint 5:
+ * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
  */
 public class PontoFolha implements IPontoFolha {
 

@@ -20,6 +20,14 @@ import javax.persistence.Id;
  * @author Lucas Grijó
  * @author Lucas Walim
  * @author Marcelo Schaefer
+ * 
+ * Sprint 5:
+ * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
+ *
  */
 @Entity
 public class Folha implements IFolha {
@@ -56,7 +64,7 @@ public class Folha implements IFolha {
 		this.dataEmissao = dataEmissao;
 	}
 	/**
-	 * M�todo Construtor da Folha.
+	 * Metodo Construtor da Folha.
 	 * 
 	 * @param id
 	 * @param idColaborador
