@@ -26,6 +26,8 @@ public class CalculoHoras implements ICalculoHoras {
 	 * o metodo chama o metodo de calcular insalubridade dividido por 220, verifica
 	 * se ï¿½ menor que 0, se sim, retorna salario base dividido por 220, se nao,
 	 * retorna o mesmo mais o valor da issalubridade.
+	 * se é menor que 0, se sim, retorna salario base dividido por 220, se nao,
+	 * retorna o mesmo mais o valor da insalubridade.
 	 *
 	 * @param cargoFolha {@link ICargoFolha}
 	 * @return double

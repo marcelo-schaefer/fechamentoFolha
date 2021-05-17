@@ -9,22 +9,25 @@ import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
  * criação de uma folha.
  * 
  * @author sprint3
+ * 
  */
 public class CargoFolha implements ICargoFolha {
 
 	private double salarioBase;
 	private double percentualInsalubridade;
 
-	public CargoFolha(double salarioBase, double percentualInsalubridade) {
-		this.salarioBase = salarioBase;
-		this.percentualInsalubridade = percentualInsalubridade;
-	}
-
 	public double getSalarioBase() {
 		return salarioBase;
+	}
+
+	public CargoFolha(double salarioBase, double percentualInsalubridade) {
+		super();
+		this.salarioBase = salarioBase;
+		this.percentualInsalubridade = percentualInsalubridade;
 	}
 
 	public double getPercentualInsalubridade() {
 		return percentualInsalubridade;
 	}
+
 }

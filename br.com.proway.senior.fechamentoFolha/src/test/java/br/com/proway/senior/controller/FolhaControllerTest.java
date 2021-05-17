@@ -18,18 +18,6 @@ import br.com.proway.senior.model.externo.PontoFolha;
 
 public class FolhaControllerTest {
 	
-	/*
-	@Before
-	public void openSession() {
-		PostgresConnector.getSession();
-	}
-	
-	@After
-	public void closeSession() {
-		PostgresConnector.shutdown();;
-	}
-	*/
-	
 	@Test
 	public void testConstruirCargoFolha() {
 		CargoFolha cargo = new CargoFolha(3500, 0);
