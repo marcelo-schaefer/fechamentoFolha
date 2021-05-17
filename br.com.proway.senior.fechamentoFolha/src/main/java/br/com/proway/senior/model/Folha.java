@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  * Folha
@@ -33,7 +34,8 @@ import javax.persistence.Id;
 public class Folha implements IFolha {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FOLHA_SEQ")
+	@SequenceGenerator(name = "FOLHA_SEQ", sequenceName = "FOLHA_SEQ", allocationSize = 1)
 	private int id;
 	
 	private LocalDate dataEmissao;

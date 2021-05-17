@@ -9,19 +9,13 @@ import br.com.proway.senior.controller.calculos.ICalculoHoras;
 import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
 import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 import br.com.proway.senior.model.externo.interfaces.IFeriasFolha;
-import br.com.proway.senior.model.externo.interfaces.IPlr;
 import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 /**
  * FolhaBuilder
  * 
-<<<<<<< HEAD
  * E uma classe que contem a logica de construcao de uma Folha seguindo 
  * o design pattern builder.
-=======
- * ï¿½ uma classe que contï¿½m a lï¿½gica de construï¿½ï¿½o de uma Folha
- * seguindo o design pattern builder.
->>>>>>> minhaBranch
  * 
  * @author Lucas Grijï¿½
  * @author Lucas Walim
@@ -93,13 +87,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * Inicializa Calculos.
 	 * 
-<<<<<<< HEAD
 	 * Realiza os calculos inicias e instancia os objetos necessarios
 	 * para qualquer calculo necessario para cada tipo de folha.
-=======
-	 * Realiza os calculos inicias e instancia os objetos necessï¿½rios para o
-	 * calculos de qualquer tipo de folha.
->>>>>>> minhaBranch
 	 * 
 	 * @author Lucas Grijo
 	 * @author Lucas Walim
@@ -129,7 +118,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorReflexoDSR = (calculoHoras.calcularDSR(valorHorasExtras));
 		salarioBruto = (valorHorasTrabalhadas - valorHorasFaltas + valorHorasExtras + valorReflexoDSR);
 		valorFGTS = (valorFGTS*salarioBruto);
-		valorPlr = plr.getPlr();
+		valorPlr = plr.getValorPlr();
 	}
 
 	/**
@@ -148,7 +137,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 		valorImpostoDeRenda = (calculoDesconto.calcularDescontoImpostoRenda(colaborador, salarioLiquido));
 		valorPlanoSaude = (calculoDesconto.calcularDescontoPlanoSaude(colaborador));
 		valorValeTransporte = (calculoDesconto.calcularDescontoValeTransporte(colaborador, cargo));
-		salarioLiquido = (salarioLiquido - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude) + plr.getPlr();
+		salarioLiquido = (salarioLiquido - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude) + plr.getValorPlr();
 		valorFGTS = (calculoDesconto.calcularFGTS(salarioBruto));
 	}
 
@@ -183,7 +172,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
-	 * Altera a bonificação por colaborador atribuindo ao salarioBruto o valor atribuido
+	 * Altera a bonificaï¿½ï¿½o por colaborador atribuindo ao salarioBruto o valor atribuido
 	 * @param colaborador 
 	 */
 	public double atribuiBonificacaoColaborador(IColaboradorFolha colaborador) {
@@ -191,9 +180,9 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 	
 	/**
-	 * Altera a bonificação por Cargo atribuindo ao salarioBruto o valor atribuido 
-	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereão ser implementadas
-	 * a variavel b recebe o cargo e com o percentual da bonificação resulta o novo valor Bruto
+	 * Altera a bonificaï¿½ï¿½o por Cargo atribuindo ao salarioBruto o valor atribuido 
+	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereï¿½o ser implementadas
+	 * a variavel b recebe o cargo e com o percentual da bonificaï¿½ï¿½o resulta o novo valor Bruto
 	 * @param cargo
 	 */
 	public double atribuiBonificacaoCargo(ICargoFolha cargo) {
@@ -203,16 +192,16 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 	
 	/**
-	 * Altera a bonificação por Cargo atribuindo ao salarioBruto o valor atribuido 
-	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereão ser implementadas
+	 * Altera a bonificaï¿½ï¿½o por Cargo atribuindo ao salarioBruto o valor atribuido 
+	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereï¿½o ser implementadas
 	 * @param colaborador
 	
 	public double pegatribuiBonificacaoSetor(ISetor setor,double valor) {
 		return (setor.getSalarioBase() * b.getPorcentagemBonificacaoCargo());
 	*/
 	/**
-	 * Altera a bonificação por Empresa atribuindo ao salarioBruto o valor atribuido 
-	 * variavel cargo do Empresa se refere ao IEmpresa, e as variaveis que devereão ser implementadas
+	 * Altera a bonificaï¿½ï¿½o por Empresa atribuindo ao salarioBruto o valor atribuido 
+	 * variavel cargo do Empresa se refere ao IEmpresa, e as variaveis que devereï¿½o ser implementadas
 	 * @param empresa
 	
 	public double pegatribuiBonificacaoEmpresa(IEmpresa empresa) {

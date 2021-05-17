@@ -5,11 +5,11 @@ import br.com.proway.senior.dao.PostgresConnector;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDirector;
+import br.com.proway.senior.model.IPlr;
 import br.com.proway.senior.model.externo.CargoFolha;
 import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
 import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 import br.com.proway.senior.model.externo.interfaces.IFeriasFolha;
-import br.com.proway.senior.model.externo.interfaces.IPlr;
 import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 
@@ -35,7 +35,7 @@ public class FolhaController {
 	private FolhaDAO folhaDao;
 	
 	/**
-	 * Retorna uma insância de {@link CargoFolha} com base no salario do
+	 * Retorna uma insï¿½ncia de {@link CargoFolha} com base no salario do
 	 * colaborador{@link IColaboradorFolha} e percentual de 
 	 * insalubridade.
 	 * 

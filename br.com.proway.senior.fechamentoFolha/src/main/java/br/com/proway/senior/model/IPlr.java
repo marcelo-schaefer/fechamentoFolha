@@ -1,6 +1,6 @@
-package br.com.proway.senior.model.externo.interfaces;
+package br.com.proway.senior.model;
 
-import br.com.proway.senior.model.Folha;
+import java.time.LocalDate;
 
 /**
  * Interface IPlr.
@@ -21,7 +21,13 @@ import br.com.proway.senior.model.Folha;
  */
 public interface IPlr {
 	
-	public void setPlr(double valorPlr);
-	public double getPlr();
-	
+	public double getValorPlr();
+
+	public void setValorPlr(double valorPlr);
+
+	public LocalDate getPeriodo();
+
+	public void setPeriodo(LocalDate periodo);
+
+	public int getId();
 }

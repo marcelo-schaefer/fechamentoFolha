@@ -1,0 +1,54 @@
+package br.com.proway.senior.model;
+
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+/**
+ * Valor do Plr.
+ * 
+ * Objeto que implementa de {@link IPlr} e seta um valor fixo para o plr.
+ * 
+ * Sprint 5:
+ * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
+ */
+
+@Entity
+public class Plr implements IPlr {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PLR_GENERATOR")
+	@SequenceGenerator(name = "PLR_GENERATOR", sequenceName = "PLR_SEQ", allocationSize = 1)
+	private int id;
+	
+	private double valorPlr;
+	private LocalDate periodo;
+
+	public double getValorPlr() {
+		return valorPlr;
+	}
+
+	public void setValorPlr(double valorPlr) {
+		this.valorPlr = valorPlr;
+	}
+
+	public LocalDate getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(LocalDate periodo) {
+		this.periodo = periodo;
+	}
+
+	public int getId() {
+		return id;
+	}
+}

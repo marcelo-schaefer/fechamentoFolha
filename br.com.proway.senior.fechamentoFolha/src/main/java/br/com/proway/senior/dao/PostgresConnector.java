@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import br.com.proway.senior.model.Folha;
+import br.com.proway.senior.model.Plr;
 
 /**
  * PostgresConnector.
@@ -40,6 +41,7 @@ public class PostgresConnector {
 					.setProperty("hibernate.hbm2ddl.auto", "update")
 					.setProperty("hibernate.connection.autocommit", "true")
 					.addAnnotatedClass(Folha.class)
+					.addAnnotatedClass(Plr.class)
 					.buildSessionFactory();
 		} catch (Throwable e) {
 			System.err.println("Initial SessionFactory creation failed: " + e);
