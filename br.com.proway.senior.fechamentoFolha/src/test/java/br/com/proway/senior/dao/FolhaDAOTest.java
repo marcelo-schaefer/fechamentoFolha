@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import br.com.proway.senior.model.Bonificacao;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDirector;
@@ -20,26 +21,22 @@ public class FolhaDAOTest {
  
 	@Test
 	public void testInsert() {
-		
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
 
 		CargoFolha cargo = new CargoFolha(1752, 20);
 		Plr plr = new Plr();
-
+		
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(6);
 		
 		FolhaBuilder builder = new FolhaBuilder();
+		double t = builder.atribuiBonificacaoColaborador(cargo, bonificacao);
 		FolhaDirector director = new FolhaDirector(builder);
 		Folha folha = director.createFolhaNormal(colab, ponto, cargo, plr);
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
 		
-		Integer tamanhoAntigo = folhaDAO.getAll().size();
-		System.out.println(tamanhoAntigo);
 		folhaDAO.insert(folha);
-		
-		System.out.println(tamanhoAntigo);
-		System.out.println(folhaDAO.getAll().size());
-		assertEquals(tamanhoAntigo + 1, folhaDAO.getAll().size());
 	}
 	
 	@Test

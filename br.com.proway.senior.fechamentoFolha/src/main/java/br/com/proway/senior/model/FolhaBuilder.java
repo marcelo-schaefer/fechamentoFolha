@@ -15,20 +15,17 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 /**
  * FolhaBuilder
  * 
-<<<<<<< HEAD
- * E uma classe que contem a logica de construcao de uma Folha seguindo 
- * o design pattern builder.
-=======
- * ï¿½ uma classe que contï¿½m a lï¿½gica de construï¿½ï¿½o de uma Folha
- * seguindo o design pattern builder.
->>>>>>> minhaBranch
+ * <<<<<<< HEAD E uma classe que contem a logica de construcao de uma Folha
+ * seguindo o design pattern builder. ======= ï¿½ uma classe que contï¿½m a
+ * lï¿½gica de construï¿½ï¿½o de uma Folha seguindo o design pattern builder.
+ * >>>>>>> minhaBranch
  * 
  * @author Lucas Grijï¿½
  * @author Lucas Walim
  * @author Marcelo Schaefer
  * @author Leonardo Pereira
  *
- * Sprint 5:
+ *         Sprint 5:
  * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
  * @author Bruna Carvalho <sh4323202@gmail.com>;
  * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
@@ -50,7 +47,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private double valorImpostoDeRenda;
 	private double valorPlanoSaude;
 	private double valorValeTransporte;
-	private double salarioBruto = 0;
+	private double salarioBruto;
 	private double salarioLiquido;
 	private double valorFGTS;
 	private double valorFerias;
@@ -62,8 +59,9 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private double valorHora;
 	private double valorPlr;
 
-	Bonificacao bonificacao;
-	
+	// Variavel referente ao valor da bonificacao
+	private double bonificacao;
+
 	/**
 	 * Constoi a folha com os dados calculados.
 	 * 
@@ -73,7 +71,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 *
-	 * Sprint 5:
+	 *         Sprint 5:
 	 * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
 	 * @author Bruna Carvalho <sh4323202@gmail.com>;
 	 * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
@@ -83,23 +81,18 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 */
 	public Folha build() {
 		dataEmissao = LocalDate.now();
-		double valorPLR = 0;
+		// double valorPLR = 0;
 		return new Folha(id, idColaborador, dataEmissao, valorHorasTrabalhadas, valorHorasFaltas, valorHorasExtras,
 				valorReflexoDSR, valorInss, valorImpostoDeRenda, valorPlanoSaude, valorValeTransporte, salarioBruto,
 				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido, valorFGTS,
-				valorPLR);
+				valorPlr, bonificacao);
 	}
 
 	/**
-	 * Inicializa Calculos.
-	 * 
-<<<<<<< HEAD
-	 * Realiza os calculos inicias e instancia os objetos necessarios
-	 * para qualquer calculo necessario para cada tipo de folha.
-=======
-	 * Realiza os calculos inicias e instancia os objetos necessï¿½rios para o
-	 * calculos de qualquer tipo de folha.
->>>>>>> minhaBranch
+	 * Inicializa Calculos. Realiza os calculos inicias e instancia os objetos
+	 * necessarios para qualquer calculo necessario para cada tipo de folha. Realiza
+	 * os calculos inicias e instancia os objetos necessï¿½rios para o calculos de
+	 * qualquer tipo de folha.
 	 * 
 	 * @author Lucas Grijo
 	 * @author Lucas Walim
@@ -115,8 +108,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * Calculo das Horas Normais.
 	 * 
-	 * Realiza os calculos do valor recebido pertinente a horas trabalhadas, 
-	 * faltas, horas extras e reflexo DSR.
+	 * Realiza os calculos do valor recebido pertinente a horas trabalhadas, faltas,
+	 * horas extras e reflexo DSR.
 	 * 
 	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
@@ -131,18 +124,13 @@ public class FolhaBuilder implements IFolhaBuilder {
 
 		valorFGTS = (valorFGTS * salarioBruto);
 		valorPlr = plr.getPlr();
-
-		valorFGTS = (valorFGTS * salarioBruto);
-
-		valorFGTS = (valorFGTS*salarioBruto);
-		valorPlr = plr.getPlr();
 	}
 
 	/**
 	 * Calculo de descontos em folha normal.
 	 * 
-	 * Atribui descontos no salario pertinente a inss, imposto de renda, 
-	 * plano de saude e vale transporte. Tambem determina o salï¿½rio liquido.
+	 * Atribui descontos no salario pertinente a inss, imposto de renda, plano de
+	 * saude e vale transporte. Tambem determina o salï¿½rio liquido.
 	 * 
 	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
@@ -174,8 +162,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * Calculo de descontos em folha ferias.
 	 * 
-	 * Atribui descontos no valor das ferias pertinente a inss e 
-	 * imposto de renda. Tambem determina o valor de ferias liquido.
+	 * Atribui descontos no valor das ferias pertinente a inss e imposto de renda.
+	 * Tambem determina o valor de ferias liquido.
 	 * 
 	 * @author Lucas Grijo
 	 * @author Lucas Walim
@@ -189,24 +177,15 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
-	 * Altera a bonificação por colaborador atribuindo ao salarioBruto o valor
-	 * atribuido
+	 * Altera a bonificação por colaborador atribuindo ao salarioBase o valor da
+	 * bonificacao.
 	 * 
-	 * @param colaborador
+	 * @param cargo,       referente ao {@link ColaboradorFolha}
+	 * @param bonificacao, referente ao valor da bonificacao a ser atribuido ao
+	 *                     salário base
 	 */
-	public double atribuiBonificacaoColaborador(IColaboradorFolha colaborador) {
-		return (salarioBruto * bonificacao.getPorcentagemBonificacaoColaborador());
+	public double atribuiBonificacaoColaborador(ICargoFolha cargo, Bonificacao bonificacao) {
+		this.bonificacao = cargo.getSalarioBase() * bonificacao.getPorcentagemBonificacaoColaborador();
+		return this.salarioBruto += this.bonificacao;
 	}
-
-	/**
-	 * Altera a bonificação por Cargo atribuindo ao salarioBruto o valor atribuido 
-	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereão ser implementadas
-	 * a variavel b recebe o cargo e com o percentual da bonificação resulta o novo valor Bruto
-	 * @param cargo
-	 */
-	public double atribuiBonificacaoCargo(ICargoFolha cargo) {
-	double b =+  cargo.getSalarioBase() * bonificacao.getPorcentagemBonificacaoCargo();
-		return b;
-	}
-
 }

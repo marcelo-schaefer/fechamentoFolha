@@ -33,7 +33,7 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 public class FolhaController {
 
 	private FolhaDAO folhaDao;
-	
+
 	/**
 	 * Retorna uma insância de {@link CargoFolha} com base no salario do
 	 * colaborador{@link IColaboradorFolha} e percentual de 
