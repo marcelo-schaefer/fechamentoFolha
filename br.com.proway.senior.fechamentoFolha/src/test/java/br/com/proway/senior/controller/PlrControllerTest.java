@@ -4,9 +4,20 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import br.com.proway.senior.dao.FolhaDAO;
+import br.com.proway.senior.dao.PlrDAO;
+import br.com.proway.senior.dao.PostgresConnector;
+
+
 public class PlrControllerTest {
+
+	@Before
+	public void limparTabela() {
+		PlrDAO.getInstance(PostgresConnector.getSession()).limparTabela();
+	}
 	
 	@Test
 	public void testCadastrarPlr() throws Exception {
@@ -15,29 +26,47 @@ public class PlrControllerTest {
 		assertTrue(pc.buscarTodosPlr().size() == 1);
 	}
 	
+	@Test
+	public void testCadastrarMaisDeUmPlr() throws Exception {
+		PlrController pc =  new PlrController();
+		pc.cadastrarPlr(LocalDate.of(2021, 05, 18), 350);
+		pc.cadastrarPlr(LocalDate.of(2021, 06, 18), 350);
+	}
+	
 	@Test(expected = Exception.class)
 	public void testCadastrarPlrFalso() throws Exception{
 		PlrController pc =  new PlrController();
+		pc.cadastrarPlr(LocalDate.now(), 310);
 		pc.cadastrarPlr(LocalDate.now(), 350);
 	}
 	
 	@Test
 	public void testAtualizarPlr() throws Exception {
 		PlrController pc =  new PlrController();
-		pc.atualizarPlr(LocalDate.now(), 375.0);
-		assertTrue(pc.buscarTodosPlr().get(0).getValorPlr() == 375.0);
+		
+		pc.cadastrarPlr(LocalDate.of(2021, 05, 18), 350);
+		pc.cadastrarPlr(LocalDate.of(2021, 06, 18), 350);
+
+		pc.atualizarPlr(LocalDate.now(), 370.0);
+		assertTrue(pc.buscarTodosPlr().get(1).getValorPlr() == 370.0);
 	}
 	
 	@Test(expected = Exception.class)
-	public void testAtualizarPlrFalso() throws Exception{
+	public void testAtualizarPlrFalso() throws Exception {
 		PlrController pc =  new PlrController();
+		
+		pc.cadastrarPlr(LocalDate.of(2021, 05, 18), 350);
+		pc.cadastrarPlr(LocalDate.of(2021, 06, 18), 350);
+		
 		pc.atualizarPlr(LocalDate.of(2020,02,01), 750);
+		
 	}
 	
 	@Test
-	public void testGetValorPlrMes() {
+	public void testGetValorPlrMes() throws Exception {
 		PlrController pc =  new PlrController();
-		assertTrue(pc.getValorPlrMes(LocalDate.now()) == 375.00);
+		pc.cadastrarPlr(LocalDate.now(), 350);
+		assertTrue(pc.getValorPlrMes(LocalDate.now()) == 350.00);
 	}
 	
 	@Test
@@ -49,6 +78,7 @@ public class PlrControllerTest {
 	@Test
 	public void testBuscarTodosPlr() throws Exception {
 		PlrController pc = new PlrController();
+		pc.cadastrarPlr(LocalDate.now(), 350);
 		assertTrue(pc.buscarTodosPlr().size() == 1);
 	}
 }

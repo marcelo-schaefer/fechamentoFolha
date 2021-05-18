@@ -173,7 +173,7 @@ public class FolhaController {
 	 * @see Plr
 	 */
 	public Folha construirFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo,
-			IFeriasFolha ferias, IPlr plr) {
+			IFeriasFolha ferias) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaHibrida(colaborador, ponto, cargo, ferias);

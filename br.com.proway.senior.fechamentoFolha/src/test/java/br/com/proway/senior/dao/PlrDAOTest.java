@@ -22,29 +22,29 @@ public class PlrDAOTest {
 		plr.setVencimento(LocalDate.of(2021, 02, 10));
 		plr.setValorPlr(1000);
 		plrDao.insert(plr);
-		assertTrue(plrDao.getById(7).getValorPlr() == 1000);
+		assertTrue(plrDao.getById(25).getValorPlr() == 1000);
 	}
 	
 	@Test
 	public void BtestDelete() {
 		PlrDAO plrDao = PlrDAO.getInstance(PostgresConnector.getSession());
-		plrDao.delete(18);
-		assertTrue(plrDao.getAll().size() == 6);
+		plrDao.delete(34);
+		assertEquals(plrDao.getAll().size(), 6);
 	}
 	
 	@Test
 	public void CtestGetById() {
 		PlrDAO plrDao = PlrDAO.getInstance(PostgresConnector.getSession());
-		Plr plr = plrDao.getById(10);
+		Plr plr = plrDao.getById(30);
 		plr.getId();
-		assertTrue (plrDao.getById(10).getValorPlr() == 1000);
+		assertTrue (plrDao.getById(30).getValorPlr() == 1000);
 	}
 	
 	@Test
 	public void DtestGetByDate() {
 		PlrDAO plrDao = PlrDAO.getInstance(PostgresConnector.getSession());
 		plrDao.getByDate(LocalDate.of(2021, 02, 10));
-		assertEquals(plrDao.getById(5).getVencimento(), LocalDate.of(2021,02,10));
+		assertEquals(plrDao.getById(25).getVencimento(), LocalDate.of(2021,02,10));
 	}
 	
 	@Test
@@ -52,5 +52,14 @@ public class PlrDAOTest {
 		PlrDAO plrDao = PlrDAO.getInstance(PostgresConnector.getSession());
 		List<Plr> listaPlr = plrDao.getAll();
 		assertEquals(listaPlr.size(), 6);
+	}
+	
+	@Test
+	public void FtestUpdate() {
+		PlrDAO plrDao = PlrDAO.getInstance(PostgresConnector.getSession());
+		Plr plr = plrDao.getById(33);
+		plr.setValorPlr(8000);
+		plrDao.update(plr);
+		assertTrue(plrDao.getById(33).getValorPlr() == 8000);
 	}
 }

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
@@ -86,10 +87,10 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * 
 	 * @param objectToDelete do tipo {@link Folha}
 	 */
-	public void delete(int id) {
+	public void delete(Folha folha) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
-		session.delete(session.get(Folha.class, id));
+		session.delete(session.get(Folha.class, folha.getId()));
 		session.getTransaction().commit();
 	}
 
@@ -164,18 +165,18 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 
 		return folha;
 	}
-	
+
 	public List<Folha> getDoubleByColumn(String column, Double value) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
-		
+
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Folha> criteria = builder.createQuery(Folha.class);
 
 		Root<Folha> root = criteria.from(Folha.class);
-		
+
 		//CriteriaQuery<Folha> rootQuery = criteria.select(root);
-		
+
 		Expression<?> columnExpression = (Expression<?>) root.get(column);
 
 		criteria.select(root).where(builder.equal(columnExpression, value));
@@ -184,20 +185,20 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 
 		return folha;
 	}
-	
+
 	public List<Folha> getValuesBetween(String column, Double valueInicial, Double valueFinal) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
-		
+
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Folha> criteria = builder.createQuery(Folha.class);
 
 		Root<Folha> root = criteria.from(Folha.class);
-		
+
 		//CriteriaQuery<Folha> rootQuery = criteria.select(root);
-		
+
 		Expression<Double> columnExpression = root.get(column);
-		
+
 		criteria.select(root).where(builder.between(columnExpression, valueInicial, valueFinal));
 
 		List<Folha> folha = session.createQuery(criteria).getResultList();
@@ -205,8 +206,14 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		return folha;
 	}
 
-	public void delete(Folha folha) {
-		// TODO Auto-generated method stub
-		
+
+	public void limparTabela() {
+		if(!session.getTransaction().isActive()) {
+			session.beginTransaction();
+		}
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaDelete<Folha> criteriaDelete = builder.createCriteriaDelete(Folha.class);
+		criteriaDelete.from(Folha.class);
+		session.createQuery(criteriaDelete).executeUpdate();
 	}
 }
