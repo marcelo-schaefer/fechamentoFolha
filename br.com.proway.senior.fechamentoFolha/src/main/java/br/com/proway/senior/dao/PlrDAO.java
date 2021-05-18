@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
+
 import br.com.proway.senior.model.Plr;
 
 public final class PlrDAO {
@@ -36,17 +38,6 @@ public final class PlrDAO {
 		return instance;
 	}
 
-	/**
-	 * Cria e retorna uma nova instancia.
-	 * 
-	 * @param session {@link Session}
-	 * @return instance {@link FolhaDAO}
-	 */
-	public static PlrDAO newInstance(Session session) {
-		instance = new PlrDAO(session);
-		return instance;
-	}
-
 	private PlrDAO(Session session) {
 		this.session = session;
 	}
@@ -68,20 +59,17 @@ public final class PlrDAO {
 	public List<Plr> getByDate(LocalDate data) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
-
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Plr> criteria = builder.createQuery(Plr.class);
-
 		Root<Plr> root = criteria.from(Plr.class);
-
-		criteria.where(builder.equal(root.get("periodo"), data));
-
+		criteria.where(builder.equal(root.get("vencimento"), data));
 		List<Plr> plr = session.createQuery(criteria).getResultList();
-
 		return plr;
 	}
 	
 	public Plr getById(int id) {
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
 		return session.get(Plr.class, id);
 	}
 	
@@ -100,5 +88,14 @@ public final class PlrDAO {
 			session.beginTransaction();
 		session.update(objectToUpdate);
 		session.getTransaction().commit();
+	}
+	
+	public void limparTabela() {
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaDelete<Plr> criteriaDelete = builder.createCriteriaDelete(Plr.class);
+		criteriaDelete.from(Plr.class);
+		session.createQuery(criteriaDelete).executeUpdate();
 	}
 }

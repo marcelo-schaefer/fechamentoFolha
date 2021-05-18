@@ -36,6 +36,7 @@ public class FolhaControllerTest {
 		Plr plr = new Plr();
 		plr.setValorPlr(250);
 		
+		
 		Bonificacao bonificacao = new Bonificacao();
 		bonificacao.setPorcentagemBonificacaoColaborador(0);
 		

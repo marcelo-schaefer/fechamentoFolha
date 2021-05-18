@@ -103,6 +103,6 @@ public class PlrController {
 				}
 			}
  		}
-		return 0;
+		return 0.0;
 	}
 }

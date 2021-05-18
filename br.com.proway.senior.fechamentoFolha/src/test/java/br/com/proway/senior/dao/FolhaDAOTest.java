@@ -20,6 +20,8 @@ public class FolhaDAOTest {
  
 	@Test
 	public void testInsert() {
+		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
 		CargoFolha cargo = new CargoFolha(1752, 20);
@@ -29,56 +31,38 @@ public class FolhaDAOTest {
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
+		
 		Folha folha = director.createFolhaNormal(colab, ponto, cargo, bonificacao);
-		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
 		
 		Integer tamanhoAntigo = folhaDAO.getAll().size();
 		folhaDAO.insert(folha);
-		System.out.println();
 		assertEquals(tamanhoAntigo + 1, folhaDAO.getAll().size());
-		folhaDAO.insert(folha);
 	}
 	
 	@Test
 	public void testDelete() {
-		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
-		PontoFolha ponto = new PontoFolha(220, 2, 1);
-		CargoFolha cargo = new CargoFolha(1752, 20);
-		
-		Bonificacao bonificacao = new Bonificacao();
-		bonificacao.setPorcentagemBonificacaoColaborador(0);
-		
-		FolhaBuilder builder = new FolhaBuilder();
-		FolhaDirector director = new FolhaDirector(builder);
-		Folha folha = director.createFolhaNormal(colab, ponto, cargo, bonificacao);
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		folhaDAO.delete(10);
 		
-		folhaDAO.insert(folha);
-		Integer tamanhoAntigo = folhaDAO.getAll().size();
-		folhaDAO.delete(folha);
-		
-		assertEquals(tamanhoAntigo - 1, folhaDAO.getAll().size());
+		assertEquals(0, folhaDAO.getAll().size());
 	}
 	
 	@Test
 	public void testGetAll() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
-		List<Folha> listaFolhas = folhaDAO.getAll();
-		assertEquals(listaFolhas.size(), 20);
+		assertEquals(folhaDAO.getAll().size(), 1);
 	}
 	
 	@Test
 	public void testUpdate() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
 		
-		Folha primeiraFolha = folhaDAO.getAll().get(folhaDAO.getAll().size() - 1);
-		LocalDate dataAntiga = primeiraFolha.getDataEmissao();
+		Folha folha = folhaDAO.getById(13);
+		folha.setDataEmissao(LocalDate.of(1988, 02, 18));
+		folhaDAO.update(folha);
+		folha = folhaDAO.getById(folha.getId());
 		
-		primeiraFolha.setDataEmissao(LocalDate.of(1988, 02, 18));
-		folhaDAO.update(primeiraFolha);
-		Folha folhaAtualizada = folhaDAO.getAll().get(folhaDAO.getAll().size() - 1);
-	
-		assertNotEquals(dataAntiga, folhaAtualizada.getDataEmissao());
+		assertNotEquals(LocalDate.of(1988, 02, 18), folha.getDataEmissao());
 	}
 	
 	@Test

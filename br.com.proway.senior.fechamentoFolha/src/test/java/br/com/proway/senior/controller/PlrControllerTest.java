@@ -24,8 +24,8 @@ public class PlrControllerTest {
 	@Test
 	public void testAtualizarPlr() throws Exception {
 		PlrController pc =  new PlrController();
-		pc.atualizarPlr(LocalDate.now(), 375.0);
-		assertTrue(pc.buscarTodosPlr().get(0).getValorPlr() == 375.0);
+		pc.atualizarPlr(LocalDate.now(), 450.0);
+		assertTrue(pc.buscarTodosPlr().get(0).getValorPlr() == 450.0);
 	}
 	
 	@Test(expected = Exception.class)

@@ -1,14 +1,13 @@
 package br.com.proway.senior.builder;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
 
-import br.com.proway.senior.dao.FolhaDAO;
-import br.com.proway.senior.dao.PostgresConnector;
 import br.com.proway.senior.model.Bonificacao;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
@@ -130,11 +129,12 @@ public class TesteBuilder{
 		listaDependentes.add("Filho");
 		colaborador.setDependentes(listaDependentes);
 		
-		String nome = colaborador.getNome(), email = colaborador.getEmail();
-		boolean vt = colaborador.getValeTransporte();
-		int id = colaborador.getId();
-		double planoSaude = colaborador.getPlanoSaudeCooparticipacao() + colaborador.getPlanoSaudeMensalidade();
-		ArrayList<String> dependentes = colaborador.getDependentes();
+		assertEquals("Joao", colaborador.getNome());
+		assertEquals("joao@gmail.com", colaborador.getEmail());
+		assertFalse(colaborador.getValeTransporte());
+		assertTrue(colaborador.getId() == 6);
+		assertTrue(colaborador.getPlanoSaudeCooparticipacao() + colaborador.getPlanoSaudeMensalidade() == 60);
+		assertTrue(colaborador.getDependentes().get(0).equals("Filho"));
 	}
 	
 	@Test

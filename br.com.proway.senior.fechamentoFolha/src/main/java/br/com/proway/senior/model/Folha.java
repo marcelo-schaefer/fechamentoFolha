@@ -56,13 +56,13 @@ public class Folha implements IFolha {
 	private double valorImpostoDeRendaFerias;
 	private double feriasLiquido;
 	
-	@Column(name = "valor_plr")
+	@Column(name = "valorplr")
 	private double valorPlr = 0.0;
 	
 	@Column(name = "bonificacao")
 	private double bonificacao;
 	
-	@Column(name = "colaborador_id")
+	@Column(name = "colaboradorid")
 	private Integer idColaborador;
 	
 	
