@@ -9,11 +9,9 @@ public class BonificacaoDAOTest {
 	@Test
 	public void testAdicionarBonificacao() {
 		BonificacaoDAO bonificacaoDAO = BonificacaoDAO.getInstance(PostgresConnector.getSession());
-		//Variaveis de teste
 
 		Bonificacao bonificacao = new Bonificacao();
 		bonificacao.setPorcentagemBonificacaoColaborador(6);
 		bonificacaoDAO.insert(bonificacao);	
 	}
-
 }

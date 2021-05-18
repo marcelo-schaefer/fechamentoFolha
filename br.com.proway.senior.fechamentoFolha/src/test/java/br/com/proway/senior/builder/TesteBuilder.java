@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import br.com.proway.senior.dao.FolhaDAO;
+import br.com.proway.senior.dao.PostgresConnector;
 import br.com.proway.senior.model.Bonificacao;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
