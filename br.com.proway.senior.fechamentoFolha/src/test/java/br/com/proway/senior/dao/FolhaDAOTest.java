@@ -20,25 +20,17 @@ public class FolhaDAOTest {
  
 	@Test
 	public void testInsert() {
-		
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
-
 		CargoFolha cargo = new CargoFolha(1752, 20);
-		Plr plr = new Plr();
-
-		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
-		Folha folha = director.createFolhaNormal(colab, ponto, cargo, plr);
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
 		
 		Integer tamanhoAntigo = folhaDAO.getAll().size();
-		System.out.println(tamanhoAntigo);
 		folhaDAO.insert(folha);
-		
-		System.out.println(tamanhoAntigo);
-		System.out.println(folhaDAO.getAll().size());
+		System.out.println();
 		assertEquals(tamanhoAntigo + 1, folhaDAO.getAll().size());
 	}
 	
@@ -51,7 +43,7 @@ public class FolhaDAOTest {
 		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
-		Folha folha = director.createFolhaNormal(colab, ponto, cargo, plr);
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
 		
 		folhaDAO.insert(folha);
@@ -100,7 +92,7 @@ public class FolhaDAOTest {
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
 		
-		Folha folha = director.createFolhaNormal(colab, ponto, cargo, plr);
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo);
 		folhaDAO.insert(folha);
 		
 		Folha folhaData =  folhaDAO.getByDate(LocalDate.now())

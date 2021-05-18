@@ -63,7 +63,7 @@ public class FolhaController {
 	public Folha construirFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, IPlr plr) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaNormal(colaborador, ponto, cargo, plr);
+		director.createFolhaNormal(colaborador, ponto, cargo);
 		return folhaBuilder.build();
 	}
 

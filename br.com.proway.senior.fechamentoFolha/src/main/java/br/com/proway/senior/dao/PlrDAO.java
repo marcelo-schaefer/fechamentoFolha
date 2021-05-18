@@ -8,7 +8,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
-
 import br.com.proway.senior.model.Plr;
 
 public final class PlrDAO {
@@ -94,5 +93,12 @@ public final class PlrDAO {
 		criteria.from(Plr.class);
 		List<Plr> selectedPlr = session.createQuery(criteria).getResultList();
 		return selectedPlr;
+	}
+	
+	public void update(Plr objectToUpdate) {
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
+		session.update(objectToUpdate);
+		session.getTransaction().commit();
 	}
 }

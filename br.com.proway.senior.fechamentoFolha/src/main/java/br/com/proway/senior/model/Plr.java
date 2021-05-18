@@ -25,12 +25,12 @@ import javax.persistence.SequenceGenerator;
 public class Plr implements IPlr {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PLR_GENERATOR")
-	@SequenceGenerator(name = "PLR_GENERATOR", sequenceName = "PLR_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PLR_SEQ")
+	@SequenceGenerator(name = "PLR_SEQ", sequenceName = "PLR_SEQ", allocationSize = 1)
 	private int id;
 	
 	private double valorPlr;
-	private LocalDate periodo;
+	private LocalDate vencimento;
 
 	public double getValorPlr() {
 		return valorPlr;
@@ -40,15 +40,17 @@ public class Plr implements IPlr {
 		this.valorPlr = valorPlr;
 	}
 
-	public LocalDate getPeriodo() {
-		return periodo;
+	public LocalDate getVencimento() {
+		return vencimento;
 	}
 
-	public void setPeriodo(LocalDate periodo) {
-		this.periodo = periodo;
+	public void setVencimento(LocalDate vencimento) {
+		this.vencimento = vencimento;
 	}
 
 	public int getId() {
 		return id;
 	}
+	
+	
 }

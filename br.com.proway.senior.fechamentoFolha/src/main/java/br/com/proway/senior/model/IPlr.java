@@ -25,9 +25,9 @@ public interface IPlr {
 
 	public void setValorPlr(double valorPlr);
 
-	public LocalDate getPeriodo();
+	public LocalDate getVencimento();
 
-	public void setPeriodo(LocalDate periodo);
+	public void setVencimento(LocalDate vencimento);
 
 	public int getId();
 }

@@ -25,9 +25,10 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 public interface IFolhaBuilder {
 	
 	public void iniciarCalculos(IColaboradorFolha colaborador, ICargoFolha cargo);
-	public void calcularHorasNormais(IPontoFolha ponto, ICargoFolha cargo, IPlr plr);
-	public void calcularDescontoNormal(IColaboradorFolha colaborador, ICargoFolha cargo, IPlr plr);
+	public void calcularHorasNormais(IPontoFolha ponto, ICargoFolha cargo);
+	public void calcularDescontoNormal(IColaboradorFolha colaborador, ICargoFolha cargo);
 	public void calcularHorasFerias(IFeriasFolha feriasFolha);
 	public void calcularDescontoFerias(IColaboradorFolha colaborador);
+	public void calcularPlr();
 	public Folha build();
 }

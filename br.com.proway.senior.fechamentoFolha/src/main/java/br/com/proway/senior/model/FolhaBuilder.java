@@ -2,6 +2,7 @@ package br.com.proway.senior.model;
 
 import java.time.LocalDate;
 
+import br.com.proway.senior.controller.PlrController;
 import br.com.proway.senior.controller.calculos.CalculoDesconto;
 import br.com.proway.senior.controller.calculos.CalculoHoras;
 import br.com.proway.senior.controller.calculos.ICalculoDesconto;
@@ -76,12 +77,10 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 *
 	 */
 	public Folha build() {
-		dataEmissao = LocalDate.now();
-		double valorPLR = 0;
 		return new Folha(id, idColaborador, dataEmissao, valorHorasTrabalhadas, valorHorasFaltas, valorHorasExtras,
 				valorReflexoDSR, valorInss, valorImpostoDeRenda, valorPlanoSaude, valorValeTransporte, salarioBruto,
 				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido, valorFGTS,
-				valorPLR);
+				valorPlr);
 	}
 
 	/**
@@ -95,6 +94,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @author Marcelo Schaefer
 	 */
 	public void iniciarCalculos(IColaboradorFolha colaborador, ICargoFolha cargo) {
+		dataEmissao = LocalDate.now();
 		idColaborador = colaborador.getId();
 		this.calculoHoras = new CalculoHoras();
 		this.calculoDesconto = new CalculoDesconto();
@@ -111,20 +111,26 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
-	public void calcularHorasNormais(IPontoFolha ponto, ICargoFolha cargo, IPlr plr) {
+	public void calcularHorasNormais(IPontoFolha ponto, ICargoFolha cargo) {
 		valorHorasTrabalhadas = (calculoHoras.calcularValorDasHorasTrabalhadas(ponto, valorHora));
 		valorHorasFaltas = (calculoHoras.calcularValorHorasFaltas(ponto, valorHora));
 		valorHorasExtras = (calculoHoras.calcularValorHorasExtras(ponto, valorHora));
 		valorReflexoDSR = (calculoHoras.calcularDSR(valorHorasExtras));
 		salarioBruto = (valorHorasTrabalhadas - valorHorasFaltas + valorHorasExtras + valorReflexoDSR);
-
-		valorFGTS = (valorFGTS * salarioBruto);
-		valorPlr = plr.getValorPlr();
-
-		valorFGTS = (valorFGTS * salarioBruto);
-
-		valorFGTS = (valorFGTS*salarioBruto);
-		valorPlr = plr.getValorPlr();
+		valorFGTS = (valorFGTS * salarioBruto);	
+	}
+	
+	/**
+	 * Calcula o valor do {@link Plr}
+	 * 
+	 * Busca no banco de dados o {@link Plr} cadastrado no mês e ano da data de emissao da {@link Folha}
+	 * e associa o valor do respectivo {@link Plr} à {@link Folha}.
+	 * 
+	 * @return void
+	 */
+	public void calcularPlr() {
+		PlrController plrController = new PlrController();
+		this.valorPlr = plrController.getValorPlrMes(dataEmissao);
 	}
 
 	/**
@@ -137,13 +143,13 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */
-	public void calcularDescontoNormal(IColaboradorFolha colaborador, ICargoFolha cargo, IPlr plr) {
+	public void calcularDescontoNormal(IColaboradorFolha colaborador, ICargoFolha cargo) {
 		valorInss = (calculoDesconto.calcularDescontoInss(salarioBruto));
 		salarioLiquido = ((salarioBruto) - valorInss);
 		valorImpostoDeRenda = (calculoDesconto.calcularDescontoImpostoRenda(colaborador, salarioLiquido));
 		valorPlanoSaude = (calculoDesconto.calcularDescontoPlanoSaude(colaborador));
 		valorValeTransporte = (calculoDesconto.calcularDescontoValeTransporte(colaborador, cargo));
-		salarioLiquido = (salarioLiquido - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude) + plr.getValorPlr();
+		salarioLiquido = (salarioLiquido - valorValeTransporte - valorImpostoDeRenda - valorPlanoSaude) + valorPlr;
 		valorFGTS = (calculoDesconto.calcularFGTS(salarioBruto));
 	}
 
@@ -178,15 +184,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Altera a bonificaï¿½ï¿½o por colaborador atribuindo ao salarioBruto o valor atribuido
 	 * @param colaborador 
-=======
-	 * Altera a bonificaï¿½ï¿½o por colaborador atribuindo ao salarioBruto o valor
-	 * atribuido
-	 * 
-	 * @param colaborador
->>>>>>> 2fa5cd01f63e651ee40d6d428c873e7c4fdb1db3
 	 */
 	public double atribuiBonificacaoColaborador(IColaboradorFolha colaborador) {
 		return (salarioBruto * bonificacao.getPorcentagemBonificacaoColaborador());
@@ -220,6 +219,4 @@ public class FolhaBuilder implements IFolhaBuilder {
 	public double pegatribuiBonificacaoEmpresa(IEmpresa empresa) {
 		return (empresa.getSalarioBase() * b.getPorcentagemBonificacaoCargo());
 	}	 */
-
-
 }

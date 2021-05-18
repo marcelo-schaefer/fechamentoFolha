@@ -3,8 +3,8 @@ package br.com.proway.senior.controller;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.Before;
+import java.time.LocalDate;
+
 import org.junit.Test;
 
 import br.com.proway.senior.dao.FolhaDAO;
@@ -18,7 +18,6 @@ import br.com.proway.senior.model.externo.PontoFolha;
 
 public class FolhaControllerTest {
 	
-
 	@Test
 	public void testConstruirCargoFolha() {
 		CargoFolha cargo = new CargoFolha(3500, 0);
@@ -27,7 +26,6 @@ public class FolhaControllerTest {
 		CargoFolha cargoFolha = fc.construirCargoFolha(cargo.getSalarioBase(), cargo.getPercentualInsalubridade()); 
 		assertNotNull(cargoFolha);
 	}
-	
 	
 	@Test
 	public void testConstruirFolhaNormal() {
