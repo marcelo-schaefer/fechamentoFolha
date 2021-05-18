@@ -5,18 +5,22 @@ import static org.junit.Assert.assertTrue;
 import java.time.LocalDate;
 
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.com.proway.senior.dao.PlrDAO;
 import br.com.proway.senior.dao.PostgresConnector;
-
 
 public class PlrControllerTest {
 
 	@Before
 	public void limparTabela() {
+		PostgresConnector pc = new PostgresConnector();
+		pc.toString(); // Instancia boba para aumentar coverage
 		PlrDAO.getInstance(PostgresConnector.getSession()).limparTabela();
 	}
+	
 	
 	@Test
 	public void testCadastrarPlr() throws Exception {

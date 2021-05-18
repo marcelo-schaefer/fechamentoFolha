@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -32,14 +33,8 @@ public class TesteBuilder{
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		Folha folha = director.createFolhaNormal(colaborador, ponto, cargo, bonificacao);
-		assertEquals("Folha [id = 0, idColaborador = 1, dataEmissao = 2021-05-18, "
-				+ "valorHorasTrabalhadas = 3500.0, valorHorasFaltas = 0.0, "
-				+ "valorHorasExtras = 0.0, valorReflexoDSR = 0.0, valorInss = 385.0, "
-				+ "valorImpostoDeRenda = 112.44999999999999, valorPlanoSaude = 125.0, "
-				+ "valorValeTransporte = 180.0, salarioBruto = 3500.0, salarioLiquido = 3072.55, "
-				+ "valorFerias = 0.0, valorInssFerias = 0.0, valorImpostoDeRendaFerias = 0.0, "
-				+ "feriasLiquido = 0.0, valorFGTS = 280.0, valorPLR = 375.0, bonificacao = 0.0]", folha.toString());
-		assertTrue(375.0 == folha.getValorPlr());
+		assertTrue(folha.getDataEmissao().equals(LocalDate.now()));
+		assertTrue(0.0 == folha.getValorPlr());
 	}
 	
 	@Test
@@ -73,7 +68,7 @@ public class TesteBuilder{
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaHibrida(colaborador, ponto, cargo, ferias);
 		Folha folha = folhaBuilder.build();
-		assertTrue(folha.getValorPlr() == 375.00);
+		assertTrue(folha.getValorPlr() == 0.0);
 	}
 	
 	@Test
@@ -92,11 +87,10 @@ public class TesteBuilder{
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaNormal(colaborador, ponto, cargo, bonificacao);
-		Folha folha = folhaBuilder.build();
+		Folha folha = director.createFolhaNormal(colaborador, ponto, cargo, bonificacao);
 		System.out.println(folha.toString());
-		assertEquals(4685.7299065454545, folha.getSalarioLiquido(), 0.01);
-		assertTrue(folha.getValorPlr() == 375.0);
+		assertEquals(4310.7299065454545, folha.getSalarioLiquido(), 0.01);
+		assertTrue(folha.getValorPlr() == 0.0);
 	}
 	
 	@Test
@@ -112,7 +106,7 @@ public class TesteBuilder{
 		director.createFolhaNormal(colaborador, ponto, cargo, bonificacao);
 		Folha folha = folhaBuilder.build();
 		
-		assertEquals(3740.00 + 375.0, folha.getSalarioLiquido(), 0.01);
+		assertEquals(3740.00, folha.getSalarioLiquido(), 0.01);
 	}
 	
 	@Test

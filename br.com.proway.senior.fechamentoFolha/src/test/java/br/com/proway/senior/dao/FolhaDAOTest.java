@@ -1,11 +1,11 @@
 package br.com.proway.senior.dao;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.proway.senior.model.Bonificacao;
@@ -17,32 +17,43 @@ import br.com.proway.senior.model.externo.ColaboradorFolha;
 import br.com.proway.senior.model.externo.PontoFolha;
 
 public class FolhaDAOTest {
- 
+	
+	@Before
+	public void limparTabela() {
+		FolhaDAO.getInstance(PostgresConnector.getSession()).limparTabela();
+	}
+	
 	@Test
 	public void testInsert() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
-		
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
 		CargoFolha cargo = new CargoFolha(1752, 20);
-		
 		Bonificacao bonificacao = new Bonificacao();
 		bonificacao.setPorcentagemBonificacaoColaborador(6);
-		
 		FolhaBuilder builder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(builder);
 		
 		Folha folha = director.createFolhaNormal(colab, ponto, cargo, bonificacao);
 		
-		Integer tamanhoAntigo = folhaDAO.getAll().size();
 		folhaDAO.insert(folha);
-		assertEquals(tamanhoAntigo + 1, folhaDAO.getAll().size());
+		assertEquals(1, folhaDAO.getAll().size());
 	}
 	
 	@Test 
 	public void testDelete() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
-		Folha folha = folhaDAO.getAll().get(0);
+		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
+		PontoFolha ponto = new PontoFolha(220, 2, 1);
+		CargoFolha cargo = new CargoFolha(1752, 20);
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(6);
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
+		
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo, bonificacao);
+		folhaDAO.insert(folha);
+		
 		folhaDAO.delete(folha);
 		
 		assertEquals(0, folhaDAO.getAll().size());
@@ -51,19 +62,40 @@ public class FolhaDAOTest {
 	@Test
 	public void testGetAll() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
+		PontoFolha ponto = new PontoFolha(220, 2, 1);
+		CargoFolha cargo = new CargoFolha(1752, 20);
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(6);
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
+		
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo, bonificacao);
+		
+		folhaDAO.insert(folha);
+		
 		assertEquals(folhaDAO.getAll().size(), 1);
 	}
 	
 	@Test
 	public void testUpdate() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
+		PontoFolha ponto = new PontoFolha(220, 2, 1);
+		CargoFolha cargo = new CargoFolha(1752, 20);
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(6);
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
 		
-		Folha folha = folhaDAO.getById(13);
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo, bonificacao);
+		folhaDAO.insert(folha);
+		
 		folha.setDataEmissao(LocalDate.of(1988, 02, 18));
 		folhaDAO.update(folha);
 		folha = folhaDAO.getById(folha.getId());
 		
-		assertNotEquals(LocalDate.of(1988, 02, 18), folha.getDataEmissao());
+		assertEquals(LocalDate.of(1988, 02, 18), folha.getDataEmissao());
 	}
 	
 	@Test
@@ -98,9 +130,20 @@ public class FolhaDAOTest {
 	@Test
 	public void testGetDoubleByColumn() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
-		Folha folha = folhaDAO.getById(5);
+		ColaboradorFolha colab = new ColaboradorFolha(9, false, 100, 43, 205);
+		PontoFolha ponto = new PontoFolha(220, 2, 1);
+		CargoFolha cargo = new CargoFolha(1752, 20);
 		
-		List<Folha> folhaValor = folhaDAO.getDoubleByColumn("valorFGTS", 777666.0);
+		FolhaBuilder builder = new FolhaBuilder();
+		FolhaDirector director = new FolhaDirector(builder);
+		
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(0);
+		
+		Folha folha = director.createFolhaNormal(colab, ponto, cargo, bonificacao);
+		folhaDAO.insert(folha);
+		
+		List<Folha> folhaValor = folhaDAO.getDoubleByColumn("valorFGTS", 159.6244363636364);
 		assertEquals(folhaValor.get(0), folha);
 	}
 	

@@ -49,17 +49,6 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		return instance;
 	}
 
-	/**
-	 * Cria e retorna uma nova instancia.
-	 * 
-	 * @param session {@link Session}
-	 * @return instance {@link FolhaDAO}
-	 */
-	public static FolhaDAO newInstance(Session session) {
-		instance = new FolhaDAO(session);
-		return instance;
-	}
-
 	private FolhaDAO(Session session) {
 		this.session = session;
 	}

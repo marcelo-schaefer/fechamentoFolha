@@ -57,21 +57,10 @@ public class PostgresConnector {
 		return sessionFactory;
 	}
 
-	public static void shutdown() {
-		session.close();
-		getSessionFactory().close();
-	}
-
 	public static Session getSession() {
 		getSessionFactory();
 		if (session == null)
 			session = sessionFactory.openSession();
-		return session;
-	}
-	
-	public static Session newSession() {
-		getSessionFactory();
-		session = sessionFactory.openSession();
 		return session;
 	}
 }

@@ -111,5 +111,4 @@ public class PlrDAOTest {
 		
 		assertTrue(plrDao.getById(plrDao.getAll().get(1).getId()).getValorPlr() == 1600);
 	}
-
 }
