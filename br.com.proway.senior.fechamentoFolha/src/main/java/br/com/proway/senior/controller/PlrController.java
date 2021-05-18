@@ -44,9 +44,15 @@ public class PlrController {
 	 * 
 	 * @return ArrayList<Plr>
 	 */
-	public ArrayList<Plr> buscarTodosPlr() {
+	public ArrayList<Plr> buscarTodosPlr() throws Exception {
 		PlrDAO db = PlrDAO.getInstance(PostgresConnector.getSession());
-		return (ArrayList<Plr>) db.getAll();
+		ArrayList<Plr> plrs = new ArrayList<Plr>();
+		try {
+			plrs = (ArrayList<Plr>) db.getAll();
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		return plrs;
 	}
 	
 	/**
@@ -82,7 +88,7 @@ public class PlrController {
 	}
 	
 	/**
-	 * Busca o valor de uma {@link Plr} do mes da data passada no parametro
+	 * Busca o valor de uma {@link Plr} do mes da data passada no parametro.
 	 * 
 	 * @return
 	 */

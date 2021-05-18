@@ -207,13 +207,13 @@ public class Folha implements IFolha {
 
 	@Override
 	public String toString() {
-		return "Folha [id=" + id + ", idColaborador=" + idColaborador + ", dataEmissao=" + dataEmissao
-				+ ", valorHorasTrabalhadas=" + valorHorasTrabalhadas + ", valorHorasFaltas=" + valorHorasFaltas
-				+ ", valorHorasExtras=" + valorHorasExtras + ", valorReflexoDSR=" + valorReflexoDSR + ", valorInss="
-				+ valorInss + ", valorImpostoDeRenda=" + valorImpostoDeRenda + ", valorPlanoSaude=" + valorPlanoSaude
-				+ ", valorValeTransporte=" + valorValeTransporte + ", salarioBruto=" + salarioBruto
-				+ ", salarioLiquido=" + salarioLiquido + ", valorFerias=" + valorFerias + ", valorInssFerias="
-				+ valorInssFerias + ", valorImpostoDeRendaFerias=" + valorImpostoDeRendaFerias + ", feriasLiquido="
-				+ feriasLiquido + ",valorFGTS= "+ valorFGTS+",valorPLR= "+ valorPlr+ "bonificacao="+ bonificacao;
+		return "Folha [id = " + id + ", idColaborador = " + idColaborador + ", dataEmissao = " + dataEmissao
+				+ ", valorHorasTrabalhadas = " + valorHorasTrabalhadas + ", valorHorasFaltas = " + valorHorasFaltas
+				+ ", valorHorasExtras = " + valorHorasExtras + ", valorReflexoDSR = " + valorReflexoDSR + ", valorInss = "
+				+ valorInss + ", valorImpostoDeRenda = " + valorImpostoDeRenda + ", valorPlanoSaude = " + valorPlanoSaude
+				+ ", valorValeTransporte = " + valorValeTransporte + ", salarioBruto = " + salarioBruto
+				+ ", salarioLiquido = " + salarioLiquido + ", valorFerias = " + valorFerias + ", valorInssFerias = "
+				+ valorInssFerias + ", valorImpostoDeRendaFerias = " + valorImpostoDeRendaFerias + ", feriasLiquido = "
+				+ feriasLiquido + ", valorFGTS = "+ valorFGTS+", valorPLR = "+ valorPlr + ", bonificacao = "+ bonificacao + "]";
 	}
 }

@@ -2,6 +2,7 @@ package br.com.proway.senior.controller;
 
 import br.com.proway.senior.dao.FolhaDAO;
 import br.com.proway.senior.dao.PostgresConnector;
+import br.com.proway.senior.model.Bonificacao;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDirector;
@@ -60,10 +61,10 @@ public class FolhaController {
 	 * 
 	 * @return folha {@link Folha}.
 	*/
-	public Folha construirFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, IPlr plr) {
+	public Folha construirFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, Bonificacao bonificacao) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaNormal(colaborador, ponto, cargo);
+		director.createFolhaNormal(colaborador, ponto, cargo, bonificacao);
 		return folhaBuilder.build();
 	}
 
@@ -105,7 +106,7 @@ public class FolhaController {
 	public Folha construirFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, IFeriasFolha ferias, IPlr plr) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaHibrida(colaborador, ponto, cargo, ferias, plr);
+		director.createFolhaHibrida(colaborador, ponto, cargo, ferias);
 		return folhaBuilder.build();
 	}
 	

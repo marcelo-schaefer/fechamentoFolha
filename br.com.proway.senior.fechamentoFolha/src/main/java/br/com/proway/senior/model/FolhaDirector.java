@@ -50,10 +50,12 @@ public class FolhaDirector {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 */	
-	public Folha createFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo) {
-		builder.iniciarCalculos(colaborador, cargo);
+	public Folha createFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, Bonificacao bonificacao) {
+		builder.setDataEmissaoFolha();
 		builder.calcularPlr();
+		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasNormais(ponto, cargo);
+		builder.atribuiBonificacaoColaborador(cargo, bonificacao);
 		builder.calcularDescontoNormal(colaborador, cargo);
 		return builder.build();
 	}
@@ -70,6 +72,7 @@ public class FolhaDirector {
 	 * @author Marcelo Schaefer
 	 */	
 	public Folha createFolhaFerias(IColaboradorFolha colaborador, ICargoFolha cargo, IFeriasFolha ferias) {
+		builder.setDataEmissaoFolha();
 		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasFerias(ferias);
 		builder.calcularDescontoFerias(colaborador);
@@ -89,7 +92,8 @@ public class FolhaDirector {
 	 * @author Marcelo Schaefer
 	 */	
 	public Folha createFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo,
-			IFeriasFolha ferias, IPlr plr) {
+			IFeriasFolha ferias) {
+		builder.setDataEmissaoFolha();
 		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularPlr();
 		builder.calcularHorasNormais(ponto, cargo);

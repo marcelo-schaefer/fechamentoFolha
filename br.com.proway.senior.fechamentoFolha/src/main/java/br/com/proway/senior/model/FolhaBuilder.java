@@ -95,11 +95,17 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @author Marcelo Schaefer
 	 */
 	public void iniciarCalculos(IColaboradorFolha colaborador, ICargoFolha cargo) {
-		dataEmissao = LocalDate.now();
 		idColaborador = colaborador.getId();
 		this.calculoHoras = new CalculoHoras();
 		this.calculoDesconto = new CalculoDesconto();
 		valorHora = (calculoHoras.calcularValorHora(cargo));
+	}
+	
+	/**
+	 * Atribui a data atual do sistema para a {@link Folha} a ser construida.
+	 */
+	public void setDataEmissaoFolha() {
+		dataEmissao = LocalDate.now();
 	}
 
 	/**

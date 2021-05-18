@@ -3,12 +3,11 @@ package br.com.proway.senior.controller;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDate;
-
 import org.junit.Test;
 
 import br.com.proway.senior.dao.FolhaDAO;
 import br.com.proway.senior.dao.PostgresConnector;
+import br.com.proway.senior.model.Bonificacao;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.Plr;
 import br.com.proway.senior.model.externo.CargoFolha;
@@ -37,7 +36,10 @@ public class FolhaControllerTest {
 		Plr plr = new Plr();
 		plr.setValorPlr(250);
 		
-		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, plr);
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(0);
+		
+		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, bonificacao);
 		
 		assertNotNull(folha);
 		assertTrue(folha.getValorPlr() == 250);
@@ -69,6 +71,9 @@ public class FolhaControllerTest {
 		Plr plr = new Plr();
 		plr.setValorPlr(250);
 		
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(0);
+		
 		Folha folha = fc.construirFolhaHibrida(colaborador, ponto, cargoFolha, ferias, plr);
 		
 		assertNotNull(folha);
@@ -87,7 +92,10 @@ public class FolhaControllerTest {
 		Plr plr = new Plr();
 		plr.setValorPlr(250);
 		
-		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, plr);
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(0);
+		
+		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, bonificacao);
 		
 		fc.salvarFolha(folha);
 		
@@ -106,7 +114,10 @@ public class FolhaControllerTest {
 		Plr plr = new Plr();
 		plr.setValorPlr(350);
 		
-		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, plr);
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(0);
+		
+		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, bonificacao);
 		
 		fc.editarFolha(folha);
 		assertTrue(db.getAll().get(0).getValorPlr() == 350);
