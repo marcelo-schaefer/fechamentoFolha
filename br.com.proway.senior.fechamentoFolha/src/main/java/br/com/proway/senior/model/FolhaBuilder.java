@@ -23,7 +23,7 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
  * @author Marcelo Schaefer
  * @author Leonardo Pereira
  *
- * Sprint 5:
+ *         Sprint 5:
  * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
  * @author Bruna Carvalho <sh4323202@gmail.com>;
  * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
@@ -45,7 +45,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private double valorImpostoDeRenda;
 	private double valorPlanoSaude;
 	private double valorValeTransporte;
-	private double salarioBruto = 0.0;
+	private double salarioBruto;
 	private double salarioLiquido;
 	private double valorFGTS;
 	private double valorFerias;
@@ -57,8 +57,9 @@ public class FolhaBuilder implements IFolhaBuilder {
 	private double valorHora;
 	private double valorPlr;
 
-	Bonificacao bonificacao;
-	
+	// Variavel referente ao valor da bonificacao
+	private double bonificacao;
+
 	/**
 	 * Constoi a folha com os dados calculados.
 	 * 
@@ -68,7 +69,7 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 *
-	 * Sprint 5:
+	 *         Sprint 5:
 	 * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
 	 * @author Bruna Carvalho <sh4323202@gmail.com>;
 	 * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
@@ -80,14 +81,14 @@ public class FolhaBuilder implements IFolhaBuilder {
 		return new Folha(id, idColaborador, dataEmissao, valorHorasTrabalhadas, valorHorasFaltas, valorHorasExtras,
 				valorReflexoDSR, valorInss, valorImpostoDeRenda, valorPlanoSaude, valorValeTransporte, salarioBruto,
 				salarioLiquido, valorFerias, valorInssFerias, valorImpostoDeRendaFerias, feriasLiquido, valorFGTS,
-				valorPlr);
+				valorPlr, bonificacao);
 	}
 
 	/**
-	 * Inicializa Calculos.
-	 * 
-	 * Realiza os calculos inicias e instancia os objetos necessarios
-	 * para qualquer calculo necessario para cada tipo de folha.
+	 * Inicializa Calculos. Realiza os calculos inicias e instancia os objetos
+	 * necessarios para qualquer calculo necessario para cada tipo de folha. Realiza
+	 * os calculos inicias e instancia os objetos necessï¿½rios para o calculos de
+	 * qualquer tipo de folha.
 	 * 
 	 * @author Lucas Grijo
 	 * @author Lucas Walim
@@ -104,8 +105,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * Calculo das Horas Normais.
 	 * 
-	 * Realiza os calculos do valor recebido pertinente a horas trabalhadas, 
-	 * faltas, horas extras e reflexo DSR.
+	 * Realiza os calculos do valor recebido pertinente a horas trabalhadas, faltas,
+	 * horas extras e reflexo DSR.
 	 * 
 	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
@@ -136,8 +137,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * Calculo de descontos em folha normal.
 	 * 
-	 * Atribui descontos no salario pertinente a inss, imposto de renda, 
-	 * plano de saude e vale transporte. Tambem determina o salï¿½rio liquido.
+	 * Atribui descontos no salario pertinente a inss, imposto de renda, plano de
+	 * saude e vale transporte. Tambem determina o salï¿½rio liquido.
 	 * 
 	 * @author Lucas Grijï¿½
 	 * @author Lucas Walim
@@ -169,8 +170,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * Calculo de descontos em folha ferias.
 	 * 
-	 * Atribui descontos no valor das ferias pertinente a inss e 
-	 * imposto de renda. Tambem determina o valor de ferias liquido.
+	 * Atribui descontos no valor das ferias pertinente a inss e imposto de renda.
+	 * Tambem determina o valor de ferias liquido.
 	 * 
 	 * @author Lucas Grijo
 	 * @author Lucas Walim
@@ -184,39 +185,26 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
-	 * Altera a bonificaï¿½ï¿½o por colaborador atribuindo ao salarioBruto o valor atribuido
-	 * @param colaborador 
+	 * Altera a bonificação por colaborador atribuindo ao salarioBase o valor da
+	 * bonificacao.
+	 * 
+	 * @param cargo,       referente ao {@link ColaboradorFolha}
+	 * @param bonificacao, referente ao valor da bonificacao a ser atribuido ao
+	 *                     salário base
 	 */
-	public double atribuiBonificacaoColaborador(IColaboradorFolha colaborador) {
-		return (salarioBruto * bonificacao.getPorcentagemBonificacaoColaborador());
+	public double atribuiBonificacaoColaborador(ICargoFolha cargo, Bonificacao bonificacao) {
+		this.bonificacao = cargo.getSalarioBase() * bonificacao.getPorcentagemBonificacaoColaborador();
+		return this.salarioBruto += this.bonificacao;
 	}
 
-	/**
-	 * Altera a bonificaï¿½ï¿½o por Cargo atribuindo ao salarioBruto o valor atribuido 
-	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereï¿½o ser implementadas
-	 * a variavel b recebe o cargo e com o percentual da bonificaï¿½ï¿½o resulta o novo valor Bruto
-	 * @param cargo
-	 */
-	public double atribuiBonificacaoCargo(ICargoFolha cargo) {
-	double b =+  cargo.getSalarioBase() * bonificacao.getPorcentagemBonificacaoCargo();
-		return b;
-	}
-
-	
-	/**
-	 * Altera a bonificaï¿½ï¿½o por Cargo atribuindo ao salarioBruto o valor atribuido 
-	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereï¿½o ser implementadas
-	 * @param colaborador
-	
-	public double pegatribuiBonificacaoSetor(ISetor setor,double valor) {
-		return (setor.getSalarioBase() * b.getPorcentagemBonificacaoCargo());
-	*/
-	/**
-	 * Altera a bonificaï¿½ï¿½o por Empresa atribuindo ao salarioBruto o valor atribuido 
-	 * variavel cargo do Empresa se refere ao IEmpresa, e as variaveis que devereï¿½o ser implementadas
-	 * @param empresa
-	
-	public double pegatribuiBonificacaoEmpresa(IEmpresa empresa) {
-		return (empresa.getSalarioBase() * b.getPorcentagemBonificacaoCargo());
-	}	 */
+//	/**
+//	 * Altera a bonificaï¿½ï¿½o por Cargo atribuindo ao salarioBruto o valor atribuido 
+//	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereï¿½o ser implementadas
+//	 * a variavel b recebe o cargo e com o percentual da bonificaï¿½ï¿½o resulta o novo valor Bruto
+//	 * @param cargo
+//	 */
+//	public double atribuiBonificacaoCargo(ICargoFolha cargo) {
+//		double b =+  cargo.getSalarioBase() * bonificacao.getPorcentagemBonificacaoCargo();
+//		return b;
+//	}
 }

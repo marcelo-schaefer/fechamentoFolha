@@ -86,11 +86,10 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 	 * 
 	 * @param objectToDelete do tipo {@link Folha}
 	 */
-	public void delete(Folha objectToDelete) {
-
+	public void delete(int id) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
-		session.delete(objectToDelete);
+		session.delete(session.get(Folha.class, id));
 		session.getTransaction().commit();
 	}
 
@@ -204,5 +203,10 @@ public final class FolhaDAO implements InterfaceFolhaDAO {
 		List<Folha> folha = session.createQuery(criteria).getResultList();
 
 		return folha;
+	}
+
+	public void delete(Folha folha) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-
 /**
  * Folha
  * 
@@ -56,7 +55,12 @@ public class Folha implements IFolha {
 	private double valorInssFerias;
 	private double valorImpostoDeRendaFerias;
 	private double feriasLiquido;
+	
+	@Column(name = "valor_plr")
 	private double valorPlr = 0.0;
+	
+	@Column(name = "bonificacao")
+	private double bonificacao;
 	
 	@Column(name = "colaborador_id")
 	private Integer idColaborador;
@@ -90,12 +94,13 @@ public class Folha implements IFolha {
 	 * @author Lucas Walim
 	 * @author Marcelo Schaefer
 	 * @author Leonardo Pereira
+	 * @param salarioComBonificacao 
 	 */
 	public Folha(int id, Integer idColaborador, LocalDate dataEmissao, double valorHorasTrabalhadas,
 			double valorHorasFaltas, double valorHorasExtras, double valorReflexoDSR, double valorInss,
 			double valorImpostoDeRenda, double valorPlanoSaude, double valorValeTransporte, double salarioBruto,
 			double salarioLiquido, double valorFerias, double valorInssFerias, double valorImpostoDeRendaFerias,
-			double feriasLiquido, double valorFGTS, double valorPlr) {
+			double feriasLiquido, double valorFGTS, double valorPlr, double bonificacao) {
 		this.id = id;
 		this.idColaborador = idColaborador;
 		this.dataEmissao = dataEmissao;
@@ -115,6 +120,7 @@ public class Folha implements IFolha {
 		this.feriasLiquido = feriasLiquido;
 		this.valorFGTS = valorFGTS;
 		this.valorPlr = valorPlr;
+		this.bonificacao = bonificacao;
 	}
 
 	public Folha() {}
@@ -208,6 +214,6 @@ public class Folha implements IFolha {
 				+ ", valorValeTransporte=" + valorValeTransporte + ", salarioBruto=" + salarioBruto
 				+ ", salarioLiquido=" + salarioLiquido + ", valorFerias=" + valorFerias + ", valorInssFerias="
 				+ valorInssFerias + ", valorImpostoDeRendaFerias=" + valorImpostoDeRendaFerias + ", feriasLiquido="
-				+ feriasLiquido + ",valorFGTS= "+ valorFGTS+",valorPLR= "+ valorPlr+ "]";
+				+ feriasLiquido + ",valorFGTS= "+ valorFGTS+",valorPLR= "+ valorPlr+ "bonificacao="+ bonificacao;
 	}
 }

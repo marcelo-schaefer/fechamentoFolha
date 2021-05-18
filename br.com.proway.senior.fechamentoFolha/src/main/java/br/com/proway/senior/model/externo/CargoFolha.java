@@ -27,7 +27,6 @@ public class CargoFolha implements ICargoFolha {
 	}
 
 	public CargoFolha(double salarioBase, double percentualInsalubridade) {
-		super();
 		this.salarioBase = salarioBase;
 		this.percentualInsalubridade = percentualInsalubridade;
 	}

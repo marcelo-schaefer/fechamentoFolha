@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import br.com.proway.senior.model.Bonificacao;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDirector;
@@ -127,7 +128,6 @@ public class TesteBuilder{
 		director.createFolhaNormal(colaborador, ponto, cargo, plr);
 		Folha folha = folhaBuilder.build();
 		
-		System.out.println(folha.toString());
 		assertEquals(3740.00 + 350.0, folha.getSalarioLiquido(), 0.01);
 
 	
@@ -156,17 +156,23 @@ public class TesteBuilder{
 	}
 	
 	@Test
-	public void verBonificacao() {
-		ColaboradorFolha colaborador = new ColaboradorFolha(2, true, 100, 25,205);
-		CargoFolha cargo = new CargoFolha(3500, 20);
-		FeriasFolha ferias = new FeriasFolha(15, 3);
-		
+	public void verBonificacaoCargo() {
+		CargoFolha cargo = new CargoFolha(1850, 40);
+		ColaboradorFolha colaborador = new ColaboradorFolha(6, false, 0, 0,205);
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(6);
+		PontoFolha ponto = new PontoFolha(220, 0, 0);
+		Plr plr = new Plr();
+		plr.setPlr(350.0);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
-		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaFerias(colaborador, cargo, ferias);
 		
-		assertEquals(4340, folhaBuilder.atribuiBonificacaoCargo(cargo),0.1);
+		FolhaDirector director = new FolhaDirector(folhaBuilder);
+		director.createFolhaNormal(colaborador, ponto, cargo, plr);
+		
+		double t = folhaBuilder.atribuiBonificacaoColaborador(cargo, bonificacao);
+		
+		assertEquals(1961, t, 0.1);
 	}
 <<<<<<< HEAD
 	*/
