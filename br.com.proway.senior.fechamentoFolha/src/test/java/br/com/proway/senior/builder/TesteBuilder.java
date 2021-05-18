@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import br.com.proway.senior.dao.FolhaDAO;
+import br.com.proway.senior.dao.PostgresConnector;
 import br.com.proway.senior.model.Bonificacao;
 import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
@@ -153,7 +155,7 @@ public class TesteBuilder{
 		int id = colaborador.getId();
 		double planoSaude = colaborador.getPlanoSaudeCooparticipacao() + colaborador.getPlanoSaudeMensalidade();
 		ArrayList<String> dependentes = colaborador.getDependentes();
-	}
+	}*/
 	
 	@Test
 	public void verBonificacaoCargo() {
@@ -163,18 +165,17 @@ public class TesteBuilder{
 		bonificacao.setPorcentagemBonificacaoColaborador(6);
 		PontoFolha ponto = new PontoFolha(220, 0, 0);
 		Plr plr = new Plr();
-		plr.setPlr(350.0);
+		plr.setValorPlr(350.0);
 		
 		FolhaBuilder folhaBuilder = new FolhaBuilder();	
-		
-		FolhaDirector director = new FolhaDirector(folhaBuilder);
-		director.createFolhaNormal(colaborador, ponto, cargo, plr);
-		
 		double t = folhaBuilder.atribuiBonificacaoColaborador(cargo, bonificacao);
+
+		FolhaDirector director = new FolhaDirector(folhaBuilder);
+		Folha folha = director.createFolhaNormal(colaborador, ponto, cargo);
 		
-		assertEquals(1961, t, 0.1);
+		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
+		folhaDAO.insert(folha);
+		assertEquals(111, t, 0.1);
 	}
-<<<<<<< HEAD
-	*/
 }
 
