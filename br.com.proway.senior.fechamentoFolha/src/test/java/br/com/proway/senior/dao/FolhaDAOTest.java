@@ -39,10 +39,11 @@ public class FolhaDAOTest {
 		assertEquals(tamanhoAntigo + 1, folhaDAO.getAll().size());
 	}
 	
-	@Test
+	@Test 
 	public void testDelete() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
-		folhaDAO.delete(10);
+		Folha folha = folhaDAO.getAll().get(0);
+		folhaDAO.delete(folha);
 		
 		assertEquals(0, folhaDAO.getAll().size());
 	}

@@ -29,7 +29,7 @@ public class PlrController {
 			for (Plr plrProcurado : plrsBuscados) {
 				if (plrProcurado.getVencimento().getYear() == data.getYear()) {
 					if (plrProcurado.getVencimento().getMonth() == data.getMonth()) {
-						throw new Exception("PLR já cadastrado para este período");
+						throw new Exception("PLR ja cadastrado para este perï¿½odo");
 					}
 				} 
 			}
@@ -72,14 +72,18 @@ public class PlrController {
 		
 		for(Plr plr : plrs) {
 			if(plr.getVencimento().getYear() == data.getYear()) {
-				plrExiste = true;
+				if(plr.getVencimento().getMonth() == data.getMonth()) {
+					plrExiste = true;
+				}
 			}
 		}
 		if(plrExiste) {
 			for(Plr plr : plrs) {
 				if(plr.getVencimento().getYear() == data.getYear()) {
-					plr.setValorPlr(valor);
-					db.update(plr);
+					if(plr.getVencimento().getMonth() == data.getMonth()) {
+						plr.setValorPlr(valor);
+						db.update(plr);
+					}
 				}
 			}
 		} else {

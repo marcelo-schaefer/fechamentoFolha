@@ -7,9 +7,7 @@ import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
  * 
  * Objeto que possue dados especificos do Cargo para ser 
  * usado na criacao interna de uma folha {@link Folha}.
- * 
- * @author sprint3
- * 
+ *  
  * Sprint 5:
  * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
  * @author Bruna Carvalho <sh4323202@gmail.com>;

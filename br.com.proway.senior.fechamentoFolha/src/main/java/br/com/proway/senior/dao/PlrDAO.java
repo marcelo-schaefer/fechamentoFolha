@@ -56,13 +56,15 @@ public final class PlrDAO {
 		session.getTransaction().commit();
 	}
 	
-	public List<Plr> getByDate(LocalDate data) {
+	public List<Plr> getByDate(LocalDate data) {	
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Plr> criteria = builder.createQuery(Plr.class);
 		Root<Plr> root = criteria.from(Plr.class);
+
 		criteria.where(builder.equal(root.get("vencimento"), data));
+		
 		List<Plr> plr = session.createQuery(criteria).getResultList();
 		return plr;
 	}
@@ -89,6 +91,7 @@ public final class PlrDAO {
 		session.update(objectToUpdate);
 		session.getTransaction().commit();
 	}
+
 	
 	public void limparTabela() {
 		if (!session.getTransaction().isActive())
@@ -96,6 +99,7 @@ public final class PlrDAO {
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaDelete<Plr> criteriaDelete = builder.createCriteriaDelete(Plr.class);
 		criteriaDelete.from(Plr.class);
-		session.createQuery(criteriaDelete).executeUpdate();
+		session.createQuery(criteriaDelete).executeUpdate();	
 	}
 }
+
