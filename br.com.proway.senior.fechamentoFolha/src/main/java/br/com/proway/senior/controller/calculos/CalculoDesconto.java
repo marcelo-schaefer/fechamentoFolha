@@ -1,76 +1,97 @@
 package br.com.proway.senior.controller.calculos;
 
+import br.com.proway.senior.model.externo.CargoFolha;
+import br.com.proway.senior.model.externo.ColaboradorFolha;
 import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
 import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 
 /**
- * Calcula descontos.
+ * <h1>Calcula descontos.</h1>
  * 
- * Implementa os metodos da {@link ICalculoDesconto} e faz os calculos 
- * de desconto relacionados ao salario bruto.
+ * <p>Implementa os metodos da {@link ICalculoDesconto} e faz os calculos 
+ * de desconto relacionados ao salario bruto.</p>
  * 
  * @author Lucas Grijo
  * @author Lucas walim
  * @author Marcelo Schaefer
  * 
- * Sprint 5:
- * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
- * @author Bruna Carvalho <sh4323202@gmail.com>;
- * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
- * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
- * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
+ * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+ * 
+ * @see ICalculoDesconto
  *
  */
 public class CalculoDesconto implements ICalculoDesconto {
 
+	/***
+	 * <h1>Referente ao valor por dependente</h1>
+	 * 
+	 * <p>Referente ao valor unitario de 
+	 * cada dependente</p>
+	 */
 	private double valorPorDependentes = 189.59;
 
 	/**
-	 * Calcula o valor de INSS a ser descontado.
+	 * <h1>Calcula o valor de INSS a ser descontado.</h1>
 	 * 
-	 * Realiza o cï¿½lculo do valor de INSS a ser descontado em folha a partir do
-	 * valor acumulado. Pega a variï¿½vel e multiplica pelo valor de desconto fixado
-	 * em 11%. Retorna o valor a ser descontado.
+	 * <p>Realiza o calculo do valor de INSS a ser descontado em {@link Folha} a partir do
+	 * valor acumulado. Pega a variavel e multiplica pelo valor de desconto fixado
+	 * em 11%. Retorna o valor a ser descontado.</p>
 	 * 
-	 * @param double valorAcumulado
-	 * @return double
+	 * @param double salarioBrutoAcumulado, referente ao salário bruto
+	 * 
+	 * @return double referente ao salario bruo com o desconto do INSS
+	 * 
+	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * 
+	 * @see Folha
 	 */
 	public double calcularDescontoInss(double salarioBrutoAcumulado) {
 		return (salarioBrutoAcumulado * 0.11);
 	}
 	
 	/**
-	 * Calcula o valor do FGTS depositado na conta do FGTS.
+	 * <h1>Calcula o valor do FGTS depositado na conta do FGTS.</h1>
 	 * 
-	 * Realiza o calculo do valor do FGTS a ser depositado ao colaborador
-	 * na conta do FGTS na CEF.
+	 * <p>Realiza o calculo do valor do FGTS a ser depositado ao colaborador
+	 * na conta do FGTS na CEF.</p>
 	 * 
-	 * @param salarioBrutoAcumulado double
-	 * @return double
+	 * @param salarioBrutoAcumulado double, referente ao salario bruto informado.
 	 * 
-	 * @author Leo Pereira 
-	 * @author Sabrina
+	 * @return double, referente ao salario bruto com o desconto do FGTS,
+	 * 
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>.
 	 */
 	public double calcularFGTS(double salarioBrutoAcumulado) {
 		return (salarioBrutoAcumulado * 0.08);	
 	}
 
 	/**
-	 * Calcula o valor de Imposto de Renda.
+	 * <h1>Calcula o valor de Imposto de Renda.</h1>
 	 * 
-	 * O metodo subtrai o salario bruto pelo calculo de valor de dependente,
+	 * <p>O metodo subtrai o salario bruto pelo calculo de valor de dependente,
 	 * verifica o valor e encaixa em valores possiveis para multiplicar a
-	 * porcentagem.
+	 * porcentagem.</p>
 	 * 
-	 * @param colaboradorFolha {@link IColaboradorFolha}
-	 * @param double
-	 * @return double 
+	 * @param colaboradorFolha {@link IColaboradorFolha}, referente ao {@link ColaboradorFolha}.
+	 * @param salarioBrutoAcumulado double, referente ao salario bruto informado.
 	 * 
-	 * @author sprint2
-	 * @author Lucas Grijo
-	 * @author Lucas walim
-	 * @author Marcelo Schaefer
+	 * @return double, referente ao salario buto com o desconto do imposto de renda
 	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Lucas walim
+	 * @author Sprint 4: Marcelo Schaefer
+	 * 
+	 * @see IColaboradorFolha
+	 * @see ColaboradorFolha
 	 */
 	public double calcularDescontoImpostoRenda(IColaboradorFolha colaboradorFolha, double salarioBrutoAcumulado) {
 		double baseCalculoImpostoRenda = salarioBrutoAcumulado
@@ -89,26 +110,41 @@ public class CalculoDesconto implements ICalculoDesconto {
 	}
 
 	/**
-	 * Calcula o valor do dependente.
+	 * <h1>Calcula o valor do dependente.</h1>
 	 * 
-	 * Multiplica o numero de dependentes 
-	 * pelo valor de dependentes {@link CalculoDesconto#valorPorDependentes}.
+	 * <p>Multiplica o numero de dependentes 
+	 * pelo valor de dependentes {@link CalculoDesconto#valorPorDependentes}.</p>
 	 * 
-	 * @param numeroDependentes int
-	 * @return numeroDependentes double. 
+	 * @param numeroDependentes int, referente ao numero de dependentes informados.
+	 * 
+	 * @return double, referente ao valor dos dependentes. 
+	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Lucas walim
+	 * @author Sprint 4: Marcelo Schaefer
+	 * 
+	 * @see CalculoDesconto#valorPorDependentes
 	 */
 	private double calcularValorDependente(int numeroDependentes) {
 		return numeroDependentes * valorPorDependentes;
 	}
 
 	/**
-	 * Desconto de Plano de Saude.
+	 * <h1>Desconto de Plano de Saude.</h1>
 	 * 
-	 * Realiza o desconto de plano de saude, somando o valor da mensalidade com o
-	 * valor de cooparticipacao.
+	 * <p>Realiza o desconto de plano de saude, somando o valor da mensalidade com o
+	 * valor de cooparticipacao.<p>
 	 * 
-	 * @param  colaboradorFolha {@link IColaboradorFolha}. 
-	 * @return double, soma da mensalidade com o valor cooparticipacao
+	 * @param  colaboradorFolha {@link IColaboradorFolha}, referente ao {@link ColaboradorFolha}. 
+	 * 
+	 * @return double, referente a soma da mensalidade com o valor cooparticipacao.
+	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Lucas walim
+	 * @author Sprint 4: Marcelo Schaefer
+	 * 
+	 * @see IColaboradorFolha
+	 * @see ColaboradorFolha
 	 */
 	public double calcularDescontoPlanoSaude(IColaboradorFolha colaboradorFolha) {
 		double mensalidadePlanoSaude = colaboradorFolha.getPlanoSaudeMensalidade();
@@ -117,16 +153,25 @@ public class CalculoDesconto implements ICalculoDesconto {
 	}
 
 	/**
-	 * Calcula o valor de vale transporte do colaborador.
+	 * <h1>Calcula o valor de vale transporte do colaborador.</h1>
 	 * 
-	 * verifica se o colaborador possui vale transporte, se sim, pega 6 porcento do
+	 * <p>Verifica se o {@link ColaboradorFolha} possui vale transporte, se sim, pega 6% do
 	 * salario base, se for maior ou igual que R$ 180,00 o desconto sera este, se
-	 * for menor retorna este valor calculado.
+	 * for menor retorna este valor calculado.</p>
 	 * 
-	 * @param colaboradorFolha {@link IColaboradorFolha};
-	 * @param cargoFolha {@link ICargoFolha};
+	 * @param colaboradorFolha {@link IColaboradorFolha}, referente ao {@link ColaboradorFolha} informado;
+	 * @param cargoFolha {@link ICargoFolha}, referente ao {@link CargoFolha} informado.
 	 * 
 	 * @return valorValorValeTransporte double.
+	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Lucas walim
+	 * @author Sprint 4: Marcelo Schaefer
+	 * 
+	 * @see ColaboradorFolha
+	 * @see IColaboradorFolha
+	 * @see ICargoFolha
+	 * @see CargoFolha
 	 */
 	public double calcularDescontoValeTransporte(IColaboradorFolha colaboradorFolha, ICargoFolha cargoFolha) {
 		if (colaboradorFolha.isValeTransporte()) {
@@ -140,5 +185,4 @@ public class CalculoDesconto implements ICalculoDesconto {
 			return 0;
 		}
 	}
-
 }

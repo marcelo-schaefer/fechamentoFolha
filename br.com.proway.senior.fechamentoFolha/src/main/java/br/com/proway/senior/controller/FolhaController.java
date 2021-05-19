@@ -35,6 +35,9 @@ public class FolhaController {
 	/**
 	 * <h1>Referente a {@link FolhaDAO}</h1>
 	 * 
+	 * <p>Instancia um objeto {@link FolhaDAO} em
+	 * uma variavel.</p>
+	 * 
 	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
 	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
 	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
@@ -48,7 +51,7 @@ public class FolhaController {
 	/**
 	 * <h1>Constroi o {@link CargoFolha}</h1>
 	 * 
-	 * <p>Recebe um salarioBase e um percentualInsalubridade, constroi o
+	 * <p>Recebe um salario base e um percentual insalubridade, constroi o
 	 * {@link CargoFolha} com esses parametros e retorna um {@link CargoFolha}.</p>
 	 * 
 	 * @param salarioBase double, referente ao salario base informado
@@ -74,14 +77,16 @@ public class FolhaController {
 	 * <h1>Constroi a FolhaNormal.</h1>
 	 * 
 	 * <p>Recebe um objeto {@link IColaboradorFolha}, {@link IPontoFolha}, 
-	 * {@link ICargoFolha}, {@link IFeriasFolha} e {@link IPlr}.
+	 * {@link ICargoFolha} e {@link Bonificacao}.
 	 * Constroi um novo objeto {@link Folha} com os parametros
 	 * informados.</p>
 	 * 
-	 * @param colaborador {@link IColaboradorFolha}, referente ao {@link ColaboradorFolha};
-	 * @param ponto {@link IPontoFolha}, referente ao {@link PontoFolha};
-	 * @param cargo {@link ICargoFolha}, referente ao {@link CargoFolha};
-	 * @param plr {@link IPlr}, referente ao {@link Plr}.
+	 * @param colaborador {@link IColaboradorFolha}, referente ao {@link ColaboradorFolha} informado;
+	 * @param ponto {@link IPontoFolha}, referente ao {@link PontoFolha} informado;
+	 * @param cargo {@link ICargoFolha}, referente ao {@link CargoFolha} informado;
+	 * @param bonificacao {@link Bonificacao}, referente a {@link Bonificacao} informada.
+	 * 
+	 * @return {@link Folha}
 	 * 
 	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
 	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
@@ -92,8 +97,10 @@ public class FolhaController {
 	 * @see IColaboradorFolha
 	 * @see IPontoFolha
 	 * @see ICargoFolha
-	 * @see IFeriasFolha
-	 * @see IPlr
+	 * @see ColaboradorFolha
+	 * @see PontoFolha
+	 * @see CargoFolha
+	 * @see Bonificacao
 	 * @see Folha
 	 */
 	public Folha construirFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, Bonificacao bonificacao) {
@@ -110,9 +117,9 @@ public class FolhaController {
 	 * {@link ICargoFolha}. Constroi um novo objeto {@link Folha}
 	 * com os parametros informados.</p>
 	 * 
-	 * @param colaborador {@link IColaboradorFolha}, referente ao {@link ColaboradorFolha};
-	 * @param cargo {@link ICargoFolha}, referente ao {@link CargoFolha};
-	 * @param ferias {@link IFeriasFolha}, referente ao {@link FeriasFolha}.
+	 * @param colaborador {@link IColaboradorFolha}, referente ao {@link ColaboradorFolha} informado;
+	 * @param ferias {@link IFeriasFolha}, referente a {@link FeriasFolha} informada.
+	 * @param cargo {@link ICargoFolha}, referente ao {@link CargoFolha} informado;
 	 * 
 	 * @return {@link Folha}.
 	 * 
@@ -127,8 +134,8 @@ public class FolhaController {
 	 * @see ICargoFolha
 	 * @see Folha
 	 * @see ColaboradorFolha
-	 * @see CargoFolha
 	 * @see FeriasFolha
+	 * @see CargoFolha
 	 */
 	public Folha construirFolhaFerias(IColaboradorFolha colaborador, IFeriasFolha ferias, ICargoFolha cargo) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
@@ -186,7 +193,16 @@ public class FolhaController {
 	 * <p>Recebe um objeto {@link Folha}, chama a instancia do {@link FolhaDAO} e
 	 * insere o objeto no banco de dados.</p>
 	 * 
-	 * @param folha {@link Folha}, referente a folha informada.
+	 * @param folha {@link Folha}, referente a {@link Folha} informada.
+	 * 
+	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * 
+	 *  @see Folha
+	 *  @see FolhaDAO
 	 */
 	public void salvarFolha(Folha folha) {
 		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
@@ -194,11 +210,20 @@ public class FolhaController {
 	}
 
 	/**
-	 * Atualiza uma Folha no banco.
+	 * <h1>Atualiza uma {@link Folha} do banco de dados.</h1>
 	 * 
-	 * Realiza a atualizacao de um objeto {@link Folha} ja existente no banco.
+	 * <p>Recebe um objeto {@link Folha} como parametro e 
+	 * realiza a atualizacao desse objeto ja existente no banco.</p>
 	 *
-	 * @param objeto {@link Folha}
+	 * @param folha {@link Folha}, referente a {@link Folha} informada
+	 * 
+	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * 
+	 * @see Folha
 	 */
 	public void editarFolha(Folha folha) {
 		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
@@ -206,12 +231,20 @@ public class FolhaController {
 	}
 
 	/**
-	 * Deletar folha do banco.
+	 * <h1>Deletar {@link Folha} do banco.</h1>
 	 * 
-	 * O metodo recebe um objeto {@link Folha} existente no banco de dados, e deleta
-	 * o mesmo.
+	 * <p>O metodo recebe um objeto {@link Folha} existente no banco de dados,
+	 *  e deleta o mesmo.</p>
 	 * 
-	 * @param objeto {@link Folha}.
+	 * @param folha {@link Folha}, referente a {@link Folha} informada.
+	 * 
+	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * 
+	 * @see Folha
 	 */
 	public void deletarFolha(Folha folha) {
 		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());

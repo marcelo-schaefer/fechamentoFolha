@@ -10,6 +10,14 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import br.com.proway.senior.model.Plr;
 
+/***
+ * 
+ * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+ *
+ */
 public final class PlrDAO {
 	
 	/**

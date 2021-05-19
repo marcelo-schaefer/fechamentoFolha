@@ -8,14 +8,14 @@ import br.com.proway.senior.model.Bonificacao;
  * <h1>Bonificacao DAO.</h1>
  * 
  * <p>Classe responsavel por implementar os metodos
- * de DDL da classe {@link Bonificacao}.</p>
+ * de DML da classe {@link Bonificacao}.</p>
  * 
- * @author Leonardo Perereira.
- * @author Lucas Nunes.
- * @author Sabrina S.
+ * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
  * 
  * @see Bonificacao
- *
  */
 public class BonificacaoDAO {
 	
@@ -46,12 +46,13 @@ public class BonificacaoDAO {
 	 * insere ele na tabela de bonificacoes
 	 * do banco de dados.</p>
 	 * 
-	 * @param objectToInsert Bonificacao, referente a bonificacao
+	 * @param objectToInsert {@link Bonificacao}, referente a {@link Bonificacao}
 	 * informada.
 	 * 
-	 * @author Leonardo Perereira.
-	 * @author Lucas Nunes.
-	 * @author Sabrina S. 
+	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>. 
 	 * 
 	 * @see Bonificacao
 	 */
