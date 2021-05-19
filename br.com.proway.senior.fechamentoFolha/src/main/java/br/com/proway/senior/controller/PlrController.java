@@ -7,16 +7,41 @@ import br.com.proway.senior.dao.PlrDAO;
 import br.com.proway.senior.dao.PostgresConnector;
 import br.com.proway.senior.model.Plr;
 
+/***
+ * <h1>Controller responsavel pelos metodos da {@link Plr}</h1>
+ * 
+ * <p>Faz o CRUD para a classe {@link Plr}</p>
+ * 
+ * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+ * 
+ * @see Plr
+ *
+ */
 public class PlrController {
+	
 	/**
-	 * Cadastra um novo plr no banco de dados.
+	 * <h1>Cadastra um novo {@link Plr} no banco de dados.</h1>
 	 * 
-	 * Verifica se existe um plr cadastrado para um detemirnado periodo. Se sim, lanca uma exception,
-	 * se nao, insere este plr no banco de dados.
+	 * <p>Verifica se existe um {@link Plr} cadastrado para um detemirnado periodo. 
+	 * Se sim, lanca uma exception, se nao, insere este {@link Plr} no banco de dados.</p>
 	 * 
-	 * @param data
-	 * @param valor
-	 * @throws Exception
+	 * @param data LocalDate, referente a data informada;
+	 * @param valor double, referente ao valor informado.
+	 * 
+	 * @throws Exception - Caso o {@link Plr} já exista no banco com
+	 * a mesma data.
+	 * 
+	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * 
+	 * @see Plr
 	 */
 	public void cadastrarPlr(LocalDate data, double valor) throws Exception {
 		PlrDAO db = PlrDAO.getInstance(PostgresConnector.getSession());
@@ -40,9 +65,23 @@ public class PlrController {
 	}
 	
 	/**
-	 * Busca todas as {@link Plr}s do banco de dados;
+	 * <h1>Busca todas as {@link Plr}s do banco de dados;</h1>
 	 * 
-	 * @return ArrayList<Plr>
+	 * <p>Procura todas as {@link Plr}s no banco, as insere
+	 * em uma lista e depois retorna a lista.</p>
+	 * 
+	 * @return ArrayList<Plr> referente a todas as {@link Plr}s do banco
+	 * de dados
+	 * 
+	 * @throws Exception - Caso ocorra algum erro de obter o resultao.
+	 * 
+	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * 
+	 * @see Plr
 	 */
 	public ArrayList<Plr> buscarTodosPlr() throws Exception {
 		PlrDAO db = PlrDAO.getInstance(PostgresConnector.getSession());
@@ -56,14 +95,24 @@ public class PlrController {
 	}
 	
 	/**
-	 * Atualiza {@link Plr}.
+	 * <h1>Atualiza {@link Plr}.</h1>
 	 * 
-	 * Busca no banco de dados uma {@link Plr} no mesmo periodo da data inserida e altera
-	 * o valor desta {@link Plr} com o valor do parametro valor..
+	 * <p>Recebe uma data e um valor, busca no banco de dados uma {@link Plr}
+	 * com o mesmo periodo de data e altera o valor desta {@link Plr} com o valor
+	 * do parametro.</p>
 	 * 
-	 * @param data
-	 * @param valor
-	 * @throws Exception
+	 * @param data LocalDate, referente a data informada.
+	 * @param valor double, referente ao valor informado.
+	 * 
+	 * @throws Exception - Caso a {@link Plr} seja inexistente.
+	 * 
+	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * 
+	 * @see Plr
 	 */
 	public void atualizarPlr(LocalDate data, double valor) throws Exception {
 		PlrDAO db = PlrDAO.getInstance(PostgresConnector.getSession());
@@ -92,9 +141,22 @@ public class PlrController {
 	}
 	
 	/**
-	 * Busca o valor de uma {@link Plr} do mes da data passada no parametro.
+	 * <h1>Busca o valor de uma {@link Plr} atraves
+	 * da data passada no parametro.</h1>
 	 * 
-	 * @return
+	 * <p>Recebe uma data e busca o valor da {@link Plr}
+	 * que possui a mesma data no banco de dados. Retorna
+	 * o valor da {@link Plr} encontrada.</p>
+	 * 
+	 * @return double, referente ao valor da {@link Plr}
+	 * 
+	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * 
+	 * @see Plr
 	 */
 	public double getValorPlrMes(LocalDate date) {
 		PlrDAO db = PlrDAO.getInstance(PostgresConnector.getSession());

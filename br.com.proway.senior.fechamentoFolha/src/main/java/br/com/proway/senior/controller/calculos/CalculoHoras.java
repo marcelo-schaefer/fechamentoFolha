@@ -1,53 +1,69 @@
 package br.com.proway.senior.controller.calculos;
 
+import br.com.proway.senior.model.externo.CargoFolha;
+import br.com.proway.senior.model.externo.ColaboradorFolha;
+import br.com.proway.senior.model.externo.FeriasFolha;
+import br.com.proway.senior.model.externo.PontoFolha;
 import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
 import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 /**
- * calcular horas
+ * <h1>Calcular horas</h1>
  * 
- * classe que pussui todos os metodos de calculos relacionados a 
- * soma no salario bruto.
+ * <p>Classe que pussui todos os metodos de calculos relacionados a 
+ * soma no salario bruto.</p>
  * 
- * @author Lucas Grijo
- * @author Lucas walim
- * @author Marcelo Schaefer
+ * @author Sprint 4: Lucas Grijo
+ * @author Sprint 4: Lucas walim
+ * @author Sprint 4: Marcelo Schaefer
  *
- * Sprint 5:
- * @author Leonardo Felipe Silva <felipeleao217@gmail.com>;
- * @author Bruna Carvalho <sh4323202@gmail.com>;
- * @author Leonardo Pereira <leonardopereirajr@gmail.com>;
- * @author Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
- * @author Lucas Nunes <lucasnunes.ln365@gmail.com>.
- *
+ * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
+ * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
+ * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
+ * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
  */
 public class CalculoHoras implements ICalculoHoras {
 
-	private double salarioMinimo = 1100; // Regra de Negï¿½cio
-	private double fator = 0.5; // 50% adicional hora extra
+	/***
+	 * <h1>Referente ao salario minimo</h1>
+	 * 
+	 * <p>Valor de um salario minimo</p>
+	 */
+	private double salarioMinimo = 1100;
+	
+	/***
+	 * <h1>Referente ao fator de hora extra</h1>
+	 * 
+	 * <p>Valor em porcentagem da hora extra</p>
+	 */
+	private double fator = 0.5;
+	
+	/***
+	 * <h1>Valor da hora</h1>
+	 * 
+	 * <p>Valor da hora referente a 30 dias</p>
+	 */
 	final double valorHorasDias = (double) 220 / 30;
 
 	/**
-	 * Calcula o valor das horas
-	 *
-<<<<<<< HEAD
-	 * o metodo chama o metodo de calcular insalubridade dividido por 220, verifica
-	 * se ï¿½ menor que 0, se sim, retorna salario base dividido por 220, se nao,
-	 * retorna o mesmo mais o valor da issalubridade.
-=======
-	 * O metodo chama o metodo de calcular insalubridade dividido por 220, verifica
->>>>>>> c230790fca0271d59e8ea2990cbb609a22a0a150
-	 * se é menor que 0, se sim, retorna salario base dividido por 220, se nao,
-	 * retorna o mesmo mais o valor da insalubridade.
-	 *
-	 * @param cargoFolha {@link ICargoFolha}
-	 * @return double
+	 * <h1>Calcula o valor das horas</h1>
 	 * 
-	 * @author sprint2
-	 * @author Lucas Grijo
-	 * @author Lucas walim
-	 * @author Marcelo Schaefer
+	 * <p>Chama o metodo de calcular insalubridade {@link CalculoHoras#calcularInsalubridade(ICargoFolha)} 
+	 * dividido por 220, verifica se é menor que 0. Se sim, retorna salario
+	 * base dividido por 220, se nao, retorna o mesmo mais o valor da insalubridade.</p>
+	 *
+	 * @param cargoFolha {@link ICargoFolha}, referente ao {@link CargoFolha}.
 	 * 
+	 * @return double, referente ao salario base com mudancas.
+	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Lucas walim
+	 * @author Sprint 4: Marcelo Schaefer
+	 * 
+	 * @see CalculoHoras#calcularInsalubridade(ICargoFolha)
+	 * @see ICargoFolha
+	 * @see CargoFolha
 	 */
 	public double calcularValorHora(ICargoFolha cargoFolha) {
 		double valorHoraInsalubridade = calcularInsalubridade(cargoFolha) / 220;
@@ -57,41 +73,44 @@ public class CalculoHoras implements ICalculoHoras {
 			return ((cargoFolha.getSalarioBase() / 220) + valorHoraInsalubridade);
 		}
 	}
-
-	/**
-	 * Calcula o valor das horas que foram trabalhadas
+	
+	/***
+	 * <h1>Calcula o valor das horas que foram trabalhadas.</h1>
 	 * 
-	 * o metodo multiplica e retorna o falor da multiplicaï¿½ï¿½o entre o valor das
-	 * horas e quantas horas o funcionario trabalhou
+	 * <p>O metodo multiplica e retorna o falor da multiplicacao entre o valor das
+	 * horas e quantas horas o {@link ColaboradorFolha} trabalhou.</p>
 	 * 
-	 * @param pontoFolha {@link IPontoFolha}
-	 * @param valorHoras double
-	 * @return double
+	 * @param pontoFolha {@link IPontoFolha}, referente ao {@link PontoFolha};
+	 * @param valorHora double, referente ao valor da hora.
 	 * 
-	 * @author sprint2
-	 * @author Lucas Grijo
-	 * @author Lucas walim
-	 * @author Marcelo Schaefer
+	 * @return double, referente ao valor de horas trabalhadas.
 	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Lucas walim
+	 * @author Sprint 4: Marcelo Schaefer
+	 * 
+	 * @see ColaboradorFolha
+	 * @see IPontoFolha
+	 * @see PontoFolha
 	 */
 	public double calcularValorDasHorasTrabalhadas(IPontoFolha pontoFolha, double valorHora) {
 		return valorHora * pontoFolha.getHorasTrabalhadas();
 	}
 
 	/**
-	 * Calcula o valor da insalubridade
+	 * <h1>Calcula o valor da insalubridade</h1>
 	 * 
-	 * Realiza o calculo do valor a ser implementado no salario minimo, vai pegar a
-	 * variavel salarioMinimo e multiplicar pela sua faixa de insalubridade,
-	 * dependendode onde ela se encaixar.
+	 * <p>Realiza o calculo do valor a ser implementado no {@link CalculoHoras#salarioMinimo},
+	 *  vai pegar a variavel {@link CalculoHoras#salarioMinimo} e multiplicar pela sua faixa
+	 *  de insalubridade, dependendode onde ela se encaixar.</p>
 	 * 
-	 * @param cargoFolha {@link ICargoFolha}
-	 * @return double
+	 * @param cargoFolha {@link ICargoFolha}, referente ao {@link CargoFolha}.
 	 * 
-	 * @author sprint2
-	 * @author Lucas Grijo
-	 * @author Lucas walim
-	 * @author Marcelo Schaefer
+	 * @return double, referente ao salario minimo com mudancas.
+	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Lucas walim
+	 * @author Sprint 4: Marcelo Schaefer
 	 */
 	private double calcularInsalubridade(ICargoFolha cargoFolha) {
 		if (cargoFolha.getPercentualInsalubridade() == 10) {
@@ -106,57 +125,66 @@ public class CalculoHoras implements ICalculoHoras {
 	}
 
 	/**
-	 * Calcula o valor a ser descontado de horas faltas
+	 * <h1>Calcula o valor a ser descontado de horas faltas.</h1>
 	 * 
-	 * Realiza o cálculo das horas faltas a serem descontadas na folha do
-	 * colaborador, recebe o valor de horasFalta e multiplica pelo valor da hora
+	 * <p>Realiza o cálculo das horas faltas a serem descontadas na folha do
+	 * {@link ColaboradorFolha}, recebe o valor de horasFalta e 
+	 * multiplica pelo valor da hora.</p>
 	 * 
-	 * @param pontoFolha {@link IPontoFolha}
-	 * @param double valorHora
-	 * @return double
+	 * @param pontoFolha {@link IPontoFolha}, referente ao {@link PontoFolha};
+	 * @param double valorHora, referente ao valor da hora.
 	 * 
-	 * @author sprint2
-	 * @author Lucas Grijo
-	 * @author Lucas walim
-	 * @author Marcelo Schaefer
+	 * @return double, referente ao valor de horas faltas. 
+	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Lucas walim
+	 * @author Sprint 4: Marcelo Schaefer
+	 * 
+	 * @see ColaboradorFolha
+	 * @see IPontoFolha
+	 * @see PontoFolha
 	 */
 	public double calcularValorHorasFaltas(IPontoFolha pontoFolha, double valorHora) {
 		return pontoFolha.getHorasFaltas() * valorHora;
 	}
 
 	/**
-	 * Calcula o valor horas extras
+	 * <h1>Calcula o valor horas extras.</h1>
 	 * 
-	 * O valor retornado da multiplicao de valorHoras e fator, vai somar com o
-	 * valorHoras e depois multiplica pelas horasExtra
+	 * <p>O valor retornado da multiplicao com o valor de horas e {@link CalculoHoras#fator}, 
+	 * vai somar com o valor de horas e depois multiplica pelas horas extras.</p>
 	 * 
-	 * @param pontoFolha {@link IPontoFolha}
-	 * @param double valorHoras
-	 * @return valor
+	 * @param pontoFolha {@link IPontoFolha}, referente ao {@link PontoFolha};
+	 * @param double valorHora, referente ao valor de horas.
 	 * 
-	 * @author sprint2
-	 * @author Lucas Grijo
-	 * @author Lucas walim
-	 * @author Marcelo Schaefer
+	 * @return valor, referente ao valor de horas extras
+	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Lucas walim
+	 * @author Sprint 4: Marcelo Schaefer
+	 * 
+	 * @see CalculoHoras#fator
+	 * @see IPontoFolha
+	 * @see PontoFolha
 	 */
 	public double calcularValorHorasExtras(IPontoFolha pontoFolha, double valorHora) {
 		return pontoFolha.getHorasExtra() * (valorHora + (valorHora * fator));
 	}
 
 	/**
-	 * calcula valor DSR
+	 * <h1>Calcula valor DSR.</h1>
 	 * 
-	 * o metodo pega a data atual, adciona em uma listatodos os dias do mes atual
+	 * <p>O metodo pega a data atual, adciona em uma lista todos os dias do mes atual
 	 * que sao dias uteis, depois usa com variavel os dias uteis a partir do tamanho
 	 * da lista, e os dias de domingo como a diferenca entre o tamanho da lista e a
-	 * quantidade de dias no mes.
+	 * quantidade de dias no mes.</p>
 	 * 
-	 * @param double valorHorasExtras, valor das horas extras do funcionario
-	 * @return double, valor da divisao com a multiplicacao
+	 * @param valorHorasExtras double, valor das horas extras do {@link ColaboradorFolha}
 	 * 
-	 * @author sprint2
-	 * @author Lucas Grijo
-	 * @author Marcelo Schaefer
+	 * @return double, valor da divisao com a multiplicacao.
+	 * 
+	 * @author Sprint 4: Lucas Grijo
+	 * @author Sprint 4: Marcelo Schaefer
 	 */
 	public double calcularDSR(double valorHorasExtras) {
 		double diasUteis = 25.0;
@@ -165,18 +193,18 @@ public class CalculoHoras implements ICalculoHoras {
 	}
 
 	/**
-	 * calcula as ferias
+	 * <h1>Calcula as ferias.</h1>
 	 * 
-	 * o metodo verifica se o abono eh menor que 0, se for, valor de ferias eh igual
-	 * ou valor dela mais um terco, se nao, calcula o abono e pega um terco dele
+	 * <p>O metodo verifica se o abono eh menor que 0, se for, valor de ferias eh igual
+	 * ou valor dela mais um terco, se nao, calcula o abono e pega um terco dele.</p>
 	 * 
-	 * @param int dias
-	 * @param int abono
-	 * @param double valorHoras
-	 * @return double valorTotalFerias
+	 * @param dias int, referente aos dias;
+	 * @param abono int, referente ao abono;
+	 * @param valorHoras double, referente ao valor da hora;
 	 * 
-	 * @author sprint2
-	 * @author Lucas Grijo
+	 * @return double, referente ao valor total de {@link FeriasFolha}.
+	 * 
+	 * @author Sprint 4: Lucas Grijo
 	 */
 	public double calcularFerias(int dias, int abono, double valorHora) {
 		double valorDia = valorHora * valorHorasDias;
