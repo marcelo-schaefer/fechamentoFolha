@@ -30,7 +30,6 @@ public class Bonificacao {
 	private int id;
 
 	public double porcentagemBonificacaoColaborador;
-	public double porcentagemBonificacaoCargo;
 
 	/**
 	 * @return the porcentagemBonificacaoColaborador
@@ -38,14 +37,6 @@ public class Bonificacao {
 	public double getPorcentagemBonificacaoColaborador() {
 		return porcentagemBonificacaoColaborador;
 	}
-
-	/**
-	 * @return the porcentagemBonificacaoCargo
-	 */
-	public double getPorcentagemBonificacaoCargo() {
-		return porcentagemBonificacaoCargo;
-	}
-
 	/**
 	 * 
 	 * @param porcentagemBonificacaoColaborador

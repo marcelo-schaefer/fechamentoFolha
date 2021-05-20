@@ -198,9 +198,11 @@ public class FolhaBuilder implements IFolhaBuilder {
 	 * @param bonificacao, referente ao valor da bonificacao a ser atribuido ao
 	 *                     sal�rio base
 	 */
-	public double atribuiBonificacaoColaborador(ICargoFolha cargo, Bonificacao bonificacao) {
+	public double atribuiBonificacaoColaboradorCargo(ICargoFolha cargo, Bonificacao bonificacao) {
 		this.bonificacao = cargo.getSalarioBase() * bonificacao.getPorcentagemBonificacaoColaborador();
 		return this.salarioBruto += this.bonificacao;
 	}
+
+	
 
 }

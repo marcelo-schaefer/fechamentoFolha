@@ -26,7 +26,7 @@ public interface IFolhaBuilder {
 	
 	public void iniciarCalculos(IColaboradorFolha colaborador, ICargoFolha cargo);
 	public void setDataEmissaoFolha();
-	public double atribuiBonificacaoColaborador(ICargoFolha cargo, Bonificacao bonificacao);
+	public double atribuiBonificacaoColaboradorCargo(ICargoFolha cargo, Bonificacao bonificacao);
 	public void calcularHorasNormais(IPontoFolha ponto, ICargoFolha cargo);
 	public void calcularDescontoNormal(IColaboradorFolha colaborador, ICargoFolha cargo);
 	public void calcularHorasFerias(IFeriasFolha feriasFolha);

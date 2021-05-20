@@ -55,7 +55,7 @@ public class FolhaDirector {
 		builder.calcularPlr();
 		builder.iniciarCalculos(colaborador, cargo);
 		builder.calcularHorasNormais(ponto, cargo);
-		builder.atribuiBonificacaoColaborador(cargo, bonificacao);
+		builder.atribuiBonificacaoColaboradorCargo(cargo, bonificacao);
 		builder.calcularDescontoNormal(colaborador, cargo);
 		return builder.build();
 	}
