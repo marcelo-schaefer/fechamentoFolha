@@ -130,8 +130,8 @@ public class FolhaBuilder implements IFolhaBuilder {
 	/**
 	 * Calcula o valor do {@link Plr}
 	 * 
-	 * Busca no banco de dados o {@link Plr} cadastrado no mês e ano da data de emissao da {@link Folha}
-	 * e associa o valor do respectivo {@link Plr} à {@link Folha}.
+	 * Busca no banco de dados o {@link Plr} cadastrado no mï¿½s e ano da data de emissao da {@link Folha}
+	 * e associa o valor do respectivo {@link Plr} ï¿½ {@link Folha}.
 	 * 
 	 * @return void
 	 */
@@ -191,26 +191,16 @@ public class FolhaBuilder implements IFolhaBuilder {
 	}
 
 	/**
-	 * Altera a bonificação por colaborador atribuindo ao salarioBase o valor da
+	 * Altera a bonificaï¿½ï¿½o por colaborador atribuindo ao salarioBase o valor da
 	 * bonificacao.
 	 * 
 	 * @param cargo,       referente ao {@link ColaboradorFolha}
 	 * @param bonificacao, referente ao valor da bonificacao a ser atribuido ao
-	 *                     salário base
+	 *                     salï¿½rio base
 	 */
 	public double atribuiBonificacaoColaborador(ICargoFolha cargo, Bonificacao bonificacao) {
 		this.bonificacao = cargo.getSalarioBase() * bonificacao.getPorcentagemBonificacaoColaborador();
 		return this.salarioBruto += this.bonificacao;
 	}
 
-//	/**
-//	 * Altera a bonificaï¿½ï¿½o por Cargo atribuindo ao salarioBruto o valor atribuido 
-//	 * variavel cargo do Cargo se refere ao ICargo, e as variaveis que devereï¿½o ser implementadas
-//	 * a variavel b recebe o cargo e com o percentual da bonificaï¿½ï¿½o resulta o novo valor Bruto
-//	 * @param cargo
-//	 */
-//	public double atribuiBonificacaoCargo(ICargoFolha cargo) {
-//		double b =+  cargo.getSalarioBase() * bonificacao.getPorcentagemBonificacaoCargo();
-//		return b;
-//	}
 }

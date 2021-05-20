@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Classe que implementa o valor da bonificação por Setor/Colaborador/Empresa
+ * Classe que implementa o valor da bonificaï¿½ï¿½o por Setor/Colaborador/Empresa
  * 
  * @author Sabrina sabrinaschmidt335@gmail.com
  * @author Leo P leonardo.pereira@senior.com.br
@@ -62,10 +62,6 @@ public class Bonificacao {
 	public Bonificacao() {
 	}
 
-//	public Bonificacao(double porcentagemBonificacaoColaborador, double porcentagemBonificacaoSetor,
-//			double porcentagemBonificacaoEmpresa, double porcentagemBonificacaoCargo) {
-//		this.porcentagemBonificacaoColaborador = porcentagemBonificacaoColaborador;
-//	}
 
 	@Override
 	public String toString() {
