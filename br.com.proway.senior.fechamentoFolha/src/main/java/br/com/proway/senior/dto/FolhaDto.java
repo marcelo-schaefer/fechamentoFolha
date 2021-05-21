@@ -8,6 +8,8 @@ import br.com.proway.senior.model.externo.ColaboradorFolha;
 import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 
 /**
+ * Classe que instancia os valores da folha, do ponto, do colaborador, 
+ * da bonificação e do ponto.
  * 
  * @author Sabrina
  * @author Samuel
