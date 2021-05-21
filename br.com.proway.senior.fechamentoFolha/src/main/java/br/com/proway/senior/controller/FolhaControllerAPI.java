@@ -1,5 +1,6 @@
 package br.com.proway.senior.controller;
 
+import br.com.proway.senior.dao.FolhaDAO;
 import br.com.proway.senior.dto.FolhaDto;
 import br.com.proway.senior.model.Bonificacao;
 import br.com.proway.senior.model.Folha;
