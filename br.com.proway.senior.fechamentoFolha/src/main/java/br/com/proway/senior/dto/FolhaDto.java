@@ -88,6 +88,18 @@ public class FolhaDto {
 		
 	}
 
+	public FolhaDto(Folha folha) {
+		this.valorHorasTrabalhadas = folha.getValorHorasTrabalhadas();
+		this.valorHorasExtras = folha.getValorHorasExtras();
+		this.valorInss = folha.getValorInss();
+		this.valorImpostoDeRenda = folha.getValorImpostoDeRenda();
+		this.valorPlanoSaude = folha.getValorPlanoSaude();
+		this.valorValeTransporte = folha.getValorValeTransporte();
+		this.salarioBruto = folha.getSalarioBruto();
+		this.salarioLiquido = folha.getSalarioLiquido();
+		this.valorFGTS = folha.getValorFGTS();
+	}
+
 	public double getValorHorasTrabalhadas() {
 		return valorHorasTrabalhadas;
 	}
