@@ -5,7 +5,19 @@
 	<groupId>br.com.proway.senior</groupId>
 	<artifactId>br.com.proway.senior.fechamentoFolha2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
