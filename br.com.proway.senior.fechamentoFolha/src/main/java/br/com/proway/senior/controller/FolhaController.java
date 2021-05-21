@@ -16,16 +16,16 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
 /**
  * <h1>Guarda os metodos responsaveis por construir a {@link Folha}.</h1>
  * 
- * <p>Recebe dados atraves do {@link FolhaBuilder}, trata estes dados e cria um
- * objeto especifico de {@link Folha}, no fim, o envia para banco de dados.</p>
+ * <p>
+ * Recebe dados atraves do {@link FolhaBuilder}, trata estes dados e cria um
+ * objeto especifico de {@link Folha}, no fim, o envia para banco de dados.
+ * </p>
  * 
- * @author Sprint 4: Bruno Oliveira
- * @author Sprint 4: Lucas Grijo
- * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
- * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
- * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
- * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
- * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+ * @author Sprint 6: David Willian <dwillian676@gmail.com;
+ * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
+ * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
+ * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+ * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
  * 
  * @see Folha
  * @see FolhaBuilder
@@ -35,14 +35,15 @@ public class FolhaController {
 	/**
 	 * <h1>Referente a {@link FolhaDAO}</h1>
 	 * 
-	 * <p>Instancia um objeto {@link FolhaDAO} em
-	 * uma variavel.</p>
+	 * <p>
+	 * Instancia um objeto {@link FolhaDAO} em uma variavel.
+	 * </p>
 	 * 
-	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
-	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
-	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
-	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
+	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
+	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
+	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * 
 	 * @see FolhaDAO
 	 */
@@ -51,21 +52,23 @@ public class FolhaController {
 	/**
 	 * <h1>Constroi o {@link CargoFolha}</h1>
 	 * 
-	 * <p>Recebe um salario base e um percentual insalubridade, constroi o
-	 * {@link CargoFolha} com esses parametros e retorna um {@link CargoFolha}.</p>
+	 * <p>
+	 * Recebe um salario base e um percentual insalubridade, constroi o
+	 * {@link CargoFolha} com esses parametros e retorna um {@link CargoFolha}.
+	 * </p>
 	 * 
-	 * @param salarioBase double, referente ao salario base informado
-	 * para o cargo.
+	 * @param salarioBase             double, referente ao salario base informado
+	 *                                para o cargo.
 	 * @param percentualInsalubridade double, referente ao percentual de
-	 * insalubridade informado para o cargo.
+	 *                                insalubridade informado para o cargo.
 	 * 
 	 * @return {@link CargoFolha}.
 	 * 
-	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
-	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
-	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
-	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
+	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
+	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
+	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * 
 	 * @see CargoFolha
 	 */
@@ -76,23 +79,28 @@ public class FolhaController {
 	/**
 	 * <h1>Constroi a FolhaNormal.</h1>
 	 * 
-	 * <p>Recebe um objeto {@link IColaboradorFolha}, {@link IPontoFolha}, 
-	 * {@link ICargoFolha} e {@link Bonificacao}.
-	 * Constroi um novo objeto {@link Folha} com os parametros
-	 * informados.</p>
+	 * <p>
+	 * Recebe um objeto {@link IColaboradorFolha}, {@link IPontoFolha},
+	 * {@link ICargoFolha} e {@link Bonificacao}. Constroi um novo objeto
+	 * {@link Folha} com os parametros informados.
+	 * </p>
 	 * 
-	 * @param colaborador {@link IColaboradorFolha}, referente ao {@link ColaboradorFolha} informado;
-	 * @param ponto {@link IPontoFolha}, referente ao {@link PontoFolha} informado;
-	 * @param cargo {@link ICargoFolha}, referente ao {@link CargoFolha} informado;
-	 * @param bonificacao {@link Bonificacao}, referente a {@link Bonificacao} informada.
+	 * @param colaborador {@link IColaboradorFolha}, referente ao
+	 *                    {@link ColaboradorFolha} informado;
+	 * @param ponto       {@link IPontoFolha}, referente ao {@link PontoFolha}
+	 *                    informado;
+	 * @param cargo       {@link ICargoFolha}, referente ao {@link CargoFolha}
+	 *                    informado;
+	 * @param bonificacao {@link Bonificacao}, referente a {@link Bonificacao}
+	 *                    informada.
 	 * 
 	 * @return {@link Folha}
 	 * 
-	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
-	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
-	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
-	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
+	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
+	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
+	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * 
 	 * @see IColaboradorFolha
 	 * @see IPontoFolha
@@ -103,7 +111,8 @@ public class FolhaController {
 	 * @see Bonificacao
 	 * @see Folha
 	 */
-	public Folha construirFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo, Bonificacao bonificacao) {
+	public Folha construirFolhaNormal(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo,
+			Bonificacao bonificacao) {
 		FolhaBuilder folhaBuilder = new FolhaBuilder();
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaNormal(colaborador, ponto, cargo, bonificacao);
@@ -113,13 +122,18 @@ public class FolhaController {
 	/**
 	 * <h1>Constroi a FolhaFerias.</h1>
 	 * 
-	 * <p>Recebe um objeto {@link IColaboradorFolha}, {@link IFeriasFolha} e 
-	 * {@link ICargoFolha}. Constroi um novo objeto {@link Folha}
-	 * com os parametros informados.</p>
+	 * <p>
+	 * Recebe um objeto {@link IColaboradorFolha}, {@link IFeriasFolha} e
+	 * {@link ICargoFolha}. Constroi um novo objeto {@link Folha} com os parametros
+	 * informados.
+	 * </p>
 	 * 
-	 * @param colaborador {@link IColaboradorFolha}, referente ao {@link ColaboradorFolha} informado;
-	 * @param ferias {@link IFeriasFolha}, referente a {@link FeriasFolha} informada.
-	 * @param cargo {@link ICargoFolha}, referente ao {@link CargoFolha} informado;
+	 * @param colaborador {@link IColaboradorFolha}, referente ao
+	 *                    {@link ColaboradorFolha} informado;
+	 * @param ferias      {@link IFeriasFolha}, referente a {@link FeriasFolha}
+	 *                    informada.
+	 * @param cargo       {@link ICargoFolha}, referente ao {@link CargoFolha}
+	 *                    informado;
 	 * 
 	 * @return {@link Folha}.
 	 * 
@@ -147,17 +161,21 @@ public class FolhaController {
 	/**
 	 * <h1>Constroi a FolhaHibrida.</h1>
 	 * 
-	 * <p>Recebe um objeto {@link IColaboradorFolha}, {@link IPontoFolha}, 
-	 * {@link ICargoFolha}, {@link IFeriasFolha} e {@link IPlr}.
-	 * Constroi um novo objeto {@link Folha} com os parametros
-	 * informados.</p>
+	 * <p>
+	 * Recebe um objeto {@link IColaboradorFolha}, {@link IPontoFolha},
+	 * {@link ICargoFolha}, {@link IFeriasFolha} e {@link IPlr}. Constroi um novo
+	 * objeto {@link Folha} com os parametros informados.
+	 * </p>
 	 * 
-	 * @param colaborador {@link IColaboradorFolha}, referente ao 
-	 * {@link ColaboradorFolha} informado;
-	 * @param ponto {@link IPontoFolha}, referente ao {@link PontoFolha} informado;
-	 * @param cargo {@link ICargoFolha}, referente ao {@link CargoFolha} informado;
-	 * @param ferias {@link IFeriasFolha}, referente a {@link FeriasFolha} informado;
-	 * @param plr {@link IPlr}, refernete ao {@link Plr}.
+	 * @param colaborador {@link IColaboradorFolha}, referente ao
+	 *                    {@link ColaboradorFolha} informado;
+	 * @param ponto       {@link IPontoFolha}, referente ao {@link PontoFolha}
+	 *                    informado;
+	 * @param cargo       {@link ICargoFolha}, referente ao {@link CargoFolha}
+	 *                    informado;
+	 * @param ferias      {@link IFeriasFolha}, referente a {@link FeriasFolha}
+	 *                    informado;
+	 * @param plr         {@link IPlr}, refernete ao {@link Plr}.
 	 * 
 	 * @return {@link Folha}.
 	 * 
@@ -190,64 +208,91 @@ public class FolhaController {
 	/**
 	 * <h1>Salva a {@link Folha} no banco de dados.</h1>
 	 * 
-	 * <p>Recebe um objeto {@link Folha}, chama a instancia do {@link FolhaDAO} e
-	 * insere o objeto no banco de dados.</p>
+	 * <p>
+	 * Recebe um objeto {@link Folha}, chama a instancia do {@link FolhaDAO} e
+	 * insere o objeto no banco de dados.
+	 * </p>
 	 * 
 	 * @param folha {@link Folha}, referente a {@link Folha} informada.
 	 * 
-	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
-	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
-	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
-	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
-	 * 
-	 *  @see Folha
-	 *  @see FolhaDAO
+	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
+	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
+	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
+	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
+	 * @see Folha
+	 * @see FolhaDAO
 	 */
-	public void salvarFolha(Folha folha) {
-		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
-		folhaDao.insert(folha);
+	public boolean salvarFolha(Folha folha) {
+		try {
+			folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
+			folhaDao.insert(folha);
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 	/**
 	 * <h1>Atualiza uma {@link Folha} do banco de dados.</h1>
 	 * 
-	 * <p>Recebe um objeto {@link Folha} como parametro e 
-	 * realiza a atualizacao desse objeto ja existente no banco.</p>
+	 * <p>
+	 * Recebe um objeto {@link Folha} como parametro e realiza a atualizacao desse
+	 * objeto ja existente no banco.
+	 * </p>
 	 *
 	 * @param folha {@link Folha}, referente a {@link Folha} informada
 	 * 
-	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
-	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
-	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
-	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
-	 * 
+	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
+	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
+	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
+	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * @see Folha
 	 */
-	public void editarFolha(Folha folha) {
-		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
-		folhaDao.update(folha);
+	public boolean editarFolha(Folha folha) {
+		try {
+			folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
+			folhaDao.update(folha);
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	/**
 	 * <h1>Deletar {@link Folha} do banco.</h1>
 	 * 
-	 * <p>O metodo recebe um objeto {@link Folha} existente no banco de dados,
-	 *  e deleta o mesmo.</p>
+	 * <p>
+	 * O metodo recebe um objeto {@link Folha} existente no banco de dados, e deleta
+	 * o mesmo.
+	 * </p>
 	 * 
 	 * @param folha {@link Folha}, referente a {@link Folha} informada.
 	 * 
-	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
-	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
-	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
-	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
+	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
+	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
+	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
+	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
+	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * 
 	 * @see Folha
 	 */
 	public void deletarFolha(Folha folha) {
-		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
-		folhaDao.delete(folha);
+		try {
+			folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
+			folhaDao.delete(folha);
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 }
