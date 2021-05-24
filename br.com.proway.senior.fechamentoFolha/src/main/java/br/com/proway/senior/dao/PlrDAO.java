@@ -97,7 +97,7 @@ public final class PlrDAO implements InterfaceDAO<Plr> {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
 		try {
-			session.delete(session.get(Plr.class, plrASerDeletado.getId()));
+			session.delete(plrASerDeletado);
 			session.getTransaction().commit();
 			return true;
 		} catch (Exception e) {

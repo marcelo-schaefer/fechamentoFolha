@@ -42,11 +42,11 @@ public class PlrDAOTest {
 		Plr plr2 = new Plr();
 		plr1.setVencimento(LocalDate.of(2021, 02, 10));
 		plr2.setVencimento(LocalDate.of(2021, 01, 10));
-		plr1.setValorPlr(1000);
-		plr2.setValorPlr(1500);
+		plr1.setValorPlr(2000);
+		plr2.setValorPlr(3500);
 		plrDao.insert(plr1);
 		plrDao.insert(plr2);
-		plrDao.delete(plrDao.getAll().get(0).getId());
+		plrDao.delete(plr2);
 		assertTrue(plrDao.getAll().size() == 1);
 	}
 	
