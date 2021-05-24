@@ -47,11 +47,11 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	}
 
 	/**
-	 * <h1>Cria uma instancia caso não exista ou usa a existente.</h1>
+	 * <h1>Cria uma instancia caso nï¿½o exista ou usa a existente.</h1>
 	 *
 	 * <p>
-	 * Recebe uma session. Verifica a existencia de uma instancia, caso já exista
-	 * ele atribui a instancia uma sessao da {@link FolhaDAO} caso não exista ele
+	 * Recebe uma session. Verifica a existencia de uma instancia, caso jï¿½ exista
+	 * ele atribui a instancia uma sessao da {@link FolhaDAO} caso nï¿½o exista ele
 	 * cria uma nova instancia.
 	 * </p>
 	 *
@@ -199,9 +199,9 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 		criteria.from(Folha.class);
 		List<Folha> folhaFiltrada = new ArrayList<Folha>();
 		List<Folha> selectedFolhas = session.createQuery(criteria).getResultList();
-		for (Folha selectedFolha : selectedFolhas) {
-			if (selectedFolha.getId() == idColaborador) {
-				folhaFiltrada.add(selectedFolha);
+		for (int i = 0; i < selectedFolhas.size(); i++) {
+			if (selectedFolhas.get(i).getId() == idColaborador) {
+				folhaFiltrada.add(selectedFolhas.get(i));
 				return folhaFiltrada;
 			}
 		}	
@@ -251,13 +251,7 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 *
 	 * @return List<{ @ link Folha }>, referente as folhas que tem o valor na coluna
 	 *         informada.
-	 *
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
-	 *
+	
 	 * @see Folha
 	 */
 	public List<Folha> getDoubleByColumn(String column, Double value) {
