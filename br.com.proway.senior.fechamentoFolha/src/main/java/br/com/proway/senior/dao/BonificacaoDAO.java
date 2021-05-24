@@ -73,7 +73,6 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
         }
     }
 
-    @Override
     public boolean delete(Bonificacao bonificacaoASerDeletada) {
         if (!session.getTransaction().isActive())
             session.beginTransaction();
@@ -87,7 +86,7 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
         }
     }
 
-    @Override
+
     public List<Bonificacao> getAll() {
         if (!session.getTransaction().isActive())
             session.beginTransaction();
@@ -97,7 +96,7 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
         return session.createQuery(criteria).getResultList();
     }
 
-    @Override
+
     public Bonificacao getById(int id) {
         return session.get(Bonificacao.class, id);
     }
@@ -108,14 +107,14 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
 	 * @param id
 	 * @return
 	 */
-	@Override
+
     public List<Bonificacao> getAllById(int id) {
         if (!session.getTransaction().isActive())
             session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Bonificacao> criteria = builder.createQuery(Bonificacao.class);
         criteria.from(Bonificacao.class);
-        List<Bonificacao> bonificacaoFiltrada = new ArrayList<>();
+        List<Bonificacao> bonificacaoFiltrada = new ArrayList<Bonificacao>();
         List<Bonificacao> selectedBonificacoes =
                 session.createQuery(criteria).getResultList();
         for (Bonificacao selectedBonificacao : selectedBonificacoes) {

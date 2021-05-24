@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ee43b5-1160-4b52-8166-93298075d47a" name="Default Changelist" comment="Ajuste de Merge, Remoção de comentários desnecessários">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="64ee43b5-1160-4b52-8166-93298075d47a" name="Default Changelist" comment="Refatoração das classes de Bonificação DAO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/controller/FolhaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/controller/FolhaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/controller/FolhaControllerAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/controller/FolhaControllerAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/BonificacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/BonificacaoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/FolhaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/FolhaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/model/Bonificacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/model/Bonificacao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/Teste2" />
+    <option name="BRANCH" value="RefatBonDAO" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
