@@ -189,7 +189,7 @@ public class FolhaController {
 	 * </p>
 	 * 
 	 * @param folha {@link Folha}, referente a {@link Folha} informada.
-	 * 
+	 *
 	 * @see Folha
 	 * @see FolhaDAO
 	 */
@@ -215,7 +215,6 @@ public class FolhaController {
 	 * </p>
 	 *
 	 * @param folha {@link Folha}, referente a {@link Folha} informada
-	 * 
 	 * @see Folha
 	 */
 	public boolean editarFolha(Folha folha) {
@@ -240,8 +239,6 @@ public class FolhaController {
 	 * 
 	 * @param folha {@link Folha}, referente a {@link Folha} informada.
 	 *
-	 * 
-	 * @see Folha
 	 */
 	public boolean deletarFolha(Folha folha) {
 		try {
