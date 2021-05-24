@@ -19,8 +19,8 @@ public class FolhaControllerAPI {
 		return listaFolhaDTO;
 	}
 
-	public FolhaDto buscarFolhasPorId(Integer idEmpresa) {
-		FolhaDto folha = new FolhaDto(folhaController.getById(idEmpresa));
+	public FolhaDto buscarFolhasPorId(Integer id) {
+		FolhaDto folha = new FolhaDto(folhaController.getById(id));
 		return folha;
 	}
 
