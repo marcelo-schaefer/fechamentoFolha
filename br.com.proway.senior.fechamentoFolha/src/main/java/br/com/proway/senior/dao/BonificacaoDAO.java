@@ -1,60 +1,129 @@
 package br.com.proway.senior.dao;
 
+import br.com.proway.senior.model.Bonificacao;
 import org.hibernate.Session;
 
-import br.com.proway.senior.model.Bonificacao;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <h1>Bonificacao DAO.</h1>
- * 
- * <p>Classe responsavel por implementar os metodos
- * de DML da classe {@link Bonificacao}.</p>
- * 
- * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
- * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
- * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
- * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
- * 
+ *
+ * <p>Classe responsavel por implementar os metodos CRUD da classe
+ * {@link Bonificacao}. </p>
+ *
+ * @author Samuel Levi <samuel.levi@senior.com.br>
+ * @version Sprint 6
  * @see Bonificacao
  */
-public class BonificacaoDAO {
-	
-	private Session session;
-	private static BonificacaoDAO instance;
-	
-	public static BonificacaoDAO getInstance(Session session) {
-		if (instance == null) {
-			instance = new BonificacaoDAO(session);
-		}
-		return instance;
-	}
-	
-	public static BonificacaoDAO newInstance(Session session) {
-		instance = new BonificacaoDAO(session);
-		return instance;
-	}
+public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
 
-	private BonificacaoDAO(Session session) {
-		this.session = session;
-	}
-	
-	/***
-	 * <h1>Inserir {@link Bonificacao} na
-	 * tabela bonificacao.</h1>
-	 * 
-	 * <p>Recebe um objeto {@link Bonificacao} e
-	 * insere ele na tabela de bonificacoes
-	 * do banco de dados.</p>
-	 * 
-	 * @param objectToInsert {@link Bonificacao}, referente a {@link Bonificacao}
-	 * informada.
-	 * 
-	 * @see Bonificacao
+    private static BonificacaoDAO instance;
+    private final Session session;
+
+    private BonificacaoDAO(Session session) {
+        this.session = session;
+    }
+
+    public static BonificacaoDAO getInstance(Session session) {
+        if (instance == null) {
+            instance = new BonificacaoDAO(session);
+        }
+        return instance;
+    }
+
+    /**
+     * Inserir {@link Bonificacao} na tabela bonificação.
+     * <p>
+     * Recebe um objeto {@link Bonificacao} e insere ele na tabela de
+     * bonificações
+     * do banco de dados.
+     *
+     * @param bonificacaoASerInserida {@link Bonificacao}, referente a {@link Bonificacao}
+     *                                informada.
+     * @return
+     * @see Bonificacao
+     */
+    public boolean insert(Bonificacao bonificacaoASerInserida) {
+        if (!session.getTransaction().isActive())
+            session.beginTransaction();
+        try {
+            session.save(bonificacaoASerInserida);
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(Bonificacao bonificacaoASerAlterada) {
+        if (!session.getTransaction().isActive())
+            session.beginTransaction();
+        try {
+            session.update(bonificacaoASerAlterada);
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean delete(Bonificacao bonificacaoASerDeletada) {
+        if (!session.getTransaction().isActive())
+            session.beginTransaction();
+        try {
+            session.delete(bonificacaoASerDeletada);
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public List<Bonificacao> getAll() {
+        if (!session.getTransaction().isActive())
+            session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Bonificacao> criteria = builder.createQuery(Bonificacao.class);
+        criteria.from(Bonificacao.class);
+        return session.createQuery(criteria).getResultList();
+    }
+
+    @Override
+    public Bonificacao getById(int id) {
+        return session.get(Bonificacao.class, id);
+    }
+
+	/**
+	 * Retorna todas as bonificações recebidas por um Colaborador.
+	 *
+	 * @param id
+	 * @return
 	 */
-	public void insert(Bonificacao objectToInsert) {
-		if (!session.getTransaction().isActive())
-			session.beginTransaction();
-		session.save(objectToInsert);
-		session.getTransaction().commit();
-	}
+	@Override
+    public List<Bonificacao> getAllById(int id) {
+        if (!session.getTransaction().isActive())
+            session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Bonificacao> criteria = builder.createQuery(Bonificacao.class);
+        criteria.from(Bonificacao.class);
+        List<Bonificacao> bonificacaoFiltrada = new ArrayList<>();
+        List<Bonificacao> selectedBonificacoes =
+                session.createQuery(criteria).getResultList();
+        for (Bonificacao selectedBonificacao : selectedBonificacoes) {
+            if (selectedBonificacao.getId() == id) {
+                bonificacaoFiltrada.add(selectedBonificacao);
+                return bonificacaoFiltrada;
+            }
+        }
+        return bonificacaoFiltrada;
+    }
 }

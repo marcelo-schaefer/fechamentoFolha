@@ -199,9 +199,9 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 		criteria.from(Folha.class);
 		List<Folha> folhaFiltrada = new ArrayList<Folha>();
 		List<Folha> selectedFolhas = session.createQuery(criteria).getResultList();
-		for (int i = 0; i < selectedFolhas.size(); i++) {
-			if (selectedFolhas.get(i).getId() == idColaborador) {
-				folhaFiltrada.add(selectedFolhas.get(i));
+		for (Folha selectedFolha : selectedFolhas) {
+			if (selectedFolha.getId() == idColaborador) {
+				folhaFiltrada.add(selectedFolha);
 				return folhaFiltrada;
 			}
 		}	
