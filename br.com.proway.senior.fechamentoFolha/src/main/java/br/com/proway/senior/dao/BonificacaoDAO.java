@@ -1,9 +1,12 @@
 package br.com.proway.senior.dao;
 
 import br.com.proway.senior.model.Bonificacao;
+import br.com.proway.senior.model.Folha;
+
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.ArrayList;
 import java.util.List;
@@ -125,4 +128,17 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
         }
         return bonificacaoFiltrada;
     }
+
+	public void limparTabela() {
+		if (!session.getTransaction().isActive()) {
+			session.beginTransaction();
+		}
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaDelete<Folha> criteriaDelete = builder.createCriteriaDelete(Folha.class);
+		criteriaDelete.from(Folha.class);
+		session.createQuery(criteriaDelete).executeUpdate();
+	}
+		
 }
+
+
