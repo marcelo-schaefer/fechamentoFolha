@@ -2,9 +2,6 @@ package br.com.proway.senior.controller;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-
 import br.com.proway.senior.dao.FolhaDAO;
 import br.com.proway.senior.dao.PostgresConnector;
 import br.com.proway.senior.model.Bonificacao;
@@ -12,7 +9,11 @@ import br.com.proway.senior.model.Folha;
 import br.com.proway.senior.model.FolhaBuilder;
 import br.com.proway.senior.model.FolhaDirector;
 import br.com.proway.senior.model.IPlr;
+import br.com.proway.senior.model.Plr;
 import br.com.proway.senior.model.externo.CargoFolha;
+import br.com.proway.senior.model.externo.ColaboradorFolha;
+import br.com.proway.senior.model.externo.FeriasFolha;
+import br.com.proway.senior.model.externo.PontoFolha;
 import br.com.proway.senior.model.externo.interfaces.ICargoFolha;
 import br.com.proway.senior.model.externo.interfaces.IColaboradorFolha;
 import br.com.proway.senior.model.externo.interfaces.IFeriasFolha;
