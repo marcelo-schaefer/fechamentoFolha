@@ -46,7 +46,7 @@ public class PlrDAOTest {
 		plr2.setValorPlr(1500);
 		plrDao.insert(plr1);
 		plrDao.insert(plr2);
-		plrDao.delete(plrDao.getAll().get(0).getId());
+		plrDao.delete(plr2);
 		assertTrue(plrDao.getAll().size() == 1);
 	}
 	
