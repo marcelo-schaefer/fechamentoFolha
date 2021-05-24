@@ -1,5 +1,10 @@
 package br.com.proway.senior.controller;
 
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+
 import br.com.proway.senior.dao.FolhaDAO;
 import br.com.proway.senior.dao.PostgresConnector;
 import br.com.proway.senior.model.Bonificacao;
@@ -39,12 +44,6 @@ public class FolhaController {
 	 * Instancia um objeto {@link FolhaDAO} em uma variavel.
 	 * </p>
 	 * 
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
-	 * 
 	 * @see FolhaDAO
 	 */
 	private FolhaDAO folhaDao;
@@ -63,12 +62,6 @@ public class FolhaController {
 	 *                                insalubridade informado para o cargo.
 	 * 
 	 * @return {@link CargoFolha}.
-	 * 
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * 
 	 * @see CargoFolha
 	 */
@@ -95,12 +88,6 @@ public class FolhaController {
 	 *                    informada.
 	 * 
 	 * @return {@link Folha}
-	 * 
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * 
 	 * @see IColaboradorFolha
 	 * @see IPontoFolha
@@ -136,12 +123,6 @@ public class FolhaController {
 	 *                    informado;
 	 * 
 	 * @return {@link Folha}.
-	 * 
-	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
-	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
-	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
-	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
 	 * 
 	 * @see IColaboradorFolha
 	 * @see IFeriasFolha
@@ -179,12 +160,6 @@ public class FolhaController {
 	 * 
 	 * @return {@link Folha}.
 	 * 
-	 * @author Sprint 5: Leonardo Felipe Silva <felipeleao217@gmail.com>;
-	 * @author Sprint 5: Bruna Carvalho <sh4323202@gmail.com>;
-	 * @author Sprint 5: Leonardo Pereira <leonardopereirajr@gmail.com>;
-	 * @author Sprint 5: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 5: Lucas Nunes <lucasnunes.ln365@gmail.com>.
-	 * 
 	 * @see IColaboradorFolha
 	 * @see IPontoFolha
 	 * @see ICargoFolha
@@ -214,12 +189,7 @@ public class FolhaController {
 	 * </p>
 	 * 
 	 * @param folha {@link Folha}, referente a {@link Folha} informada.
-	 * 
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
+	 *
 	 * @see Folha
 	 * @see FolhaDAO
 	 */
@@ -245,12 +215,6 @@ public class FolhaController {
 	 * </p>
 	 *
 	 * @param folha {@link Folha}, referente a {@link Folha} informada
-	 * 
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * @see Folha
 	 */
 	public boolean editarFolha(Folha folha) {
@@ -274,16 +238,9 @@ public class FolhaController {
 	 * </p>
 	 * 
 	 * @param folha {@link Folha}, referente a {@link Folha} informada.
-	 * 
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
-	 * 
-	 * @see Folha
+	 *
 	 */
-	public void deletarFolha(Folha folha) {
+	public boolean deletarFolha(Folha folha) {
 		try {
 			folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
 			folhaDao.delete(folha);
@@ -293,6 +250,25 @@ public class FolhaController {
 			e.printStackTrace();
 			return false;
 		}
-		
+
+	}
+
+	/**
+	 * <h1>Retorna todos os objetos do banco de dados</h1>.
+	 *
+	 * <p>
+	 * Faz a conexao com o banco, tras todos os bancos e os lista em um List.
+	 * </p>
+	 *
+	 * @see Folha
+	 */
+	public List<Folha> getAll() {
+		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
+		return folhaDao.getAll();
+	}
+
+	public Folha getById(int id) {
+		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
+		return folhaDao.getById(id);
 	}
 }
