@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ee43b5-1160-4b52-8166-93298075d47a" name="Default Changelist" comment="minor fixes">
-      <change afterPath="$PROJECT_DIR$/src/test/java/br/com/proway/senior/dao/BonificacaoDAOTest2.java" afterDir="false" />
+    <list default="true" id="64ee43b5-1160-4b52-8166-93298075d47a" name="Default Changelist" comment="Bonificação DAO e Tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/BonificacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/BonificacaoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/br/com/proway/senior/dao/BonificacaoDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/com/proway/senior/dao/BonificacaoDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/br/com/proway/senior/dao/PlrDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/com/proway/senior/dao/PlrDAOTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621859333416</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Bonificação DAO e Tests">
+      <created>1621880628786</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1621880628786</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -177,6 +183,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajuste de Merge, Remoção de comentários desnecessários" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajuste de Merge, Remoção de comentários desnecessários" />
+    <MESSAGE value="Bonificação DAO e Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bonificação DAO e Tests" />
   </component>
 </project>

@@ -31,6 +31,7 @@ public class BonificacaoDAOTest {
     @Test
     public void testUpdate() {
         // Cenário
+
         final Bonificacao bonificacaoASerAlterada = new Bonificacao();
         bonificacaoASerAlterada.setPorcentagemBonificacaoColaborador(10.0);
         bonificacaoASerAlterada.setId(0);
