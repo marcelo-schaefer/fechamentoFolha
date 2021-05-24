@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ee43b5-1160-4b52-8166-93298075d47a" name="Default Changelist" comment="">
+    <list default="true" id="64ee43b5-1160-4b52-8166-93298075d47a" name="Default Changelist" comment="Ajuste de Merge, Remoção de comentários desnecessários">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/controller/FolhaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/controller/FolhaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/BonificacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/BonificacaoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/FolhaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/FolhaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/model/Bonificacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/model/Bonificacao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +21,11 @@
     <option name="BRANCH" value="origin/Teste2" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="sprint6" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="JpbToolWindowState">
@@ -45,6 +55,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -56,6 +67,14 @@
       <option name="presentableId" value="Default" />
       <updated>1621529928737</updated>
     </task>
+    <task id="LOCAL-00001" summary="Ajuste de Merge, Remoção de comentários desnecessários">
+      <created>1621859333416</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1621859333416</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -69,5 +88,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajuste de Merge, Remoção de comentários desnecessários" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajuste de Merge, Remoção de comentários desnecessários" />
   </component>
 </project>

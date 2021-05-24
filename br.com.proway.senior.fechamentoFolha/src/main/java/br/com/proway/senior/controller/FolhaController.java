@@ -80,8 +80,8 @@ public class FolhaController {
 	 * </p>
 	 * 
 	 * @param colaborador {@link IColaboradorFolha}, referente ao
-	 *                    {@link ColaboradorFolha} informado;
-	 * @param ponto       {@link IPontoFolha}, referente ao {@link PontoFolha}
+	 *                    {ColaboradorFolha} informado;
+	 * @param ponto       {@link IPontoFolha}, referente ao {PontoFolha}
 	 *                    informado;
 	 * @param cargo       {@link ICargoFolha}, referente ao {@link CargoFolha}
 	 *                    informado;
@@ -93,8 +93,8 @@ public class FolhaController {
 	 * @see IColaboradorFolha
 	 * @see IPontoFolha
 	 * @see ICargoFolha
-	 * @see ColaboradorFolha
-	 * @see PontoFolha
+	 * ColaboradorFolha
+	 * PontoFolha
 	 * @see CargoFolha
 	 * @see Bonificacao
 	 * @see Folha
@@ -117,8 +117,8 @@ public class FolhaController {
 	 * </p>
 	 * 
 	 * @param colaborador {@link IColaboradorFolha}, referente ao
-	 *                    {@link ColaboradorFolha} informado;
-	 * @param ferias      {@link IFeriasFolha}, referente a {@link FeriasFolha}
+	 *                    { ColaboradorFolha} informado;
+	 * @param ferias      {@link IFeriasFolha}, referente a {FeriasFolha}
 	 *                    informada.
 	 * @param cargo       {@link ICargoFolha}, referente ao {@link CargoFolha}
 	 *                    informado;
@@ -129,8 +129,8 @@ public class FolhaController {
 	 * @see IFeriasFolha
 	 * @see ICargoFolha
 	 * @see Folha
-	 * @see ColaboradorFolha
-	 * @see FeriasFolha
+	 * ColaboradorFolha
+	 * FeriasFolha
 	 * @see CargoFolha
 	 */
 	public Folha construirFolhaFerias(IColaboradorFolha colaborador, IFeriasFolha ferias, ICargoFolha cargo) {
@@ -150,15 +150,14 @@ public class FolhaController {
 	 * </p>
 	 * 
 	 * @param colaborador {@link IColaboradorFolha}, referente ao
-	 *                    {@link ColaboradorFolha} informado;
-	 * @param ponto       {@link IPontoFolha}, referente ao {@link PontoFolha}
+	 *                    {ColaboradorFolha} informado;
+	 * @param ponto       {@link IPontoFolha}, referente ao {PontoFolha}
 	 *                    informado;
 	 * @param cargo       {@link ICargoFolha}, referente ao {@link CargoFolha}
 	 *                    informado;
-	 * @param ferias      {@link IFeriasFolha}, referente a {@link FeriasFolha}
+	 * @param ferias      {@link IFeriasFolha}, referente a {FeriasFolha}
 	 *                    informado;
-	 * @param plr         {@link IPlr}, refernete ao {@link Plr}.
-	 * 
+	 *
 	 * @return {@link Folha}.
 	 * 
 	 * @see IColaboradorFolha
@@ -167,11 +166,11 @@ public class FolhaController {
 	 * @see IFeriasFolha
 	 * @see IPlr
 	 * @see Folha
-	 * @see ColaboradorFolha
-	 * @see PontoFolha
+	 * ColaboradorFolha
+	 * PontoFolha
 	 * @see CargoFolha
-	 * @see FeriasFolha
-	 * @see Plr
+	 * FeriasFolha
+	 * Plr
 	 */
 	public Folha construirFolhaHibrida(IColaboradorFolha colaborador, IPontoFolha ponto, ICargoFolha cargo,
 			IFeriasFolha ferias) {

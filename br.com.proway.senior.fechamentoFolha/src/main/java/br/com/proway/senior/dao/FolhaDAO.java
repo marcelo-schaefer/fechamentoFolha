@@ -1,18 +1,13 @@
 package br.com.proway.senior.dao;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Root;
-
+import br.com.proway.senior.model.Folha;
 import org.hibernate.Session;
 
-import br.com.proway.senior.model.Folha;
+import javax.persistence.criteria.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * <h1>Reponsavel pelos comandos de DML.</h1>
@@ -95,8 +90,7 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * de dados.
 	 * </p>
 	 *
-	 * @param folhaASerInserida {@link Folha}.
-	 * 
+	 * @param folhaASerInserida {@link Folha}, referente a {@link Folha}
 	 * @see Folha
 	 */
 	public boolean insert(Folha folhaASerInserida) {
@@ -194,12 +188,10 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * @see Folha
 	 */
 	public Folha getById(int id) {
-		if (!session.getTransaction().isActive())
-			session.beginTransaction();
 		return session.get(Folha.class, id);
 	}
 
-	public List<Folha> getAllById(int id) {
+	public List<Folha> getAllById(int idColaborador) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -207,9 +199,9 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 		criteria.from(Folha.class);
 		List<Folha> folhaFiltrada = new ArrayList<Folha>();
 		List<Folha> selectedFolhas = session.createQuery(criteria).getResultList();
-		for (int i = 0; i < selectedFolhas.size(); i++) {
-			if (selectedFolhas.get(i).getId() == id) {
-				folhaFiltrada.add(selectedFolhas.get(i));
+		for (Folha selectedFolha : selectedFolhas) {
+			if (selectedFolha.getId() == idColaborador) {
+				folhaFiltrada.add(selectedFolha);
 				return folhaFiltrada;
 			}
 		}	
