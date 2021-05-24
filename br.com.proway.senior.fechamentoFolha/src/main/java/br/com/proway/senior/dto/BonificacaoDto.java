@@ -1,4 +1,7 @@
 package br.com.proway.senior.dto;
+
+import br.com.proway.senior.model.Bonificacao;
+
 /**
  * Cria Get e Contrutor.
  * Necesserario para a contrucao da bonificacaoDto.
@@ -7,6 +10,7 @@ package br.com.proway.senior.dto;
  *
  */
 public class BonificacaoDto {
+	
 	
 	public double porcentagemBonificacaoColaborador;
 
@@ -20,7 +24,7 @@ public class BonificacaoDto {
 	 * 
 	 * @param porcentagemBonificacaoColaborador
 	 */
-	public BonificacaoDto(double porcentagemBonificacaoColaborador) {
-		this.porcentagemBonificacaoColaborador = porcentagemBonificacaoColaborador;
+	public BonificacaoDto(Bonificacao porcentagemBonificacaoColaborador) {
+		this.porcentagemBonificacaoColaborador = porcentagemBonificacaoColaborador.getPorcentagemBonificacaoColaborador();
 	}	
 }
