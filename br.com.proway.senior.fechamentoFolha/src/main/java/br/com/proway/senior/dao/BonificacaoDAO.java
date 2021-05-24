@@ -59,7 +59,7 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
         }
     }
 
-    @Override
+    
     public boolean update(Bonificacao bonificacaoASerAlterada) {
         if (!session.getTransaction().isActive())
             session.beginTransaction();
