@@ -41,11 +41,6 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 *
 	 * @param session Session, referente a session informada.
 	 *
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 */
 	private FolhaDAO(Session session) {
 		this.session = session;
@@ -63,11 +58,6 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * @param session Session, referente a session informada.
 	 * @return instance {@link FolhaDAO#instance}, referente a sessao da
 	 *         {@link FolhaDAO}
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * @see FolhaDAO
 	 * @see FolhaDAO#instance
 	 */
@@ -85,13 +75,6 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * Recebe uma session e cria uma nova instance da {@link FolhaDAO}
 	 * </p>
 	 *
-	 * @param session Session, referente a sessao informada
-	 * @return instance
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * @see FolhaDAO
 	 */
 	public static FolhaDAO newInstance(Session session) {
@@ -108,11 +91,6 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * </p>
 	 *
 	 * @param folhaASerInserida {@link Folha}, referente a {@link Folha}
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * @see Folha
 	 */
 	public boolean insert(Folha folhaASerInserida) {
@@ -137,11 +115,6 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * </p>
 	 *
 	 * @param folhaASerDeletada {@link Folha}, referente a {@link Folha} informada
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * @see Folha
 	 */
 	public boolean delete(Folha folhaASerDeletada) {
@@ -167,11 +140,6 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * </p>
 	 *
 	 * @param folhaASerAlterada {@link Folha}, referente a {@link Folha}.
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * @see Folha
 	 */
 	public boolean update(Folha folhaASerAlterada) {
@@ -195,11 +163,6 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * </p>
 	 *
 	 * @return List<{@link Folha }> referente aos todos os dados do banco
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * @see Folha
 	 */
 	public List<Folha> getAll() {
@@ -222,11 +185,6 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 *
 	 * @param id int, referente ao id informado
 	 * @return {@link Folha}
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
 	 * @see Folha
 	 */
 	public Folha getById(int id) {

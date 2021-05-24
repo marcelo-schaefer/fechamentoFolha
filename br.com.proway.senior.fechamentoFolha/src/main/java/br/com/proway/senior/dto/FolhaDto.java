@@ -13,7 +13,7 @@ import br.com.proway.senior.model.externo.interfaces.IPontoFolha;
  * 
  * @author Sabrina
  * @author Samuel
- * @author Jhonata
+ * @author Jonata
  * @author Guilherme
  * @author David
  *
