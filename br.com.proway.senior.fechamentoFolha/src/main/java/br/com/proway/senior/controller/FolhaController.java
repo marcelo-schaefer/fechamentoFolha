@@ -268,6 +268,15 @@ public class FolhaController {
 		return folhaDao.getAll();
 	}
 
+	/**
+	 * <h1>Retorna um objeto Folha</h1>.
+	 *
+	 * <p>
+	 * Faz a conexao com o banco, tras todos os bancos e os lista em um List.
+	 * </p>
+	 *
+	 * @see Folha
+	 */
 	public Folha getById(int id) {
 		folhaDao = FolhaDAO.getInstance(PostgresConnector.getSession());
 		return folhaDao.getById(id);

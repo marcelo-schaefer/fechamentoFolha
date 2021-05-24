@@ -1,18 +1,13 @@
 package br.com.proway.senior.dao;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Root;
-
+import br.com.proway.senior.model.Folha;
 import org.hibernate.Session;
 
-import br.com.proway.senior.model.Folha;
+import javax.persistence.criteria.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * <h1>Reponsavel pelos comandos de DML.</h1>
@@ -52,11 +47,11 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	}
 
 	/**
-	 * <h1>Cria uma instancia caso não exista ou usa a existente.</h1>
+	 * <h1>Cria uma instancia caso nï¿½o exista ou usa a existente.</h1>
 	 *
 	 * <p>
-	 * Recebe uma session. Verifica a existencia de uma instancia, caso já exista
-	 * ele atribui a instancia uma sessao da {@link FolhaDAO} caso não exista ele
+	 * Recebe uma session. Verifica a existencia de uma instancia, caso jï¿½ exista
+	 * ele atribui a instancia uma sessao da {@link FolhaDAO} caso nï¿½o exista ele
 	 * cria uma nova instancia.
 	 * </p>
 	 *
@@ -95,8 +90,7 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * de dados.
 	 * </p>
 	 *
-	 * @param folhaASerInserida {@link Folha}.
-	 * 
+	 * @param folhaASerInserida {@link Folha}, referente a {@link Folha}
 	 * @see Folha
 	 */
 	public boolean insert(Folha folhaASerInserida) {
@@ -194,12 +188,10 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * @see Folha
 	 */
 	public Folha getById(int id) {
-		if (!session.getTransaction().isActive())
-			session.beginTransaction();
 		return session.get(Folha.class, id);
 	}
 
-	public List<Folha> getAllById(int id) {
+	public List<Folha> getAllById(int idColaborador) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -208,7 +200,7 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 		List<Folha> folhaFiltrada = new ArrayList<Folha>();
 		List<Folha> selectedFolhas = session.createQuery(criteria).getResultList();
 		for (int i = 0; i < selectedFolhas.size(); i++) {
-			if (selectedFolhas.get(i).getId() == id) {
+			if (selectedFolhas.get(i).getId() == idColaborador) {
 				folhaFiltrada.add(selectedFolhas.get(i));
 				return folhaFiltrada;
 			}
@@ -259,13 +251,7 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 *
 	 * @return List<{ @ link Folha }>, referente as folhas que tem o valor na coluna
 	 *         informada.
-	 *
-	 * @author Sprint 6: David Willian <dwillian676@gmail.com;
-	 * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
-	 * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
-	 * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
-	 * @author Sprint 6: Samuel Levi <samuel.levi@senior.com.br>
-	 *
+	
 	 * @see Folha
 	 */
 	public List<Folha> getDoubleByColumn(String column, Double value) {

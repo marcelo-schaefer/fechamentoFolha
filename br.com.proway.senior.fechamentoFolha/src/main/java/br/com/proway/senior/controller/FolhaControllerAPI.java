@@ -7,10 +7,10 @@ import br.com.proway.senior.dto.FolhaDto;
 import br.com.proway.senior.model.Folha;
 
 public class FolhaControllerAPI {
-	
+
 	FolhaController folhaController = new FolhaController();
-	
-	public  List<FolhaDto> buscarTodasFolhas() {
+
+	public List<FolhaDto> buscarTodasFolhas() {
 		List<FolhaDto> listaFolhaDTO = new ArrayList<FolhaDto>();
 		List<Folha> lista = folhaController.getAll();
 		for (Folha f : lista) {
@@ -18,14 +18,10 @@ public class FolhaControllerAPI {
 		}
 		return listaFolhaDTO;
 	}
-	
+
 	public FolhaDto buscarFolhasPorId(Integer idEmpresa) {
 		FolhaDto folha = new FolhaDto(folhaController.getById(idEmpresa));
 		return folha;
 	}
-	
-	
-	
+
 }
-
-
