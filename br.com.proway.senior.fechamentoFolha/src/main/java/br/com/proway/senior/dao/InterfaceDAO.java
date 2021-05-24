@@ -28,6 +28,6 @@ public interface InterfaceDAO<T> {
 
     public T getById(int id);
 
-    public List<T> getAllById(int idColaborador);
+    public List<T> getAllById(int id);
 
 }

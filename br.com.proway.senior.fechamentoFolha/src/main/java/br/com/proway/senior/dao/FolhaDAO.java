@@ -90,7 +90,8 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * de dados.
 	 * </p>
 	 *
-	 * @param folhaASerInserida {@link Folha}, referente a {@link Folha}
+	 * @param folhaASerInserida {@link Folha}.
+	 * 
 	 * @see Folha
 	 */
 	public boolean insert(Folha folhaASerInserida) {
@@ -188,10 +189,12 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 	 * @see Folha
 	 */
 	public Folha getById(int id) {
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
 		return session.get(Folha.class, id);
 	}
 
-	public List<Folha> getAllById(int idColaborador) {
+	public List<Folha> getAllById(int id) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -200,7 +203,7 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 		List<Folha> folhaFiltrada = new ArrayList<Folha>();
 		List<Folha> selectedFolhas = session.createQuery(criteria).getResultList();
 		for (int i = 0; i < selectedFolhas.size(); i++) {
-			if (selectedFolhas.get(i).getId() == idColaborador) {
+			if (selectedFolhas.get(i).getId() == id) {
 				folhaFiltrada.add(selectedFolhas.get(i));
 				return folhaFiltrada;
 			}
