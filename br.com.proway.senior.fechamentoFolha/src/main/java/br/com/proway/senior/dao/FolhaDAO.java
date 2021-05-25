@@ -121,7 +121,7 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
 		try {
-			session.delete(session.get(Folha.class, folhaASerDeletada.getId()));
+			session.delete(folhaASerDeletada);
 			session.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
