@@ -1,13 +1,18 @@
 package br.com.proway.senior.dao;
 
-import br.com.proway.senior.model.Folha;
-import org.hibernate.Session;
-
-import javax.persistence.criteria.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Session;
+
+import br.com.proway.senior.model.Folha;
 
 /**
  * <h1>Reponsavel pelos comandos de DML.</h1>

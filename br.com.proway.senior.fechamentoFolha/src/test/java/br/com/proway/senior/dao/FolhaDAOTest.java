@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.proway.senior.model.Bonificacao;
@@ -40,7 +41,7 @@ public class FolhaDAOTest {
 		assertEquals(1, folhaDAO.getAll().size());
 	}
 
-	@Test
+	@Test 
 	public void testGetById() {
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
@@ -54,7 +55,7 @@ public class FolhaDAOTest {
 		Folha folha = director.createFolhaNormal(colab, ponto, cargo, bonificacao);
 
 		folhaDAO.insert(folha);
-		System.out.println("ABCCCCCCCCCCCCCCCCCCCC" + folha);
+		System.out.println("ABCCCCCCCCCCCCCCCCCCCC" + folha.getId());
 		assertEquals(folha.getId(), 1);
 	}
 
