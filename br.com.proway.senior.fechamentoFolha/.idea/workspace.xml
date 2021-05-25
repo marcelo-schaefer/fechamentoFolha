@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64ee43b5-1160-4b52-8166-93298075d47a" name="Default Changelist" comment="Refatoração das classes de Bonificação DAO">
+      <change afterPath="$PROJECT_DIR$/src/test/java/br/com/proway/senior/dao/BonificacaoDAOTest2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/controller/FolhaControllerAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/controller/FolhaControllerAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/BonificacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/proway/senior/dao/BonificacaoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/br/com/proway/senior/dao/BonificacaoDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/com/proway/senior/dao/BonificacaoDAOTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +56,94 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RunManager" selected="JUnit.BonificacaoDAOTest">
+    <configuration name="BonificacaoDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="br.com.proway.senior.fechamentoFolha2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.proway.senior.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.proway.senior.dao" />
+      <option name="MAIN_CLASS_NAME" value="br.com.proway.senior.dao.BonificacaoDAOTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BonificacaoDAOTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="br.com.proway.senior.fechamentoFolha2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.proway.senior.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.proway.senior.dao" />
+      <option name="MAIN_CLASS_NAME" value="br.com.proway.senior.dao.BonificacaoDAOTest2" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BonificacaoDAOTest2.testAdicionarBonificacao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="br.com.proway.senior.fechamentoFolha2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.proway.senior.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.proway.senior.dao" />
+      <option name="MAIN_CLASS_NAME" value="br.com.proway.senior.dao.BonificacaoDAOTest2" />
+      <option name="METHOD_NAME" value="testAdicionarBonificacao" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BonificacaoDAOTest.testUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="br.com.proway.senior.fechamentoFolha2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.proway.senior.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.proway.senior.dao" />
+      <option name="MAIN_CLASS_NAME" value="br.com.proway.senior.dao.BonificacaoDAOTest" />
+      <option name="METHOD_NAME" value="testUpdate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FolhaDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="br.com.proway.senior.fechamentoFolha2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.proway.senior.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.proway.senior.dao" />
+      <option name="MAIN_CLASS_NAME" value="br.com.proway.senior.dao.FolhaDAOTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BonificacaoDAOTest" />
+        <item itemvalue="JUnit.BonificacaoDAOTest2.testAdicionarBonificacao" />
+        <item itemvalue="JUnit.BonificacaoDAOTest2" />
+        <item itemvalue="JUnit.FolhaDAOTest" />
+        <item itemvalue="JUnit.BonificacaoDAOTest.testUpdate" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -71,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621859333416</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Bonificação DAO e Tests">
+      <created>1621880628786</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1621880628786</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -88,6 +184,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajuste de Merge, Remoção de comentários desnecessários" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajuste de Merge, Remoção de comentários desnecessários" />
+    <MESSAGE value="Bonificação DAO e Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bonificação DAO e Tests" />
   </component>
 </project>

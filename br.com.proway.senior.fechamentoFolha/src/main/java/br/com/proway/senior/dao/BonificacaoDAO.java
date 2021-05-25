@@ -61,8 +61,14 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
             return false;
         }
     }
+<<<<<<< HEAD
   
+=======
+
+
+>>>>>>> Bonificação_dao_e_testes
     public boolean update(Bonificacao bonificacaoASerAlterada) {
+        session.clear();
         if (!session.getTransaction().isActive())
             session.beginTransaction();
         try {
@@ -103,12 +109,12 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
         return session.get(Bonificacao.class, id);
     }
 
-	/**
-	 * Retorna todas as bonificações recebidas por um Colaborador.
-	 *
-	 * @param id
-	 * @return
-	 */
+    /**
+     * Retorna todas as bonificações recebidas por um Colaborador.
+     *
+     * @param id
+     * @return
+     */
 
     public List<Bonificacao> getAllById(int id) {
         if (!session.getTransaction().isActive())
