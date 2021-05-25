@@ -61,12 +61,6 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
             return false;
         }
     }
-<<<<<<< HEAD
-  
-=======
-
-
->>>>>>> Bonificação_dao_e_testes
     public boolean update(Bonificacao bonificacaoASerAlterada) {
         session.clear();
         if (!session.getTransaction().isActive())
