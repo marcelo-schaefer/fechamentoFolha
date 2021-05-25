@@ -1,7 +1,5 @@
 package br.com.proway.senior.model.externo.interfaces;
 
-import br.com.proway.senior.model.Folha;
-
 /**
  * Interface IFeriasFolha
  * 
