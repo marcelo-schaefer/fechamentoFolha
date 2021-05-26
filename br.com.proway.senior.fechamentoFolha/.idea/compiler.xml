@@ -13,4 +13,9 @@
       <module name="br.com.proway.senior.fechamentoFolha2" target="8" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="br.com.proway.senior.fechamentoFolha2" options="-parameters" />
+    </option>
+  </component>
 </project>

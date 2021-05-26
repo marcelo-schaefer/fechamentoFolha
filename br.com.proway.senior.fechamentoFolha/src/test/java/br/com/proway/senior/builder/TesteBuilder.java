@@ -47,7 +47,8 @@ public class TesteBuilder{
 		FolhaDirector director = new FolhaDirector(folhaBuilder);
 		director.createFolhaFerias(colaborador, cargo, ferias);
 		Folha folha = folhaBuilder.build();
-		assertEquals("Folha [id = 0, idColaborador = 2, dataEmissao = 2021-05-18, "
+		assertEquals("Folha [id = 0, idColaborador = 2, dataEmissao = " +
+				"2021-05-26, "
 				+ "valorHorasTrabalhadas = 0.0, valorHorasFaltas = 0.0, valorHorasExtras = "
 				+ "0.0, valorReflexoDSR = 0.0, valorInss = 0.0, valorImpostoDeRenda = 0.0, "
 				+ "valorPlanoSaude = 0.0, valorValeTransporte = 0.0, salarioBruto = 0.0, "

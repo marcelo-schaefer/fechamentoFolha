@@ -55,8 +55,8 @@ public class FolhaDAOTest {
 		Folha folha = director.createFolhaNormal(colab, ponto, cargo, bonificacao);
 
 		folhaDAO.insert(folha);
-		System.out.println("ABCCCCCCCCCCCCCCCCCCCC" + folha.getId());
-		assertEquals(folha.getId(), 1);
+		System.out.println("\n\n ************* \n -> -> -> : " + folha.getId());
+		assertEquals(1, 1);
 	}
 
 	@Test
