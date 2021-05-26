@@ -1,8 +1,5 @@
 package br.com.proway.senior.controller;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import java.time.LocalDate;
 
 import org.junit.Before;
@@ -16,6 +13,8 @@ import br.com.proway.senior.model.externo.CargoFolha;
 import br.com.proway.senior.model.externo.ColaboradorFolha;
 import br.com.proway.senior.model.externo.FeriasFolha;
 import br.com.proway.senior.model.externo.PontoFolha;
+
+import static org.junit.Assert.*;
 
 
 public class FolhaControllerTest {
@@ -170,6 +169,46 @@ public class FolhaControllerTest {
 		fc.deletarFolha(folha2);
 		assertTrue(db.getAll().size() == 1);
 		
+	}
+
+	@Test
+	public void HtestGetAll(){
+		FolhaController fc = new FolhaController();
+		FolhaDAO db = FolhaDAO.getInstance(PostgresConnector.getSession());
+
+		CargoFolha cargo = new CargoFolha(9999, 0);
+		CargoFolha cargoFolha = fc.construirCargoFolha(cargo.getSalarioBase(), cargo.getPercentualInsalubridade());
+
+		ColaboradorFolha colaborador = new ColaboradorFolha(0, false, 0, 0, 0);
+
+		PontoFolha ponto = new PontoFolha(0, 0, 0);
+
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(0);
+
+		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, bonificacao);
+		int tamanhoInicial = fc.getAll().size();
+		fc.salvarFolha(folha);
+
+		assertEquals(tamanhoInicial+1, fc.getAll().size());
+
+	}
+
+	@Test
+	public void ItestGetById(){
+		FolhaController fc = new FolhaController();
+		FolhaDAO db = FolhaDAO.getInstance(PostgresConnector.getSession());
+		CargoFolha cargo = new CargoFolha(888, 0);
+		CargoFolha cargoFolha = fc.construirCargoFolha(cargo.getSalarioBase(), cargo.getPercentualInsalubridade());
+		ColaboradorFolha colaborador = new ColaboradorFolha(0, false, 0, 0, 0);
+		PontoFolha ponto = new PontoFolha(0, 0, 0);
+		Bonificacao bonificacao = new Bonificacao();
+		bonificacao.setPorcentagemBonificacaoColaborador(0);
+		Folha folha = fc.construirFolhaNormal(colaborador, ponto, cargoFolha, bonificacao);
+		fc.salvarFolha(folha);
+
+		assertEquals(folha, fc.getById(4));
+
 	}
 	
 }
