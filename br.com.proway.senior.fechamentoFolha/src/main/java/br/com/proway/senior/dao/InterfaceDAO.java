@@ -9,7 +9,7 @@ import java.util.List;
  * Metodos implementados pela classe {@link FolhaDAO}{@link BonificacaoDAO}{@link PlrDAO}.
  * </p>
  *
- * @author Sprint 6: David Willian <dwillian676@gmail.com;
+ * @author Sprint 6: David Willian <dwillian676@gmail.com>;
  * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
  * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
  * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;

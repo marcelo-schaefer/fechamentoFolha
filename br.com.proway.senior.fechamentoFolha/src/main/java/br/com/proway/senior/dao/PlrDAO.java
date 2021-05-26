@@ -19,7 +19,7 @@ import br.com.proway.senior.model.Plr;
  * Possue os metodos CRUD da {@link Plr}.
  * </p>
  *
- * @author Sprint 6: David Willian <dwillian676@gmail.com;
+ * @author Sprint 6: David Willian <dwillian676@gmail.com>;
  * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
  * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
  * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;

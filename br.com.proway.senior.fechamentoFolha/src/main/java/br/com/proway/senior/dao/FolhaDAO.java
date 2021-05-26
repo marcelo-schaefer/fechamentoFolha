@@ -12,6 +12,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 
+import br.com.proway.senior.model.Bonificacao;
 import br.com.proway.senior.model.Folha;
 
 /**
@@ -21,7 +22,7 @@ import br.com.proway.senior.model.Folha;
  * Possue os metodos CRUD da {@link Folha}.
  * </p>
  *
- * @author Sprint 6: David Willian <dwillian676@gmail.com;
+ * @author Sprint 6: David Willian <dwillian676@gmail.com>;
  * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
  * @author Sprint 6: Jonata Caetano <jonatacaetano88@gmail.com>
  * @author Sprint 6: Sabrina Schmidt <sabrinaschmidt335@gmail.com>;
@@ -196,6 +197,12 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 		return session.get(Folha.class, id);
 	}
 
+	/**
+	 * Traz todos as folhas por id
+	 * @param idColaborador
+	 * @return List<Folha>
+	 * 
+	 */
 	public List<Folha> getAllById(int idColaborador) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
@@ -323,6 +330,9 @@ public final class FolhaDAO implements InterfaceDAO<Folha> {
 		return folha;
 	}
 
+	/**
+	 * Metodo que limpa a tabela 
+	 */
 	public void limparTabela() {
 		if (!session.getTransaction().isActive()) {
 			session.beginTransaction();

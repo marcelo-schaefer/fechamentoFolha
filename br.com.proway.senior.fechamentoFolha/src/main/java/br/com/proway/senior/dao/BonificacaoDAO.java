@@ -77,6 +77,9 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
 		}
 	}
 
+	/**
+	 * Metodo que deleta 
+	 */
 	public boolean delete(Bonificacao bonificacaoASerDeletada) {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
@@ -90,6 +93,11 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
 		}
 	}
 
+	/**
+	 * Metodoq que traz todos os objetos de bonificacao
+	 * 
+	 * @return List<Bonificacao>
+	 */
 	public List<Bonificacao> getAll() {
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
@@ -99,15 +107,21 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
 		return session.createQuery(criteria).getResultList();
 	}
 
+	/**
+	 * Metodo que traz uma bonificacao pelo id
+	 * 
+	 * @param id
+	 * @return Bonificacao
+	 */
 	public Bonificacao getById(int id) {
 		return session.get(Bonificacao.class, id);
 	}
 
 	/**
-	 * Retorna todas as bonificações recebidas por um Colaborador.
+	 * Retorna todas as bonificações recebidas por uma bonificacao.
 	 *
 	 * @param id
-	 * @return
+	 * @return List<Bonificacao>
 	 */
 
 	public List<Bonificacao> getAllById(int id) {
@@ -127,13 +141,16 @@ public class BonificacaoDAO implements InterfaceDAO<Bonificacao> {
 		return bonificacaoFiltrada;
 	}
 
+	/**
+	 * Metodo que limpa a tabela a cada Objeto folha instanciado
+	 */
 	public void limparTabela() {
 		if (!session.getTransaction().isActive()) {
 			session.beginTransaction();
 		}
 		CriteriaBuilder builder = session.getCriteriaBuilder();
-		CriteriaDelete<Folha> criteriaDelete = builder.createCriteriaDelete(Folha.class);
-		criteriaDelete.from(Folha.class);
+		CriteriaDelete<Bonificacao> criteriaDelete = builder.createCriteriaDelete(Bonificacao.class);
+		criteriaDelete.from(Bonificacao.class);
 		session.createQuery(criteriaDelete).executeUpdate();
 	}
 
