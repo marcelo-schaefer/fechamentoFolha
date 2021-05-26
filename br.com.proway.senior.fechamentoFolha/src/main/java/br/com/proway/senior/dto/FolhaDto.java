@@ -3,20 +3,19 @@ package br.com.proway.senior.dto;
 import br.com.proway.senior.model.Folha;
 
 /**
- * Classe que instancia os valores da folha, do ponto, do colaborador, 
- * da bonificação e do ponto.
+ * <p>Classe que instancia os atributos da {@link Folha}, do ponto, do colaborador e da bonificação.</p>
  * 
- * @author Sabrina
- * @author Samuel
- * @author Jonata
- * @author Guilherme
- * @author David
- *
+ * @author Sprint 6: <a href="mailto:dwillian676@gmail.com?subject=FolhaDTO" title="">David Willian</a>
+ * @author Sprint 6: <a href="mailto:guilhermeezequieldasilva@gmail.com?subject=FolhaDTO" title="">Guilherme Ezequiel</a>
+ * @author Sprint 6: <a href="mailto:jonatacaetano88@gmail.com?subject=FolhaDTO" title="">Jônata Caetano</a>
+ * @author Sprint 6: <a href="mailto:sabrinaschmidt335@gmail.com?subject=FolhaDTO" title="">Sabrina Schmidt</a>
+ * @author Sprint 6: <a href="mailto:samuel.levi@senior.com.br?subject=FolhaDTO" title="">Samuel Levi</a>
+ * 
  */
 public class FolhaDto {
 
 	/**
-	 * Valores da folha
+	 * Atributos referente a {@link Folha}.
 	 */
 	private double valorHorasTrabalhadas;
 	private double valorHorasExtras;
@@ -31,7 +30,7 @@ public class FolhaDto {
 	private double plr;
 	
 	/**
-	 * Construtor Folha DTO construida a partir da folha, do colaborador, da bonificação,
+	 * Construtor {@link FolhaDto} a partir da {@link Folha}, do colaborador, da bonificação,
 	 * do PLR e do ponto
 	 */
 	public FolhaDto(Folha folha) {
