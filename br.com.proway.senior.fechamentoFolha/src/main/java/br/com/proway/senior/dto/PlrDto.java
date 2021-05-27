@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import br.com.proway.senior.model.Plr;
 
 /**
- * Classe que instancia os valores da PLR, do Colaborador.
+ * Classe que instancia os valores do {@link Plr}, do Colaborador.
  * 
  * @author Sprint 6: David Willian <dwillian676@gmail.com;
  * @author Sprint 6: Guilherme Ezequiel <guilhermeezequieldasilva@gmail.com>;
@@ -18,13 +18,13 @@ import br.com.proway.senior.model.Plr;
 public class PlrDto {
 
 	/**
-	 * Atributos da Classe PlrDto
+	 * Atributos da Classe {@link PlrDto}
 	 */
 	private double valorPlr;
 	private LocalDate vencimento;
 
 	/**
-	 * Construtor Plr DTO construida a partir da PLR, do Colaborador
+	 * Construtor Plr DTO construido a partir da {@link Plr}, do Colaborador.
 	 */
 	public PlrDto(Plr plr) {
 

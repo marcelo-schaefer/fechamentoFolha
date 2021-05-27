@@ -43,6 +43,7 @@ public class FolhaDAOTest {
 
 	@Test 
 	public void testGetById() {
+		PostgresConnector.getSession().clear();
 		FolhaDAO folhaDAO = FolhaDAO.getInstance(PostgresConnector.getSession());
 		ColaboradorFolha colab = new ColaboradorFolha(1, false, 100, 43, 205);
 		PontoFolha ponto = new PontoFolha(220, 2, 1);
